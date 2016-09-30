@@ -1,0 +1,6 @@
+{
+  "name": "Home View",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Home.jsx"
+}

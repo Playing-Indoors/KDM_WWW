@@ -1,0 +1,57 @@
+{
+  "name": "KDM",
+  "version": "1.0.0",
+  "description": "KDM Front-End",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "jest",
+    "dev": "npm run build && webpack-dev-server --inline --content-base .",
+    "prod": "NODE_ENV=production webpack --config webpack.prod.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.5.1",
+    "babel-jest": "*",
+    "babel-loader": "^6.2.2",
+    "babel-polyfill": "^6.0.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "expose-loader": "^0.7.0",
+    "node-sass": "^3.7.0",
+    "react-hot-loader": "^1.3.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "axios": "^0.11.1",
+    "bootstrap": "^4.0.0-alpha.2",
+    "font-awesome": "^4.6.1",
+    "html-webpack-plugin": "^2.19.0",
+    "react": "^15.0.2",
+    "react-bootstrap": "^0.29.4",
+    "react-dom": "^15.0.2",
+    "react-redux": "^4.0.0",
+    "react-router": "^2.0.1",
+    "redux": "^3.0.4",
+    "redux-thunk": "^2.1.0",
+    "underscore": "^1.8.3",
+    "webpack-hot-middleware": "^2.10.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
+  }
+}

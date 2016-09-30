@@ -1,0 +1,6 @@
+{
+  "name": "Example Container",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ExampleContainer.jsx"
+}
