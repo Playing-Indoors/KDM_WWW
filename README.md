@@ -7,9 +7,10 @@
  - Underscore
  - Babel ES6
  - React-Bootstrap [DOCS](https://react-bootstrap.github.io/components.html)
+ - Node 6.2.1
 
 ##### Installation
- - SWITCH TO NODE 5.11.0 `nvm use 5.11.0`
+ - `nvm use`
  - `npm install`
 
 ##### Usage
