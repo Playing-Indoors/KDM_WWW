@@ -22,7 +22,7 @@ module.exports = {
         loader: "babel",
         query: {
           cacheDirectory: true,
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'stage-2']
         }
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'stage-2']
         }
       },
       {
@@ -62,7 +62,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      inject: true
+      inject: false
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],

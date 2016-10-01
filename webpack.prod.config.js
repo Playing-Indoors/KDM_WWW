@@ -36,7 +36,7 @@ var config = {
         loader: "babel",
         query: {
           cacheDirectory: true,
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'stage-2']
         }
       },
       {
@@ -44,7 +44,7 @@ var config = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'stage-2']
         }
       },
       {
