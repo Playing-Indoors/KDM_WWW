@@ -10,7 +10,7 @@ import requireAuth from './containers/Require_auth';
 import Home from './containers/Home/Home.jsx';
 import App from './App.jsx';
 import Login from './containers/Login/Login.jsx';
-import NotFound from './components/NotFound.jsx';
+import NotFound from './components/NotFound/NotFound.jsx';
 
 import { AUTH_USER } from './actions/types';
 
