@@ -1,4 +1,7 @@
 export default {
+	page: {
+		"title": "Campaigns"
+	},
 	nav: [
 		{
 			"title": "Campaigns",

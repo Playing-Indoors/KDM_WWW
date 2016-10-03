@@ -4,6 +4,7 @@ import {getHome} from '../../actions/getHome';
 import {bindActionCreators} from 'redux';
 import CalebComponent from '../../components/CalebComponent/CalebComponent.jsx';
 import Nav from '../../components/Nav/Nav.jsx';
+import Header from '../../components/Header/Header.jsx';
 
 
 class Home extends React.Component {
@@ -16,14 +17,17 @@ class Home extends React.Component {
   render() {
     if(this.props.homeData){
       return (
-        <main className="main">
+        <div className="page-home">
           <Nav data={this.props.homeData.nav} />
-          <p>KDM BITCHES</p>
-          <p>This is data from JSON:</p>
-          <p>{this.props.homeData.users[0].current_username}</p>
-          <p> Custom Component for Caleb</p>
-          <CalebComponent />
-        </main>
+          <Header data={this.props.homeData.page} />
+          <main className="main">
+            <p>KDM BITCHES</p>
+            <p>This is data from JSON:</p>
+            <p>{this.props.homeData.users[0].current_username}</p>
+            <p> Custom Component for Caleb</p>
+            <CalebComponent />
+          </main>
+        </div>
       );
     } else {
         return null;
