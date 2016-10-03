@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 
-class NotFound extends Component {
-  render() {
-    var navNodes = this.props.data.map(function(item) {
+// remember to change the class name as well
+class Nav extends Component {
+  constructor(props){
+    super(props);
+  }
+  // Caleb, you want to make custom functions that are invoked when the render function fires
+  renderNodes(){
+    return  this.props.data.map((item, index )=> {
       return (
-        <li>
+        <li key={index}>
           <a href="#" className={"mainNav-link" + (item.isActive ? ' is-active' : '')}>
             <div className="mainNav-link-icon">
               {/* TODO: replace this with svg icon */}
@@ -23,14 +28,16 @@ class NotFound extends Component {
         </li>
       );
     });
+  }
+  render() {
     return (
       <nav className="mainNav">
         <ol>
-          {navNodes}
+          {this.renderNodes()}
        </ol>
      </nav>
     )
   }
 }
 
-export default NotFound;
+export default Nav;
