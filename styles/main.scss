@@ -5,6 +5,16 @@
 // Reset and dependencies
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+// Temporary variables while we decide to use bootstrap or not.
+
+$color-primary: #D7A238;
+$color-grey: #38383A;
+$color-dark: #1D1D1F;
+
+$sidebar-text-color: #3E3E40;
+
+@import "layout";
+
 // Custom Component
 @import "../src/containers/Home/home.scss";
 @import "../src/containers/Login/login.scss";
