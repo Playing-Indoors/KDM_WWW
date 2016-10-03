@@ -3,6 +3,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: [
@@ -42,7 +43,7 @@ module.exports = {
         loader : 'style-loader!css-loader!stylus-loader'
       }, {
         test   : /\.css$/,
-        loader : 'style-loader!css-loader'
+        loader : 'style-loader!css-loader!postcss-loader'
       }, {
         test   : /\.(png|jpg)$/,
         loader : 'url-loader?limit=8192'
@@ -56,6 +57,7 @@ module.exports = {
       }
     ]
   },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
