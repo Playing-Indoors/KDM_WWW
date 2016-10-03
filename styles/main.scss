@@ -1,10 +1,12 @@
 // Variables
 @import "../node_modules/bootstrap/scss/mixins";
 @import "_main_variables.scss";
-@import "layout";
 
 // Reset and dependencies
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+// Custom Layout
+@import "_layout.scss";
 
 // Custom Component
 @import "../src/containers/Home/home.scss";
