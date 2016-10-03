@@ -1,4 +1,27 @@
 export default {
+	nav: [
+		{
+			"title": "Campaigns",
+			"icon": "eye",
+			"isActive": true
+		},
+		{
+			"title": "Settlements",
+			"icon": "yen"
+		},
+		{
+			"title": "Survivors",
+			"icon": "users"
+		},
+		{
+			"title": "Storage",
+			"icon": "wrench"
+		},
+		{
+			"title": "Campaign Log",
+			"icon": "list"
+		}
+	],
 	users:
 		[
 			{

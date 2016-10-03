@@ -1,10 +1,15 @@
-body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+// body {
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// }
 
 .login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: 300px;
+	transform: translate(-50%, -50%);
 	text-align: center;
 	color: #9E9E9E;
 }

@@ -123,10 +123,10 @@ sm: 544px,
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-sm: 576px,
-       md: 720px,
-              lg: 940px,
-                     xl: 1140px
+sm: 100%,
+       md: 100%,
+              lg: 100%,
+                     xl: 100%
 ) !default;
 
 
