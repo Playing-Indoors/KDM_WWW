@@ -3,7 +3,8 @@ var webpack = require('webpack');
 
 var path = require('path'),
   assets_path = path.join('client'),
-  node_modules_dir = path.join(__dirname, 'node_modules');
+  node_modules_dir = path.join(__dirname, 'node_modules'),
+  autoprefixer = require('autoprefixer');
 
 var config = {
   context: path.resolve(assets_path),
@@ -56,7 +57,7 @@ var config = {
         loader : 'style-loader!css-loader!stylus-loader'
       }, {
         test   : /\.css$/,
-        loader : 'style-loader!css-loader'
+        loader : 'style-loader!css-loader!postcss-loader'
       }, {
         test   : /\.(png|jpg)$/,
         loader : 'url-loader?limit=8192'
@@ -70,6 +71,7 @@ var config = {
       }
     ]
   },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
         compress: {
