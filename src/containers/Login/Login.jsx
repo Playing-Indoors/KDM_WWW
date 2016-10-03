@@ -29,17 +29,26 @@ class Login extends Component {
         </div>
         {this.props.authenticated.error ? <h2 style="background:red;">Woops, bad info. Try again.</h2> : "" }
         <form className="login-form" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <div className="inputForm">
-            <i className="fa fa-fw fa-user" aria-hidden="true"></i>
-          <input {...username} type="email" placeholder="email"/>
+          <div className="form-group">
+            <div className="input-group">
+              <label className="input-group-addon input-group-addon--floating" htmlFor="email">
+                <i className="fa fa-fw fa-user" aria-hidden="true"></i>
+              </label>
+              <input {...username} type="email" id="email" className="form-control" placeholder="email" aria-describedby="email" />
+            </div>
           </div>
-          <div className="inputForm">
-            <i className="fa fa-fw fa-lock" aria-hidden="true"></i>
-            <input {...password} type="password" placeholder="password"/>
+
+          <div className="form-group">
+            <div className="input-group">
+              <label className="input-group-addon input-group-addon--floating" htmlFor="password">
+                <i className="fa fa-fw fa-lock" aria-hidden="true"></i>
+              </label>
+              <input {...password} type="text" id="password" className="form-control" placeholder="password" aria-describedby="password" />
+            </div>
           </div>
+
           <br />
-          <br />
-          <button type="submit" id="login-button" className="button button--primary button--standalone">LOGIN</button>
+          <button type="submit" id="login-button" className="btn btn-primary">LOGIN</button>
         </form>
       </div>
     );

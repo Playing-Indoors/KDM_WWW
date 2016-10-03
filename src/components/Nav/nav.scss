@@ -4,7 +4,7 @@
 	left: 0;
 	width: 75px;
 	height: 100%;
-	background: $color-dark;
+	background: $gray-dark;
 	text-align: center;
 
 	ol, li {
@@ -17,18 +17,18 @@
 .mainNav-link {
 	display: block;
 	padding: 1rem 0.25rem;
-	color: $sidebar-text-color;
+	color: $gray-lighter;
 	text-decoration: none;
 	font-size: 0.625rem;
 
 	&:hover, &:focus {
-		background: $color-grey;
+		background: $gray;
 		color: #fff;
 		text-decoration: none;
 	}
 
 	&.is-active {
-		background: $color-primary;
+		background: $brand-primary;
 		color: #fff;
 	}
 }
@@ -47,7 +47,7 @@
 	width: 200px;
 	padding: 2rem 1rem;
 	height: 100%;
-	background: $color-grey;
+	background: $gray;
 	text-align: left;
 
 	li + li{
@@ -81,7 +81,7 @@
 		}
 
 		&:hover, &:focus {
-			background: $color-grey;
+			background: $gray;
 			color: #fff;
 			padding-left: 0.5rem;
 
@@ -98,7 +98,7 @@
 			&::before {
 				opacity: 1;
 				left: 0;
-				background: $color-primary;
+				background: $brand-primary;
 			}
 		}
 	}

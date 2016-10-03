@@ -1,0 +1,26 @@
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid $gray;
+}
+
+.header-title {
+	padding: 1.5rem 1rem;
+	text-transform: uppercase;
+	color: $brand-primary;
+}
+
+.header-actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75rem;
+}
+
+.header-actions a {
+	display: block;
+	padding: 0.125rem;
+	color: $gray;
+}

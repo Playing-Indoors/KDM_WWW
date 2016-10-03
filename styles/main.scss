@@ -8,9 +8,12 @@
 // Custom Layout
 @import "_layout.scss";
 
-// Custom Component
+// Custom Containers
 @import "../src/containers/Home/home.scss";
 @import "../src/containers/Login/login.scss";
+
+// Custom Components
+@import "../src/components/Header/header.scss";
 @import "../src/components/Nav/nav.scss";
 @import "../src/components/NotFound/not_found.scss";
 @import "../src/components/CalebComponent/caleb_component.scss";

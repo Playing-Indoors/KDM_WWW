@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
-// remember to change the class name as well
 class Nav extends Component {
   constructor(props){
     super(props);
   }
   // Caleb, you want to make custom functions that are invoked when the render function fires
   renderNodes(){
-    return  this.props.data.map((item, index )=> {
+    return this.props.data.map((item, index )=> {
       return (
         <li key={index}>
           <a href="#" className={"mainNav-link" + (item.isActive ? ' is-active' : '')}>

@@ -4,10 +4,50 @@ html {
 
 body {
 	min-height:100%;
-	background: $color-dark;
+	// background: $gray-dark;
 	font-family: 'Ruda', sans-serif;
 }
 
+.page {
+	margin-left: 275px;
+}
+
 .main {
-	padding-left: 275px;
+	padding: 1rem;
+}
+
+
+// EXPERIMENTAL BELOW
+
+
+// Sweet button shadows
+
+.btn {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transition: all 0.1s cubic-bezier(.25,.8,.25,1);
+
+	&:hover, &:focus {
+	 transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	}
+}
+
+// Custom item group floating
+.input-group-addon--floating {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background: none;
+	color: $gray-dark;
+
+	+ .form-control {
+		padding-left: 40px;
+	}
+}
+
+// Because bootstrap doesn't seem to like placeholder.
+
+.form-control::-webkit-input-placeholder  {
+	color: $input-color-placeholder;
 }
