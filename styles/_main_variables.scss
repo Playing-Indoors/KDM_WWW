@@ -19,17 +19,19 @@
 //
 // Grayscale and brand colors for use across Bootstrap.
 
-$gray-dark:                 #1D1D1F !default;
-$gray:                      #38383A !default;
-$gray-light:                #3E3E40 !default;
-$gray-lighter:              #9E9E9E !default;
-$gray-lightest:             #f7f7f9 !default;
+$gray-dark:                 #1D1D1E !default;
+$gray:                      #282829 !default;
+$gray-light:                #383839 !default;
+$gray-lighter:              #58585A !default;
+$gray-lightest:             #77787B !default;
+// $white-dark:                #DCDDDE !default;
 
-$brand-primary:             #D7A238 !default;
+$brand-primary:             #D6A237 !default;
+$brand-secondary:           #4D6F76 !default;
 $brand-success:             #5cb85c !default;
 $brand-info:                #5bc0de !default;
 $brand-warning:             #f0ad4e !default;
-$brand-danger:              #f0625b !default;
+$brand-danger:              #9A2822 !default;
 
 
 // Options
@@ -79,8 +81,8 @@ $border-width:               0px !default;
 //
 // Settings for the `<body>` element.
 
-$body-bg:                    $gray-dark !default;
-$body-color:                 $gray-lighter !default;
+$body-bg:                    $gray !default;
+$body-color:                 #DCDDDE !default;
 
 
 // Links
@@ -117,10 +119,10 @@ sm: 544px,
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-sm: 100%,
-			 md: 100%,
-							lg: 100%,
-										 xl: 100%
+sm: 576px,
+       md: 720px,
+              lg: 940px,
+                     xl: 1140px
 ) !default;
 
 

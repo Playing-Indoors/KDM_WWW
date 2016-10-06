@@ -3,13 +3,18 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid $gray;
+	background: $gray-dark;
 }
 
 .header-title {
 	padding: 1.5rem 1rem;
 	text-transform: uppercase;
+	color: $body-color;
+}
+
+.header-title--primary {
 	color: $brand-primary;
+	background: $gray;
 }
 
 .header-actions {
@@ -22,5 +27,5 @@
 .header-actions a {
 	display: block;
 	padding: 0.125rem;
-	color: $gray;
+	color: $gray-lightest;
 }
