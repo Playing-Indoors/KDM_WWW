@@ -4,9 +4,33 @@ export default {
 	},
 	nav: [
 		{
-			"title": "Campaigns",
+			"title": "Dashboard",
 			"icon": "eye",
-			"isActive": true
+			"isActive": true,
+			"children": [
+				{
+					"title": "Campaigns",
+					"link": "#",
+					"children": [
+						{
+							"title": "Active",
+							"link": "#"
+						},
+						{
+							"title": "Inactive",
+							"link": "#"
+						}
+					]
+				},
+				{
+					"title": "World Stats",
+					"link": "#"
+				},
+				{
+					"title": "User Preferences",
+					"link": "#"
+				}
+			]
 		},
 		{
 			"title": "Settlements",
