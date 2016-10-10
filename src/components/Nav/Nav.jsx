@@ -17,10 +17,16 @@ class Nav extends Component {
             {item.title}
           </a>
           <div className="subNav">
+            <div className="header-title header-title--primary">{item.title}</div>
             <ol>
-              <li><a href="#" className="is-active">Campaigns</a></li>
-              <li><a href="#">Survivors</a></li>
-              <li><a href="#">World</a></li>
+              <li>
+                <a href="#" className="is-active">Campaigns</a>
+                <ol>
+                  <li><a href="#">Active</a></li>
+                  <li><a href="#">Inactive</a></li>
+                </ol>
+              </li>
+              <li><a href="#">World Stats</a></li>
               <li><a href="#">User Preferences</a></li>
             </ol>
           </div>

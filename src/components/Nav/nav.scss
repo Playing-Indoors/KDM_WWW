@@ -40,15 +40,34 @@
 }
 
 .subNav {
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 75px;
 	overflow: hidden; // hides the active state
 	width: 200px;
-	padding: 2rem 1rem;
+	// padding: 2rem 1rem;
 	height: 100%;
-	background: $gray;
+	background: $gray-light;
 	text-align: left;
+
+	.is-active + & {
+		display: block;
+	}
+
+	> ol {
+		padding: 2rem;
+		font-size: 0.875rem;
+	}
+
+	ol ol {
+		margin-top: 1rem;
+		margin-left: 1rem;
+
+		a {
+			color: $gray-lightest;
+		}
+	}
 
 	li + li{
 		margin-top: 1rem;
@@ -58,17 +77,18 @@
 		position: relative;
 		display: block;
 		padding: 0;
-		color: #fff;
+		color: $body-color;
 		text-decoration: none;
-		font-size: 0.625rem;
+		// font-size: 0.625rem;
+		line-height: 1.25em;
 		transition: padding 0.3s ease-out;
 
 		&::before {
 			content: '';
 			position: absolute;
-			left: -20px;
+			left: -30px;
 			height: 100%;
-			width: 2px;
+			width: 4px;
 			background: #fff;
 			opacity: 0;
 			transition: all 0.3s ease-out;
@@ -81,13 +101,13 @@
 		}
 
 		&:hover, &:focus {
-			background: $gray;
+			background: none;
 			color: #fff;
 			padding-left: 0.5rem;
 
 			&::before {
 				opacity: 1;
-				left: 0;
+				left: -5px;
 			}
 		}
 
@@ -97,7 +117,7 @@
 
 			&::before {
 				opacity: 1;
-				left: 0;
+				left: -5px;
 				background: $brand-primary;
 			}
 		}
