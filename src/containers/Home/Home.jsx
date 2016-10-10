@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import CalebComponent from '../../components/CalebComponent/CalebComponent.jsx';
 import Nav from '../../components/Nav/Nav.jsx';
 import Header from '../../components/Header/Header.jsx';
+import {logoMark} from '../../svgs/logoMark';
 
 
 class Home extends React.Component {
@@ -26,6 +27,7 @@ class Home extends React.Component {
             <p>{this.props.homeData.users[0].current_username}</p>
             <p> Custom Component for Caleb</p>
             <CalebComponent />
+            {logoMark()}
           </main>
         </div>
       );
