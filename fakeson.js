@@ -49,6 +49,53 @@ export default {
 			"icon": "list"
 		}
 	],
+	campaign: [
+		{
+			"id": 1,
+			"name": "Campaign Name",
+			"founder": "Username",
+			"last_played": "2016-10-10T18:41:31-05:00",
+			"lantern_year": "0",
+			"population": "0",
+			"players": "0"
+		},
+		{
+			"id": 2,
+			"name": "The Watcher",
+			"founder": "loganogden",
+			"last_played": "2016-10-10T18:41:31-05:00",
+			"lantern_year": "14",
+			"population": "4",
+			"players": "4"
+		},
+		{
+			"id": 5,
+			"name": "The Phoenix",
+			"founder:": true,
+			"last_played": "2016-10-10T18:41:31-05:00",
+			"lantern_year": "14",
+			"population": "4",
+			"players": "4"
+		},
+		{
+			"id": 3,
+			"name": "Testing testing",
+			"founder": "somegirl69",
+			"last_played": "2016-10-10T18:41:31-05:00",
+			"lantern_year": "4",
+			"population": "69",
+			"players": "4"
+		},
+		{
+			"id": 4,
+			"name": "Darkness Rising",
+			"founder": "Strider",
+			"last_played": "2016-10-10T18:41:31-05:00",
+			"lantern_year": "15",
+			"population": "25",
+			"players": "2"
+		}
+	],
 	users:
 		[
 			{
