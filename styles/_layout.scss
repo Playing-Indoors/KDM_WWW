@@ -32,6 +32,10 @@ body {
 	}
 }
 
+.btn-secondary {
+  @include button-variant(#fff, $brand-secondary, $brand-secondary);
+}
+
 // Custom item group floating
 .input-group-addon--floating {
 	position: absolute;
@@ -50,4 +54,20 @@ body {
 
 .form-control::-webkit-input-placeholder  {
 	color: $input-color-placeholder;
+}
+
+// Icons
+
+// .svg--primary {
+// 	fill: red;
+// 	stroke: red;
+
+// 	svg {
+// 		fill: red;
+// 		stroke: red;
+// 	}
+// }
+
+.svg-flag {
+	width: 25px;
 }
