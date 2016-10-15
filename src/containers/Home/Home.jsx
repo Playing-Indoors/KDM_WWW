@@ -6,7 +6,7 @@ import CalebComponent from '../../components/CalebComponent/CalebComponent.jsx';
 import Nav from '../../components/Nav/Nav.jsx';
 import Header from '../../components/Header/Header.jsx';
 import List from '../../components/List/List.jsx';
-import Icon from '../../components/Icon/Icon.jsx';
+import Button from '../../components/Button/Button.jsx';
 
 
 class Home extends React.Component {
@@ -23,10 +23,9 @@ class Home extends React.Component {
 					<Nav data={this.props.homeData.nav} />
 					<Header data={this.props.homeData.page} />
 					<main className="main">
-						<a href="#" className="btn btn-secondary btn-block">Create New Campaign</a>
+						<Button text="Create New Campaign" style="secondary" size="block" />
 						<List data={this.props.homeData.campaign} />
 					</main>
-					<Icon icon="flag" color="blue" secondary="pink" />
 				</div>
 			);
 		} else {
