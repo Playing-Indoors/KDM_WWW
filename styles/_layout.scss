@@ -9,7 +9,9 @@ body {
 }
 
 .page {
-	margin-left: 275px;
+	@include breakpoint(m) {
+		margin-left: 285px;
+	}
 }
 
 .main {

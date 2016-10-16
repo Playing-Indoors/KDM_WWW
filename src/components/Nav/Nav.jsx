@@ -13,12 +13,9 @@ class Nav extends Component {
         <li key={index}>
           <a href="#" className={"mainNav-link" + (item.isActive ? ' is-active' : '')}>
             <div className="mainNav-link-icon">
-              {/* TODO: replace this with svg icon */}
-
   						<Icon icon={item.icon} />
-              <i className={"fa fa-" + item.icon} aria-hidden="true"></i>
             </div>
-            {item.title}
+            <div className="mainNav-link-text">{item.title}</div>
           </a>
           <div className="subNav">
             <div className="header-title header-title--primary">{item.title}</div>

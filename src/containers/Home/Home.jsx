@@ -23,7 +23,7 @@ class Home extends React.Component {
 					<Nav data={this.props.homeData.nav} />
 					<Header data={this.props.homeData.page} />
 					<main className="main">
-						<Button text="Create New Campaign" style="secondary" size="block" />
+						<Button text="Create New Campaign" style="secondary" size="lg btn-block" />
 						<List data={this.props.homeData.campaign} />
 					</main>
 				</div>

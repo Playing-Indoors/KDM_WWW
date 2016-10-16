@@ -5,7 +5,7 @@ export default {
 	nav: [
 		{
 			"title": "Dashboard",
-			"icon": "eye",
+			"icon": "logo-mark",
 			"isActive": true,
 			"children": [
 				{
@@ -34,23 +34,23 @@ export default {
 		},
 		{
 			"title": "Settlements",
-			"icon": "yen"
+			"icon": "settlement"
 		},
 		{
 			"title": "Survivors",
-			"icon": "users"
+			"icon": "survivors"
 		},
 		{
 			"title": "Storage",
-			"icon": "wrench"
+			"icon": "storage"
 		},
 		{
 			"title": "Campaign Log",
-			"icon": "flag"
+			"icon": "log"
 		},
 		{
 			"title": "Glossary/FAQ",
-			"icon": "list"
+			"icon": "faq"
 		}
 	],
 	campaign: [

@@ -2,10 +2,17 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 75px;
+	overflow-y: auto;
 	height: 100%;
+	width: 90%;
+	max-width: 200px;
 	background: $gray-dark;
 	text-align: center;
+	@include card(5);
+
+	@include breakpoint(m) {
+		width: 85px;
+	}
 
 	ol, li {
 		display: block;
@@ -15,11 +22,16 @@
 }
 
 .mainNav-link {
-	display: block;
+	display: flex;
+	align-items: center;
 	padding: 1rem 0.25rem;
 	color: $gray-lighter;
 	text-decoration: none;
-	font-size: 0.625rem;
+
+	@include breakpoint(m) {
+		font-size: 0.625rem;
+		flex-direction: column;
+	}
 
 	&:hover, &:focus {
 		background: $gray;
@@ -33,23 +45,39 @@
 	}
 }
 
+// .mainNav > ol > li:first-child .mainNav-link-text {
+// 	display: none;
+// }
+
 .mainNav-link-icon {
+	width: 3.5rem;
 	font-size: 2rem;
 	line-height: 1em;
-	margin-bottom: 0.25rem;
+
+	@include breakpoint(m) {
+		width: auto;
+	}
+
+	svg {
+		width: 34px;
+		height: 34px;
+	}
 }
 
 .subNav {
 	display: none;
-	position: fixed;
-	top: 0;
-	left: 75px;
 	overflow: hidden; // hides the active state
-	width: 200px;
 	// padding: 2rem 1rem;
-	height: 100%;
 	background: $gray-light;
 	text-align: left;
+
+	@include breakpoint(m) {
+		position: fixed;
+		top: 0;
+		left: 85px;
+		width: 200px;
+		height: 100%;
+	}
 
 	.is-active + & {
 		display: block;
@@ -120,6 +148,14 @@
 				left: -5px;
 				background: $brand-primary;
 			}
+		}
+	}
+
+	.header-title {
+		display: none;
+
+		@include breakpoint(m) {
+			display: block;
 		}
 	}
 }
