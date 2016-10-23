@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 class TugGraph extends Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			total: parseInt(this.props.aValue) + parseInt(this.props.bValue)
+		};
 	}
 	render() {
 		return (
@@ -19,9 +22,8 @@ class TugGraph extends Component {
 						{this.props.bLabel}
 					</div>
 				</div>
-				{/* I know the following is wrong... too lazy to fix right now. @Khoa? */}
-				<progress className="tugGraph-progress" max="{this.props.total}" value="{this.props.aValue}"></progress>
-				<div className="tugGraph-total">{this.props.total} Total {this.props.title} Created</div>
+				<progress className="tugGraph-progress" max={this.state.total} value={this.props.aValue}></progress>
+				<div className="tugGraph-total">{this.state.total} Total {this.props.title} Created</div>
 			</div>
 		);
 	}

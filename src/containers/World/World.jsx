@@ -18,10 +18,8 @@ class World extends React.Component {
 					<main className="main">
 						<div className="widgetGroup">Global Totals</div>
 						<div className="widget">
-
-							<TugGraph title="Campaign" aLabel="Active" aValue="985" bLabel="Ended" bValue="46"/>
+							<TugGraph title="Campavign" aLabel="Active" aValue="985" bLabel="Ended" bValue="46"/>
 						</div>
-
 					</main>
 				</div>
 			);
