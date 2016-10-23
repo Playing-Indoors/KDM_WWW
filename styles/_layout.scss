@@ -10,7 +10,7 @@ body {
 
 .page {
 	@include breakpoint(m) {
-		margin-left: 285px;
+		margin-left: $menu-width;
 	}
 }
 
