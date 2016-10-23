@@ -8,21 +8,37 @@ import TugGraph from '../../components/TugGraph/TugGraph.jsx';
 class World extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			worldData: null
+		}
 	}
 	componentWillMount(){
 		this.props.getWorld();
 	}
+	componentWillReceiveProps(nextProps){
+		console.log(nextProps.worldData);
+		if(nextProps.worldData){
+			this.setState({
+				worldData: nextProps.worldData
+			});
+		}
+	}
 	render() {
+		if(this.state.worldData){
 			return (
 				<div className="page-wrold">
 					<main className="main">
 						<div className="widgetGroup">Global Totals</div>
 						<div className="widget">
-							<TugGraph title="Campavign" aLabel="Active" aValue="985" bLabel="Ended" bValue="46"/>
+							<TugGraph title="Campaign" aLabel="Active" aValue="985" bLabel="Ended" bValue="46"/>
 						</div>
+						{this.state.worldData.world.active_settlements.value}
 					</main>
 				</div>
 			);
+		} else {
+			return null;
+		}
 	}
 }
 
