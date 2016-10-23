@@ -1,6 +1,7 @@
 // Variables
 @import "../node_modules/bootstrap/scss/mixins";
 @import "_main_variables.scss";
+@import "_utilities.scss";
 
 // Reset and dependencies
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
@@ -11,8 +12,10 @@
 // Custom Containers
 @import "../src/containers/Home/home.scss";
 @import "../src/containers/Login/login.scss";
+@import "../src/containers/World/world.scss";
 
 // Custom Components
+@import "../src/components/Button/button.scss";
 @import "../src/components/Header/header.scss";
 @import "../src/components/List/list.scss";
 @import "../src/components/Nav/nav.scss";

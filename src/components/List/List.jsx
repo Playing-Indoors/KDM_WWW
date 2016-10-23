@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {flag} from '../../svgs/flag';
+import Icon from '../../components/Icon/Icon.jsx';
+import Button from '../../components/Button/Button.jsx';
 
 class List extends Component {
 	constructor(props){
@@ -9,13 +10,16 @@ class List extends Component {
 		return this.props.data.map((item, index )=> {
 			return (
 				<div className="list" key={index}>
-					<div className={"list-icon" + (item.Founder ? '' : ' svg--primary')}>{flag("red")}</div>
+					<div className={"list-icon" + (item.Founder ? '' : ' svg--primary')}>
+						<Icon icon="flag" />
+					</div>
 					<div className="list-content">
 						<h2 className="list-content-title">{item.name}</h2>
 						<div className="list-content-meta">
 							<div className="list-content-meta-item">
-              	{/* Need to add some flag if this founder is you. */}
+              	{/* if founder != currentuser */}
 								Founded by <strong>{item.founder}</strong>
+								{/* end if */}
 							</div>
              	{/* Convert this to moment().fromNow() or something like that. if not MMM Do YYYY  */}
 							<div className="list-content-meta-item">Last Played <strong>{item.last_played}</strong></div>
@@ -28,7 +32,9 @@ class List extends Component {
 						</div>
 					</div>
 					<div className="list-actions">
-						<a href="#" className="btn btn-secondary btn-block">Play</a>
+					  {/* if !item.retired */ }
+						<Button text="Play" style="secondary" />
+						{/* else <Button text="Ended" style="link" disabled="true" size="block" /> */}
 					</div>
 				</div>
 			);

@@ -5,7 +5,7 @@ export default {
 	nav: [
 		{
 			"title": "Dashboard",
-			"icon": "eye",
+			"icon": "logo-mark",
 			"isActive": true,
 			"children": [
 				{
@@ -34,19 +34,23 @@ export default {
 		},
 		{
 			"title": "Settlements",
-			"icon": "yen"
+			"icon": "settlement"
 		},
 		{
 			"title": "Survivors",
-			"icon": "users"
+			"icon": "survivors"
 		},
 		{
 			"title": "Storage",
-			"icon": "wrench"
+			"icon": "storage"
 		},
 		{
 			"title": "Campaign Log",
-			"icon": "list"
+			"icon": "log"
+		},
+		{
+			"title": "Glossary/FAQ",
+			"icon": "faq"
 		}
 	],
 	campaign: [
@@ -93,9 +97,124 @@ export default {
 			"last_played": "2016-10-10T18:41:31-05:00",
 			"lantern_year": "15",
 			"population": "25",
-			"players": "2"
+			"players": "2",
+			"retired": true
 		}
 	],
+  world: {
+    "live_survivors": {
+      "comment": "worldwide count of all living survivors",
+      "max_age": 5,
+      "handle": "live_survivors",
+      "name": "Live survivors",
+      "value": 4341,
+      "created_on": {
+        "$date": 1476568698177
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9171"
+      }
+    },
+    "new_settlements_last_30": {
+      "comment": "total of all settlements with a 'created_on' date within the last 30 days",
+      "handle": "new_settlements_last_30",
+      "name": "Total settlements created in the last 30 days",
+      "value": 102,
+      "created_on": {
+        "$date": 1476568698186
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9175"
+      }
+    },
+    "abandoned_settlements": {
+      "comment": "worldwide count of all abandoned and removed settlements",
+      "handle": "abandoned_settlements",
+      "name": "Abandoned settlements",
+      "value": 57,
+      "created_on": {
+        "$date": 1476568698163
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c916f"
+      }
+    },
+    "total_survivors": {
+      "comment": "worldwide count of all survivors, living and dead",
+      "handle": "total_survivors",
+      "name": "Total survivors",
+      "value": 5662,
+      "created_on": {
+        "$date": 1476568698188
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9176"
+      }
+    },
+    "total_users": {
+      "comment": "total of all registered users",
+      "handle": "total_users",
+      "name": "Total users",
+      "value": 1195,
+      "created_on": {
+        "$date": 1476568698183
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9174"
+      }
+    },
+    "total_users_last_30": {
+      "comment": "total of all users who have signed in during the last 30 days",
+      "max_age": 60,
+      "handle": "total_users_last_30",
+      "name": "Total users in the last 30 days",
+      "value": 141,
+      "created_on": {
+        "$date": 1476568698179
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9172"
+      }
+    },
+    "dead_survivors": {
+      "comment": "worldwide count of all dead survivors",
+      "max_age": 5,
+      "handle": "dead_survivors",
+      "name": "Dead survivors",
+      "value": 2803,
+      "created_on": {
+        "$date": 1476568698181
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9173"
+      }
+    },
+    "recent_sessions": {
+      "comment": "total of all sessions within the 'recent_session' horizon",
+      "max_age": 30,
+      "handle": "recent_sessions",
+      "name": "Recent sessions",
+      "value": 4,
+      "created_on": {
+        "$date": 1476568698169
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9170"
+      }
+    },
+    "active_settlements": {
+      "comment": "worldwide count of all settlements that have not been abandoned or removed",
+      "handle": "active_settlements",
+      "name": "Active settlements",
+      "value": 973,
+      "created_on": {
+        "$date": 1476568698192
+      },
+      "_id": {
+        "$oid": "5802a67a8740d90f532c9177"
+      }
+    }
+	},
 	users:
 		[
 			{
