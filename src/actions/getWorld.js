@@ -6,8 +6,7 @@ export function getWorld(){
     return dispatch => {
       axios.get(`${ROOT_URL}/world`)
 				.then((res)=>{
-					console.log('yay json', res);
-					//dispatch(getWorldAsync(fakeson));
+					dispatch(getWorldAsync(res));
 				})
     }
 }
@@ -15,6 +14,6 @@ export function getWorld(){
 function getWorldAsync(data){
   return {
     type: GET_WORLD,
-    payload: data
+    payload: data.data
   };
 }
