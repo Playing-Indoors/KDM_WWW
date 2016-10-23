@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {GET_WORLD} from './types';
-
 const ROOT_URL = 'http://api.thewatcher.io';
 
 export function getWorld(){

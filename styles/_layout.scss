@@ -18,6 +18,25 @@ body {
 	padding: 1rem;
 }
 
+// Widget --- this belongs in a component after finalized
+
+.widget {
+	background: $gray-light;
+	padding: 1rem
+}
+
+// Graphs --- this belongs in a component after finalized
+
+.tugGraph-labels {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tugGraph-progress {
+	width: 100%;
+	-webkit-appearance: none;
+}
+
 
 // EXPERIMENTAL BELOW
 

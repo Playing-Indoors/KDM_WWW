@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getHome} from '../../actions/getHome';
 import {bindActionCreators} from 'redux';
-import CalebComponent from '../../components/CalebComponent/CalebComponent.jsx';
 import Nav from '../../components/Nav/Nav.jsx';
 import Header from '../../components/Header/Header.jsx';
 import List from '../../components/List/List.jsx';
