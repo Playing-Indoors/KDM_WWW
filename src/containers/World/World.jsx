@@ -12,7 +12,7 @@ class World extends React.Component {
 			worldData: null
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
 		this.props.getWorld();
 	}
 	componentWillReceiveProps(nextProps){
