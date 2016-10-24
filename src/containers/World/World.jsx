@@ -26,7 +26,7 @@ class World extends React.Component {
 	render() {
 		if(this.state.worldData){
 			return (
-				<div className="page-wrold">
+				<div className="page-world">
 					<main className="main">
 						<div className="widgetGroup">Global Totals</div>
 						<div className="widget">
