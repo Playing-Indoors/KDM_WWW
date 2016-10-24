@@ -49,8 +49,8 @@ var config = {
         }
       },
       {
-        test: /\.scss$/,
-        loaders: ['style', 'css?', 'sass']
+        test: /\.scss/,
+        loader: 'style-loader!css-loader!postcss-loader!sass-loader'
       },
       {
         test   : /\.styl/,

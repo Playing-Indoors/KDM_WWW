@@ -35,8 +35,8 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
-        loaders: ['style', 'css?', 'sass']
+        test: /\.scss/,
+        loader: 'style-loader!css-loader!postcss-loader!sass-loader'
       },
       {
         test   : /\.styl/,
@@ -57,7 +57,7 @@ module.exports = {
       }
     ]
   },
-  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+  postcss: [ autoprefixer({ browsers: ['last 5 versions'] }) ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
