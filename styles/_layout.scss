@@ -32,9 +32,24 @@ body {
 	justify-content: space-between;
 }
 
-.tugGraph-progress {
+progress {
+	color: $brand-primary;
+	background: $gray-lighter;
 	width: 100%;
+	height: 2rem;
+	border: none;
 	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+}
+
+progress::-webkit-progress-bar,
+progress::-moz-progress-bar {
+	background: $gray-lighter;
+}
+
+progress::-webkit-progress-value {
+	background: $brand-primary;
 }
 
 
