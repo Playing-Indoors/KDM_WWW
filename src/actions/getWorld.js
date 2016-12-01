@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {GET_WORLD} from './types';
-const ROOT_URL = 'http://api.thewatcher.io';
+const KDM_API = require('KDM_API');
 
 export function getWorld(){
     return dispatch => {
-      axios.get(`${ROOT_URL}/world`)
+      axios.get(`${KDM_API}/world`)
 				.then((res)=>{
 					dispatch(getWorldAsync(res));
 				})

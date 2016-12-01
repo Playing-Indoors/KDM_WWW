@@ -10,6 +10,9 @@ module.exports = {
     'webpack-hot-middleware/client?reload=true',
     path.join(__dirname, '/src/routes.js')
   ],
+  externals: {
+    KDM_API: JSON.stringify('http://api.thewatcher.io')
+  },
   output: {
     path: path.join(__dirname, '/public/'),
     filename: 'bundle.js',
