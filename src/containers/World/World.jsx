@@ -20,7 +20,6 @@ class World extends React.Component {
 		this.props.getSurvivor();
 	}
 	componentWillReceiveProps(nextProps){
-		console.log(nextProps.worldData);
 		if(nextProps.worldData){
 			this.setState({
 				worldData: nextProps.worldData
