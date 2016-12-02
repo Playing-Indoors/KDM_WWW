@@ -90,3 +90,25 @@ progress::-webkit-progress-value {
 .svg-flag {
 	width: 25px;
 }
+
+// Temporary box widget
+
+.box {
+  background: $gray-dark;
+}
+
+.box-header {
+  padding: 0.25rem 0.5rem;
+  background: $gray-lighter;
+  color: #fff;
+}
+
+.box-content {
+  padding: 1rem;
+}
+
+.statGroup {
+  display: flex;
+  justify-content: space-around;
+}
+

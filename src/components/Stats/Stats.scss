@@ -1,0 +1,43 @@
+
+// <div class="statGroup">
+//   <div class="stat">
+//     <div class="stat-num">1</div>
+//     <div class="stat-milestone"></div>
+//     <div class="stat-title"></div>
+//   </div>
+// </div>
+
+.stat {
+  padding: 0 0.25rem;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 2.5rem;
+  line-height: 1em;
+}
+
+.stat-milestone {
+  display: flex;
+  justify-content: center;
+
+  span {
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin: 2px 2px;
+    background: $gray-lighter;
+
+    &.is-passive {
+      background: #fff;
+    }
+
+    &.is-active {
+      background: $brand-primary;
+    }
+  }
+}
+
+.stat-title {
+  font-size: 10px;
+}
