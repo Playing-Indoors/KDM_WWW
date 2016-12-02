@@ -7,12 +7,22 @@ import {bindActionCreators} from 'redux';
 class Aya extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			ayaData: null
+		}
 	}
 	componentWillMount(){
 		this.props.getAya();
 	}
+	componentWillReceiveProps(nextProps){
+		if(nextProps.ayaData){
+			this.setState({
+				ayaData: nextProps.ayaData
+			})
+		}
+	}
 	render() {
-		if(this.props.ayaData){
+		if(this.state.ayaData){
 			return (
 				<div className="page-aya">
 					test
