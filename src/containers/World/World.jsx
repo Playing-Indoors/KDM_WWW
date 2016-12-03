@@ -6,6 +6,7 @@ import { getWorld } from '../../actions/getWorld.js';
 import { getSettlement } from '../../actions/getSettlement.js';
 import { getSurvivor } from '../../actions/getSurvivor.js';
 import TugGraph from '../../components/TugGraph/TugGraph.jsx';
+import Stat from '../../components/Stats/Stats.jsx';
 
 class World extends React.Component {
 	constructor(props) {
@@ -31,6 +32,134 @@ class World extends React.Component {
 			return (
 				<div className="page-world">
 					<main className="main">
+
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Survival</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+									{this.state.survivorData}
+										<Stat />
+									</div>
+								</div>
+							</div>
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Bleeding</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<Stat />
+									</div>
+								</div>
+							</div>
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Additional XP</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<Stat />
+										<Stat />
+										<Stat />
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Primary Stats</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<Stat />
+										<Stat />
+										<Stat />
+										<Stat />
+										<Stat />
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Armor</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<Stat />
+										<Stat />
+										<Stat />
+										<Stat />
+										<Stat />
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Fighting Arts</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+									</div>
+								</div>
+							</div>
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Disorders</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Abilities</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Impairments</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Additional Notes</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<div className="widgetGroup">Global Totals</div>
 
 						<div className="widget">

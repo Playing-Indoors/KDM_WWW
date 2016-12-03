@@ -91,6 +91,7 @@ progress::-webkit-progress-value {
 	width: 25px;
 }
 
+
 // Temporary box widget
 
 .box {
@@ -112,3 +113,15 @@ progress::-webkit-progress-value {
   justify-content: space-around;
 }
 
+
+// Temporary box widget container
+
+.boxGroup {
+	display: flex;
+	width: 100%;
+
+	> .box {
+		flex: 1 1 auto;
+		margin: 0 0.5rem 1rem;
+	}
+}
