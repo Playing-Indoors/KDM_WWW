@@ -39,7 +39,7 @@ class Aya extends React.Component {
               </header>
               <div className="box-content">
                 <div className="statGroup">
-									<Stat />
+									Stat />
                   <div className="stat">
                     <div className="stat-num">#</div>
                     <div className="stat-milestone">

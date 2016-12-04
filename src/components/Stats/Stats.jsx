@@ -10,33 +10,32 @@ class Stats extends Component {
     super(props);
     this.state = {
       // Expected data object
-      data: {
-        title: 'Title', // Once we start passing data, change this to empty
-        number: 2,
-        milestones: [
-          'is-empty',  // empty
-          'is-passive',  // filled in
-          'is-active',  // active
-        ],
-      },
+      title: props.title || '', // Once we start passing data, change this to empty
+      number: props.number || 0,
+      milestones: props.milestones || [],
+      // [
+      //   'is-empty',  // empty
+      //   'is-passive',  // filled in
+      //   'is-active',  // active
+      // ],
     }
   }
   // Renders our milestones and attaches their class
   renderMilestones() {
-    return this.state.data.milestones.map((item, index )=> {
+    return this.state.milestones.map((item, index )=> {
       return (
-        <span key={index} className={item}></span>
+        <span key={index} className={"milestone milestone--" + item}></span>
       );
     });
   }
   render() {
     return (
       <div className="stat">
-        <div className="stat-num">{this.state.data.number}</div>
+        <div className="stat-num">{this.state.number}</div>
         <div className="stat-milestone">
           {this.renderMilestones()}
         </div>
-        <div className="stat-title">{this.state.data.title}</div>
+        <div className="stat-title">{this.state.title}</div>
       </div>
     )
   }

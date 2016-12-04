@@ -7,6 +7,7 @@ import { getSettlement } from '../../actions/getSettlement.js';
 import { getSurvivor } from '../../actions/getSurvivor.js';
 import TugGraph from '../../components/TugGraph/TugGraph.jsx';
 import Stat from '../../components/Stats/Stats.jsx';
+import SurvivorXP from '../../components/Survivor/Survivor-XP.jsx';
 
 class World extends React.Component {
 	constructor(props) {
@@ -26,6 +27,11 @@ class World extends React.Component {
 				worldData: nextProps.worldData
 			});
 		}
+		if(nextProps.survivorData){
+			this.setState({
+				survivorData: nextProps.survivorData
+			});
+		}
 	}
 	render() {
 		if(this.state.worldData){
@@ -40,8 +46,7 @@ class World extends React.Component {
 								</header>
 								<div className="box-content">
 									<div className="statGroup">
-									{this.state.survivorData}
-										<Stat />
+										<Stat title="Survival" number={this.state.Survival} />
 									</div>
 								</div>
 							</div>
@@ -61,9 +66,10 @@ class World extends React.Component {
 								</header>
 								<div className="box-content">
 									<div className="statGroup">
-										<Stat />
-										<Stat />
-										<Stat />
+										<SurvivorXP number={this.state.survivorData.hunt_xp} />
+										<Stat title="Courage" number={this.state.Courage} />
+										<Stat title="Understanding" number={this.state.Understanding} />
+										<Stat title="Weapon" number={this.state.Weapon} />
 									</div>
 								</div>
 							</div>
@@ -76,11 +82,12 @@ class World extends React.Component {
 								</header>
 								<div className="box-content">
 									<div className="statGroup">
-										<Stat />
-										<Stat />
-										<Stat />
-										<Stat />
-										<Stat />
+										<Stat title="Movement" number={this.state.Movement} />
+										<Stat title="Accuracy" number={this.state.Accuracy} />
+										<Stat title="Strength" number={this.state.Strength} />
+										<Stat title="Evasion" number={this.state.Evasion} />
+										<Stat title="Luck" number={this.state.Luck} />
+										<Stat title="Speed" number={this.state.Speed} />
 									</div>
 								</div>
 							</div>
@@ -93,11 +100,12 @@ class World extends React.Component {
 								</header>
 								<div className="box-content">
 									<div className="statGroup">
-										<Stat />
-										<Stat />
-										<Stat />
-										<Stat />
-										<Stat />
+										<Stat title="Brain" number={this.state.Brain} />
+										<Stat title="Head" number={this.state.Head} />
+										<Stat title="Arms" number={this.state.Arms} />
+										<Stat title="Body" number={this.state.Body} />
+										<Stat title="Waist" number={this.state.Waist} />
+										<Stat title="Feet" number={this.state.Feet} />
 									</div>
 								</div>
 							</div>
