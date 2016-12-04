@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getAya} from '../../actions/getAya';
 import {bindActionCreators} from 'redux';
 import Stat from '../../components/Stats/Stats.jsx';
+import { Button, Modal } from 'react-bootstrap';
 
 class Aya extends React.Component {
 	constructor(props) {
@@ -39,34 +40,39 @@ class Aya extends React.Component {
               </header>
               <div className="box-content">
                 <div className="statGroup">
-									Stat />
-                  <div className="stat">
-                    <div className="stat-num">#</div>
-                    <div className="stat-milestone">
-                      <span className="is-passive"></span>
-                      <span></span>
-                    </div>
-                    <div className="stat-title">Title</div>
-                  </div>
-                  <div className="stat">
-                    <div className="stat-num">0</div>
-                    <div className="stat-milestone">
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div className="stat-title">Understanding</div>
-                  </div>
-                  <div className="stat">
-                    <div className="stat-num">1</div>
-                    <div className="stat-milestone">
-                      <span className="is-active"></span>
-                      <span className="is-active"></span>
-                    </div>
-                    <div className="stat-title">Weapon</div>
-                  </div>
+									<Stat />
+                  <Stat title="title" number="10" />
+                  <Stat title="Test" number="5" milestone={['empty','empty']} />
                 </div>
               </div>
             </div>
+
+            <h2>Model</h2>
+
+            <Modal show={true}>
+              <Modal.Header>
+                <Modal.Title>
+                  Survival <br />
+                  <small>Limit: 1</small>
+                </Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <div className="statSpend">
+                  <button type="button" className="statSpend-change">&ndash;</button>
+                  <div className="statSpend-num">1</div>
+                  <button type="button" className="statSpend-change">+</button>
+                </div>
+                or <br />
+                <Button>Spend Survival</Button>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button bsStyle="primary">Confirm</Button>
+                <Button bsStyle="secondary">Confirm</Button>
+              </Modal.Footer>
+
+            </Modal>
           </main>
 				</div>
 			);

@@ -45,3 +45,27 @@
 .stat-title {
 	font-size: 10px;
 }
+
+// StatSpend
+
+.statSpend {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+}
+
+.statSpend-num {
+	padding: 0 0.5rem;
+	font-size: 3rem;
+}
+
+.statSpend-change {
+	background: none;
+	border: none;
+	color: #fff;
+
+	&:hover, &:focus {
+		color: $brand-primary;
+	}
+}

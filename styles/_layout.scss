@@ -52,6 +52,21 @@ progress::-webkit-progress-value {
 	background: $brand-primary;
 }
 
+// Update Model
+
+.modal-title {
+	text-align: center;
+	color: #fff;
+}
+
+.modal-footer {
+	display: flex;
+
+	button {
+		flex: 1 1 100px;;
+	}
+}
+
 
 // EXPERIMENTAL BELOW
 

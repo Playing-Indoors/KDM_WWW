@@ -532,16 +532,16 @@ $label-font-weight:           bold !default;
 // Modals
 
 // Padding applied to the modal body
-$modal-inner-padding:         15px !default;
+$modal-inner-padding:         0 !default;
 
 $modal-title-padding:         15px !default;
 $modal-title-line-height:     $line-height !default;
 
-$modal-content-bg:                             #fff !default;
+$modal-content-bg:                            $gray !default;
 $modal-content-border-color:                   rgba(0,0,0,.2) !default;
 
 $modal-backdrop-bg:           #000 !default;
-$modal-backdrop-opacity:      .5 !default;
+$modal-backdrop-opacity:      .84 !default;
 $modal-header-border-color:   #e5e5e5 !default;
 $modal-footer-border-color:   $modal-header-border-color !default;
 
