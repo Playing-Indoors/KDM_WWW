@@ -3,12 +3,14 @@ import {connect} from 'react-redux';
 import {getAya} from '../../actions/getAya';
 import {bindActionCreators} from 'redux';
 import Stat from '../../components/Stats/Stats.jsx';
+import {Modal, Button} from 'react-bootstrap';
 
 class Aya extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			ayaData: null
+			ayaData: null,
+			showModal: false
 		}
 	}
 	componentWillMount(){
@@ -20,6 +22,19 @@ class Aya extends React.Component {
 				ayaData: nextProps.ayaData
 			})
 		}
+	}
+	handleShowModal(){
+    this.setState({
+      showModal: true
+    });
+  }
+	handleCloseModal(){
+    this.setState({
+      showModal: false
+    });
+  }
+	handleSubmitStuff(){
+		//send stuff to api
 	}
 	render() {
 		if(this.state.ayaData){
@@ -68,6 +83,15 @@ class Aya extends React.Component {
               </div>
             </div>
           </main>
+					<button onClick={this.handleShowModal.bind(this)}>Click Me!</button>
+					<Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
+						<Modal.Body>
+							<img src="https://img.pandawhale.com/post-61492-dancing-dickbutt-gif-imgur-tum-pTDg.gif"/>
+						</Modal.Body>
+						<Modal.Footer>
+							<Button onClick={this.handleSubmitStuff.bind(this)} className="btn-primary">Submit</Button>
+						</Modal.Footer>
+					</Modal>
 				</div>
 			);
 		} else {
