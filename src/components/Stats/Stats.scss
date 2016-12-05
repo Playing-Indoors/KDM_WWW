@@ -8,36 +8,64 @@
 // </div>
 
 .stat {
-  padding: 0 0.25rem;
-  text-align: center;
+	flex: 1 1 100px;
+	padding: 0 0.25rem;
+	text-align: center;
 }
 
 .stat-num {
-  font-size: 2.5rem;
-  line-height: 1em;
+	font-size: 2.5rem;
+	line-height: 1em;
 }
 
 .stat-milestone {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
+}
 
-  span {
-    display: inline-block;
-    width: 0.4rem;
-    height: 0.4rem;
-    margin: 2px 2px;
-    background: $gray-lighter;
+.milestone {
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	margin: 2px 2px;
+	background: $gray-lighter;
+}
 
-    &.is-passive {
-      background: #fff;
-    }
+// .milestone--empty {
+// }
 
-    &.is-active {
-      background: $brand-primary;
-    }
-  }
+.milestone--filled {
+	background: #fff;
+}
+
+.milestone--active {
+	background: $brand-primary;
 }
 
 .stat-title {
-  font-size: 10px;
+	font-size: 10px;
+}
+
+// StatSpend
+
+.statSpend {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+}
+
+.statSpend-num {
+	padding: 0 0.5rem;
+	font-size: 3rem;
+}
+
+.statSpend-change {
+	background: none;
+	border: none;
+	color: #fff;
+
+	&:hover, &:focus {
+		color: $brand-primary;
+	}
 }
