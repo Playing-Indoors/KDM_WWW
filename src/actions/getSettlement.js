@@ -17,6 +17,6 @@ export function getSettlement(){
 function getSettlementAsync(data){
   return {
     type: GET_SETTLEMENT,
-    payload: data.data
+    payload: data
   };
 }
