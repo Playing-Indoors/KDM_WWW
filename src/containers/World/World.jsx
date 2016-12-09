@@ -7,6 +7,7 @@ import { getSettlement } from '../../actions/getSettlement.js';
 import { getSurvivor } from '../../actions/getSurvivor.js';
 import TugGraph from '../../components/TugGraph/TugGraph.jsx';
 import Stat from '../../components/Stats/Stats.jsx';
+import Survival from '../../components/Survivor/Survival.jsx';
 import SurvivorXP from '../../components/Survivor/Survivor-XP.jsx';
 
 class World extends React.Component {
@@ -40,16 +41,7 @@ class World extends React.Component {
 					<main className="main">
 
 						<div className="boxGroup">
-							<div className="box">
-								<header className="box-header">
-									<div className="box-header-title">Survival</div>
-								</header>
-								<div className="box-content">
-									<div className="statGroup">
-										<Stat title="Survival" number={this.state.Survival} />
-									</div>
-								</div>
-							</div>
+							<Survival number={this.state.Survival} />
 							<div className="box">
 								<header className="box-header">
 									<div className="box-header-title">Bleeding</div>

@@ -121,6 +121,18 @@ progress::-webkit-progress-value {
 
 .box-content {
   padding: 1rem;
+
+	@at-root a#{&} {
+		display: block;
+		color: inherit;
+		transition: background 0.2s ease-out;
+
+		&:hover, 
+		&:focus {
+			text-decoration: none;
+			background: rgba($brand-primary, 0.14);
+		}
+	}
 }
 
 .statGroup {

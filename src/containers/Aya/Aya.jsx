@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getAya} from '../../actions/getAya';
 import {bindActionCreators} from 'redux';
 import Stat from '../../components/Stats/Stats.jsx';
-import {Modal, Button} from 'react-bootstrap';
+import {Modal, Button, Tabs, Tab, TabContainer, TabContent, TabPane} from 'react-bootstrap';
 
 class Aya extends React.Component {
 	constructor(props) {
@@ -61,13 +61,22 @@ class Aya extends React.Component {
               </div>
             </div>
 
+
+                <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+                  <Tab eventKey={1} title="Tab 1">Tab 1 content</Tab>
+                  <Tab eventKey={2} title="Tab 2">Tab 2 content</Tab>
+                  <Tab eventKey={3} title="Tab 3" disabled>Tab 3 content</Tab>
+                </Tabs>
+                
             <h2>Model</h2>
 
-            {/* <Modal show={true}>
+            <button onClick={this.handleShowModal.bind(this)}>Click Me!</button>
+            
+            <Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
               <Modal.Header>
                 <Modal.Title>
                   Survival <br />
-                  <small>Limit: 1</small>
+                  <small>Max: 1</small>
                 </Modal.Title>
               </Modal.Header>
 
@@ -77,26 +86,19 @@ class Aya extends React.Component {
                   <div className="statSpend-num">1</div>
                   <button type="button" className="statSpend-change">+</button>
                 </div>
-                or <br />
-                <Button>Spend Survival</Button>
+                <div className="text-xs-center">
+                  or <br />
+                  <Button>Spend Survival</Button>
+                </div>
               </Modal.Body>
 
               <Modal.Footer>
-                <Button bsStyle="primary">Confirm</Button>
-                <Button bsStyle="secondary">Confirm</Button>
+                <Button bsStyle="primary" onClick={this.handleSubmitStuff.bind(this)} >Confirm</Button>
+                <Button>Confirm</Button>
               </Modal.Footer>
 
-            </Modal> */}
-          </main>
-					<button onClick={this.handleShowModal.bind(this)}>Click Me!</button>
-					<Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
-						<Modal.Body>
-							<img src="https://img.pandawhale.com/post-61492-dancing-dickbutt-gif-imgur-tum-pTDg.gif"/>
-						</Modal.Body>
-						<Modal.Footer>
-							<Button onClick={this.handleSubmitStuff.bind(this)} className="btn-primary">Submit</Button>
-						</Modal.Footer>
-					</Modal>
+            </Modal>
+          </main> 
 				</div>
 			);
 		} else {
