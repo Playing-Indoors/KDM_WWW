@@ -20,14 +20,14 @@ module.exports = {
   },
   module: {
     preLoaders: [
-            // Javascript
-            { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ }
-        ],
+      // Javascript
+      // { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ }
+    ],
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel",
+        loader: 'babel',
         query: {
           cacheDirectory: true,
           presets: ['es2015', 'react', 'stage-2']
@@ -41,11 +41,11 @@ module.exports = {
           presets: ['es2015', 'react', 'stage-2']
         }
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: ['babel-loader', 'eslint-loader']
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loaders: ['babel-loader', 'eslint-loader']
+      // },
       {
         test: /\.scss/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader'

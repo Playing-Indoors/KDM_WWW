@@ -20,7 +20,7 @@ class SurvivorXP extends Component {
 function milestonesXP(number) {
   let milestone = [];
   // 5 stages {2, 6, 10, 15, 16}
-  console.log(number);
+  // console.log(number);
   if(number < 2) {
     milestone.push('empty');
     milestone.push('empty');

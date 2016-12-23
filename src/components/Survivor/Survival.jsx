@@ -1,51 +1,51 @@
 import React, { Component } from 'react';
-import { Modal, Button, Tabs, Tab } from 'react-bootstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Button } from 'reactstrap';
 import Stat from '../../components/Stats/Stats';
 
-class SurvivorXP extends Component {
+const { number } = React.PropTypes;
+
+class Survival extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: 'Survival',
       number: this.props.number,
       showModal: false,
+      activeTab: '1',
     };
+    this.toggleModal = this.toggleModal.bind(this);
   }
-	handleShowModal() {
+  toggleModal() {
     this.setState({
-      showModal: true,
+      showModal: !this.state.showModal,
     });
   }
-	handleCloseModal() {
-    this.setState({
-      showModal: false
-    });
+  toggleTab(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab,
+      });
+    }
   }
-	handleSubmitStuff() {
-		//send stuff to api
-	}
   render() {
     return (
       <div className="box">
         <header className="box-header">
           <div className="box-header-title">Survival</div>
         </header>
-        <a href="#spendSurvival" role="button" onClick={this.handleShowModal.bind(this)} className="box-content">
+        <a href="#spendSurvival" role="button" onClick={this.toggleModal} className="box-content">
           <div className="statGroup">
             <Stat title={this.state.title} number={this.state.number} />
           </div>
         </a>
-        <Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
-          <Modal.Header>
-            <Modal.Title>
-              Survival <br />
-              <small>Max: 1</small>
-            </Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <Tabs id="uncontrolled-tab-example">
-              <Tab eventKey={1} title="Tab 1">
+        <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
+          <ModalHeader>
+            Survival <br />
+            <small>Max: 1</small>
+          </ModalHeader>
+          <ModalBody>
+            <TabContent activeTab={this.state.activeTab}>
+              <TabPane tabId="1">
                 <div className="statSpend">
                   <button type="button" className="statSpend-change">&ndash;</button>
                   <div className="statSpend-num">1</div>
@@ -53,11 +53,11 @@ class SurvivorXP extends Component {
                 </div>
                 <div className="text-xs-center">
                   <br />
-                  <Button>Spend Survival</Button>
+                  <Button onClick={() => { this.toggleTab('2'); }}>Spend Survival</Button>
                   <br /><br />
                 </div>
-              </Tab>
-              <Tab eventKey={2} title="Tab 2">
+              </TabPane>
+              <TabPane tabId="2">
                 <div className="text-xs-center">
                   which feat will the survivor be performing?
                   <br />
@@ -68,18 +68,24 @@ class SurvivorXP extends Component {
                   <br />
                   <br />
                 </div>
-              </Tab>
-            </Tabs>
-          </Modal.Body>
+              </TabPane>
+            </TabContent>
 
-          <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.handleSubmitStuff.bind(this)} >Confirm</Button>
-            <Button>Confirm</Button>
-          </Modal.Footer>
+
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggleModal}>Confirm</Button>
+            <Button onClick={this.toggleModal}>Cancel</Button>
+          </ModalFooter>
         </Modal>
+
       </div>
     );
   }
 }
 
-export default SurvivorXP;
+Survival.propTypes = {
+  number: number.isRequired,
+};
+
+export default Survival;

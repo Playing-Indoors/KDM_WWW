@@ -41,7 +41,7 @@ class World extends React.Component {
           <main className="main">
 
             <div className="boxGroup">
-              <Survival number={this.state.Survival} />
+              <Survival number={Number(this.state.survivorData.survival)} />
               <div className="box">
                 <header className="box-header">
                   <div className="box-header-title">Bleeding</div>
@@ -59,9 +59,9 @@ class World extends React.Component {
                 <div className="box-content">
                   <div className="statGroup">
                     <SurvivorXP number={this.state.survivorData.hunt_xp} />
-                    <Stat title="Courage" number={this.state.Courage} />
-                    <Stat title="Understanding" number={this.state.Understanding} />
-                    <Stat title="Weapon" number={this.state.Weapon} />
+                    <Stat title="Courage" number={this.state.survivorData.Courage} />
+                    <Stat title="Understanding" number={this.state.survivorData.Understanding} />
+                    <Stat title="Weapon" number={this.state.survivorData.Weapon} />
                   </div>
                 </div>
               </div>
@@ -74,12 +74,12 @@ class World extends React.Component {
                 </header>
                 <div className="box-content">
                   <div className="statGroup">
-                    <Stat title="Movement" number={this.state.Movement} />
-                    <Stat title="Accuracy" number={this.state.Accuracy} />
-                    <Stat title="Strength" number={this.state.Strength} />
-                    <Stat title="Evasion" number={this.state.Evasion} />
-                    <Stat title="Luck" number={this.state.Luck} />
-                    <Stat title="Speed" number={this.state.Speed} />
+                    <Stat title="Movement" number={this.state.survivorData.Movement} />
+                    <Stat title="Accuracy" number={this.state.survivorData.Accuracy} />
+                    <Stat title="Strength" number={this.state.survivorData.Strength} />
+                    <Stat title="Evasion" number={this.state.survivorData.Evasion} />
+                    <Stat title="Luck" number={this.state.survivorData.Luck} />
+                    <Stat title="Speed" number={this.state.survivorData.Speed} />
                   </div>
                 </div>
               </div>
@@ -92,12 +92,12 @@ class World extends React.Component {
                 </header>
                 <div className="box-content">
                   <div className="statGroup">
-                    <Stat title="Brain" number={this.state.Brain} />
-                    <Stat title="Head" number={this.state.Head} />
-                    <Stat title="Arms" number={this.state.Arms} />
-                    <Stat title="Body" number={this.state.Body} />
-                    <Stat title="Waist" number={this.state.Waist} />
-                    <Stat title="Feet" number={this.state.Feet} />
+                    <Stat title="Brain" number={this.state.survivorData.Brain} />
+                    <Stat title="Head" number={this.state.survivorData.Head} />
+                    <Stat title="Arms" number={this.state.survivorData.Arms} />
+                    <Stat title="Body" number={this.state.survivorData.Body} />
+                    <Stat title="Waist" number={this.state.survivorData.Waist} />
+                    <Stat title="Feet" number={this.state.survivorData.Feet} />
                   </div>
                 </div>
               </div>
