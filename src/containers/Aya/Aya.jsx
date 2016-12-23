@@ -1,9 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {getAya} from '../../actions/getAya';
-import {bindActionCreators} from 'redux';
-import Stat from '../../components/Stats/Stats.jsx';
-import {Modal, Button, Tabs, Tab, TabContainer, TabContent, TabPane} from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Modal, Button, Tabs, Tab, TabContainer, TabContent, TabPane } from 'react-bootstrap';
+import { getAya } from '../../actions/getAya';
+import Stat from '../../components/Stats/Stats';
 
 class Aya extends React.Component {
 	constructor(props) {
@@ -67,11 +67,11 @@ class Aya extends React.Component {
                   <Tab eventKey={2} title="Tab 2">Tab 2 content</Tab>
                   <Tab eventKey={3} title="Tab 3" disabled>Tab 3 content</Tab>
                 </Tabs>
-                
+
             <h2>Model</h2>
 
             <button onClick={this.handleShowModal.bind(this)}>Click Me!</button>
-            
+
             <Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
               <Modal.Header>
                 <Modal.Title>
@@ -98,7 +98,7 @@ class Aya extends React.Component {
               </Modal.Footer>
 
             </Modal>
-          </main> 
+          </main>
 				</div>
 			);
 		} else {
