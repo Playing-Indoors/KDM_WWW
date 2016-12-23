@@ -12,6 +12,7 @@ class Survival extends Component {
       number: this.props.number,
       showModal: false,
       activeTab: '1',
+      survivalLimit: this.props.survivalLimit,
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -27,6 +28,7 @@ class Survival extends Component {
       });
     }
   }
+
   render() {
     return (
       <div className="box">
@@ -41,7 +43,7 @@ class Survival extends Component {
         <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
           <ModalHeader>
             Survival <br />
-            <small>Max: 1</small>
+            <small>Max: {this.state.survivalLimit}</small>
           </ModalHeader>
           <ModalBody>
             <TabContent activeTab={this.state.activeTab}>
@@ -70,12 +72,9 @@ class Survival extends Component {
                 </div>
               </TabPane>
             </TabContent>
-
-
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggleModal}>Confirm</Button>
-            <Button onClick={this.toggleModal}>Cancel</Button>
           </ModalFooter>
         </Modal>
 
@@ -85,6 +84,7 @@ class Survival extends Component {
 }
 
 Survival.propTypes = {
+  survivalLimit: number.isRequired,
   number: number.isRequired,
 };
 

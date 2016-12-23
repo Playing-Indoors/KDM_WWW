@@ -15,6 +15,8 @@ class World extends React.Component {
     super(props);
     this.state = {
       worldData: null,
+      settlementData: null,
+      survivalData: null,
     };
   }
   componentDidMount() {
@@ -33,6 +35,11 @@ class World extends React.Component {
         survivorData: nextProps.survivorData,
       });
     }
+    if (nextProps.settlementData) {
+      this.setState({
+        settlementData: nextProps.settlementData,
+      });
+    }
   }
   render() {
     if (this.state.worldData) {
@@ -41,7 +48,7 @@ class World extends React.Component {
           <main className="main">
 
             <div className="boxGroup">
-              <Survival number={Number(this.state.survivorData.survival)} />
+              <Survival number={Number(this.state.survivorData.survival)} survivalLimit={this.state.settlementData.sheet.survival_limit} />
               <div className="box">
                 <header className="box-header">
                   <div className="box-header-title">Bleeding</div>
@@ -232,9 +239,8 @@ class World extends React.Component {
           </main>
         </div>
       );
-    } else {
-      return null;
     }
+    return null;
   }
 }
 

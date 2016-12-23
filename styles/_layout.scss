@@ -120,6 +120,7 @@ progress::-webkit-progress-value {
 }
 
 .box-content {
+	flex: 1 1 auto;
   padding: 1rem;
 
 	@at-root a#{&} {
@@ -127,7 +128,7 @@ progress::-webkit-progress-value {
 		color: inherit;
 		transition: background 0.2s ease-out;
 
-		&:hover, 
+		&:hover,
 		&:focus {
 			text-decoration: none;
 			background: rgba($brand-primary, 0.14);
@@ -149,6 +150,8 @@ progress::-webkit-progress-value {
 
 	> .box {
 		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
 		margin: 0 0.5rem 1rem;
 	}
 }
