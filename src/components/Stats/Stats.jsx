@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 // number - int - defaults to 0
 // milestones - array[string] - css class array for the milestones. Might look at making this an int type.
 class Stats extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       // Expected data object
@@ -37,8 +37,14 @@ class Stats extends Component {
         </div>
         <div className="stat-title">{this.state.title}</div>
       </div>
-    )
+    );
   }
 }
+
+// Stats.propTypes = {
+//   title: React.Prototypes.string,
+//   number: React.Prototypes.number,
+//   milestones: React.Prototypes.array,
+// };
 
 export default Stats;
