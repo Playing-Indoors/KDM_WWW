@@ -19,6 +19,10 @@ module.exports = {
     publicPath: '/'
   },
   module: {
+    preLoaders: [
+            // Javascript
+            { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ }
+        ],
     loaders: [
       {
         test: /\.js$/,
@@ -87,6 +91,8 @@ module.exports = {
   },
   eslint: {
     configFile: './.eslintrc',
-    formatter: require('eslint-friendly-formatter')
+    formatter: require('eslint-friendly-formatter'),
+    failOnWarning: false,
+    failOnError: true
   },
 };
