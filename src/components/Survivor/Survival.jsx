@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
-import Stat from '../../components/Stats/Stats.jsx';
-import {Modal, Button, Tabs, Tab, TabContainer, TabContent, TabPane} from 'react-bootstrap';
+import { Modal, Button, Tabs, Tab } from 'react-bootstrap';
+import Stat from '../../components/Stats/Stats';
 
 class SurvivorXP extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       title: 'Survival',
       number: this.props.number,
-			showModal: false,
-    }
+      showModal: false,
+    };
   }
-	handleShowModal(){
+	handleShowModal() {
     this.setState({
-      showModal: true
+      showModal: true,
     });
   }
-	handleCloseModal(){
+	handleCloseModal() {
     this.setState({
       showModal: false
     });
   }
-	handleSubmitStuff(){
+	handleSubmitStuff() {
 		//send stuff to api
 	}
   render() {
@@ -35,7 +35,7 @@ class SurvivorXP extends Component {
             <Stat title={this.state.title} number={this.state.number} />
           </div>
         </a>
-       <Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
+        <Modal show={this.state.showModal} onHide={this.handleCloseModal.bind(this)}>
           <Modal.Header>
             <Modal.Title>
               Survival <br />
@@ -78,7 +78,7 @@ class SurvivorXP extends Component {
           </Modal.Footer>
         </Modal>
       </div>
-    )
+    );
   }
 }
 

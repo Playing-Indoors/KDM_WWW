@@ -19,6 +19,10 @@ module.exports = {
     publicPath: '/'
   },
   module: {
+    preLoaders: [
+            // Javascript
+            { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ }
+        ],
     loaders: [
       {
         test: /\.js$/,
@@ -36,6 +40,11 @@ module.exports = {
         query: {
           presets: ['es2015', 'react', 'stage-2']
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel-loader', 'eslint-loader']
       },
       {
         test: /\.scss/,
@@ -79,5 +88,11 @@ module.exports = {
     inline: true,
     hot: true,
     port: 3333
+  },
+  eslint: {
+    configFile: './.eslintrc',
+    formatter: require('eslint-friendly-formatter'),
+    failOnWarning: false,
+    failOnError: true
   },
 };

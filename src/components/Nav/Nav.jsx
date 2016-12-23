@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import Icon from '../../components/Icon/Icon.jsx';
+import Icon from '../../components/Icon/Icon';
 
 
 class Nav extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
-  // Caleb, you want to make custom functions that are invoked when the render function fires
-  renderNodes(){
-    return this.props.data.map((item, index )=> {
+  renderNodes() {
+    return this.props.data.map((item, index) => {
       return (
         <li key={index}>
-          <a href="#" className={"mainNav-link" + (item.isActive ? ' is-active' : '')}>
+          <a href="#nav" className={'mainNav-link' + (item.isActive ? ' is-active' : '')}>
             <div className="mainNav-link-icon">
-  						<Icon icon={item.icon} />
+              <Icon icon={item.icon} />
             </div>
             <div className="mainNav-link-text">{item.title}</div>
           </a>
@@ -21,14 +20,14 @@ class Nav extends Component {
             <div className="header-title header-title--primary">{item.title}</div>
             <ol>
               <li>
-                <a href="#" className="is-active">Campaigns</a>
+                <a href="#campaigns" className="is-active">Campaigns</a>
                 <ol>
-                  <li><a href="#">Active</a></li>
-                  <li><a href="#">Inactive</a></li>
+                  <li><a href="#active">Active</a></li>
+                  <li><a href="#inactive">Inactive</a></li>
                 </ol>
               </li>
-              <li><a href="#">World Stats</a></li>
-              <li><a href="#">User Preferences</a></li>
+              <li><a href="#world-stats">World Stats</a></li>
+              <li><a href="#user-preferences">User Preferences</a></li>
             </ol>
           </div>
         </li>
@@ -40,9 +39,9 @@ class Nav extends Component {
       <nav className="mainNav">
         <ol>
           {this.renderNodes()}
-       </ol>
-     </nav>
-    )
+        </ol>
+      </nav>
+    );
   }
 }
 

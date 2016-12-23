@@ -1,4 +1,3 @@
-require('../styles/main.scss');
 import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory, Router, Route, IndexRoute, Link, Redirect } from 'react-router';
@@ -13,8 +12,9 @@ import Login from './containers/Login/Login.jsx';
 import Aya from './containers/Aya/Aya.jsx';
 import World from './containers/World/World.jsx';
 import NotFound from './components/NotFound/NotFound.jsx';
-
 import { AUTH_USER } from './actions/types';
+
+require('../styles/main.scss');
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
