@@ -37,11 +37,11 @@ module.exports = {
           presets: ['es2015', 'react', 'stage-2']
         }
       },
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   loaders: ['babel-loader', 'eslint-loader']
-      // },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel-loader', 'eslint-loader']
+      },
       {
         test: /\.scss/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader'
