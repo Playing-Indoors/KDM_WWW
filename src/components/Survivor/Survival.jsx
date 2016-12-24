@@ -19,18 +19,28 @@ class Survival extends Component {
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
-  toggleModal() {
-    // reset our state to default
-    this.setState({
-      activeTab: '1',
-      tempNumber: this.props.number,
-      showModal: !this.state.showModal,
-    });
+  onSurvivalSave() {
+    if (this.state.activeTab === '1') {
+      this.state.number = this.state.tempNumber;
+    } else {
+      this.state.number = this.state.number - 1;
+    }
+    // TODO: number is updated with the real final amount. save this value;
+
+    // Close modal;
+    this.toggleModal();
   }
-  tabAction() {
-    // allows our user to choose their survival action
+  canSaveSurvival() {
+    // if it's the first tab and our value differs from the original
+    if (this.state.activeTab === '1') {
+      return this.state.tempNumber !== this.state.number;
+    }
+    // we're on the second tab only allow if there's a selected action
+    return this.state.selectedAction.length > 0;
+  }
+  selectAction(type) {
     this.setState({
-      activeTab: '2',
+      selectedAction: type,
     });
   }
   adjustSurvival(type = 'manual', amount = -1) {
@@ -41,14 +51,18 @@ class Survival extends Component {
       tempNumber: Math.min(Math.max(adjust, this.state.min), this.state.max),
     });
   }
-  selectAction(type) {
+  handleSurvivalTab() {
+    // allows our user to choose their survival action
     this.setState({
-      selectedAction: type,
+      activeTab: '2',
     });
   }
-  submitSurvival() {
+  toggleModal() {
+    // reset our state to default
     this.setState({
-      number: this.state.tempNumber,
+      activeTab: '1',
+      tempNumber: this.props.number,
+      showModal: !this.state.showModal,
     });
   }
   render() {
@@ -81,7 +95,7 @@ class Survival extends Component {
                 </div>
                 <div className="text-xs-center">
                   <br />
-                  <Button onClick={() => { this.tabAction(); }}>Spend Survival</Button>
+                  <Button onClick={() => { this.handleSurvivalTab(); }}>Spend Survival</Button>
                   <br /><br />
                 </div>
               </TabPane>
@@ -116,7 +130,11 @@ class Survival extends Component {
           </ModalBody>
           <ModalFooter>
             <Button onClick={this.toggleModal}>Cancel</Button>
-            <Button color="primary" onClick={this.toggleModal} disabled>Confirm</Button>
+            <Button
+              color="primary"
+              onClick={() => { this.onSurvivalSave(); }}
+              disabled={!this.canSaveSurvival()}
+            >Confirm</Button>
           </ModalFooter>
         </Modal>
 

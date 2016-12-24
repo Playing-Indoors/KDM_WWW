@@ -42,11 +42,11 @@ module.exports = {
       //   exclude: /node_modules/,
       //   loaders: ['babel-loader', 'eslint-loader']
       // },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: ['eslint-loader']
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loaders: ['eslint-loader']
+      // },
       {
         test: /\.scss/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader'
