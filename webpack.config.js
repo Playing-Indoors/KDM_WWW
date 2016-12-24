@@ -19,10 +19,6 @@ module.exports = {
     publicPath: '/'
   },
   module: {
-    preLoaders: [
-      // Javascript
-      // { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ }
-    ],
     loaders: [
       {
         test: /\.js$/,
@@ -46,6 +42,11 @@ module.exports = {
       //   exclude: /node_modules/,
       //   loaders: ['babel-loader', 'eslint-loader']
       // },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['eslint-loader']
+      },
       {
         test: /\.scss/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader'
@@ -91,8 +92,6 @@ module.exports = {
   },
   eslint: {
     configFile: './.eslintrc',
-    formatter: require('eslint-friendly-formatter'),
-    failOnWarning: false,
-    failOnError: true
+    formatter: require('eslint-friendly-formatter')
   },
 };
