@@ -49,11 +49,8 @@ class World extends React.Component {
           <main className="main">
 
             <div className="boxGroup">
-              {/*
-                <Survival number={Number(this.state.survivorData.survival)}
-                survivalLimit={this.state.settlementData.sheet.survival_limit} />
-              */}
-              <Survival number={Number(this.state.survivorData.survival)} survivalLimit={7} />
+              { /*<Survival number={Number(this.state.survivorData.survival)} max={this.state.settlementData.sheet.survival_limit} /> */}
+              <Survival number={Number(this.state.survivorData.survival)} max={7} />
               <div className="box">
                 <header className="box-header">
                   <div className="box-header-title">Bleeding</div>

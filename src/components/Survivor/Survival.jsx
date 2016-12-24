@@ -10,32 +10,54 @@ class Survival extends Component {
     this.state = {
       title: 'Survival',
       number: this.props.number,
+      tempNumber: this.props.number,
       showModal: false,
       activeTab: '1',
-      survivalLimit: this.props.survivalLimit,
+      selectedAction: '',
+      max: this.props.max,
+      min: 0,
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
   toggleModal() {
+    // reset our state to default
     this.setState({
+      activeTab: '1',
+      tempNumber: this.props.number,
       showModal: !this.state.showModal,
     });
   }
-  toggleTab(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
-    }
+  tabAction() {
+    // allows our user to choose their survival action
+    this.setState({
+      activeTab: '2',
+    });
   }
-
+  adjustSurvival(type = 'manual', amount = -1) {
+    // We use a temp value so we can modify it and still allow the user to cancel out
+    console.log(`Survivor changed by ${amount} because of ${type}`);
+    const adjust = this.state.tempNumber + amount;
+    this.setState({
+      tempNumber: Math.min(Math.max(adjust, this.state.min), this.state.max),
+    });
+  }
+  selectAction(type) {
+    this.setState({
+      selectedAction: type,
+    });
+  }
+  submitSurvival() {
+    this.setState({
+      number: this.state.tempNumber,
+    });
+  }
   render() {
     return (
       <div className="box">
         <header className="box-header">
           <div className="box-header-title">Survival</div>
         </header>
-        <a href="#spendSurvival" role="button" onClick={this.toggleModal} className="box-content">
+        <a href="#adjustSurvival" role="button" onClick={this.toggleModal} className="box-content">
           <div className="statGroup">
             <Stat title={this.state.title} number={this.state.number} />
           </div>
@@ -43,19 +65,23 @@ class Survival extends Component {
         <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
           <ModalHeader>
             Survival <br />
-            <small>Max: {this.state.survivalLimit}</small>
+            <small>Max: {this.state.max}</small>
           </ModalHeader>
           <ModalBody>
             <TabContent activeTab={this.state.activeTab}>
               <TabPane tabId="1">
                 <div className="statSpend">
-                  <button type="button" className="statSpend-change">&ndash;</button>
-                  <div className="statSpend-num">1</div>
-                  <button type="button" className="statSpend-change">+</button>
+                  <button
+                    type="button"
+                    onClick={() => { this.adjustSurvival('manual', -1); }}
+                    className="statSpend-change"
+                  >&ndash;</button>
+                  <div className="statSpend-num">{this.state.tempNumber}</div>
+                  <button type="button" onClick={() => { this.adjustSurvival('manual', 1); }} className="statSpend-change">+</button>
                 </div>
                 <div className="text-xs-center">
                   <br />
-                  <Button onClick={() => { this.toggleTab('2'); }}>Spend Survival</Button>
+                  <Button onClick={() => { this.tabAction(); }}>Spend Survival</Button>
                   <br /><br />
                 </div>
               </TabPane>
@@ -63,10 +89,25 @@ class Survival extends Component {
                 <div className="text-xs-center">
                   which feat will the survivor be performing?
                   <br />
-                  <Button>Dodge</Button>
-                  <Button>Encourage</Button>
-                  <Button>Dash</Button>
-                  <Button>Surge</Button>
+                  {/* Need to loop through all of the suvivor actions */}
+                  <Button
+                    color={(this.state.selectedAction === 'Dodge') ? 'primary' : 'secondary'}
+                    onClick={() => { this.selectAction('Dodge'); }}
+                  >Dodge</Button>
+                  <Button
+                    color={(this.state.selectedAction === 'Encourage') ? 'primary' : 'secondary'}
+                    onClick={() => { this.selectAction('Encourage'); }}
+                  >Encourage</Button>
+                  <Button
+                    color={(this.state.selectedAction === 'Dash') ? 'primary' : 'secondary'}
+                    onClick={() => { this.selectAction('Dash'); }}
+                  >Dash</Button>
+                  {/* example disabled button if survivor can't use it */}
+                  <Button
+                    color={(this.state.selectedAction === 'Surge') ? 'primary' : 'secondary'}
+                    onClick={() => { this.selectAction('Surge'); }}
+                    disabled
+                  >Surge</Button>
                   <br />
                   <br />
                 </div>
@@ -74,7 +115,8 @@ class Survival extends Component {
             </TabContent>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Confirm</Button>
+            <Button onClick={this.toggleModal}>Cancel</Button>
+            <Button color="primary" onClick={this.toggleModal} disabled>Confirm</Button>
           </ModalFooter>
         </Modal>
 
@@ -84,7 +126,7 @@ class Survival extends Component {
 }
 
 Survival.propTypes = {
-  survivalLimit: number.isRequired,
+  max: number.isRequired,
   number: number.isRequired,
 };
 
