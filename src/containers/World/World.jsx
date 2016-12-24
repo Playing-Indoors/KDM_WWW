@@ -7,6 +7,7 @@ import { getSettlement } from '../../actions/getSettlement';
 import { getSurvivor } from '../../actions/getSurvivor';
 import TugGraph from '../../components/TugGraph/TugGraph';
 import Stat from '../../components/Stats/Stats';
+import BoxList from '../../components/BoxList/BoxList';
 import Survival from '../../components/Survivor/Survival';
 import SurvivorXP from '../../components/Survivor/Survivor-XP';
 
@@ -48,7 +49,11 @@ class World extends React.Component {
           <main className="main">
 
             <div className="boxGroup">
-              <Survival number={Number(this.state.survivorData.survival)} survivalLimit={this.state.settlementData.sheet.survival_limit} />
+              {/*
+                <Survival number={Number(this.state.survivorData.survival)}
+                survivalLimit={this.state.settlementData.sheet.survival_limit} />
+              */}
+              <Survival number={Number(this.state.survivorData.survival)} survivalLimit={7} />
               <div className="box">
                 <header className="box-header">
                   <div className="box-header-title">Bleeding</div>
@@ -116,7 +121,8 @@ class World extends React.Component {
                   <div className="box-header-title">Fighting Arts</div>
                 </header>
                 <div className="box-content">
-                  <div className="statGroup">&nbsp;
+                  <div className="statGroup">
+                    <BoxList list={this.state.survivorData.fighting_arts} />
                   </div>
                 </div>
               </div>
@@ -125,7 +131,8 @@ class World extends React.Component {
                   <div className="box-header-title">Disorders</div>
                 </header>
                 <div className="box-content">
-                  <div className="statGroup">&nbsp;
+                  <div className="statGroup">
+                    <BoxList list={this.state.survivorData.disorders} />
                   </div>
                 </div>
               </div>
@@ -137,7 +144,8 @@ class World extends React.Component {
                   <div className="box-header-title">Abilities</div>
                 </header>
                 <div className="box-content">
-                  <div className="statGroup">&nbsp;
+                  <div className="statGroup">
+                    <BoxList list={this.state.survivorData.abilities_and_impairments} />
                   </div>
                 </div>
               </div>
@@ -149,7 +157,8 @@ class World extends React.Component {
                   <div className="box-header-title">Impairments</div>
                 </header>
                 <div className="box-content">
-                  <div className="statGroup">&nbsp;
+                  <div className="statGroup">
+                    <BoxList list={this.state.survivorData.abilities_and_impairments} />
                   </div>
                 </div>
               </div>
@@ -161,7 +170,8 @@ class World extends React.Component {
                   <div className="box-header-title">Additional Notes</div>
                 </header>
                 <div className="box-content">
-                  <div className="statGroup">&nbsp;
+                  <div className="statGroup">
+                    <BoxList list={this.state.survivorData.abilities_and_impairments} />
                   </div>
                 </div>
               </div>

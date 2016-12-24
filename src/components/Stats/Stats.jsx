@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 // handles the following data:
 // title - String - defaults to ``
 // number - int - defaults to 0
-// milestones - array[string] - css class array for the milestones. Might look at making this an int type.
+// milestones - array[string] - css class array for the milestones.
+// --- Might look at making milestone an int type.
 class Stats extends Component {
   constructor(props) {
     super(props);
@@ -18,14 +19,12 @@ class Stats extends Component {
       //   'is-passive',  // filled in
       //   'is-active',  // active
       // ],
-    }
+    };
   }
   // Renders our milestones and attaches their class
   renderMilestones() {
-    return this.state.milestones.map((item, index )=> {
-      return (
-        <span key={index} className={"milestone milestone--" + item}></span>
-      );
+    return this.state.milestones.map((item, index) => {
+      return <span key={index} className={`milestone milestone--${item}`} />;
     });
   }
   render() {
@@ -41,10 +40,10 @@ class Stats extends Component {
   }
 }
 
-// Stats.propTypes = {
-//   title: React.Prototypes.string,
-//   number: React.Prototypes.number,
-//   milestones: React.Prototypes.array,
-// };
+Stats.propTypes = {
+  title: React.PropTypes.string,
+  // number: React.PropTypes.number,
+  milestones: React.PropTypes.arrayOf(React.PropTypes.string),
+};
 
 export default Stats;
