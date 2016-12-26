@@ -7,6 +7,7 @@ import { getSettlement } from '../../actions/getSettlement';
 import { getSurvivor } from '../../actions/getSurvivor';
 import TugGraph from '../../components/TugGraph/TugGraph';
 import Stat from '../../components/Stats/Stats';
+import StatGroup from '../../components/Stats/StatGroup';
 import BoxList from '../../components/BoxList/BoxList';
 import Survival from '../../components/Survivor/Survival';
 import SurvivorXP from '../../components/Survivor/Survivor-XP';
@@ -49,7 +50,26 @@ class World extends React.Component {
           <main className="main">
 
             <div className="boxGroup">
-              { /*<Survival number={Number(this.state.survivorData.survival)} max={this.state.settlementData.sheet.survival_limit} /> */}
+              <StatGroup
+                groupName="Survival"
+                stats={['Survival']}
+              />
+              <StatGroup groupName="Bleeding" stats={['']} />
+              <StatGroup groupName="XP" stats={['Hunt', 'Courage', 'Understanding', 'Weapon']} />
+            </div>
+            <div className="boxGroup">
+              <StatGroup groupName="Primary Stats" stats={['Movement', 'Accuracy', 'Strength', 'Evasion', 'Luck', 'Speed']} />
+            </div>
+            <div class="boxGroup">
+              <StatGroup groupName="Armor" stats={['Brain', 'Head', 'Arms', 'Body', 'Waist', 'Feet']} />
+            </div>
+
+            <div className="boxGroup">
+              { /*
+                <Survival
+                  number={Number(this.state.survivorData.survival)}
+                  max={this.state.settlementData.sheet.survival_limit} />
+              */}
               <Survival number={Number(this.state.survivorData.survival)} max={7} />
               <div className="box">
                 <header className="box-header">

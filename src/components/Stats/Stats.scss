@@ -7,6 +7,12 @@
 //   </div>
 // </div>
 
+.statGroup {
+  display: flex;
+  justify-content: space-around;
+	width: 100%;
+}
+
 .stat {
 	flex: 1 1 100px;
 	padding: 0 0.25rem;
@@ -48,24 +54,48 @@
 
 // StatSpend
 
+.statSpendGroup {
+	display: flex;
+	justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .statSpend {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
+	flex: 1 1 200px;
+	padding: 1rem;
 	font-size: 2rem;
 }
 
 .statSpend-num {
 	padding: 0 0.5rem;
 	font-size: 3rem;
+	line-height: 1em;
 }
 
 .statSpend-change {
 	background: none;
 	border: none;
 	color: #fff;
+	cursor: pointer;
 
 	&:hover, &:focus {
 		color: $brand-primary;
 	}
+}
+
+.statSpend-title {
+	flex: 1 1 100%;
+	text-align: center;
+	font-size: 1rem;
+}
+
+.statSpend-subtitle {
+	flex: 1 1 100%;
+	text-align: center;
+	font-size: 0.875rem;
+	color: $brand-primary;
 }

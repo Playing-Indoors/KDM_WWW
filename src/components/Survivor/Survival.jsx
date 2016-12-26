@@ -94,6 +94,8 @@ class Survival extends Component {
                   <button type="button" onClick={() => { this.adjustSurvival('manual', 1); }} className="statSpend-change">+</button>
                 </div>
                 <div className="text-xs-center">
+                  or
+                  <br />
                   <br />
                   <Button onClick={() => { this.handleSurvivalTab(); }}>Spend Survival</Button>
                   <br /><br />

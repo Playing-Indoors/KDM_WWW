@@ -123,22 +123,21 @@ progress::-webkit-progress-value {
 	flex: 1 1 auto;
   padding: 1rem;
 
-	@at-root a#{&} {
+	@at-root button#{&}, a#{&} {
 		display: block;
 		color: inherit;
+		background: none;
+		border: none;
+		cursor: pointer;
 		transition: background 0.2s ease-out;
 
 		&:hover,
 		&:focus {
 			text-decoration: none;
 			background: rgba($brand-primary, 0.14);
+			outline: none;
 		}
 	}
-}
-
-.statGroup {
-  display: flex;
-  justify-content: space-around;
 }
 
 
