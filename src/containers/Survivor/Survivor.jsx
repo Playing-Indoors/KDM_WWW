@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { getWorld } from '../../actions/getWorld';
 import { getSettlement } from '../../actions/getSettlement';
 import { getSurvivor } from '../../actions/getSurvivor';
-import TugGraph from '../../components/TugGraph/TugGraph';
 import Stat from '../../components/Stats/Stats';
 import StatGroup from '../../components/Stats/StatGroup';
+import StatGroupObj from '../../components/Stats/StatGroupObj';
 import BoxList from '../../components/BoxList/BoxList';
 import Survival from '../../components/Survivor/Survival';
 import SurvivorXP from '../../components/Survivor/Survivor-XP';
@@ -21,9 +21,9 @@ class World extends React.Component {
     };
   }
   componentDidMount() {
-    this.props.getWorld();
-    this.props.getSettlement();
-    this.props.getSurvivor();
+    this.props.getWorld(); // eslint-disable-line react/prop-types
+    this.props.getSettlement(); // eslint-disable-line react/prop-types
+    this.props.getSurvivor(); // eslint-disable-line react/prop-types
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.worldData) {
@@ -43,12 +43,16 @@ class World extends React.Component {
     }
   }
   render() {
-    if (this.state.worldData) {
+    if (this.state.survivorData) {
       return (
         <div className="page-world">
           <main className="main">
-
             <div className="boxGroup">
+              <StatGroupObj statObj={this.state.survivorData.mock.survival} />
+              <StatGroupObj statObj={this.state.survivorData.mock.bleeding} />
+              <StatGroupObj statObj={this.state.survivorData.mock.xp} />
+            </div>
+            { /*
               <StatGroup
                 title="Survival"
                 description="Limit: "
@@ -64,19 +68,21 @@ class World extends React.Component {
                 title="XP"
                 stats={['Hunt', 'Courage', 'Understanding', 'Weapon']}
               />
-            </div>
-            <div className="boxGroup">
-              <StatGroup
-                title="Primary Stats"
-                stats={['Movement', 'Accuracy', 'Strength', 'Evasion', 'Luck', 'Speed']}
-              />
-            </div>
-            <div className="boxGroup">
-              <StatGroup
-                title="Armor"
-                stats={['Brain', 'Head', 'Arms', 'Body', 'Waist', 'Feet']}
-              />
-            </div>
+              </div>
+              <div className="boxGroup">
+                <StatGroup
+                  title="Primary Stats"
+                  stats={['Movement', 'Accuracy', 'Strength', 'Evasion', 'Luck', 'Speed']}
+                />
+              </div>
+              <div className="boxGroup">
+                <StatGroup
+                  title="Armor"
+                  stats={['Brain', 'Head', 'Arms', 'Body', 'Waist', 'Feet']}
+                />
+              </div>
+              */
+            }
 
             <div className="boxGroup">
               { /*
