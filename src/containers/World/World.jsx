@@ -51,17 +51,32 @@ class World extends React.Component {
 
             <div className="boxGroup">
               <StatGroup
-                groupName="Survival"
+                title="Survival"
+                description="Limit: "
                 stats={['Survival']}
+                component="Survival"
               />
-              <StatGroup groupName="Bleeding" stats={['']} />
-              <StatGroup groupName="XP" stats={['Hunt', 'Courage', 'Understanding', 'Weapon']} />
+              <StatGroup
+                title="Bleeding"
+                stats={['']}
+                component="Bleeding"
+              />
+              <StatGroup
+                title="XP"
+                stats={['Hunt', 'Courage', 'Understanding', 'Weapon']}
+              />
             </div>
             <div className="boxGroup">
-              <StatGroup groupName="Primary Stats" stats={['Movement', 'Accuracy', 'Strength', 'Evasion', 'Luck', 'Speed']} />
+              <StatGroup
+                title="Primary Stats"
+                stats={['Movement', 'Accuracy', 'Strength', 'Evasion', 'Luck', 'Speed']}
+              />
             </div>
-            <div class="boxGroup">
-              <StatGroup groupName="Armor" stats={['Brain', 'Head', 'Arms', 'Body', 'Waist', 'Feet']} />
+            <div className="boxGroup">
+              <StatGroup
+                title="Armor"
+                stats={['Brain', 'Head', 'Arms', 'Body', 'Waist', 'Feet']}
+              />
             </div>
 
             <div className="boxGroup">

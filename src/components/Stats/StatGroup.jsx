@@ -7,8 +7,9 @@ class StatGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: props.groupName,
+      title: props.title,
       stats: props.stats,
+      description: props.description,
       showModal: false,
     };
   }
@@ -33,7 +34,7 @@ class StatGroup extends Component {
     return (
       <div className="box">
         <header className="box-header">
-          <div className="box-header-title">{this.state.groupName}</div>
+          <div className="box-header-title">{this.state.title}</div>
         </header>
         <button onClick={() => { this.handleModal(); }} type="button" className="box-content">
           <div className="statGroup">
@@ -41,7 +42,7 @@ class StatGroup extends Component {
           </div>
         </button>
         <Modal isOpen={this.state.showModal} toggle={() => { this.handleModal(); }}>
-          <ModalHeader>{this.state.groupName}</ModalHeader>
+          <ModalHeader>{this.state.title}</ModalHeader>
           <ModalBody>
             <div className="statSpendGroup">
               {this.renderStatSpend()}
@@ -49,7 +50,7 @@ class StatGroup extends Component {
           </ModalBody>
           <ModalFooter>
             <Button onClick={() => { this.handleModal(false); }} >Cancel</Button>
-            <Button>Confirm</Button>
+            <Button color="primary">Confirm</Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -58,8 +59,9 @@ class StatGroup extends Component {
 }
 
 StatGroup.propTypes = {
-  groupName: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired,
   stats: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  description: React.PropTypes.string,
 };
 
 export default StatGroup;
