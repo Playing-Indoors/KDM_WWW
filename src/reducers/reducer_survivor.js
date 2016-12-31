@@ -1,6 +1,4 @@
-import {
-  GET_SURVIVOR
-} from '../actions/types';
+import { GET_SURVIVOR } from '../actions/types';
 
 export default function(state=null, action) {
   switch (action.type) {

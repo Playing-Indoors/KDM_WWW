@@ -10,6 +10,7 @@ import Home from './containers/Home/Home.jsx';
 import App from './App.jsx';
 import Login from './containers/Login/Login.jsx';
 import Aya from './containers/Aya/Aya.jsx';
+import Survivor from './containers/Survivor/Survivor.jsx';
 import World from './containers/World/World.jsx';
 import NotFound from './components/NotFound/NotFound.jsx';
 import { AUTH_USER } from './actions/types';
@@ -33,6 +34,7 @@ render(
         <Route path="/login" component={Login} />
         <Route path="/world" component={World} />
         <Route path="/aya" component={Aya} />
+        <Route path="/survivor" component={Survivor} />
         <Route path="*" component={NotFound}/>
       </Route>
     </Router>
