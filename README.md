@@ -4,7 +4,7 @@
  - Redux (Redux Thunk)
  - Bootstrap 4
  - Axios
- - Underscore
+ - Lodash
  - Babel ES6
  - React-Bootstrap [DOCS](https://react-bootstrap.github.io/components.html)
  - Node 6.2.1

@@ -25,9 +25,19 @@ class StatAdjust extends Component {
   }
   // Renders our milestones and attaches their class
   renderMilestones() {
-    return this.state.milestones.map((item, index) =>
-      <span key={index} className={`milestone milestone--${item}`} />,
-    );
+    if (!this.state.milestones) {
+      return <div>No milestone</div>;
+    }
+    const milestone = [];
+    for (let i = 1; i <= this.state.max; i += 1) {
+      const filled = (i <= this.state.amount) ? 'milestone--filled' : '';
+      if (this.state.milestones.includes(i)) {
+        milestone.push(<span key={i} className={`milestone milestone--active ${filled}`} />);
+      } else {
+        milestone.push(<span key={i} className={`milestone ${filled}`} />);
+      }
+    }
+    return <div className="statSpend-milestones">{milestone}</div>;
   }
   render() {
     return (
@@ -39,6 +49,7 @@ class StatAdjust extends Component {
         >&ndash;</button>
         <div className="statSpend-num">{this.state.tempAmount}</div>
         <button type="button" onClick={() => { this.onAdjustAmount(1); }} className="statSpend-change">+</button>
+        {this.renderMilestones()}
         <div className="statSpend-title">
           {this.state.name}
         </div>
@@ -54,7 +65,7 @@ StatAdjust.propTypes = {
   amount: React.PropTypes.number.isRequired,
   min: React.PropTypes.number,
   max: React.PropTypes.number.isRequired,
-  milestones: React.PropTypes.arrayOf(React.PropTypes.string),
+  // milestones: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 
 export default StatAdjust;

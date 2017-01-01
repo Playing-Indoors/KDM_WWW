@@ -36,7 +36,7 @@ const mockStats = {
     children: [
       {
         name: 'Hunt',
-        amount: 2,
+        amount: 8,
         max: 16,
         min: 0,
         milestones: [
@@ -48,12 +48,22 @@ const mockStats = {
         ],
       },
       {
-        name: 'Courage',
+        name: 'Weapon',
         amount: 0,
+        max: 8,
+        min: 0,
+        milestones: [
+          3,
+          8,
+        ],
+      },
+      {
+        name: 'Courage',
+        amount: 3,
         max: 9,
         min: 0,
         milestones: [
-          4,
+          3,
           9,
         ],
       },
@@ -63,18 +73,8 @@ const mockStats = {
         max: 9,
         min: 0,
         milestones: [
-          4,
-          9,
-        ],
-      },
-      {
-        name: 'Weapon',
-        amount: 0,
-        max: 8,
-        min: 0,
-        milestones: [
           3,
-          8,
+          9,
         ],
       },
     ],

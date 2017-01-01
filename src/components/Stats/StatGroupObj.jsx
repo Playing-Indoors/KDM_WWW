@@ -23,12 +23,26 @@ class StatGroupObj extends Component {
   // Renders our milestones and attaches their class
   renderStat() {
     return this.state.stats.map((item, index) =>
-      <Stat key={index} title={item.name} number={item.amount} />,
+      <Stat
+        key={index}
+        name={item.name}
+        amount={item.amount}
+        max={item.max}
+        min={item.min}
+        milestones={item.milestones}
+      />,
     );
   }
   renderStatSpend() {
     return this.state.stats.map((item, index) =>
-      <StatAdjust key={index} name={item.name} amount={item.amount} min={item.min} max={item.max} />,
+      <StatAdjust
+        key={index}
+        name={item.name}
+        amount={item.amount}
+        max={item.max}
+        min={item.min}
+        milestones={item.milestones}
+      />,
     );
   }
   render() {
@@ -37,11 +51,13 @@ class StatGroupObj extends Component {
         <header className="box-header">
           <div className="box-header-title">{this.state.title}</div>
         </header>
+
         <button onClick={() => { this.handleModal(); }} type="button" className="box-content">
           <div className="statGroup">
             {this.renderStat()}
           </div>
         </button>
+
         <Modal isOpen={this.state.showModal} toggle={() => { this.handleModal(); }}>
           <ModalHeader>{this.state.title}</ModalHeader>
           <ModalBody>
@@ -62,7 +78,7 @@ class StatGroupObj extends Component {
 StatGroupObj.propTypes = {
   statObj: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
-    style: React.PropTypes.string.isRequired,
+    style: React.PropTypes.string,
     description: React.PropTypes.string,
     // children: React.PropTypes.arrayOf(React.PropTypes.shape().isRequired,
   }),
