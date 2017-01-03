@@ -13,9 +13,8 @@ class Stats extends Component {
       // Expected data object
       name: props.name,
       amount: props.amount,
-      milestones: props.milestones,
       min: props.min || 0,
-      max: props.max,
+      max: props.max || 999,
       // [
       //   'is-empty',  // empty
       //   'is-passive',  // filled in
@@ -25,13 +24,22 @@ class Stats extends Component {
   }
   // Renders our milestones and attaches their class
   renderMilestones() {
-    if (!this.state.milestones) {
+    if (!this.props.milestones) {
       return null;
     }
-    return this.state.milestones.map((item, index) => {
-      const filled = (item <= this.state.amount) ? 'milestone--filled milestone--active' : '';
+    return this.props.milestones.map((item, index) => {
+      const filled = (item.at <= this.state.amount) ? 'milestone--filled milestone--active' : '';
       return <span key={index} className={`milestone ${filled}`} />;
     });
+  }
+  // Status effects (tokens, armor, etc.)
+  renderStatus() {
+    if (!this.props.status) {
+      return null;
+    }
+    return this.props.status.map((item, index) =>
+      <span key={index} className={`status status--${item.type}`} />,
+    );
   }
   render() {
     return (
@@ -39,6 +47,7 @@ class Stats extends Component {
         <div className="stat-num">{this.state.amount}</div>
         <div className="stat-milestone">
           {this.renderMilestones()}
+          {this.renderStatus()}
         </div>
         <div className="stat-title">{this.state.name}</div>
       </div>
@@ -51,7 +60,18 @@ Stats.propTypes = {
   amount: React.PropTypes.number,
   min: React.PropTypes.number,
   max: React.PropTypes.number,
-  // milestones: React.PropTypes.arrayOf(React.PropTypes.number),
+  milestones: React.PropTypes.arrayOf(
+    React.PropTypes.shape({
+      at: React.PropTypes.number,
+      name: React.PropTypes.string,
+      type: React.PropTypes.string,
+    }),
+  ),
+  status: React.PropTypes.arrayOf(
+    React.PropTypes.shape({
+      type: React.PropTypes.string,
+    }),
+  ),
 };
 
 export default Stats;

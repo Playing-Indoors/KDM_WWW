@@ -1,11 +1,15 @@
 import { GET_SURVIVOR } from '../actions/types';
 
+const MILESTONE_STORY = 'story';
+const MILESTONE_ARMOR = 'armor';
+const MILESTONE_TEMP = 'temp';
+
 // Mock Data structure.
 const mockStats = {
   survival: {
     title: 'Surival',
     style: 'state-btn',
-    description: 'Limit: ',
+    description: 'Limit: 3',
     children: [
       {
         name: 'Survival',
@@ -26,7 +30,11 @@ const mockStats = {
         max: 5,
         min: 0,
         milestones: [
-          5,
+          {
+            at: 5,
+            name: 'Dead',
+            type: MILESTONE_STORY,
+          },
         ],
       },
     ],
@@ -40,11 +48,31 @@ const mockStats = {
         max: 16,
         min: 0,
         milestones: [
-          2,
-          6,
-          10,
-          15,
-          16,
+          {
+            at: 2,
+            name: 'Age 1',
+            type: MILESTONE_STORY,
+          },
+          {
+            at: 6,
+            name: 'Age 2',
+            type: MILESTONE_STORY,
+          },
+          {
+            at: 10,
+            name: 'Age 3',
+            type: MILESTONE_STORY,
+          },
+          {
+            at: 15,
+            name: 'Age 4',
+            type: MILESTONE_STORY,
+          },
+          {
+            at: 16,
+            name: 'Retired',
+            type: MILESTONE_STORY,
+          },
         ],
       },
       {
@@ -53,8 +81,16 @@ const mockStats = {
         max: 8,
         min: 0,
         milestones: [
-          3,
-          8,
+          {
+            at: 3,
+            name: 'Specialist',
+            type: MILESTONE_STORY,
+          },
+          {
+            at: 8,
+            name: 'Master',
+            type: MILESTONE_STORY,
+          },
         ],
       },
       {
@@ -63,8 +99,16 @@ const mockStats = {
         max: 9,
         min: 0,
         milestones: [
-          3,
-          9,
+          {
+            at: 3,
+            name: 'Bold',
+            type: MILESTONE_STORY,
+          },
+          {
+            at: 9,
+            name: 'See the Truth',
+            type: MILESTONE_STORY,
+          },
         ],
       },
       {
@@ -73,18 +117,69 @@ const mockStats = {
         max: 9,
         min: 0,
         milestones: [
-          3,
-          9,
+          {
+            at: 3,
+            name: 'Insight',
+            type: MILESTONE_STORY,
+          },
+          {
+            at: 9,
+            name: 'White Secret',
+            type: MILESTONE_STORY,
+          },
         ],
       },
     ],
   },
-  // xp: [
-  //   hunt,
-  //   courage,
-  //   understanding,
-  //   weapon,
-  // ],
+  primaryStats: {
+    title: 'Primary Stats',
+    description: '',
+    children: [
+      {
+        name: 'Movement',
+        amount: 5,
+        min: 1,
+      },
+      {
+        name: 'Accuracy',
+        amount: 1,
+        min: -999,
+      },
+      {
+        name: 'Strength',
+        amount: 3,
+        min: -999,
+        status: [
+          {
+            type: 'token',
+          },
+          {
+            type: 'armor',
+          },
+        ],
+      },
+      {
+        name: 'Evasion',
+        amount: -1,
+        min: -999,
+      },
+      {
+        name: 'Luck',
+        amount: -1,
+        min: -999,
+        status: [
+          {
+            type: 'token',
+          },
+        ],
+      },
+      {
+        name: 'Speed',
+        amount: 0,
+        min: -999,
+      },
+    ],
+  },
   // primaryStats: [
   //   movement,
   //   accuracy,
@@ -96,7 +191,6 @@ const mockStats = {
   armor: {
     title: 'Armor',
     description: 'Rawhide Armor Set',
-    style: 'stat',
     children: [
       {
         name: 'Brain',
@@ -114,7 +208,7 @@ const mockStats = {
       { name: 'Body' },
       { name: 'Waist' },
       { name: 'Feet' },
-    ]
+    ],
   },
   fightingArts: {
     title: 'Fighting Arts',

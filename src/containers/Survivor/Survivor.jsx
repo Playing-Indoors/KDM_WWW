@@ -52,6 +52,12 @@ class World extends React.Component {
               <StatGroupObj statObj={this.state.survivorData.mock.bleeding} />
               <StatGroupObj statObj={this.state.survivorData.mock.xp} />
             </div>
+            <div className="boxGroup">
+              <StatGroupObj statObj={this.state.survivorData.mock.primaryStats} />
+            </div>
+            <div className="boxGroup">
+              <StatGroupObj statObj={this.state.survivorData.mock.armor} />
+            </div>
 
             <div className="boxGroup">
               <div className="box">

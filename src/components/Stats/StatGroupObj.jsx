@@ -59,7 +59,7 @@ class StatGroupObj extends Component {
         </button>
 
         <Modal isOpen={this.state.showModal} toggle={() => { this.handleModal(); }}>
-          <ModalHeader>{this.state.title}</ModalHeader>
+          <ModalHeader>{this.state.title} <br /> {this.state.description}</ModalHeader>
           <ModalBody>
             <div className="statSpendGroup">
               {this.renderStatSpend()}

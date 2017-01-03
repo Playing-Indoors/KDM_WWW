@@ -7,9 +7,10 @@ class StatAdjust extends Component {
       name: props.name, // Once we start passing data, change this to empty
       amount: props.amount,
       min: props.min || 0,
-      max: props.max,
+      max: props.max || 999,
       tempAmount: props.amount,
       milestones: props.milestones,
+      effect: '',
     };
   }
   onAdjustAmount(amount = -1) {
@@ -26,18 +27,34 @@ class StatAdjust extends Component {
   // Renders our milestones and attaches their class
   renderMilestones() {
     if (!this.state.milestones) {
-      return <div>No milestone</div>;
+      return null;
     }
     const milestone = [];
+    // Loop through from min value to max grabbing all of the milestones
     for (let i = 1; i <= this.state.max; i += 1) {
-      const filled = (i <= this.state.amount) ? 'milestone--filled' : '';
-      if (this.state.milestones.includes(i)) {
+      const filled = (i <= this.state.tempAmount) ? 'milestone--filled' : '';
+      if (this.state.milestones.find(item => item.at === i)) {
         milestone.push(<span key={i} className={`milestone milestone--active ${filled}`} />);
       } else {
         milestone.push(<span key={i} className={`milestone ${filled}`} />);
       }
     }
     return <div className="statSpend-milestones">{milestone}</div>;
+  }
+  // Finds if there's an effect of a milestone
+  // Crap, this isn't want we want, hmm... i'll leave this in for now.
+  renderMilestonesAffect() {
+    if (!this.state.milestones) {
+      return '\u00a0';
+    }
+    // Loop through items in reverse to find the most recent milestone event.
+    for (let i = this.state.tempAmount; i >= this.state.min; i -= 1) {
+      const findMilestone = this.state.milestones.find(item => item.at === i);
+      if (findMilestone) {
+        return findMilestone.name;
+      }
+    }
+    return '\u00a0';
   }
   render() {
     return (
@@ -53,8 +70,7 @@ class StatAdjust extends Component {
         <div className="statSpend-title">
           {this.state.name}
         </div>
-        <div className="statSpend-subtitle">
-        </div>
+        <div className="statSpend-subtitle">{this.renderMilestonesAffect()}</div>
       </div>
     );
   }
@@ -64,7 +80,7 @@ StatAdjust.propTypes = {
   name: React.PropTypes.string,
   amount: React.PropTypes.number.isRequired,
   min: React.PropTypes.number,
-  max: React.PropTypes.number.isRequired,
+  max: React.PropTypes.number,
   // milestones: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 
