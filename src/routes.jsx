@@ -13,7 +13,7 @@ import Aya from './containers/Aya/Aya.jsx';
 import Survivor from './containers/Survivor/Survivor.jsx';
 import World from './containers/World/World.jsx';
 import NotFound from './components/NotFound/NotFound.jsx';
-import SignUp from './components/SignUp/SignUp.jsx';
+import Splash from './components/Splash/Splash.jsx';
 import { AUTH_USER } from './actions/types';
 
 require('../styles/main.scss');
@@ -36,7 +36,7 @@ render(
         <Route path="/world" component={World} />
         <Route path="/aya" component={Aya} />
         <Route path="/survivor" component={Survivor} />
-        <Route path="/sign-up" component={SignUp} />
+        <Route path="/splash" component={Splash} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

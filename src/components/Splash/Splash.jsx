@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Vimeo from 'react-vimeo';
 import Banner from '../../components/Banner/Banner';
 
-class SignUp extends Component {
+class splash extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +38,7 @@ class SignUp extends Component {
           />
         </div>
 
-        <div className="signUp">
+        <div className="splash">
           <form
             action="//thewatcher.us14.list-manage.com/subscribe/post?u=a5b168ad5b9ccd71cf0135919&amp;id=8469b3d805"
             method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate
