@@ -30,7 +30,7 @@ render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Login} />
+        <IndexRoute component={Splash} />
         <Route path="/home" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/world" component={World} />
