@@ -8,11 +8,11 @@ body {
 	font-family: 'Ruda', sans-serif;
 }
 
-.page {
-	@include breakpoint(m) {
-		margin-left: $menu-width;
-	}
-}
+// .page {
+// 	@include breakpoint(m) {
+// 		margin-left: $menu-width;
+// 	}
+// }
 
 .main {
 	padding: 1rem;

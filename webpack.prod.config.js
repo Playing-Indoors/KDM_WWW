@@ -9,7 +9,7 @@ var path = require('path'),
 var config = {
   context: path.resolve(assets_path),
   entry: [
-    path.join(__dirname, '/src/routes.js')
+    path.join(__dirname, '/src/routes.jsx')
   ],
   output: {
     path: path.join(__dirname, '/public/'),

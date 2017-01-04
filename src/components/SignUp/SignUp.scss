@@ -1,0 +1,27 @@
+.promo {
+  text-align: center;
+}
+
+.videoWrpr {
+  margin: 2rem auto;
+  max-width: 854px;
+}
+
+.vimeo {
+  // position: relative;
+  // margin: 0 auto;
+  // max-width: 854px;
+  // padding: 0;
+  // padding-top: 56.21%;
+  // width: 100%;
+  position: relative;
+  padding-bottom: 56.25%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

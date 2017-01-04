@@ -13,6 +13,7 @@ import Aya from './containers/Aya/Aya.jsx';
 import Survivor from './containers/Survivor/Survivor.jsx';
 import World from './containers/World/World.jsx';
 import NotFound from './components/NotFound/NotFound.jsx';
+import SignUp from './components/SignUp/SignUp.jsx';
 import { AUTH_USER } from './actions/types';
 
 require('../styles/main.scss');
@@ -29,13 +30,14 @@ render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Login}/>
+        <IndexRoute component={Login} />
         <Route path="/home" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/world" component={World} />
         <Route path="/aya" component={Aya} />
         <Route path="/survivor" component={Survivor} />
-        <Route path="*" component={NotFound}/>
+        <Route path="/sign-up" component={SignUp} />
+        <Route path="*" component={NotFound} />
       </Route>
     </Router>
   </Provider>

@@ -1,25 +1,27 @@
 // Variables
 @import "../node_modules/bootstrap/scss/mixins";
-@import "_main_variables.scss";
-@import "_utilities.scss";
+@import "_main_variables";
+@import "_utilities";
 
 // Reset and dependencies
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 // Custom Layout
-@import "_layout.scss";
+@import "_layout";
 
 // Custom Containers
-@import "../src/containers/Home/home.scss";
-@import "../src/containers/Login/login.scss";
-@import "../src/containers/World/world.scss";
+@import "../src/containers/Home/home";
+@import "../src/containers/Login/login";
+@import "../src/containers/World/world";
 
 // Custom Components
-@import "../src/components/CalebComponent/caleb_component.scss";
-@import "../src/components/Button/button.scss";
-@import "../src/components/Header/header.scss";
-@import "../src/components/List/list.scss";
-@import "../src/components/Nav/nav.scss";
-@import "../src/components/NotFound/not_found.scss";
-@import "../src/components/Stats/Stats.scss";
-@import "../src/components/BoxList/BoxList.scss";
+@import "../src/components/Banner/Banner";
+@import "../src/components/BoxList/BoxList";
+@import "../src/components/Button/button";
+@import "../src/components/CalebComponent/caleb_component";
+@import "../src/components/Header/header";
+@import "../src/components/List/list";
+@import "../src/components/Nav/nav";
+@import "../src/components/NotFound/not_found";
+@import "../src/components/Stats/Stats";
+@import "../src/components/SignUp/SignUp";

@@ -8,7 +8,7 @@ var autoprefixer = require('autoprefixer');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    path.join(__dirname, '/src/routes.js')
+    path.join(__dirname, '/src/routes.jsx')
   ],
   externals: {
     KDM_API: JSON.stringify('http://api.thewatcher.io')
