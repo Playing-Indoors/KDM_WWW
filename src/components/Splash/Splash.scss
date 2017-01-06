@@ -1,5 +1,33 @@
 .promo {
+  position: relative;
+  min-height: 100vh;
   text-align: center;
+  padding-bottom: 3rem;
+}
+
+.splash {
+  margin: 2rem auto;
+  padding: 2%;
+
+  > svg {
+    width: 138px;
+    height: 167px;
+    fill: $gray-dark;
+  }
+
+  h1 {
+    font-size: 54px;
+    font-weight: bold;
+  }
+
+  p {
+    color: $gray-lightest;
+    font-size: 13px;
+  }
+}
+
+.modal-video {
+  max-width: 854px;
 }
 
 .videoWrpr {
@@ -24,4 +52,13 @@
     width: 100%;
     height: 100%;
   }
+}
+
+.footer {
+  position: absolute;
+  bottom: .5rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: $gray-lightest;
 }

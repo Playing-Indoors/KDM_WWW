@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {reduxForm} from 'redux-form';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { reduxForm } from 'redux-form';
 import { authenticate } from '../../actions/index.js';
 
 class Login extends Component {
-  constructor(props){
-    super(props);
-  }
-  componentWillMount(){
+  // constructor(props){
+  //   super(props);
+  // }
+  componentWillMount() {
     localStorage.clear();
   }
-  handleFormSubmit({username, password}) {
-    this.props.authenticate({username, password});
+  handleFormSubmit({ username, password }) {
+    this.props.authenticate({ username, password });
   }
   render() {
     const {
@@ -57,17 +57,17 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.authenticated
+    authenticated: state.authenticated,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    authenticate: authenticate
+    authenticate,
   }, dispatch);
 }
 
 export default reduxForm({
   form: 'signin',
-  fields: ['username', 'password']
+  fields: ['username', 'password'],
 }, mapStateToProps, mapDispatchToProps)(Login);
