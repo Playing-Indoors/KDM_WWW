@@ -80,7 +80,7 @@ class Splash extends Component {
 
 
         <footer className="footer">
-          &copy; 2016, Timothy O&lsquo;Connel, Logan Ogden, Caleb Kester, and Khoa Ngo
+          &copy; 2016, Timothy O&lsquo;Connell, Logan Ogden, Caleb Kester, and Khoa Ngo
         </footer>
       </div>
     );
