@@ -107,7 +107,10 @@
 }
 
 .modal-video {
-  max-width: 854px;
+  // max-width: 1080px;
+  @include breakpoint(l) {
+    max-width: 80%;
+  }
 }
 
 .videoWrpr {
