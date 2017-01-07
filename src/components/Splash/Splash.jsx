@@ -52,7 +52,7 @@ class Splash extends Component {
   render() {
     return (
       <div className="promo">
-        <Banner message="The Watcher is Coming Soon. While you wait, sign up below for news, availability and future testing." />
+        <Banner message="The Watcher is coming soon. While you wait, sign up below for news, availability and future testing." />
         <div className="splash">
           { /* <div className={this.state.showVideo ? 'splash-video is-active' : 'splash-video'}>
             {this.renderVideo()}
