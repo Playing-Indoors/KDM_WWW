@@ -8,6 +8,15 @@ body {
 	font-family: 'Ruda', sans-serif;
 }
 
+::selection {
+	background: hsla(0, 0%, 0%, 0.28);
+	text-shadow: none;
+}
+
+.btn {
+	transition: background 0.2s ease-out;
+}
+
 // .page {
 // 	@include breakpoint(m) {
 // 		margin-left: $menu-width;

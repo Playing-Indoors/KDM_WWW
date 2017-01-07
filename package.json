@@ -49,6 +49,7 @@
     "react-addons-css-transition-group": "^15.4.1",
     "react-addons-transition-group": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-ga": "^2.1.2",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.1",
     "react-vimeo": "^1.0.0",

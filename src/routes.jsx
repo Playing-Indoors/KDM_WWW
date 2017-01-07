@@ -16,6 +16,9 @@ import NotFound from './components/NotFound/NotFound.jsx';
 import Splash from './components/Splash/Splash.jsx';
 import { AUTH_USER } from './actions/types';
 
+const ReactGA = require('react-ga');
+ReactGA.initialize('UA-89982304-01');
+
 require('../styles/main.scss');
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
@@ -26,9 +29,14 @@ if (token) {
   store.dispatch({ type: AUTH_USER });
 }
 
+function logPageView() {
+  ReactGA.set({ page: window.location.pathname });
+  ReactGA.pageview(window.location.pathname);
+}
+
 render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={browserHistory}>
+    <Router history={browserHistory} onUpdate={logPageView} >
       <Route path="/" component={App}>
         <IndexRoute component={Splash} />
         <Route path="/home" component={Home} />

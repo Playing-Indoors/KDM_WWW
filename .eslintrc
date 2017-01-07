@@ -5,7 +5,8 @@
   ],
 	"extends": "airbnb",
 	"globals": {
-		"document": true
+		"document": true,
+		"window": true
 	},
   "rules": {
     "no-console": 0

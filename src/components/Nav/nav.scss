@@ -9,7 +9,6 @@
 	max-width: 200px;
 	background: $gray-dark;
 	text-align: center;
-	@include card(5);
 	transition: all 0.3s ease-out;
 	visibility: hidden;
 
