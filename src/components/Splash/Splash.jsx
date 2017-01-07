@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
-import { Modal, ModalBody, Button } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 import Banner from '../../components/Banner/Banner';
-
-const Vimeo = require('react-vimeo');
 
 class Splash extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      // showVideo: false,
-      // playerOptions: {
-      //   color: 'B57E2F',
-      //   title: 0,
-      //   byeline: 0,
-      //   portrait: 0,
-      //   autoplay: 1,
-      // },
       email: '',
     };
 
@@ -29,34 +19,17 @@ class Splash extends Component {
     });
   }
 
-  // handleVideo(show = !this.state.showVideo) {
-  //   this.setState({
-  //     showVideo: show,
-  //   });
-  // }
-
   handleChange(event) {
     this.setState({
       email: event.target.value,
     });
   }
 
-  // renderVideo() {
-  //   if (this.state.showVideo) {
-  //     return <Vimeo videoId={197993327} autoplay={true} playerOptions={this.state.playerOptions} />;
-  //     // return <iframe src="https://player.vimeo.com/video/197993327?autoplay=1&color=B57E2F&title=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen />;
-  //   }
-  //   return null;
-  // }
-
   render() {
     return (
       <div className="promo">
         <Banner message="The Watcher is coming soon. While you wait, sign up below for news, availability and future testing." />
         <div className="splash">
-          { /* <div className={this.state.showVideo ? 'splash-video is-active' : 'splash-video'}>
-            {this.renderVideo()}
-          </div> */ }
           <div className="splash-content">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138.24 167.19">
               <title>The Watcher dot io</title>
@@ -70,6 +43,10 @@ class Splash extends Component {
         </div>
 
         <Modal isOpen={this.state.showModal} size="video" toggle={() => { this.handleModal(); }}>
+          <ModalHeader>
+            The Watcher
+            <button onClick={() => { this.handleModal(); }} type="button" className="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </ModalHeader>
           <ModalBody>
             <div className="vimeo">
               <iframe src="https://player.vimeo.com/video/197993327?autoplay=1&color=B57E2F&title=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen />
