@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
+import { Modal, ModalBody, Button } from 'reactstrap';
 import Banner from '../../components/Banner/Banner';
-import { Button } from 'reactstrap';
+
+const Vimeo = require('react-vimeo');
 
 class Splash extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      showVideo: false,
+      // showVideo: false,
+      // playerOptions: {
+      //   color: 'B57E2F',
+      //   title: 0,
+      //   byeline: 0,
+      //   portrait: 0,
+      //   autoplay: 1,
+      // },
       email: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleVideo(show = !this.state.showVideo) {
+  handleModal(show = !this.state.showModal) {
     this.setState({
-      showVideo: show,
+      showModal: show,
     });
   }
+
+  // handleVideo(show = !this.state.showVideo) {
+  //   this.setState({
+  //     showVideo: show,
+  //   });
+  // }
 
   handleChange(event) {
     this.setState({
@@ -26,20 +41,22 @@ class Splash extends Component {
     });
   }
 
-  renderVideo() {
-    if (this.state.showVideo) {
-      return <iframe src="https://player.vimeo.com/video/197993327?autoplay=1&color=B57E2F&title=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen />;
-    }
-    return null;
-  }
+  // renderVideo() {
+  //   if (this.state.showVideo) {
+  //     return <Vimeo videoId={197993327} autoplay={true} playerOptions={this.state.playerOptions} />;
+  //     // return <iframe src="https://player.vimeo.com/video/197993327?autoplay=1&color=B57E2F&title=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen />;
+  //   }
+  //   return null;
+  // }
+
   render() {
     return (
       <div className="promo">
         <Banner message="The Watcher is Coming Soon. While you wait, sign up below for news, availability and future testing." />
         <div className="splash">
-          <div className={this.state.showVideo ? 'splash-video is-active' : 'splash-video'}>
+          { /* <div className={this.state.showVideo ? 'splash-video is-active' : 'splash-video'}>
             {this.renderVideo()}
-          </div>
+          </div> */ }
           <div className="splash-content">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138.24 167.19">
               <title>The Watcher dot io</title>
@@ -48,9 +65,17 @@ class Splash extends Component {
             </svg>
             <h1>The Watcher</h1>
             <p>A web-based management app for Kingdom Death</p>
-            <Button color="secondary" onClick={() => { this.handleVideo(); }}>PLAY TEASER VIDEO</Button>
+            <Button color="secondary" onClick={() => { this.handleModal(); }}>PLAY TEASER VIDEO</Button>
           </div>
         </div>
+
+        <Modal isOpen={this.state.showModal} size="video" toggle={() => { this.handleModal(); }}>
+          <ModalBody>
+            <div className="vimeo">
+              <iframe src="https://player.vimeo.com/video/197993327?autoplay=1&color=B57E2F&title=0&portrait=0" width="640" height="360" frameBorder="0" allowFullScreen />
+            </div>
+          </ModalBody>
+        </Modal>
 
         <form
           action="//thewatcher.us14.list-manage.com/subscribe/post?u=a5b168ad5b9ccd71cf0135919&amp;id=8469b3d805"
@@ -65,15 +90,16 @@ class Splash extends Component {
           <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
             <input type="text" name="b_a5b168ad5b9ccd71cf0135919_8469b3d805" tabIndex="-1" value="" />
           </div>
-          <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="btn btn-primary">Submit</button>
+          <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="btn btn-primary">SUBMIT</button>
         </form>
-        <p>
-          We are working our asses off to bring you the most complete Kingdom Death management app to date.
+        <div className="promo-content">
+          <p>
+            We are working our asses off to bring you the most complete Kingdom Death management app to date.
+            If you’d like updates and a shot at future testing, please submit your email address.
+          </p>
           <br />
-          If you’d like updates and a shot at future testing, please submit your email address.
-        </p>
-        <br />
-        <a href="http://www.twitter.com" className="twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.79 13.62"><path d="M14.11,1.08A6.27,6.27,0,0,0,16.33.24a3.9,3.9,0,0,1-1.46,1.91,4.94,4.94,0,0,0,1.93-.54A8.25,8.25,0,0,1,15,3.39,9.91,9.91,0,0,1,10.8,12c-2.59,2-7.54,2.29-10.8.12a6.66,6.66,0,0,0,5.08-1.44A3.54,3.54,0,0,1,1.87,8.32,3,3,0,0,0,3.39,8.2,3.55,3.55,0,0,1,.66,4.77a2.33,2.33,0,0,0,1.55.44A3.59,3.59,0,0,1,1.16.6,9.65,9.65,0,0,0,8.29,4.21,3.43,3.43,0,0,1,10,.42,3.48,3.48,0,0,1,14.11,1.08Z" /></svg> <span>follow us on Twitter</span></a>
+          <a href="https://twitter.com/thewatcherapp" className="twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.79 13.62"><path d="M14.11,1.08A6.27,6.27,0,0,0,16.33.24a3.9,3.9,0,0,1-1.46,1.91,4.94,4.94,0,0,0,1.93-.54A8.25,8.25,0,0,1,15,3.39,9.91,9.91,0,0,1,10.8,12c-2.59,2-7.54,2.29-10.8.12a6.66,6.66,0,0,0,5.08-1.44A3.54,3.54,0,0,1,1.87,8.32,3,3,0,0,0,3.39,8.2,3.55,3.55,0,0,1,.66,4.77a2.33,2.33,0,0,0,1.55.44A3.59,3.59,0,0,1,1.16.6,9.65,9.65,0,0,0,8.29,4.21,3.43,3.43,0,0,1,10,.42,3.48,3.48,0,0,1,14.11,1.08Z" /></svg> <span>follow us on Twitter</span></a>
+        </div>
 
 
         <footer className="footer">
