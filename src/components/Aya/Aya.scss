@@ -1,0 +1,38 @@
+$ayaColors: (
+  gray-dark, $gray-dark,
+  gray, $gray,
+  gray-light, $gray-light,
+  gray-lighter, $gray-lighter,
+  gray-lightest, $gray-lightest,
+  brand-primary, $brand-primary,
+  brand-success, $brand-success,
+  brand-info, $brand-info,
+  brand-warning, $brand-warning,
+  brand-danger, $brand-danger
+);
+
+.ayaColors {
+  display: flex;
+}
+
+.ayaColors-color {
+  flex: 1 1 auto;
+  padding: 0.25rem 1rem;
+}
+
+.ayaColors-name {
+  padding: 0.25rem 1rem;
+}
+
+
+@each $name, $color in $ayaColors {
+  .ayaColors-color--gray-dark {
+    content: '#{$color}';
+    background: $color;
+    color: red;
+
+    &::before {
+      content: '#{$color}';
+    }
+  }
+}
