@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+// TODO RENAME THIS TO Stat.jsx :\
+
 // This component renders our stats styles.
 // handles the following data:
 // title - String - defaults to ``
@@ -10,16 +12,10 @@ class Stats extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Expected data object
       name: props.name,
       amount: props.amount,
       min: props.min || 0,
       max: props.max || 999,
-      // [
-      //   'is-empty',  // empty
-      //   'is-passive',  // filled in
-      //   'is-active',  // active
-      // ],
     };
   }
   // Renders our milestones and attaches their class

@@ -134,6 +134,8 @@ progress::-webkit-progress-value {
 
 	@at-root button#{&}, a#{&} {
 		display: block;
+		width: 100%;
+		text-align: left;
 		color: inherit;
 		background: none;
 		border: none;

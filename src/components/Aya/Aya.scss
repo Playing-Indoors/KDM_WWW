@@ -1,38 +1,58 @@
-$ayaColors: (
-  gray-dark, $gray-dark,
-  gray, $gray,
-  gray-light, $gray-light,
-  gray-lighter, $gray-lighter,
-  gray-lightest, $gray-lightest,
-  brand-primary, $brand-primary,
-  brand-success, $brand-success,
-  brand-info, $brand-info,
-  brand-warning, $brand-warning,
-  brand-danger, $brand-danger
+//
+// Aya Style Guide
+//
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+// Colors
+$ayaColor: (
+  'body-color': $body-color,
+  'gray-dark': $gray-dark,
+  'gray': $gray,
+  'gray-light': $gray-light,
+  'gray-lighter': $gray-lighter,
+  'gray-lightest': $gray-lightest,
+  'brand-primary': $brand-primary,
+  'brand-success': $brand-success,
+  'brand-info': $brand-info,
+  'brand-warning': $brand-warning,
+  'brand-danger': $brand-danger
 );
 
-.ayaColors {
+.ayaColor {
   display: flex;
-}
-
-.ayaColors-color {
-  flex: 1 1 auto;
+  justify-content: space-between;
   padding: 0.25rem 1rem;
 }
 
-.ayaColors-name {
-  padding: 0.25rem 1rem;
-}
-
-
-@each $name, $color in $ayaColors {
-  .ayaColors-color--gray-dark {
-    content: '#{$color}';
-    background: $color;
-    color: red;
+@each $ayaName, $ayaColor in $ayaColor {
+  .ayaColor--#{$ayaName} {
+    background: $ayaColor;
+    @if (lightness($ayaColor) > 80) {
+      color: $gray-dark;
+    }
 
     &::before {
-      content: '#{$color}';
+      content: '#{$ayaName}';
+    }
+    &::after {
+      content: '#{$ayaColor}';
     }
   }
+}
+
+// Font Sizes
+
+.ayah1::after {
+  content: ': #{$font-size-h1} (#{strip-unit($font-size-h1)*16}px)';
+}
+
+.ayah2::after {
+  content: ': #{$font-size-h2} (#{strip-unit($font-size-h2)*16}px)';
 }
