@@ -64,16 +64,18 @@ progress::-webkit-progress-value {
 // Update Model
 
 .modal-title {
+	font-size: 1.75rem;
 	text-align: center;
 	color: #fff;
 }
 
 .modal-footer {
-	display: flex;
+	padding: 0;
+	// display: flex;
 
-	button {
-		flex: 1 1 100px;;
-	}
+	// button {
+	// 	flex: 1 1 100px;;
+	// }
 }
 
 

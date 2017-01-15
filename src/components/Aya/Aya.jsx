@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, ButtonGroup, Row, Col } from 'reactstrap';
 import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
@@ -109,6 +109,36 @@ class Aya extends Component {
           <br />
           <br />
 
+          <h3>Buttons</h3>
+          <Button color="primary">primary</Button>{' '}
+          <Button color="secondary">secondary</Button>{' '}
+          <Button color="success">success</Button>{' '}
+          <Button color="info">info</Button>{' '}
+          <Button color="warning">warning</Button>{' '}
+          <Button color="danger">danger</Button>{' '}
+          <Button color="link">link</Button>
+
+          <br />
+          <br />
+
+          <h3>Modal</h3>
+          <Button onClick={this.toggleModal}>Toggle Modal</Button>
+          <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+            <ModalHeader toggle={this.toggleModal}>Modal title</ModalHeader>
+            <ModalBody>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ModalBody>
+            <ModalFooter>
+
+              <ButtonGroup>
+                <Button color="primary" onClick={this.toggle}>Do Something</Button>
+                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+              </ButtonGroup>
+            </ModalFooter>
+          </Modal>
+
+          <br /><br />
+
           <h2>Patterns</h2>
 
           <h3>Box</h3>
@@ -138,7 +168,7 @@ class Aya extends Component {
 
           <h3>Stats</h3>
           <p>Shows data, supports <em>amount</em>, <em>max</em>, <em>min</em>, <em>milestones</em>, <em>title</em></p>
-          <div style={{ width: '200' }}>
+          <div style={{ width: '200px' }}>
             <Stat
               name={this.state.statXP.name}
               amount={this.state.statXP.amount}
@@ -150,7 +180,7 @@ class Aya extends Component {
           <br />
 
           <h4>Stat Adjustor</h4>
-          <div style={{ width: '200' }}>
+          <div style={{ width: '200px' }}>
             <StatAdjust
               name={this.state.statXP.name}
               amount={this.state.statXP.amount}
@@ -160,8 +190,6 @@ class Aya extends Component {
             />
           </div>
 
-          <h3>Modal</h3>
-          <p>Coming Soon</p>
 
 
           <h2>Components</h2>

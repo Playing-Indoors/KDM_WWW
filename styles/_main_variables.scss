@@ -25,7 +25,8 @@ $gray-dark:                 #1D1D1E !default;
 $gray:                      #414042 !default;
 $gray-light:                #383839 !default;
 $gray-lighter:              #58585A !default;
-$gray-lightest:             #808285 !default;
+// $gray-lightest:             #808285 !default;
+$gray-lightest:             #F4F4F4 !default;
 // $white-dark:                #DCDDDE !default;
 
 $brand-primary:             #B57E2F !default;
@@ -240,8 +241,8 @@ $table-border-color:            $gray-lighter !default;
 //
 // For each of Bootstrap's buttons, define text, background and border color.
 
-$btn-padding-x:                  2rem !default;
-$btn-padding-y:                  .375rem !default;
+$btn-padding-x:                  1rem !default;
+$btn-padding-y:                  0.75rem !default;
 $btn-font-weight:                normal !default;
 
 $btn-primary-color:              #fff !default;
@@ -532,12 +533,12 @@ $label-font-weight:           bold !default;
 // Modals
 
 // Padding applied to the modal body
-$modal-inner-padding:         0 !default;
+$modal-inner-padding:         1rem !default;
 
-$modal-title-padding:         15px !default;
+$modal-title-padding:         1rem !default;
 $modal-title-line-height:     $line-height !default;
 
-$modal-content-bg:                            #000 !default;
+$modal-content-bg:                            $gray !default;
 $modal-content-border-color:                   rgba(0,0,0,.2) !default;
 
 $modal-backdrop-bg:           #000 !default;
