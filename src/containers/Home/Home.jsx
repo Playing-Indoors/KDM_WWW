@@ -6,6 +6,7 @@ import Nav from '../../components/Nav/Nav';
 import Header from '../../components/Header/Header';
 import List from '../../components/List/List';
 import Button from '../../components/Button/Button';
+import DeleteMe from '../DeleteMe';
 
 
 class Home extends React.Component {
@@ -25,6 +26,9 @@ class Home extends React.Component {
             <Button text="Create New Campaign" style="secondary" size="lg btn-block" />
             <List data={this.props.homeData.campaign} />
           </main>
+
+          <DeleteMe />
+
         </div>
       );
     }
