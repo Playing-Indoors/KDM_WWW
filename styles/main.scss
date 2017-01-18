@@ -1,10 +1,19 @@
 // Variables
-@import "../node_modules/bootstrap/scss/mixins";
+// @import "../node_modules/bootstrap/scss/mixins";
 @import "_main_variables";
 @import "_utilities";
 
 // Reset and dependencies
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+// Temp, waiting for https://github.com/twbs/bootstrap/pull/21741 to get merged in.
+input,
+button,
+select,
+optgroup,
+textarea {
+  font-family: inherit;
+}
 
 // Custom Layout
 @import "_layout";

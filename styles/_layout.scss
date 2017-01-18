@@ -61,6 +61,17 @@ progress::-webkit-progress-value {
 	background: $brand-primary;
 }
 
+// Button Group
+
+.btn-group--full {
+	width: 100%;
+
+	> .btn {
+		flex: 1 1 100px;
+	}
+}
+
+
 // Update Model
 
 .modal-title {
@@ -71,11 +82,7 @@ progress::-webkit-progress-value {
 
 .modal-footer {
 	padding: 0;
-	// display: flex;
-
-	// button {
-	// 	flex: 1 1 100px;;
-	// }
+	display: flex;
 }
 
 

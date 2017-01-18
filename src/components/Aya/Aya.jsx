@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Nav, N
 import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
+import StatSurvival from '../../containers/StatWidget/StatWidget-Survival';
 
 class Aya extends Component {
   constructor(props) {
@@ -129,8 +130,7 @@ class Aya extends Component {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </ModalBody>
             <ModalFooter>
-
-              <ButtonGroup>
+              <ButtonGroup className="btn-group--full">
                 <Button color="primary" onClick={this.toggle}>Do Something</Button>
                 <Button color="secondary" onClick={this.toggle}>Cancel</Button>
               </ButtonGroup>
@@ -195,6 +195,10 @@ class Aya extends Component {
           <h2>Components</h2>
 
           <h3>Stat Box</h3>
+
+          <StatSurvival
+            title="Survival"
+          />
 
 
         </main>

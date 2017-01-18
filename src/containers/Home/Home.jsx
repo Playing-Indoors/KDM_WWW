@@ -6,7 +6,7 @@ import Nav from '../../components/Nav/Nav';
 import Header from '../../components/Header/Header';
 import List from '../../components/List/List';
 import Button from '../../components/Button/Button';
-import DeleteMe from '../DeleteMe';
+import DeleteMe from '../../containers/StatWidget/DeleteMe';
 
 
 class Home extends React.Component {

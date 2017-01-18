@@ -6,16 +6,24 @@ class Splash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
+      modal: false,
       email: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleModal = this.handleModal.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
-  handleModal(show = !this.state.showModal) {
+  handleModal() {
     this.setState({
-      showModal: show,
+      modal: !this.state.showModal,
+    });
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal,
     });
   }
 
@@ -38,14 +46,13 @@ class Splash extends Component {
             </svg>
             <h1>The Watcher</h1>
             <p>A web-based management app for Kingdom Death</p>
-            <Button color="secondary" onClick={() => { this.handleModal(); }}>PLAY TEASER VIDEO</Button>
+            <Button color="secondary" onClick={this.toggle}>PLAY TEASER VIDEO</Button>
           </div>
         </div>
 
-        <Modal isOpen={this.state.showModal} size="video" toggle={() => { this.handleModal(); }}>
-          <ModalHeader>
+        <Modal isOpen={this.state.modal} size="video" toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>
             The Watcher
-            <button onClick={() => { this.handleModal(); }} type="button" className="close" aria-label="Close"><span aria-hidden="true">×</span></button>
           </ModalHeader>
           <ModalBody>
             <div className="vimeo">
