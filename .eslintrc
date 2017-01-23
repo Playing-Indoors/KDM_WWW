@@ -6,9 +6,13 @@
 	"extends": "airbnb",
 	"globals": {
 		"document": true,
-		"window": true
+		"window": true,
+		"localStorage": true
 	},
   "rules": {
-    "no-console": 0
+    "no-console": 0,
+		"indent": ["error", "tab"],
+		"jsx-indent": [2, "tab"],
+    "no-tabs": 0
   }
 }
