@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Nav, N
 import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
-import StatSurvival from '../../containers/StatWidget/StatWidget-Survival';
+import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
 
 class Aya extends Component {
 	constructor(props) {

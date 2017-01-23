@@ -3,13 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getWorld } from '../../actions/getWorld';
 import { getSettlement } from '../../actions/getSettlement';
-import { getSurvivor } from '../../actions/getSurvivor';
-import Stat from '../../components/Stats/Stats';
-import StatGroup from '../../components/Stats/StatGroup';
-import StatGroupObj from '../../components/Stats/StatGroupObj';
-import BoxList from '../../components/BoxList/BoxList';
-import Survival from '../../components/Survivor/Survival';
-import SurvivorXP from '../../components/Survivor/Survivor-XP';
+// import { getSurvivor } from '../../actions/getSurvivor';
+import StatSurvival from '../../containers/StatWidget/StatWidget-Survival';
 
 class World extends React.Component {
 	constructor(props) {
@@ -17,13 +12,13 @@ class World extends React.Component {
 		this.state = {
 			worldData: null,
 			settlementData: null,
-			survivalData: null,
+			// survivalData: null,
 		};
 	}
 	componentDidMount() {
 		this.props.getWorld(); // eslint-disable-line react/prop-types
 		this.props.getSettlement(); // eslint-disable-line react/prop-types
-		this.props.getSurvivor(); // eslint-disable-line react/prop-types
+		// this.props.getSurvivor(); // eslint-disable-line react/prop-types
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.worldData) {
@@ -43,84 +38,15 @@ class World extends React.Component {
 		}
 	}
 	render() {
-		if (this.state.survivorData) {
+		if (this.state.settlementData) {
 			return (
 				<div className="page-world">
 					<main className="main">
-						<div className="boxGroup">
-							<StatGroupObj statObj={this.state.survivorData.mock.survival} />
-							<StatGroupObj statObj={this.state.survivorData.mock.bleeding} />
-							<StatGroupObj statObj={this.state.survivorData.mock.xp} />
-						</div>
-						<div className="boxGroup">
-							<StatGroupObj statObj={this.state.survivorData.mock.primaryStats} />
-						</div>
-						<div className="boxGroup">
-							<StatGroupObj statObj={this.state.survivorData.mock.armor} />
-						</div>
 
 						<div className="boxGroup">
-							<div className="box">
-								<header className="box-header">
-									<div className="box-header-title">Fighting Arts</div>
-								</header>
-								<div className="box-content">
-									<div className="statGroup">
-										<BoxList list={this.state.survivorData.fighting_arts} />
-									</div>
-								</div>
-							</div>
-							<div className="box">
-								<header className="box-header">
-									<div className="box-header-title">Disorders</div>
-								</header>
-								<div className="box-content">
-									<div className="statGroup">
-										<BoxList list={this.state.survivorData.disorders} />
-									</div>
-								</div>
-							</div>
+							<StatSurvival />
 						</div>
-
-						<div className="boxGroup">
-							<div className="box">
-								<header className="box-header">
-									<div className="box-header-title">Abilities</div>
-								</header>
-								<div className="box-content">
-									<div className="statGroup">
-										<BoxList list={this.state.survivorData.abilities_and_impairments} />
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="boxGroup">
-							<div className="box">
-								<header className="box-header">
-									<div className="box-header-title">Impairments</div>
-								</header>
-								<div className="box-content">
-									<div className="statGroup">
-										<BoxList list={this.state.survivorData.abilities_and_impairments} />
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="boxGroup">
-							<div className="box">
-								<header className="box-header">
-									<div className="box-header-title">Additional Notes</div>
-								</header>
-								<div className="box-content">
-									<div className="statGroup">
-										<BoxList list={this.state.survivorData.abilities_and_impairments} />
-									</div>
-								</div>
-							</div>
-						</div>
-
+						{this.state.settlementData.user_assets.survivors[0].sheet.Survival}
 					</main>
 				</div>
 			);
@@ -132,7 +58,7 @@ class World extends React.Component {
 function mapStateToProps(state) {
 	return {
 		worldData: state.worldData,
-		survivorData: state.survivorData,
+		// survivorData: state.survivorData,
 		settlementData: state.settlementData,
 	};
 }
@@ -141,7 +67,7 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getWorld,
 		getSettlement,
-		getSurvivor,
+		// getSurvivor,
 	}, dispatch);
 }
 

@@ -15,7 +15,7 @@ class Home extends React.Component {
 	render() {
 		if (this.props.homeData) {
 			return (
-				<div className="page-home">
+				<div className="page">
 					<Nav data={this.props.homeData.nav} />
 					<Header data={this.props.homeData.page} />
 					<main className="main">

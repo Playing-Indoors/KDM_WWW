@@ -2,11 +2,10 @@ import React from 'react';
 import { StatWidget } from './StatWidget';
 import Stat from '../../components/Stats/Stats';
 
-class StatSurvival extends React.Component {
+class StatExample extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: 'Survival',
 			statXP: {
 				name: 'Hunt XP',
 				amount: 8,
@@ -55,4 +54,4 @@ class StatSurvival extends React.Component {
 	}
 }
 
-export default StatWidget(StatSurvival);
+export default StatWidget(StatExample);

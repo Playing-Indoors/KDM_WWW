@@ -6,7 +6,7 @@ export let StatWidget = ComposedComponent => class extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: props.title,
+			// title: props.title,
 			stats: props.stats,
 			description: props.description,
 			showModal: false,
