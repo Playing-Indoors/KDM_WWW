@@ -24,7 +24,7 @@ class World extends React.Component {
 	componentDidMount() {
 		this.props.getWorld();
 		this.props.getSettlement();
-		this.props.getSurvivor();
+		//this.props.getSurvivor();
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.worldData) {

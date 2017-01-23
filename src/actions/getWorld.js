@@ -14,6 +14,7 @@ export function getWorld() {
 	return dispatch => {
 		axios.get(`${KDM_API}/world`)
 			.then((res) => {
+				console.log('WORLD', res);
 				dispatch(getWorldAsync(res));
 			});
 	};
