@@ -12,137 +12,137 @@ import Survival from '../../components/Survivor/Survival';
 import SurvivorXP from '../../components/Survivor/Survivor-XP';
 
 class World extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      worldData: null,
-      settlementData: null,
-      survivalData: null,
-    };
-  }
-  componentDidMount() {
-    this.props.getWorld(); // eslint-disable-line react/prop-types
-    this.props.getSettlement(); // eslint-disable-line react/prop-types
-    this.props.getSurvivor(); // eslint-disable-line react/prop-types
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.worldData) {
-      this.setState({
-        worldData: nextProps.worldData,
-      });
-    }
-    if (nextProps.survivorData) {
-      this.setState({
-        survivorData: nextProps.survivorData,
-      });
-    }
-    if (nextProps.settlementData) {
-      this.setState({
-        settlementData: nextProps.settlementData,
-      });
-    }
-  }
-  render() {
-    if (this.state.survivorData) {
-      return (
-        <div className="page-world">
-          <main className="main">
-            <div className="boxGroup">
-              <StatGroupObj statObj={this.state.survivorData.mock.survival} />
-              <StatGroupObj statObj={this.state.survivorData.mock.bleeding} />
-              <StatGroupObj statObj={this.state.survivorData.mock.xp} />
-            </div>
-            <div className="boxGroup">
-              <StatGroupObj statObj={this.state.survivorData.mock.primaryStats} />
-            </div>
-            <div className="boxGroup">
-              <StatGroupObj statObj={this.state.survivorData.mock.armor} />
-            </div>
+	constructor(props) {
+		super(props);
+		this.state = {
+			worldData: null,
+			settlementData: null,
+			survivalData: null,
+		};
+	}
+	componentDidMount() {
+		this.props.getWorld(); // eslint-disable-line react/prop-types
+		this.props.getSettlement(); // eslint-disable-line react/prop-types
+		this.props.getSurvivor(); // eslint-disable-line react/prop-types
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.worldData) {
+			this.setState({
+				worldData: nextProps.worldData,
+			});
+		}
+		if (nextProps.survivorData) {
+			this.setState({
+				survivorData: nextProps.survivorData,
+			});
+		}
+		if (nextProps.settlementData) {
+			this.setState({
+				settlementData: nextProps.settlementData,
+			});
+		}
+	}
+	render() {
+		if (this.state.survivorData) {
+			return (
+				<div className="page-world">
+					<main className="main">
+						<div className="boxGroup">
+							<StatGroupObj statObj={this.state.survivorData.mock.survival} />
+							<StatGroupObj statObj={this.state.survivorData.mock.bleeding} />
+							<StatGroupObj statObj={this.state.survivorData.mock.xp} />
+						</div>
+						<div className="boxGroup">
+							<StatGroupObj statObj={this.state.survivorData.mock.primaryStats} />
+						</div>
+						<div className="boxGroup">
+							<StatGroupObj statObj={this.state.survivorData.mock.armor} />
+						</div>
 
-            <div className="boxGroup">
-              <div className="box">
-                <header className="box-header">
-                  <div className="box-header-title">Fighting Arts</div>
-                </header>
-                <div className="box-content">
-                  <div className="statGroup">
-                    <BoxList list={this.state.survivorData.fighting_arts} />
-                  </div>
-                </div>
-              </div>
-              <div className="box">
-                <header className="box-header">
-                  <div className="box-header-title">Disorders</div>
-                </header>
-                <div className="box-content">
-                  <div className="statGroup">
-                    <BoxList list={this.state.survivorData.disorders} />
-                  </div>
-                </div>
-              </div>
-            </div>
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Fighting Arts</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<BoxList list={this.state.survivorData.fighting_arts} />
+									</div>
+								</div>
+							</div>
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Disorders</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<BoxList list={this.state.survivorData.disorders} />
+									</div>
+								</div>
+							</div>
+						</div>
 
-            <div className="boxGroup">
-              <div className="box">
-                <header className="box-header">
-                  <div className="box-header-title">Abilities</div>
-                </header>
-                <div className="box-content">
-                  <div className="statGroup">
-                    <BoxList list={this.state.survivorData.abilities_and_impairments} />
-                  </div>
-                </div>
-              </div>
-            </div>
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Abilities</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<BoxList list={this.state.survivorData.abilities_and_impairments} />
+									</div>
+								</div>
+							</div>
+						</div>
 
-            <div className="boxGroup">
-              <div className="box">
-                <header className="box-header">
-                  <div className="box-header-title">Impairments</div>
-                </header>
-                <div className="box-content">
-                  <div className="statGroup">
-                    <BoxList list={this.state.survivorData.abilities_and_impairments} />
-                  </div>
-                </div>
-              </div>
-            </div>
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Impairments</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<BoxList list={this.state.survivorData.abilities_and_impairments} />
+									</div>
+								</div>
+							</div>
+						</div>
 
-            <div className="boxGroup">
-              <div className="box">
-                <header className="box-header">
-                  <div className="box-header-title">Additional Notes</div>
-                </header>
-                <div className="box-content">
-                  <div className="statGroup">
-                    <BoxList list={this.state.survivorData.abilities_and_impairments} />
-                  </div>
-                </div>
-              </div>
-            </div>
+						<div className="boxGroup">
+							<div className="box">
+								<header className="box-header">
+									<div className="box-header-title">Additional Notes</div>
+								</header>
+								<div className="box-content">
+									<div className="statGroup">
+										<BoxList list={this.state.survivorData.abilities_and_impairments} />
+									</div>
+								</div>
+							</div>
+						</div>
 
-          </main>
-        </div>
-      );
-    }
-    return null;
-  }
+					</main>
+				</div>
+			);
+		}
+		return null;
+	}
 }
 
 function mapStateToProps(state) {
-  return {
-    worldData: state.worldData,
-    survivorData: state.survivorData,
-    settlementData: state.settlementData,
-  };
+	return {
+		worldData: state.worldData,
+		survivorData: state.survivorData,
+		settlementData: state.settlementData,
+	};
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getWorld,
-    getSettlement,
-    getSurvivor,
-  }, dispatch);
+	return bindActionCreators({
+		getWorld,
+		getSettlement,
+		getSurvivor,
+	}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(World);

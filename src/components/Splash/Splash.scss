@@ -1,27 +1,27 @@
 .promo {
-  position: relative;
-  min-height: 100vh;
-  text-align: center;
-  padding-bottom: 3rem;
-  font-size: 12px;
-  color: $gray-lightest;
+	position: relative;
+	min-height: 100vh;
+	text-align: center;
+	padding-bottom: 3rem;
+	font-size: 12px;
+	color: $gray-lightest;
 }
 
 .promo-content {
-  max-width: 570px;
-  margin: 0 auto;
+	max-width: 570px;
+	margin: 0 auto;
 }
 
 .splash {
-  margin: 4rem auto;
-  // min-height: 341px;
-  max-width: 854px;
-  position: relative;
+	margin: 4rem auto;
+	// min-height: 341px;
+	max-width: 854px;
+	position: relative;
 }
 
 .modal-header .close {
-  color: #fff;
-  opacity: 0.5;
+	color: #fff;
+	opacity: 0.5;
 }
 
 // .splash-video {
@@ -51,122 +51,122 @@
 // }
 
 .splash-content {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // z-index: 100;
-  // transform: translate(-50%, -50%);
-  padding: 1rem;
-  width: 100%;
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	// z-index: 100;
+	// transform: translate(-50%, -50%);
+	padding: 1rem;
+	width: 100%;
 
-  > svg {
-    width: 138px;
-    height: 167px;
-    fill: $gray-dark;
-  }
+	> svg {
+		width: 138px;
+		height: 167px;
+		fill: $gray-dark;
+	}
 
-  h1 {
-    margin: 0.5rem 0 0;
-    line-height: 1em;
-    font-size: 54px;
-    font-weight: bold;
-    color: $body-color;
-  }
+	h1 {
+		margin: 0.5rem 0 0;
+		line-height: 1em;
+		font-size: 54px;
+		font-weight: bold;
+		color: $body-color;
+	}
 
-  p {
-    // font-size: 11px;
-    line-height: 1em;
-    margin-bottom: 1.75rem;
-  }
+	p {
+		// font-size: 11px;
+		line-height: 1em;
+		margin-bottom: 1.75rem;
+	}
 
-  .btn {
-    font-size: 14px;
-    padding: 1rem 1.25rem;
-    font-weight: bold;
-    background: $body-color;
-    // letter-spacing: 0.5px;
+	.btn {
+		font-size: 14px;
+		padding: 1rem 1.25rem;
+		font-weight: bold;
+		background: $body-color;
+		// letter-spacing: 0.5px;
 
-    &:hover, &:focus {
-      background: darken($body-color, 10%);
-    }
-  }
+		&:hover, &:focus {
+			background: darken($body-color, 10%);
+		}
+	}
 }
 
 .promo-form {
-  display: flex;
-  max-width: 600px;
-  margin: 0 auto 1rem;
-  padding: 0 15px;
+	display: flex;
+	max-width: 600px;
+	margin: 0 auto 1rem;
+	padding: 0 15px;
 
-  .form-group {
-    flex: 1 1 auto;
-    margin-right: 10px;
-    margin-bottom: 0;
+	.form-group {
+		flex: 1 1 auto;
+		margin-right: 10px;
+		margin-bottom: 0;
 
-    input {
-      font-size: 16px;
-      width: 100%;
-      margin-bottom: 0;
-    }
-  }
+		input {
+			font-size: 16px;
+			width: 100%;
+			margin-bottom: 0;
+		}
+	}
 }
 
 .modal-video {
-  // max-width: 1080px;
-  @include breakpoint(l) {
-    max-width: 80%;
-  }
+	// max-width: 1080px;
+	@include breakpoint(l) {
+		max-width: 80%;
+	}
 }
 
 .videoWrpr {
-  margin: 2rem auto;
-  max-width: 854px;
+	margin: 2rem auto;
+	max-width: 854px;
 }
 
 .vimeo {
-  // position: relative;
-  // margin: 0 auto;
-  // max-width: 854px;
-  // padding: 0;
-  // padding-top: 56.21%;
-  // width: 100%;
-  position: relative;
-  padding-bottom: 56.25%;
+	// position: relative;
+	// margin: 0 auto;
+	// max-width: 854px;
+	// padding: 0;
+	// padding-top: 56.21%;
+	// width: 100%;
+	position: relative;
+	padding-bottom: 56.25%;
 
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .twitter {
-  display: inline-block;
-  margin-bottom: 3rem;
-  color: #26A7DF;
+	display: inline-block;
+	margin-bottom: 3rem;
+	color: #26A7DF;
 
-  &:hover, &:focus {
-    color: #26A7DF;
-    text-decoration: underline;
-  }
+	&:hover, &:focus {
+		color: #26A7DF;
+		text-decoration: underline;
+	}
 
-  > svg {
-    display: inline-block;
-    width: 17px;
-    height: 14px;
-    fill: #26A7DF;
-    vertical-align: middle;
-  }
+	> svg {
+		display: inline-block;
+		width: 17px;
+		height: 14px;
+		fill: #26A7DF;
+		vertical-align: middle;
+	}
 }
 
 .footer {
-  position: absolute;
-  bottom: .5rem;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 10px;
-  color: $gray-lightest;
+	position: absolute;
+	bottom: .5rem;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 10px;
+	color: $gray-lightest;
 }

@@ -12,7 +12,7 @@
   "rules": {
     "no-console": 0,
 		"indent": ["error", "tab"],
-		"jsx-indent": [2, "tab"],
+		"react/jsx-indent": [2, "tab"],
     "no-tabs": 0
   }
 }

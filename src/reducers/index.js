@@ -7,12 +7,12 @@ import SettlementReducer from './reducer_settlement';
 import SurvivorReducer from './reducer_survivor';
 
 const rootReducer = combineReducers({
-  authenticated: AuthenticationReducer,
-  homeData: HomeReducer,
-  worldData: WorldReducer,
-  settlementData: SettlementReducer,
-  survivorData: SurvivorReducer,
-  form,
+	authenticated: AuthenticationReducer,
+	homeData: HomeReducer,
+	worldData: WorldReducer,
+	settlementData: SettlementReducer,
+	survivorData: SurvivorReducer,
+	form,
 });
 
 export default rootReducer;
