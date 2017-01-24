@@ -45,7 +45,16 @@ class SurvivorHome extends React.Component {
 			return (
 				<div>
 					{this.renderSurvivorLinks()}
-					{this.state.currentSurvivor ? <Survivor currentSurvivor={this.state.currentSurvivor} /> : null}
+					{this.state.currentSurvivor && this.state.settlementData ?
+						<div>
+							{this.state.currentSurvivor.sheet.name}
+							<Survivor
+								currentSurvivor={this.state.currentSurvivor}
+								settlementData={this.state.settlementData}
+							/>
+						</div>
+						: null
+					}
 				</div>
 			);
 		}
