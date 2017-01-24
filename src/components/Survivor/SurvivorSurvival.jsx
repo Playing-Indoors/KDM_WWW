@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
-import Stat from '../../components/Stats/Stats';
+import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
 
 class SurvivorSurvival extends Component {
@@ -26,7 +26,7 @@ class SurvivorSurvival extends Component {
 				</header>
 				<button onClick={this.handleModal} type="button" className="box-content">
 					<div className="statGroup">
-						<Stat
+						<Stats
 							name={this.state.title}
 							amount={this.props.amount}
 							max={this.props.max}

@@ -18,6 +18,15 @@ class Stats extends Component {
 			max: props.max || 999,
 		};
 	}
+	//updates props
+	componentWillReceiveProps(nextProps){
+		if(nextProps.amount){
+			this.setState({
+				amount: nextProps.amount,
+				max: nextProps.max
+			})
+		}
+	}
 	// Renders our milestones and attaches their class
 	renderMilestones() {
 		if (!this.props.milestones) {

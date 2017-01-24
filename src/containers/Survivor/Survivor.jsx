@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSettlement } from '../../actions/getSettlement';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Survival';
-import Survival from '../../components/Survivor/Survivor-Survival';
+import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 
 class Survivor extends React.Component {
 	constructor(props) {
@@ -15,9 +15,7 @@ class Survivor extends React.Component {
 				<div className="page-world">
 					<main className="main">
 						<div className="boxGroup">
-							{this.props.currentSurvivor.sheet.survival}
-							{/* API changed some of these types, checking with Tim */}
-							<Survival
+							<SurvivorSurvival
 								amount={parseInt(this.props.currentSurvivor.sheet.survival, 10)}
 								max={parseInt(this.props.settlementData.sheet.survival_limit, 10)}
 							/>
