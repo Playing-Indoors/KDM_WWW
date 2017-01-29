@@ -4,8 +4,15 @@ import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
-import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
+import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
+import SurvivorArmor from '../../components/Survivor/SurvivorArmor';
 import SurvivorBleeding from '../../components/Survivor/SurvivorBleeding';
+import SurvivorDisorders from '../../components/Survivor/SurvivorDisorders';
+import SurvivorFightArts from '../../components/Survivor/SurvivorFightArts';
+import SurvivorImpairments from '../../components/Survivor/SurvivorImpairments';
+import SurvivorNotes from '../../components/Survivor/SurvivorNotes';
+import SurvivorStats from '../../components/Survivor/SurvivorStats';
+import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
 import Milestone from '../../components/Milestone/Milestone';
 
@@ -220,11 +227,56 @@ class Aya extends Component {
 							amount={5}
 							max={7}
 						/>
-
 						<SurvivorBleeding
 							amount={0}
 						/>
 						<SurvivorXP
+							amount={5}
+							max={7}
+						/>
+					</div>
+
+					<div className="boxGroup">
+						<SurvivorStats
+							amount={5}
+							max={7}
+						/>
+					</div>
+
+					<div className="boxGroup">
+						<SurvivorArmor
+							amount={5}
+							max={7}
+						/>
+					</div>
+
+					<div className="boxGroup">
+						<SurvivorFightArts
+							amount={5}
+							max={7}
+						/>
+						<SurvivorDisorders
+							amount={5}
+							max={7}
+						/>
+					</div>
+
+					<div className="boxGroup">
+						<SurvivorAbilities
+							amount={5}
+							max={7}
+						/>
+					</div>
+
+					<div className="boxGroup">
+						<SurvivorImpairments
+							amount={5}
+							max={7}
+						/>
+					</div>
+
+					<div className="boxGroup">
+						<SurvivorNotes
 							amount={5}
 							max={7}
 						/>

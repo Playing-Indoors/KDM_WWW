@@ -18,13 +18,13 @@ class Stats extends Component {
 			max: props.max || 999,
 		};
 	}
-	//updates props
-	componentWillReceiveProps(nextProps){
-		if(nextProps.amount){
+	// updates props
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.amount) {
 			this.setState({
 				amount: nextProps.amount,
-				max: nextProps.max
-			})
+				max: nextProps.max,
+			});
 		}
 	}
 	// Renders our milestones and attaches their class
@@ -52,6 +52,7 @@ class Stats extends Component {
 				<div className="stat-num">{this.state.amount}</div>
 				<div className="stat-milestone">
 					{this.renderMilestones()}
+					{this.props.children}
 					{this.renderStatus()}
 				</div>
 				<div className="stat-title">{this.state.name}</div>
@@ -77,6 +78,7 @@ Stats.propTypes = {
 			type: React.PropTypes.string,
 		}),
 	),
+	children: React.PropTypes.node,
 };
 
 export default Stats;

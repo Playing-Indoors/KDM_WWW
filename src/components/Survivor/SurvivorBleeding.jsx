@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
+import Milestone from '../../components/Milestone/Milestone';
 
 class SurvivorBleeding extends Component {
 	constructor(props) {
@@ -47,8 +48,13 @@ class SurvivorBleeding extends Component {
 							amount={this.props.amount}
 							max={this.props.max}
 							min={this.props.min}
-							milestone={[0, 0, 0, 0, 0]}
-						/>
+						>
+							<Milestone />
+							<Milestone />
+							<Milestone />
+							<Milestone />
+							<Milestone />
+						</Stats>
 					</div>
 				</button>
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
