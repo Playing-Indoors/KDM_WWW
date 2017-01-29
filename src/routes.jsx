@@ -27,27 +27,27 @@ const store = createStoreWithMiddleware(reducers);
 const token = localStorage.getItem('token');
 
 if (token) {
-  store.dispatch({ type: AUTH_USER });
+	store.dispatch({ type: AUTH_USER });
 }
 
 function logPageView() {
-  ReactGA.set({ page: window.location.pathname });
-  ReactGA.pageview(window.location.pathname);
+	ReactGA.set({ page: window.location.pathname });
+	ReactGA.pageview(window.location.pathname);
 }
 
 render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={browserHistory} onUpdate={logPageView} >
-      <Route path="/" component={App}>
-        <IndexRoute component={Splash} />
-        <Route path="/home" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/world" component={World} />
-        <Route path="/aya" component={Aya} />
-        <Route path="/survivor/" component={SurvivorHome} />
-        <Route path="/splash" component={Splash} />
-        <Route path="*" component={NotFound} />
-      </Route>
-    </Router>
-  </Provider>
-  , document.getElementById('app'));
+	<Provider store={createStoreWithMiddleware(reducers)}>
+		<Router history={browserHistory} onUpdate={logPageView} >
+			<Route path="/" component={App}>
+				<IndexRoute component={Splash} />
+				<Route path="/home" component={Home} />
+				<Route path="/login" component={Login} />
+				<Route path="/world" component={World} />
+				<Route path="/aya" component={Aya} />
+				<Route path="/survivor/" component={SurvivorHome} />
+				<Route path="/splash" component={Splash} />
+				<Route path="*" component={NotFound} />
+			</Route>
+		</Router>
+	</Provider>
+	, document.getElementById('app'));

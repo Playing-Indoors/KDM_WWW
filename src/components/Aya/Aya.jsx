@@ -4,6 +4,10 @@ import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
+import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
+import SurvivorBleeding from '../../components/Survivor/SurvivorBleeding';
+import SurvivorXP from '../../components/Survivor/SurvivorXP';
+import Milestone from '../../components/Milestone/Milestone';
 
 class Aya extends Component {
 	constructor(props) {
@@ -194,11 +198,37 @@ class Aya extends Component {
 
 					<h2>Components</h2>
 
+					<h3>Milestones</h3>
+					<Milestone /> &lt;Milestone /&gt;<br />
+					<Milestone type="default" /> &lt;Milestone type=&quot;default&quot; /&gt;<br />
+					<Milestone type="defaultEvent" /> &lt;Milestone type=&quot;defaultEvent&quot; /&gt;<br />
+					<Milestone type="active" /> &lt;Milestone type=&quot;active&quot; /&gt;<br />
+					<Milestone type="activeEvent" /> &lt;Milestone type=&quot;activeEvent&quot; /&gt;
+
+					<br /><br />
 					<h3>Stat Box</h3>
 
 					<StatSurvival
 						title="Survival"
 					/>
+
+					<br />
+					<h4>Survival</h4>
+
+					<div className="boxGroup">
+						<SurvivorSurvival
+							amount={5}
+							max={7}
+						/>
+
+						<SurvivorBleeding
+							amount={0}
+						/>
+						<SurvivorXP
+							amount={5}
+							max={7}
+						/>
+					</div>
 
 				</main>
 			</div>

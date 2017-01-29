@@ -29,30 +29,6 @@
 	justify-content: center;
 }
 
-.milestone {
-	display: inline-block;
-	width: 7px;
-	height: 7px;
-	margin: 2px 2px;
-	background: $gray-lighter;
-}
-
-// .milestone--empty {
-// }
-
-.milestone--filled {
-	background: #fff;
-}
-
-.milestone--active {
-	box-shadow: inset 0 0 0 1px $brand-primary;
-
-	&.milestone--filled {
-		box-shadow: none;
-		background: $brand-primary;
-	}
-}
-
 .stat-title {
 	font-size: 10px;
 }
