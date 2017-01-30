@@ -11,6 +11,30 @@ class SurvivorSurvival extends Component {
 			showModal: false,
 			name: 'XP',
 			min: 0,
+			hunt: {
+				name: 'Hunt XP',
+				amount: 5,
+				max: 10,
+				min: 0,
+			},
+			courage: {
+				name: 'Courage',
+				amount: 5,
+				max: 10,
+				min: 0,
+			},
+			understanding: {
+				name: 'Understanding',
+				amount: 5,
+				max: 10,
+				min: 0,
+			},
+			weapon: {
+				name: 'Weapon',
+				amount: 5,
+				max: 10,
+				min: 0,
+			},
 		};
 		this.handleModal = this.handleModal.bind(this);
 	}
@@ -24,12 +48,20 @@ class SurvivorSurvival extends Component {
 			<StatBox
 				name={this.state.name}
 				stats={
-					<Stats
-						name={this.state.name}
-						amount={this.props.amount}
-						max={this.props.max}
-						min={this.state.min}
-					/>
+					<div className="statGroup">
+						<Stats
+							name={this.state.courage.name}
+							amount={this.state.courage.amount}
+							max={this.state.courage.max}
+							min={this.state.courage.min}
+						/>
+						<Stats
+							name={this.state.name}
+							amount={this.props.amount}
+							max={this.props.max}
+							min={this.state.min}
+						/>
+					</div>
 				}
 				modalBody={
 					<StatAdjust

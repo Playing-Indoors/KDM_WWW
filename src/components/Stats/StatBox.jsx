@@ -31,8 +31,10 @@ class StatBox extends Component {
 						{this.props.modalBody}
 					</ModalBody>
 					<ModalFooter>
-						<Button onClick={this.handleModal}>Cancel</Button>
-						<Button color="primary">Confirm</Button>
+						<div className="btn-group btn-group--full">
+							<Button onClick={this.handleModal}>Cancel</Button>
+							<Button color="primary">Confirm</Button>
+						</div>
 					</ModalFooter>
 				</Modal>
 			</div>
