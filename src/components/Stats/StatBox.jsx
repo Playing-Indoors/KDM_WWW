@@ -8,11 +8,15 @@ class StatBox extends Component {
 			showModal: false,
 		};
 		this.handleModal = this.handleModal.bind(this);
+		this.confirm = this.confirm.bind(this);
 	}
 	handleModal() {
 		this.setState({
 			showModal: !this.state.showModal,
 		});
+	}
+	confirm() {
+		console.log('hmmmmm....... dickbutts');
 	}
 	render() {
 		return (
@@ -33,7 +37,7 @@ class StatBox extends Component {
 					<ModalFooter>
 						<div className="btn-group btn-group--full">
 							<Button onClick={this.handleModal}>Cancel</Button>
-							<Button color="primary">Confirm</Button>
+							<Button onClick={this.confirm} color="primary">Confirm</Button>
 						</div>
 					</ModalFooter>
 				</Modal>

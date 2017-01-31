@@ -22,14 +22,6 @@ class SurvivorNotes extends Component {
 		return (
 			<StatBox
 				name={this.state.name}
-				stats={
-					<Stats
-						name={this.state.name}
-						amount={this.props.amount}
-						max={this.props.max}
-						min={this.state.min}
-					/>
-				}
 				modalBody={
 					<StatAdjust
 						name={this.state.name}

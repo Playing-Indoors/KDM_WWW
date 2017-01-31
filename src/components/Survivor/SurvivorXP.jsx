@@ -56,10 +56,22 @@ class SurvivorSurvival extends Component {
 							min={this.state.courage.min}
 						/>
 						<Stats
-							name={this.state.name}
-							amount={this.props.amount}
-							max={this.props.max}
-							min={this.state.min}
+							name={this.state.understanding.name}
+							amount={this.state.understanding.amount}
+							max={this.state.understanding.max}
+							min={this.state.understanding.min}
+						/>
+						<Stats
+							name={this.state.weapon.name}
+							amount={this.state.weapon.amount}
+							max={this.state.weapon.max}
+							min={this.state.weapon.min}
+						/>
+						<Stats
+							name={this.state.hunt.name}
+							amount={this.state.hunt.amount}
+							max={this.state.hunt.max}
+							min={this.state.hunt.min}
 						/>
 					</div>
 				}
