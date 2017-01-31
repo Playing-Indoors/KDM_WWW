@@ -4,9 +4,9 @@ import { reduxForm } from 'redux-form';
 import { authenticate } from '../../actions/index.js';
 
 class Login extends Component {
-	// constructor(props){
-	//   super(props);
-	// }
+	constructor(props){
+	  super(props);
+	}
 	componentWillMount() {
 		localStorage.clear();
 	}
@@ -43,7 +43,7 @@ class Login extends Component {
 							<label className="input-group-addon input-group-addon--floating" htmlFor="password">
 								<i className="fa fa-fw fa-lock" aria-hidden="true"></i>
 							</label>
-							<input {...password} type="text" id="password" className="form-control" placeholder="password" aria-describedby="password" />
+							<input {...password} type="password" id="password" className="form-control" placeholder="password" aria-describedby="password" />
 						</div>
 					</div>
 
