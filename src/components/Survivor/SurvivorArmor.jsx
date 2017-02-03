@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
+import StatAdjust2 from '../../components/Stats/StatAdjust2';
 
 class SurvivorArmor extends Component {
 	constructor(props) {
@@ -48,11 +49,18 @@ class SurvivorArmor extends Component {
 			},
 		};
 		this.handleModal = this.handleModal.bind(this);
+		this.updateFromChild = this.updateFromChild.bind(this);
 	}
 	handleModal() {
 		this.setState({
 			showModal: !this.state.showModal,
 		});
+	}
+	// How we get the data from the child
+	updateFromChild(locationName, newArmorState){
+		this.setState({
+			[locationName]: newArmorState
+		})
 	}
 	render() {
 		return (
@@ -103,11 +111,9 @@ class SurvivorArmor extends Component {
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
 					<ModalHeader toggle={this.handleModal}>{this.state.name}</ModalHeader>
 					<ModalBody>
-						<StatAdjust
-							name={this.state.brain.name}
-							amount={this.state.brain.amount}
-							max={this.state.brain.max}
-							min={this.state.brain.min}
+						<StatAdjust2
+							updateToParent={this.updateFromChild}
+							armorPart={this.state.brain}
 						/>
 						<StatAdjust
 							name={this.state.head.name}

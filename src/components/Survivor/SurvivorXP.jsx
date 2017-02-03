@@ -43,9 +43,22 @@ class SurvivorSurvival extends Component {
 			showModal: !this.state.showModal,
 		});
 	}
+	changesFromChild(dataFromChild){
+		console.log(dataFromChild);
+		this.setState({
+			hunt: {
+				name: 'Hunt XP',
+				amount: dataFromChild,
+				max: 10,
+				min: 0,
+			}
+		})
+	}
 	render() {
 		return (
 			<StatBox
+				updateToParent={this.changesFromChild.bind(this)}
+				huntAmount={this.state.hunt.amount}
 				name={this.state.name}
 				stats={
 					<div className="statGroup">
@@ -77,10 +90,10 @@ class SurvivorSurvival extends Component {
 				}
 				modalBody={
 					<StatAdjust
-						name={this.state.name}
-						amount={this.props.amount}
-						max={this.props.max}
-						min={this.state.min}
+						name={this.state.hunt.name}
+						amount={this.state.hunt.amount}
+						max={this.state.hunt.max}
+						min={this.state.hunt.min}
 					/>
 				}
 			/>
