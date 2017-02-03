@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
-import StatBox from '../../components/Stats/StatBox';
 
 class SurvivorArmor extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showModal: false,
-			name: 'Primary Stats',
+			name: 'Armor',
 			min: 0,
 			brain: {
 				name: 'Brain',
@@ -56,9 +56,11 @@ class SurvivorArmor extends Component {
 	}
 	render() {
 		return (
-			<StatBox
-				name={this.state.name}
-				stats={
+			<div className="box">
+				<header className="box-header">
+					<div className="box-header-title">{this.state.name}</div>
+				</header>
+				<button onClick={this.handleModal} type="button" className="box-content">
 					<div className="statGroup">
 						<Stats
 							name={this.state.brain.name}
@@ -97,16 +99,55 @@ class SurvivorArmor extends Component {
 							min={this.state.feet.min}
 						/>
 					</div>
-				}
-				modalBody={
-					<StatAdjust
-						name={this.state.name}
-						amount={this.props.amount}
-						max={this.props.max}
-						min={this.state.min}
-					/>
-				}
-			/>
+				</button>
+				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
+					<ModalHeader toggle={this.handleModal}>{this.state.name}</ModalHeader>
+					<ModalBody>
+						<StatAdjust
+							name={this.state.brain.name}
+							amount={this.state.brain.amount}
+							max={this.state.brain.max}
+							min={this.state.brain.min}
+						/>
+						<StatAdjust
+							name={this.state.head.name}
+							amount={this.state.head.amount}
+							max={this.state.head.max}
+							min={this.state.head.min}
+						/>
+						<StatAdjust
+							name={this.state.arms.name}
+							amount={this.state.arms.amount}
+							max={this.state.arms.max}
+							min={this.state.arms.min}
+						/>
+						<StatAdjust
+							name={this.state.body.name}
+							amount={this.state.body.amount}
+							max={this.state.body.max}
+							min={this.state.body.min}
+						/>
+						<StatAdjust
+							name={this.state.waist.name}
+							amount={this.state.waist.amount}
+							max={this.state.waist.max}
+							min={this.state.waist.min}
+						/>
+						<StatAdjust
+							name={this.state.feet.name}
+							amount={this.state.feet.amount}
+							max={this.state.feet.max}
+							min={this.state.feet.min}
+						/>
+					</ModalBody>
+					<ModalFooter>
+						<div className="btn-group btn-group--full">
+							<Button onClick={this.handleModal}>Cancel</Button>
+							<Button onClick={this.confirm} color="primary">Confirm</Button>
+						</div>
+					</ModalFooter>
+				</Modal>
+			</div>
 		);
 	}
 }
