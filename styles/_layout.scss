@@ -17,7 +17,7 @@ body {
 	transition: background 0.2s ease-out;
 }
 
-.page {
+.app {
 	@include breakpoint(m) {
 		margin-left: $menu-width;
 	}

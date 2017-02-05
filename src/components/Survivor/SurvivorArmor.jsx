@@ -56,6 +56,10 @@ class SurvivorArmor extends Component {
 			showModal: !this.state.showModal,
 		});
 	}
+	confirm() {
+		console.log('hmmmmm....... dickbutts');
+		console.log(this.state);
+	}
 	// How we get the data from the child
 	updateFromChild(locationName, newArmorState){
 		this.setState({

@@ -10,7 +10,7 @@ class Nav extends Component {
 		return this.props.data.map((item, index) => {
 			return (
 				<li key={index}>
-					<a href="#nav" className={`mainNav-link ${(item.isActive ? ' is-active' : '')}`}>
+					<a href={item.link} className={`mainNav-link ${(item.isActive ? ' is-active' : '')}`}>
 						<div className="mainNav-link-icon">
 							<Icon icon={item.icon} />
 						</div>

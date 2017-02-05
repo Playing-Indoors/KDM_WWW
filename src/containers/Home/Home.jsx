@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import { getHome } from '../../actions/getHome';
-import Nav from '../../components/Nav/Nav';
-import Header from '../../components/Header/Header';
 import List from '../../components/List/List';
-import DeleteMe from '../../containers/StatWidget/DeleteMe';
 
 class Home extends React.Component {
 	componentWillMount() {
@@ -15,16 +12,9 @@ class Home extends React.Component {
 	render() {
 		if (this.props.homeData) {
 			return (
-				<div className="page">
-					<Nav data={this.props.homeData.nav} />
-					<Header data={this.props.homeData.page} />
-					<main className="main">
-						<Button color="secondary" size="lg" block>Create New Campaign</Button>
-						<List data={this.props.homeData.campaign} />
-					</main>
-
-					<DeleteMe />
-
+				<div>
+					<Button color="secondary" size="lg" block>Create New Campaign</Button>
+					<List data={this.props.homeData.campaign} />
 				</div>
 			);
 		}
