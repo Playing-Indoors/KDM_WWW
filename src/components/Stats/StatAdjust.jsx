@@ -9,7 +9,33 @@ class StatAdjust extends Component {
 			min: props.min || 0,
 			max: props.max || 999,
 			tempAmount: props.amount,
-			milestones: props.milestones,
+			milestones: [
+				{
+					at: 2,
+					name: 'Age 1',
+					type: 'story',
+				},
+				{
+					at: 6,
+					name: 'Age 2',
+					type: 'story',
+				},
+				{
+					at: 10,
+					name: 'Age 3',
+					type: 'story',
+				},
+				{
+					at: 15,
+					name: 'Age 4',
+					type: 'story',
+				},
+				{
+					at: 16,
+					name: 'Retired',
+					type: 'story',
+				},
+			],
 			effect: '',
 		};
 	}
@@ -32,9 +58,9 @@ class StatAdjust extends Component {
 		const milestone = [];
 		// Loop through from min value to max grabbing all of the milestones
 		for (let i = 1; i <= this.state.max; i += 1) {
-			const filled = (i <= this.state.tempAmount) ? 'milestone--filled' : '';
+			const filled = (i <= this.state.tempAmount) ? 'milestone--active' : '';
 			if (this.state.milestones.find(item => item.at === i)) {
-				milestone.push(<span key={i} className={`milestone milestone--active ${filled}`} />);
+				milestone.push(<span key={i} className={`milestone milestone--event ${filled}`} />);
 			} else {
 				milestone.push(<span key={i} className={`milestone ${filled}`} />);
 			}
