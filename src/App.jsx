@@ -10,8 +10,8 @@ class App extends Component {
 			nav: [
 				{
 					title: 'Dashboard',
-					link: '/dashboard',
-					icon: 'logo-mark',
+					link: '/home',
+					icon: 'logo',
 					'children': [
 						{
 							title: 'Campaigns',
@@ -23,9 +23,9 @@ class App extends Component {
 						},
 						{
 							title: 'User Preferences',
-							link: '#'
+							link: '#',
 						},
-					]
+					],
 				},
 				{
 					title: 'Settlements',

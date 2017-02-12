@@ -15,6 +15,7 @@ import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
 import Milestone from '../../components/Milestone/Milestone';
+import Icon from '../../components/Icon/Icon';
 
 class Aya extends Component {
 	constructor(props) {
@@ -129,6 +130,18 @@ class Aya extends Component {
 					<Button color="warning">warning</Button>{' '}
 					<Button color="danger">danger</Button>{' '}
 					<Button color="link">link</Button>
+
+					<br />
+					<br />
+
+					<h3>Icons</h3>
+
+					<Icon name="logo" />
+					<Icon name="settlement" />
+					<Icon name="faq" />
+					<Icon name="log" />
+					<Icon name="storage" />
+					<Icon name="survivors" />
 
 					<br />
 					<br />

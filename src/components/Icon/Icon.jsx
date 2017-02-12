@@ -1,70 +1,95 @@
+// import './icons';
 import React, { Component } from 'react';
 
-// const icons = {
-//   flag: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.43 45.88" className="svg-flag"><title>flag</title><rect x="2.36" y="3.38" width="12.79" height="20.19" fill="#fff" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" /><polygon points="23.93 29.57 11.9 29.57 13.47 29.13 11.9 9.37 23.93 9.37 23.93 29.57" fill="#fff" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" /><path d="M15,28.07a1.5,1.5,0,0,0,0-3H10.4v4.5Z" fill="#77787b" /><path d="M15,31.07a1.5,1.5,0,0,0,0-3H11.9a1.5,1.5,0,1,0,0,3Z" fill="#fff" /><line x1="1.5" y1="1.5" x2="1.5" y2="44.38" fill="none" stroke="#231f20" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="3" /></svg>'
-// }
+// based entirely off of https://github.com/Justineo/vue-awesome
+// this might not be the most elegant solution but it works...
+// ...for now
 
-// <Icon icon="flag" color="blue" secondary="pink" />
+
+const icons = {};
+icons.gear = {
+	icon: '<g><path d="M21.26,35.75H14.49a1.92,1.92,0,0,1-1.92-1.91v-1.5q-.6-.22-1.18-.48l-1.06,1.06a1.91,1.91,0,0,1-2.71,0L2.84,28.12a1.91,1.91,0,0,1,0-2.71l1-1c-.18-.39-.35-.79-.5-1.2H1.92A1.92,1.92,0,0,1,0,21.26V14.49a1.92,1.92,0,0,1,1.92-1.91H3.37c.15-.42.32-.83.5-1.22l-1-1a1.91,1.91,0,0,1,0-2.71L7.63,2.84a1.91,1.91,0,0,1,2.71,0l1,1c.4-.19.81-.36,1.24-.51V1.91A1.92,1.92,0,0,1,14.49,0h6.76a1.92,1.92,0,0,1,1.92,1.91V3.34c.42.15.84.32,1.24.51l1-1a1.92,1.92,0,0,1,2.71,0l4.79,4.79a1.93,1.93,0,0,1,0,2.7l-1,1q.28.6.5,1.22h1.45a1.92,1.92,0,0,1,1.91,1.91v6.77a1.92,1.92,0,0,1-1.91,1.91H32.36q-.23.61-.5,1.2l1,1a1.93,1.93,0,0,1,0,2.7l-4.79,4.79a1.92,1.92,0,0,1-2.71,0l-1.06-1.06c-.39.18-.78.34-1.18.49v1.5A1.92,1.92,0,0,1,21.26,35.75Zm-6.2-2.48H20.7V31.44a1.24,1.24,0,0,1,.88-1.19,13.09,13.09,0,0,0,2.44-1,1.23,1.23,0,0,1,1.46.22l1.29,1.29,4-4-1.28-1.28A1.24,1.24,0,0,1,29.27,24a13.29,13.29,0,0,0,1-2.45,1.24,1.24,0,0,1,1.18-.87h1.8V15.05H31.49a1.24,1.24,0,0,1-1.19-.89,12.42,12.42,0,0,0-1-2.46,1.24,1.24,0,0,1,.21-1.47L30.77,9l-4-4L25.53,6.23a1.23,1.23,0,0,1-1.47.21,13,13,0,0,0-2.48-1,1.23,1.23,0,0,1-.88-1.18V2.48H15.05V4.23a1.24,1.24,0,0,1-.88,1.18,13.12,13.12,0,0,0-2.48,1,1.24,1.24,0,0,1-1.47-.21L9,5,5,9l1.25,1.25a1.24,1.24,0,0,1,.21,1.46,13.1,13.1,0,0,0-1,2.47,1.24,1.24,0,0,1-1.19.88H2.48V20.7H4.28a1.24,1.24,0,0,1,1.18.88,13.15,13.15,0,0,0,1,2.45,1.24,1.24,0,0,1-.21,1.46L5,26.77l4,4,1.29-1.29a1.24,1.24,0,0,1,1.46-.21,12.92,12.92,0,0,0,2.43,1,1.24,1.24,0,0,1,.88,1.19Zm2.82-8.35a7,7,0,1,1,7-7A7.06,7.06,0,0,1,17.88,24.93Zm0-11.33a4.28,4.28,0,1,0,4.28,4.28A4.28,4.28,0,0,0,17.88,13.6Z"/></g>',
+	width: 35.75,
+	height: 35.75,
+};
+icons.nav = {
+	icon: '<g><path d="M1.75,40.74H39A1.75,1.75,0,0,0,40.74,39V1.75A1.75,1.75,0,0,0,39,0H1.75A1.75,1.75,0,0,0,0,1.75V39A1.75,1.75,0,0,0,1.75,40.74Zm35.49-3.5H29.87V3.5h7.36ZM3.5,3.5H26.37V37.24H3.5Z"/></g>',
+	width: 40.74,
+	height: 40.74,
+};
+icons.help = {
+	icon: '<g><path d="M17.6,35.2A17.6,17.6,0,1,1,35.2,17.6,17.62,17.62,0,0,1,17.6,35.2Zm0-32.73A15.13,15.13,0,1,0,32.73,17.6,15.14,15.14,0,0,0,17.6,2.48Z"/><path d="M17.46,21.55a1.24,1.24,0,0,1-1.24-1.24V17.56a1.24,1.24,0,0,1,1.24-1.24,2.34,2.34,0,1,0-2.16-3.25,1.24,1.24,0,1,1-2.28-1,4.81,4.81,0,1,1,5.67,6.53v1.67A1.24,1.24,0,0,1,17.46,21.55Z"/><circle cx="17.6" cy="25.11" r="1.44"/></g>',
+	width: 35.2,
+	height: 35.2,
+};
+icons.settlement = {
+	icon: '<g><rect y="20.77" width="8.14" height="8.14" rx="2" ry="2"/><rect y="10.33" width="8.14" height="8.14" rx="2" ry="2"/><rect width="8.14" height="8.14" rx="2" ry="2" /></g>',
+	width: 8.14,
+	height: 28.91,
+};
+icons.faq = {
+	icon: '<g><path d="M15.46,20.35l.61-1.09L13.63,17.9a1.26,1.26,0,0,0-.61-.16H2.5V2.5H12.7l1.52.84v17h1.25l.61-1.09-.61,1.09h1.25V2.61a1.25,1.25,0,0,0-.64-1.09L13.63.16A1.25,1.25,0,0,0,13,0H1.25A1.25,1.25,0,0,0,0,1.25V19a1.25,1.25,0,0,0,1.25,1.25H12.7l2.16,1.2a1.25,1.25,0,0,0,1.86-1.09Z"/><path d="M15.46,20.35l.61,1.09,2.16-1.2H29.68A1.25,1.25,0,0,0,30.93,19V1.25A1.25,1.25,0,0,0,29.68,0H17.91a1.25,1.25,0,0,0-.61.16L14.86,1.52a1.25,1.25,0,0,0-.64,1.09V20.35a1.25,1.25,0,0,0,1.86,1.09l-.61-1.09h1.25v-17l1.52-.84h10.2V17.75H17.91a1.26,1.26,0,0,0-.61.16l-2.44,1.36.61,1.09h0Z"/><path d="M0,16.93v4.51a1.25,1.25,0,0,0,1.25,1.25H12.7l2.16,1.2a1.25,1.25,0,1,0,1.21-2.19l-2.44-1.36a1.26,1.26,0,0,0-.61-.16H2.5V16.93a1.25,1.25,0,0,0-2.5,0Z"/><path d="M16.07,23.88l2.16-1.2H29.68a1.25,1.25,0,0,0,1.25-1.25V17.93a1.25,1.25,0,0,0-2.5,0v2.26H17.91a1.26,1.26,0,0,0-.61.16L14.86,21.7a1.25,1.25,0,0,0,1.21,2.19Z"/></g>',
+	width: 30.93,
+	height: 24.04,
+};
+icons.log = {
+	icon: '<g><rect x="6.82" y="16.23" width="20.52" height="4.12" rx="1.06" ry="1.06"/><rect y="16.23" width="3.82" height="4.12" rx="1.06" ry="1.06"/><rect x="6.82" y="8.12" width="20.52" height="4.12" rx="1.06" ry="1.06"/><rect y="8.12" width="3.82" height="4.12" rx="1.06" ry="1.06"/><rect x="6.82" width="20.52" height="4.12" rx="1.06" ry="1.06"/><rect width="3.82" height="4.12" rx="1.06" ry="1.06"/></g>',
+	width: 27.35,
+	height: 20.35,
+};
+icons.storage = {
+	icon: '<g><path d="M18.12.19a.61.61,0,0,0-.85,0A7.11,7.11,0,0,1,12.45,2,7.11,7.11,0,0,1,8.78,1,.64.64,0,0,0,8,1.09L.18,8.86a.63.63,0,0,0,0,.88l6.4,6.43a.63.63,0,0,0,.88,0L20.37,3.34a.63.63,0,0,0,0-.88Z"/><path d="M31,22.75,17.06,10.5a.65.65,0,0,0-.9,0l-2.11,2.06a.65.65,0,0,0,0,.9l12.6,13.59a.65.65,0,0,0,.95,0L31,23.69A.65.65,0,0,0,31,22.75Z"/></g>',
+	width: 31.21,
+	height: 27.27,
+};
+icons.survivors = {
+	icon: '<g><path d="M5.05,7h-4A1.06,1.06,0,0,0,0,8.1v12a.36.36,0,0,0,.36.36h5.4a.36.36,0,0,0,.36-.36V8.1A1.06,1.06,0,0,0,5.05,7Z"/><rect x="1.71" y="18.66" width="2.69" height="11.63" rx="0.38" ry="0.38"/><circle cx="3.06" cy="2.54" r="2.55"/><path d="M14.1,7h-4A1.06,1.06,0,0,0,9,8.1v12a.36.36,0,0,0,.36.36h5.4a.36.36,0,0,0,.36-.36V8.1A1.06,1.06,0,0,0,14.1,7Z"/><rect x="10.76" y="18.66" width="2.69" height="11.63" rx="0.38" ry="0.38"/><circle cx="12.11" cy="2.54" r="2.54"/><path d="M23.15,7h-4A1.06,1.06,0,0,0,18.1,8.1v12a.36.36,0,0,0,.36.36h5.4a.36.36,0,0,0,.36-.36V8.1A1.06,1.06,0,0,0,23.15,7Z"/><rect x="19.81" y="18.66" width="2.69" height="11.63" rx="0.38" ry="0.38"/><circle cx="21.16" cy="2.54" r="2.54"/></g>',
+	width: 24.21,
+	height: 30.29,
+};
+icons.logo = {
+	icon: '<g><path d="M39.71,14.58a20.73,20.73,0,0,0-39.59,0L0,15l.13.41A20.56,20.56,0,0,0,11.9,28.32h-.12a2.39,2.39,0,0,1,1,1.94v5.21A1.24,1.24,0,0,0,14,36.71h.27a1.25,1.25,0,0,0,1.25-1.25V32.74a.49.49,0,0,1,.49-.47c.23,0,.5.12.5.58v11.4a1.24,1.24,0,0,0,1.24,1.24h.27a1.25,1.25,0,0,0,1.25-1.25V33.43a.5.5,0,0,1,1,0V49.54a1.25,1.25,0,0,0,1.25,1.25h.27a1.24,1.24,0,0,0,1.24-1.24V34.07c0-.47.27-.58.5-.58a.49.49,0,0,1,.49.47V40.4a1.25,1.25,0,0,0,1.25,1.25h.27a1.24,1.24,0,0,0,1.24-1.24V30.28a2.39,2.39,0,0,1,1-1.92,20.55,20.55,0,0,0,11.86-13l.13-.41ZM19.92,25.81c-7.8,0-14-3.58-17.07-10.85A18,18,0,0,1,37,15C34,22.23,27.72,25.81,19.92,25.81Z"/><circle cx="19.84" cy="13.99" r="5.9"/></g>',
+	width: 39.84,
+	height: 50.79,
+};
 
 class Icon extends Component {
 	constructor(props) {
 		super(props);
-		// default colors and flag
 		this.state = {
-			icon: props.icon || 'flag',
-			color: props.color || '#fff',
-			secondary: props.secondary || '#fff',
+			name: props.name || 'settlement',
+			width: icons[props.name].width,
+			height: icons[props.name].height,
 		};
 	}
-	renderIcon() {
-		switch (this.state.icon) {
-			case 'flag':
-				return (
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.43 45.88" className="svg-flag">
-						<title>flag</title>
-						<rect x="2.36" y="3.38" width="12.79" height="20.19" fill={this.state.color} stroke={this.state.secondary} strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
-						<polygon points="23.93 29.57 11.9 29.57 13.47 29.13 11.9 9.37 23.93 9.37 23.93 29.57" fill="#fff" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
-						<path d="M15,28.07a1.5,1.5,0,0,0,0-3H10.4v4.5Z" fill="#77787b" /><path d="M15,31.07a1.5,1.5,0,0,0,0-3H11.9a1.5,1.5,0,1,0,0,3Z" fill="#fff" />
-						<line x1="1.5" y1="1.5" x2="1.5" y2="44.38" fill="none" stroke="#231f20" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="3" />
-					</svg>
-				);
-			case 'logo-mark':
-				return (
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.84 50.79"><title>logo-mark</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="_Group_" data-name="&lt;Group&gt;"><path id="_Compound_Path_" data-name="&lt;Compound Path&gt;" d="M39.71,14.58a20.73,20.73,0,0,0-39.59,0L0,15l.13.41A20.56,20.56,0,0,0,11.9,28.32h-.12a2.39,2.39,0,0,1,1,1.94v5.21A1.24,1.24,0,0,0,14,36.71h.27a1.25,1.25,0,0,0,1.25-1.25V32.74a.49.49,0,0,1,.49-.47c.23,0,.5.12.5.58v11.4a1.24,1.24,0,0,0,1.24,1.24h.27a1.25,1.25,0,0,0,1.25-1.25V33.43a.5.5,0,0,1,1,0V49.54a1.25,1.25,0,0,0,1.25,1.25h.27a1.24,1.24,0,0,0,1.24-1.24V34.07c0-.47.27-.58.5-.58a.49.49,0,0,1,.49.47V40.4a1.25,1.25,0,0,0,1.25,1.25h.27a1.24,1.24,0,0,0,1.24-1.24V30.28a2.39,2.39,0,0,1,1-1.92,20.55,20.55,0,0,0,11.86-13l.13-.41ZM19.92,25.81c-7.8,0-14-3.58-17.07-10.85A18,18,0,0,1,37,15C34,22.23,27.72,25.81,19.92,25.81Z" fill="#dcddde" /><circle id="_Path_" data-name="&lt;Path&gt;" cx="19.84" cy="13.99" r="5.9" fill="#dcddde" /></g></g></g></svg>
-				);
-			case 'settlement':
-				return (
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 29.01"><title>settlement</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="settlement"><rect id="_Rectangle_" data-name="&lt;Rectangle&gt;" y="20.87" width="8.14" height="8.14" rx="2" ry="2" fill="#414042" /><rect id="_Rectangle_2" data-name="&lt;Rectangle&gt;" y="10.44" width="8.14" height="8.14" rx="2" ry="2" fill="#414042" /><rect id="_Rectangle_3" data-name="&lt;Rectangle&gt;" width="8.14" height="8.14" rx="2" ry="2" fill="#414042" /></g></g></g></svg>
-				);
-			case 'survivors':
-				return (
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.21 29.89"><title>survivors</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path id="_Rectangle_" data-name="&lt;Rectangle&gt;" d="M1.06,6.63h4A1.06,1.06,0,0,1,6.12,7.69v12a.36.36,0,0,1-.36.36H.36A.36.36,0,0,1,0,19.66v-12A1.06,1.06,0,0,1,1.06,6.63Z" fill="#414042" /><rect id="_Rectangle_2" data-name="&lt;Rectangle&gt;" x="1.71" y="18.26" width="2.69" height="11.63" rx="0.38" ry="0.38" fill="#414042" /><circle id="_Path_" data-name="&lt;Path&gt;" cx="3.06" cy="2.54" r="2.55" fill="#414042" /><path id="_Rectangle_3" data-name="&lt;Rectangle&gt;" d="M10.11,6.63h4a1.06,1.06,0,0,1,1.06,1.06v12a.36.36,0,0,1-.36.36H9.41A.36.36,0,0,1,9,19.66v-12A1.06,1.06,0,0,1,10.11,6.63Z" fill="#414042" /><rect id="_Rectangle_4" data-name="&lt;Rectangle&gt;" x="10.76" y="18.26" width="2.69" height="11.63" rx="0.38" ry="0.38" fill="#414042" /><circle id="_Path_2" data-name="&lt;Path&gt;" cx="12.11" cy="2.54" r="2.54" fill="#414042" /><path id="_Rectangle_5" data-name="&lt;Rectangle&gt;" d="M19.16,6.63h4a1.06,1.06,0,0,1,1.06,1.06v12a.36.36,0,0,1-.36.36h-5.4a.36.36,0,0,1-.36-.36v-12A1.06,1.06,0,0,1,19.16,6.63Z" fill="#414042" /><rect id="_Rectangle_6" data-name="&lt;Rectangle&gt;" x="19.81" y="18.26" width="2.69" height="11.63" rx="0.38" ry="0.38" fill="#414042" /><circle id="_Path_3" data-name="&lt;Path&gt;" cx="21.16" cy="2.54" r="2.54" fill="#414042" /></g></g></svg>
-				);
-			case 'storage':
-				return (
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.21 27.27"><title>storage</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path id="_Path_" data-name="&lt;Path&gt;" d="M18.12.19a.61.61,0,0,0-.85,0A7.11,7.11,0,0,1,12.45,2,7.11,7.11,0,0,1,8.78,1,.64.64,0,0,0,8,1.09L.18,8.86a.63.63,0,0,0,0,.88l6.4,6.43a.63.63,0,0,0,.88,0L20.37,3.34a.63.63,0,0,0,0-.88Z" fill="#414042" /><path id="_Path_2" data-name="&lt;Path&gt;" d="M31,22.75,17.06,10.5a.65.65,0,0,0-.9,0l-2.11,2.06a.65.65,0,0,0,0,.9l12.6,13.59a.65.65,0,0,0,.95,0L31,23.69A.65.65,0,0,0,31,22.75Z" fill="#414042" /></g></g></svg>
-				);
-			case 'log':
-				return (
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.35 20.35"><title>log</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect id="_Rectangle_" data-name="&lt;Rectangle&gt;" x="15.03" y="8.03" width="4.12" height="20.52" rx="1.06" ry="1.06" transform="translate(35.37 1.2) rotate(90)" fill="#414042" /><rect id="_Rectangle_2" data-name="&lt;Rectangle&gt;" x="-0.15" y="16.38" width="4.12" height="3.82" rx="1.06" ry="1.06" transform="translate(20.2 16.38) rotate(90)" fill="#414042" /><rect id="_Rectangle_3" data-name="&lt;Rectangle&gt;" x="15.03" y="-0.09" width="4.12" height="20.52" rx="1.06" ry="1.06" transform="translate(27.26 -6.91) rotate(90)" fill="#414042" /><rect id="_Rectangle_4" data-name="&lt;Rectangle&gt;" x="-0.15" y="8.26" width="4.12" height="3.82" rx="1.06" ry="1.06" transform="translate(12.08 8.26) rotate(90)" fill="#414042" /><rect id="_Rectangle_5" data-name="&lt;Rectangle&gt;" x="15.03" y="-8.2" width="4.12" height="20.52" rx="1.06" ry="1.06" transform="translate(19.14 -15.03) rotate(90)" fill="#414042" /><rect id="_Rectangle_6" data-name="&lt;Rectangle&gt;" x="-0.15" y="0.15" width="4.12" height="3.82" rx="1.06" ry="1.06" transform="translate(3.97 0.15) rotate(90)" fill="#414042" /></g></g></svg>
-				);
-			case 'faq':
-				return (
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.93 23.67"><title>faq</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon points="16.46 20.35 14.02 19 2.25 19 2.25 10.12 2.25 1.25 14.02 1.25 16.46 2.61 16.46 11.48 16.46 20.35" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polygon points="16.46 20.35 18.91 19 30.68 19 30.68 10.12 30.68 1.25 18.91 1.25 16.46 2.61 16.46 11.48 16.46 20.35" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polyline points="2.25 16.93 2.25 20.43 14.02 20.43 16.46 21.78" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polyline points="16.46 21.78 18.91 20.43 30.68 20.43 30.68 16.93" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polygon points="15.46 20.35 13.02 19 1.25 19 1.25 10.12 1.25 1.25 13.02 1.25 15.46 2.61 15.46 11.48 15.46 20.35" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polygon points="15.46 20.35 17.91 19 29.68 19 29.68 10.12 29.68 1.25 17.91 1.25 15.46 2.61 15.46 11.48 15.46 20.35" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polyline points="1.25 16.93 1.25 20.43 13.02 20.43 15.46 21.78" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polyline points="15.46 21.78 17.91 20.43 29.68 20.43 29.68 16.93" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polygon points="16.46 20.35 14.02 19 2.25 19 2.25 10.12 2.25 1.25 14.02 1.25 16.46 2.61 16.46 11.48 16.46 20.35" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polygon points="16.46 20.35 18.91 19 30.68 19 30.68 10.12 30.68 1.25 18.91 1.25 16.46 2.61 16.46 11.48 16.46 20.35" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polyline points="2.25 16.93 2.25 21.06 14.02 21.06 16.46 22.42" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /><polyline points="16.46 22.42 18.91 21.06 30.68 21.06 30.68 16.93" fill="none" stroke="#414042" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" /></g></g></svg>
-				);
-			default:
-				return (
-					<svg><title>no icon</title></svg>
-				);
-		}
+	svgBox() {
+		return `0 0 ${this.state.width} ${this.state.height}`;
+	}
+	renderSVG() {
+		console.log(icons.settlement);
+		return { __html: icons[this.state.name].icon };
 	}
 	render() {
 		return (
-			<div>
-				{this.renderIcon()}
-			</div>
+			<svg
+				className="icon"
+				width={this.state.width}
+				height={this.state.height}
+				viewBox={this.svgBox()}
+				dangerouslySetInnerHTML={this.renderSVG()} // eslint-disable-line react/no-danger, max-len
+			/>
 		);
 	}
 }
+
+
+Icon.defaultProps = {
+	name: 'settlement',
+};
+
+Icon.propTypes = {
+	name: React.PropTypes.string,
+};
+
 
 export default Icon;

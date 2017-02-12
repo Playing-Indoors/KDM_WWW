@@ -1,172 +1,228 @@
 .mainNav {
-	transform: translateY(-100%);
 	position: fixed;
 	top: 0;
 	left: 0;
-	overflow-y: auto;
 	height: 100%;
-	width: 90%;
-	max-width: 200px;
-	background: $gray-dark;
-	text-align: center;
-	transition: all 0.3s ease-out;
-	visibility: hidden;
-
-	@include breakpoint(m) {
-		width: $menu-width;
-		max-width: none;
-		visibility: visible;
-		transform: translateY(0);
-	}
-
-	&.is-active {
-		visibility: initial;
-		transform: translateY(0);
-	}
+	width: 50px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: $gray-darker;
 
 	ol, li {
 		display: block;
 		margin: 0;
 		padding: 0;
 	}
+
+	li + li {
+		border-top: 1px solid $gray;
+	}
 }
 
 .mainNav-link {
-	display: flex;
-	align-items: center;
-	padding: 1rem 0.25rem;
-	color: $gray-lighter;
-	text-decoration: none;
-
-	@include breakpoint(m) {
-		width: 85px;
-		font-size: 0.625rem;
-		flex-direction: column;
-	}
+	display: block;
+	width: 50px;
+	height: 50px;
 
 	&:hover, &:focus {
-		background: $gray;
-		color: #fff;
-		text-decoration: none;
+		cursor: pointer;
+		background: mix($brand-primary, $gray-darker, 50%);
+		outline: 0;
 	}
 
 	&.is-active {
 		background: $brand-primary;
-		color: #fff;
 	}
 }
 
-// .mainNav > ol > li:first-child .mainNav-link-text {
-// 	display: none;
-// }
-
 .mainNav-link-icon {
-	width: 3.5rem;
-	font-size: 2rem;
-	line-height: 1em;
+	padding: 17px;
 
-	@include breakpoint(m) {
-		width: auto;
-	}
-
-	svg {
-		width: 34px;
-		height: 34px;
+	> svg {
+		width: 16px;
+		height: 16px;
+		fill: $gray-lightest
 	}
 }
 
 .subNav {
-	display: none;
-	overflow: hidden; // hides the active state
-	// padding: 2rem 1rem;
-	background: $gray-light;
-	text-align: left;
 
-	@include breakpoint(m) {
-		position: fixed;
-		top: 0;
-		left: 85px;
-		width: 200px;
-		height: 100%;
-	}
-
-	.is-active + & {
-		display: block;
-	}
-
-	> ol {
-		padding: 2rem;
-		font-size: 0.875rem;
-	}
-
-	ol ol {
-		margin-top: 1rem;
-		margin-left: 1rem;
-
-		a {
-			color: $gray-lightest;
-		}
-	}
-
-	li + li{
-		margin-top: 1rem;
-	}
-
-	a {
-		position: relative;
-		display: block;
-		padding: 0;
-		color: $body-color;
-		text-decoration: none;
-		// font-size: 0.625rem;
-		line-height: 1.25em;
-		transition: padding 0.3s ease-out;
-
-		&::before {
-			content: '';
-			position: absolute;
-			left: -30px;
-			height: 100%;
-			width: 4px;
-			background: #fff;
-			opacity: 0;
-			transition: all 0.3s ease-out;
-		}
-
-		.fa {
-			display: block;
-			font-size: 2rem;
-			margin-bottom: 0.25rem;
-		}
-
-		&:hover, &:focus {
-			background: none;
-			color: #fff;
-			padding-left: 0.5rem;
-
-			&::before {
-				opacity: 1;
-				left: -5px;
-			}
-		}
-
-		&.is-active {
-			padding-left: 0.5rem;
-			color: #fff;
-
-			&::before {
-				opacity: 1;
-				left: -5px;
-				background: $brand-primary;
-			}
-		}
-	}
-
-	.header-title {
-		display: none;
-
-		@include breakpoint(m) {
-			display: block;
-		}
-	}
 }
+
+// .mainNav {
+// 	transform: translateY(-100%);
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	overflow-y: auto;
+// 	height: 100%;
+// 	width: 90%;
+// 	max-width: 200px;
+// 	background: $gray-dark;
+// 	text-align: center;
+// 	transition: all 0.3s ease-out;
+// 	visibility: hidden;
+
+// 	@include breakpoint(m) {
+// 		width: $menu-width;
+// 		max-width: none;
+// 		visibility: visible;
+// 		transform: translateY(0);
+// 	}
+
+// 	&.is-active {
+// 		visibility: initial;
+// 		transform: translateY(0);
+// 	}
+
+// 	ol, li {
+// 		display: block;
+// 		margin: 0;
+// 		padding: 0;
+// 	}
+// }
+
+// .mainNav-link {
+// 	display: flex;
+// 	align-items: center;
+// 	padding: 1rem 0.25rem;
+// 	color: $gray-lighter;
+// 	text-decoration: none;
+
+// 	@include breakpoint(m) {
+// 		width: 85px;
+// 		font-size: 0.625rem;
+// 		flex-direction: column;
+// 	}
+
+// 	&:hover, &:focus {
+// 		background: $gray;
+// 		color: #fff;
+// 		text-decoration: none;
+// 	}
+
+// 	&.is-active {
+// 		background: $brand-primary;
+// 		color: #fff;
+// 	}
+// }
+
+// // .mainNav > ol > li:first-child .mainNav-link-text {
+// // 	display: none;
+// // }
+
+// .mainNav-link-icon {
+// 	width: 3.5rem;
+// 	font-size: 2rem;
+// 	line-height: 1em;
+
+// 	@include breakpoint(m) {
+// 		width: auto;
+// 	}
+
+// 	svg {
+// 		width: 34px;
+// 		height: 34px;
+// 	}
+// }
+
+// // .mainNav-link-text {
+// // 	visibility: hidden;
+
+// // }
+
+// .subNav {
+// 	display: none;
+// 	overflow: hidden; // hides the active state
+// 	// padding: 2rem 1rem;
+// 	background: $gray-light;
+// 	text-align: left;
+
+// 	@include breakpoint(m) {
+// 		position: fixed;
+// 		top: 0;
+// 		left: 85px;
+// 		width: 200px;
+// 		height: 100%;
+// 	}
+
+// 	.is-active + & {
+// 		display: block;
+// 	}
+
+// 	> ol {
+// 		padding: 2rem;
+// 		font-size: 0.875rem;
+// 	}
+
+// 	ol ol {
+// 		margin-top: 1rem;
+// 		margin-left: 1rem;
+
+// 		a {
+// 			color: $gray-lightest;
+// 		}
+// 	}
+
+// 	li + li{
+// 		margin-top: 1rem;
+// 	}
+
+// 	a {
+// 		position: relative;
+// 		display: block;
+// 		padding: 0;
+// 		color: $body-color;
+// 		text-decoration: none;
+// 		// font-size: 0.625rem;
+// 		line-height: 1.25em;
+// 		transition: padding 0.3s ease-out;
+
+// 		&::before {
+// 			content: '';
+// 			position: absolute;
+// 			left: -30px;
+// 			height: 100%;
+// 			width: 4px;
+// 			background: #fff;
+// 			opacity: 0;
+// 			transition: all 0.3s ease-out;
+// 		}
+
+// 		.fa {
+// 			display: block;
+// 			font-size: 2rem;
+// 			margin-bottom: 0.25rem;
+// 		}
+
+// 		&:hover, &:focus {
+// 			background: none;
+// 			color: #fff;
+// 			padding-left: 0.5rem;
+
+// 			&::before {
+// 				opacity: 1;
+// 				left: -5px;
+// 			}
+// 		}
+
+// 		&.is-active {
+// 			padding-left: 0.5rem;
+// 			color: #fff;
+
+// 			&::before {
+// 				opacity: 1;
+// 				left: -5px;
+// 				background: $brand-primary;
+// 			}
+// 		}
+// 	}
+
+// 	.header-title {
+// 		display: none;
+
+// 		@include breakpoint(m) {
+// 			display: block;
+// 		}
+// 	}
+// }

@@ -3,33 +3,16 @@ import Icon from '../../components/Icon/Icon';
 
 
 class Nav extends Component {
-	constructor(props) {
-		super(props);
-	}
 	renderNodes() {
 		return this.props.data.map((item, index) => {
 			return (
 				<li key={index}>
 					<a href={item.link} className={`mainNav-link ${(item.isActive ? ' is-active' : '')}`}>
 						<div className="mainNav-link-icon">
-							<Icon icon={item.icon} />
+							<Icon name={item.icon} />
 						</div>
-						<div className="mainNav-link-text">{item.title}</div>
+						<div className="sr-only">{item.title}</div>
 					</a>
-					<div className="subNav">
-						<div className="header-title header-title--primary">{item.title}</div>
-						<ol>
-							<li>
-								<a href="#campaigns" className="is-active">Campaigns</a>
-								<ol>
-									<li><a href="#active">Active</a></li>
-									<li><a href="#inactive">Inactive</a></li>
-								</ol>
-							</li>
-							<li><a href="#world-stats">World Stats</a></li>
-							<li><a href="#user-preferences">User Preferences</a></li>
-						</ol>
-					</div>
 				</li>
 			);
 		});
@@ -40,9 +23,27 @@ class Nav extends Component {
 				<ol>
 					{this.renderNodes()}
 				</ol>
+				{/*<div className="subNav">
+					<div className="subNav-title">Dashboard</div>
+					<ol>
+						<li>
+							<a href="#campaigns" className="is-active">Campaigns</a>
+							<ol>
+								<li><a href="#active">Active</a></li>
+								<li><a href="#inactive">Inactive</a></li>
+							</ol>
+						</li>
+						<li><a href="#world-stats">World Stats</a></li>
+						<li><a href="#user-preferences">User Preferences</a></li>
+					</ol>
+				</div>*/}
 			</nav>
 		);
 	}
 }
+
+Nav.propTypes = {
+	data: React.PropTypes.Object,
+};
 
 export default Nav;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import Icon from '../../components/Icon/Icon';
+import Icon from '../../components/Icon/IconOld';
 
 class List extends Component {
 	renderNodes() {

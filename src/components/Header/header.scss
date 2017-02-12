@@ -3,46 +3,72 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background: $gray-dark;
-}
-
-.header-navToggle {
-	display: block;
-	padding-left: 1rem;
-	height: 40px;
-
-	svg {
-		width: 40px;
-		height: 40px;
-	}
-
-	@include breakpoint(m) {
-		display: none;
-	}
+	padding: 0 0.5rem;
+	height: 50px;
+	color: $gray-lightest;
+	background: $brand-primary;
 }
 
 .header-title {
-	flex: 1 1 auto;
-	padding: 1.5rem 1rem;
-	text-transform: uppercase;
-	color: $body-color;
+	flex: 2 1 auto;
+	padding: 0.5rem;
+	text-align: center;
 }
 
-.header-title--primary {
-	color: $brand-primary;
-	background: $gray;
+.header-action {
+	padding: 0.5rem;
+	transition: background 0.3s ease-out;
+
+	&:hover, &:focus {
+		cursor: pointer;
+		outline: 0;
+		background: hsla(0, 0%, 0%, 0.12);
+	}
+
+	svg {
+		fill: #fff;
+		width: 20px;
+		height: 20px;
+	}
 }
 
-.header-actions {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0.75rem;
-}
+// .header-navToggle {
+// 	display: block;
+// 	padding-left: 1rem;
+// 	height: 40px;
 
-.header-actions a {
-	display: block;
-	padding: 0.125rem;
-	color: $gray-lightest;
-	font-size: 14px;
-}
+// 	svg {
+// 		width: 40px;
+// 		height: 40px;
+// 	}
+
+// 	@include breakpoint(m) {
+// 		display: none;
+// 	}
+// }
+
+// .header-title {
+// 	flex: 1 1 auto;
+// 	padding: 1.5rem 1rem;
+// 	text-transform: uppercase;
+// 	color: $body-color;
+// }
+
+// .header-title--primary {
+// 	color: $brand-primary;
+// 	background: $gray;
+// }
+
+// .header-actions {
+// 	display: flex;
+// 	justify-content: space-between;
+// 	align-items: center;
+// 	padding: 0.75rem;
+// }
+
+// .header-actions a {
+// 	display: block;
+// 	padding: 0.125rem;
+// 	color: $gray-lightest;
+// 	font-size: 14px;
+// }
