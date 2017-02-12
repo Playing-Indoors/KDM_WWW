@@ -11,19 +11,8 @@ export function authError(error) {
 }
 export function authenticate({ username, password }) {
 	return function(dispatch) {
-		axios.defaults.headers.post['Content-Type'] = 'application/json';
-		axios.defaults.headers.post['Authorization'] = {"username": "qa@kdm-manager.com", "password": "password"};
-		// axios({
-		// 	method: 'post',
-		// 	headers: {'Authorization': {'username': username, 'password': password}},
-		// 	url: `${KDM_API}/login`,
-		// }).then((res) => {
-		// 	dispatch({ type: AUTH_USER });
-		// 	localStorage.setItem('access_token', response.access_token);
-		// 	browserHistory.push('/survivor');
-		// });
-		console.log(axios.defaults.headers.post);
-		axios.post(`${KDM_API}/login`)
+		axios.defaults.headers.common['Content-Type'] = 'application/json';
+		axios.post(`${KDM_API}/login`, {"username": username, "password": password})
 			.then(response => {
 				dispatch({ type: AUTH_USER });
 				localStorage.setItem('access_token', response.access_token);
