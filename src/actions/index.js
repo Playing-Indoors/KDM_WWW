@@ -11,13 +11,26 @@ export function authError(error) {
 }
 export function authenticate({ username, password }) {
 	return function(dispatch) {
-		axios.post(`${KDM_API}/auth`, { username, password })
+		axios.defaults.headers.post['Content-Type'] = 'application/json';
+		axios.defaults.headers.post['Authorization'] = {"username": "qa@kdm-manager.com", "password": "password"};
+		// axios({
+		// 	method: 'post',
+		// 	headers: {'Authorization': {'username': username, 'password': password}},
+		// 	url: `${KDM_API}/login`,
+		// }).then((res) => {
+		// 	dispatch({ type: AUTH_USER });
+		// 	localStorage.setItem('access_token', response.access_token);
+		// 	browserHistory.push('/survivor');
+		// });
+		console.log(axios.defaults.headers.post);
+		axios.post(`${KDM_API}/login`)
 			.then(response => {
 				dispatch({ type: AUTH_USER });
 				localStorage.setItem('access_token', response.access_token);
 				browserHistory.push('/survivor');
 			})
-			.catch(() => {
+			.catch((err) => {
+				console.log('WHY', err);
 				dispatch(authError(true));
 			});
 	};
