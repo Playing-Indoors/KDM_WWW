@@ -7,13 +7,19 @@ class CardList extends Component {
 		this.state = {
 		};
 	}
+	renderMeta() {
+		if (this.props.meta) {
+			return <div className="cardList-meta">{this.props.meta.join(' | ')}</div>
+		}
+		return null;
+	}
 	render() {
 		return (
 			<div className="cardList">
 				<div className="cardList-content">
 					<a href={this.props.href} className="cardList-name">{this.props.name}</a>
 					<div className="cardList-desc">{this.props.desc}</div>
-					<div className="cardList-meta">{this.props.meta.join(' | ')}</div>
+					{this.renderMeta()}
 				</div>
 				<Button>{this.props.button}</Button>
 			</div>
@@ -22,10 +28,10 @@ class CardList extends Component {
 }
 
 CardList.defaultProps = {
-	name: 'Name',
+	// name: 'Name',
 	button: 'View',
 	href: '#openCampaign',
-	desc: 'Description',
+	// desc: 'Description',
 };
 
 CardList.propTypes = {

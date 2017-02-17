@@ -121,6 +121,7 @@ class Aya extends Component {
 
 					<h4>Grays</h4>
 					<AyaColor name="gray-dark" />
+					<AyaColor name="gray-darker" />
 					<AyaColor name="gray" />
 					<AyaColor name="gray-light" />
 					<AyaColor name="gray-lighter" />
@@ -207,6 +208,8 @@ class Aya extends Component {
 					<h3>CardList</h3>
 
 					<CardList
+						name="Name"
+						desc="Description"
 						meta={['Lantern Year 4', 'Population 15', 'Players 3']}
 					/>
 

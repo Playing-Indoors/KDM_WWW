@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSettlement } from '../../actions/getSettlement';
 import Survivor from '../Survivor/Survivor.jsx';
+import CardList from '../../components/CardList/CardList';
 import _ from 'underscore';
 
 class SurvivorHome extends React.Component {
@@ -36,8 +37,18 @@ class SurvivorHome extends React.Component {
 		})
 	}
 	renderSurvivorLinks(){
-		return this.state.survivorData.map((survivor, l)=>{
-			return <button key={l} onClick={this.loadSurvivor.bind(this, survivor.sheet._id.$oid)}>{survivor.sheet._id.$oid}</button>
+		return this.state.survivorData.map((survivor, l) => {
+			return (
+				<div key={l}>
+					<button onClick={this.loadSurvivor.bind(this, survivor.sheet._id.$oid)}>{survivor.sheet.name}</button>
+					<CardList
+						onClick={this.loadSurvivor.bind(this, survivor.sheet._id.$oid)}
+						name={survivor.sheet.name}
+						desc={`Hunt XP: ${survivor.sheet.hunt_xp}`}
+						href="#route"
+					/>
+				</div>
+			)
 		});
 	}
 	render() {
