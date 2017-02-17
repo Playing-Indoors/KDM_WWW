@@ -43,7 +43,7 @@ class Nav extends Component {
 }
 
 Nav.propTypes = {
-	data: React.PropTypes.Object,
+	data: React.PropTypes.arrayOf(React.PropTypes.object),
 };
 
 export default Nav;

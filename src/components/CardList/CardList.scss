@@ -1,0 +1,28 @@
+
+.cardList {
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	padding: 1rem;
+	background: $gray-darker;
+
+	& + & {
+		margin-top: 1rem;
+	}
+}
+
+.cardList-name {
+	color: $brand-primary;
+	font-weight: bold;
+}
+
+.cardList-desc {
+	font-size: 0.875rem;
+}
+
+.cardList-meta {
+	margin-top: 1rem;
+	color: $gray-light;
+	font-weight: bold;
+	font-size: 0.875rem;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, ButtonGroup, Row, Col } from 'reactstrap';
 import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
+import CardList from '../../components/CardList/CardList';
 import StatAdjust from '../../components/Stats/StatAdjust';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
 import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
@@ -24,6 +25,20 @@ class Aya extends Component {
 			ayaData: null,
 			modal: false,
 			activeTab: '1',
+			listMeta: [
+				{
+					name: 'Lantern Year',
+					value: '5',
+				},
+				{
+					name: 'Population',
+					value: '15',
+				},
+				{
+					name: 'Players',
+					value: '3',
+				},
+			],
 			statXP: {
 				name: 'Hunt XP',
 				amount: 8,
@@ -185,6 +200,15 @@ class Aya extends Component {
 							You can make me clickable
 						</button>
 					</div>
+
+					<br />
+					<br />
+
+					<h3>CardList</h3>
+
+					<CardList
+						meta={['Lantern Year 4', 'Population 15', 'Players 3']}
+					/>
 
 
 					<br />

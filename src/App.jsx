@@ -10,7 +10,7 @@ class App extends Component {
 			nav: [
 				{
 					title: 'Dashboard',
-					link: '/home',
+					link: '/campaign',
 					icon: 'logo',
 					'children': [
 						{
@@ -51,6 +51,11 @@ class App extends Component {
 					title: 'Glossary/FAQ',
 					icon: 'faq',
 					link: '/glossary',
+				},
+				{
+					title: 'Aya',
+					icon: 'logo',
+					link: '/aya',
 				},
 			],
 		};

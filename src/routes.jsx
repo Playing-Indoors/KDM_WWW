@@ -45,11 +45,11 @@ render(
 		<Router history={browserHistory} onUpdate={logPageView} >
 			<Route path="/" component={App}>
 				<IndexRoute component={Splash} />
+				<Route path="/campaign" component={Campaign} />
 				<Route path="/home" component={Home} />
 				<Route path="/login" component={Login} />
 				<Route path="/world" component={World} />
 				<Route path="/glossary" component={Glossary} />
-				<Route path="/campaign" component={Campaign} />
 				<Route path="/survivors" component={Survivors} />
 				<Route path="/settlement" component={Settlement} />
 				<Route path="/storage" component={Storage} />

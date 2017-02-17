@@ -25,7 +25,7 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-	name: React.PropTypes.String,
+	name: React.PropTypes.string,
 };
 
 export default Header;

@@ -66,7 +66,6 @@ class Icon extends Component {
 		return `0 0 ${this.state.width} ${this.state.height}`;
 	}
 	renderSVG() {
-		console.log(icons.settlement);
 		return { __html: icons[this.state.name].icon };
 	}
 	render() {
