@@ -15,8 +15,8 @@ export function authenticate({ username, password }) {
 		axios.post(`${KDM_API}/login`, {"username": username, "password": password})
 			.then(response => {
 				dispatch({ type: AUTH_USER });
-				localStorage.setItem('access_token', response.access_token);
-				browserHistory.push('/survivor');
+				localStorage.setItem('access_token', response.data.access_token);
+				browserHistory.push('/survivors');
 			})
 			.catch((err) => {
 				console.log('WHY', err);
