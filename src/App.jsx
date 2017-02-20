@@ -12,7 +12,7 @@ class App extends Component {
 					title: 'Dashboard',
 					link: '/campaign',
 					icon: 'logo',
-					'children': [
+					children: [
 						{
 							title: 'Campaigns',
 							link: '#',

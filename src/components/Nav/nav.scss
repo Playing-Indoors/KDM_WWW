@@ -3,10 +3,15 @@
 	top: 0;
 	left: 0;
 	height: 100%;
-	width: 50px;
-	overflow-x: hidden;
-	overflow-y: auto;
+	// overflow-x: visible;
+	// overflow-y: auto;
 	background: $gray-darker;
+
+	> ol {
+		position: relative;
+		z-index: 2;
+		width: $menu-width;
+	}
 
 	ol, li {
 		display: block;
@@ -14,15 +19,15 @@
 		padding: 0;
 	}
 
-	li + li {
+	> ol > li + li {
 		border-top: 1px solid $gray;
 	}
 }
 
 .mainNav-link {
 	display: block;
-	width: 50px;
-	height: 50px;
+	width: $menu-width;
+	height: $menu-width;
 
 	&:hover, &:focus {
 		cursor: pointer;
@@ -131,98 +136,120 @@
 
 // // }
 
-// .subNav {
-// 	display: none;
-// 	overflow: hidden; // hides the active state
-// 	// padding: 2rem 1rem;
-// 	background: $gray-light;
-// 	text-align: left;
+.subNav-title {
+	height: 50px;
+	line-height: 50px;
+	font-weight: bold;
+	text-align: center;
+}
 
-// 	@include breakpoint(m) {
-// 		position: fixed;
-// 		top: 0;
-// 		left: 85px;
-// 		width: 200px;
-// 		height: 100%;
-// 	}
+.subNav {
+	// display: none7;
+	overflow: hidden; // hides the active state
+	// padding: 2rem 1rem;
+	background: $gray-dark;
+	text-align: left;
 
-// 	.is-active + & {
-// 		display: block;
-// 	}
+	// @include breakpoint(m) {
+		position: fixed;
+		top: 0;
+		left: $menu-width;
+		width: 200px;
+		height: 100%;
+	// }
+}
 
-// 	> ol {
-// 		padding: 2rem;
-// 		font-size: 0.875rem;
-// 	}
+.subNav-link {
+	display: block;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	font-weight: bold;
+	color: #fff;
 
-// 	ol ol {
-// 		margin-top: 1rem;
-// 		margin-left: 1rem;
+	&.is-active {
+		color: $brand-primary;
+	}
+}
 
-// 		a {
-// 			color: $gray-lightest;
-// 		}
-// 	}
 
-// 	li + li{
-// 		margin-top: 1rem;
-// 	}
+	// ol ol {
+	// 	margin-top: 1rem;
+	// 	margin-left: 1rem;
 
-// 	a {
-// 		position: relative;
-// 		display: block;
-// 		padding: 0;
-// 		color: $body-color;
-// 		text-decoration: none;
-// 		// font-size: 0.625rem;
-// 		line-height: 1.25em;
-// 		transition: padding 0.3s ease-out;
+	// 	a {
+	// 		color: $gray-lightest;
+	// 	}
+	// }
 
-// 		&::before {
-// 			content: '';
-// 			position: absolute;
-// 			left: -30px;
-// 			height: 100%;
-// 			width: 4px;
-// 			background: #fff;
-// 			opacity: 0;
-// 			transition: all 0.3s ease-out;
-// 		}
+	// li + li{
+	// 	margin-top: 1rem;
+	// }
 
-// 		.fa {
-// 			display: block;
-// 			font-size: 2rem;
-// 			margin-bottom: 0.25rem;
-// 		}
+	// a {
+	// 	position: relative;
+	// 	display: block;
+	// 	padding: 0;
+	// 	color: $body-color;
+	// 	text-decoration: none;
+	// 	// font-size: 0.625rem;
+	// 	line-height: 1.25em;
+	// 	transition: padding 0.3s ease-out;
 
-// 		&:hover, &:focus {
-// 			background: none;
-// 			color: #fff;
-// 			padding-left: 0.5rem;
+	// 	&::before {
+	// 		content: '';
+	// 		position: absolute;
+	// 		left: -30px;
+	// 		height: 100%;
+	// 		width: 4px;
+	// 		background: #fff;
+	// 		opacity: 0;
+	// 		transition: all 0.3s ease-out;
+	// 	}
 
-// 			&::before {
-// 				opacity: 1;
-// 				left: -5px;
-// 			}
-// 		}
+	// 	.fa {
+	// 		display: block;
+	// 		font-size: 2rem;
+	// 		margin-bottom: 0.25rem;
+	// 	}
 
-// 		&.is-active {
-// 			padding-left: 0.5rem;
-// 			color: #fff;
+	// 	&:hover, &:focus {
+	// 		background: none;
+	// 		color: #fff;
+	// 		padding-left: 0.5rem;
 
-// 			&::before {
-// 				opacity: 1;
-// 				left: -5px;
-// 				background: $brand-primary;
-// 			}
-// 		}
-// 	}
+	// 		&::before {
+	// 			opacity: 1;
+	// 			left: -5px;
+	// 		}
+	// 	}
 
-// 	.header-title {
-// 		display: none;
+	// 	&.is-active {
+	// 		padding-left: 0.5rem;
+	// 		color: #fff;
 
-// 		@include breakpoint(m) {
-// 			display: block;
-// 		}
-// 	}
+	// 		&::before {
+	// 			opacity: 1;
+	// 			left: -5px;
+	// 			background: $brand-primary;
+	// 		}
+	// 	}
+	// }
+
+	// .header-title {
+	// 	display: none;
+
+	// 	@include breakpoint(m) {
+	// 		display: block;
+	// 	}
+	// }
 // }
+
+.subNavClose {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	cursor: pointer;
+}
