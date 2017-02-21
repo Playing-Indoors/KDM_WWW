@@ -26,21 +26,27 @@ class Nav extends Component {
 	// 		activeSubNav: false,
 	// 	});
 	// }
-	renderSubNav(index, title) {
+	renderSubNav(index, title, children) {
 		if (!this.state.activeSubNav || index !== this.state.activeIndex) {
 			return null;
 		}
 		return (
-			// This needs to updated per the children object
 			<div className="subNav">
 				<div className="subNav-title">{title}</div>
 				<ol>
-					<li><a href="#campaigns" className="subNav-link is-active">Campaigns</a></li>
-					<li><a href="#world-stats" className="subNav-link">World Stats</a></li>
-					<li><a href="#user-preferences" className="subNav-link">User Preferences</a></li>
+					{this.renderSubNavChildren(children)}
 				</ol>
 			</div>
 		);
+	}
+	renderSubNavChildren(children) {
+		return children.map((item, index) => {
+			return (
+				<li key={index}>
+					<a href={item.link} className="subNav-link">{item.title}</a>
+				</li>
+			);
+		});
 	}
 	renderNavClose() {
 		if (this.state.activeSubNav) {
@@ -72,20 +78,6 @@ class Nav extends Component {
 					{this.renderNodes()}
 				</ol>
 				{/*{this.renderNavClose()}*/}
-				{/*<div className="subNav">
-					<div className="subNav-title">Dashboard</div>
-					<ol>
-						<li>
-							<a href="#campaigns" className="is-active">Campaigns</a>
-							<ol>
-								<li><a href="#active">Active</a></li>
-								<li><a href="#inactive">Inactive</a></li>
-							</ol>
-						</li>
-						<li><a href="#world-stats">World Stats</a></li>
-						<li><a href="#user-preferences">User Preferences</a></li>
-					</ol>
-				</div>*/}
 			</nav>
 		);
 	}
