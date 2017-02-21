@@ -10,7 +10,7 @@ class Nav extends Component {
 			activeIndex: 0,
 		};
 		this.handleMainNav = this.handleMainNav.bind(this);
-		// this.handleCloseNav = this.handleCloseNav.bind(this);
+		this.handleCloseNav = this.handleCloseNav.bind(this);
 	}
 	handleMainNav(idx, e) {
 		this.state.activeSubNav = true;
@@ -20,12 +20,12 @@ class Nav extends Component {
 			activeIndex: idx,
 		});
 	}
-	// handleCloseNav() {
-	// 	console.log('close');
-	// 	this.setState({
-	// 		activeSubNav: false,
-	// 	});
-	// }
+	handleCloseNav() {
+		console.log('close');
+		this.setState({
+			activeSubNav: false,
+		});
+	}
 	renderSubNav(index, title, children) {
 		if (!this.state.activeSubNav || index !== this.state.activeIndex) {
 			return null;
@@ -50,10 +50,10 @@ class Nav extends Component {
 	}
 	renderNavClose() {
 		if (this.state.activeSubNav) {
-			// return <div data-onClick={this.handleCloseNav()} className="subNavClose" />;
-			return <div className="subNavClose" />;
+			return <div onClick={this.handleCloseNav} className="subNavClose" />;
+		} else {
+			return null;
 		}
-		return null;
 	}
 	renderNodes() {
 		return this.props.data.map((item, index) => {
@@ -77,7 +77,7 @@ class Nav extends Component {
 				<ol>
 					{this.renderNodes()}
 				</ol>
-				{/*{this.renderNavClose()}*/}
+				{this.renderNavClose()}
 			</nav>
 		);
 	}
