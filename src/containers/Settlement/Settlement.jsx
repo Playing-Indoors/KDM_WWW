@@ -1,6 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getSettlement } from '../../actions/getSettlement';
 
-class Settlements extends React.Component {
+class Settlement extends React.Component {
+	constructor(props){
+		super(props);
+	}
+	componentDidMount(){
+		this.props.getSettlement();
+	}
 	render() {
 		return (
 			<div>
@@ -10,4 +19,16 @@ class Settlements extends React.Component {
 	}
 }
 
-export default Settlements;
+function mapStateToProps(state) {
+	return {
+		settlementData: state.settlementData,
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		getSettlement,
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settlement);
