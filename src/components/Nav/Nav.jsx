@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Icon from '../../components/Icon/Icon';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 
 class Nav extends Component {
@@ -11,6 +13,11 @@ class Nav extends Component {
 		};
 		this.handleMainNav = this.handleMainNav.bind(this);
 		this.handleCloseNav = this.handleCloseNav.bind(this);
+	}
+	componentWillReceiveProps(nextProps){
+		if(nextProps.headerData.showNav){
+			console.log('YAY NAV');
+		}
 	}
 	handleMainNav(idx, e) {
 		this.state.activeSubNav = true;
@@ -87,4 +94,10 @@ Nav.propTypes = {
 	data: React.PropTypes.arrayOf(React.PropTypes.object),
 };
 
-export default Nav;
+function mapStateToProps(state) {
+	return {
+		headerData: state.headerData,
+	};
+}
+
+export default connect(mapStateToProps, null)(Nav);

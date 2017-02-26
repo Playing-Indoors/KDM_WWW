@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Icon from '../../components/Icon/Icon';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateHeader } from '../../actions/updateHeader';
 // TODO: handle button clicks.
 
-function Header(props) {
-	return (
-		<header className="header">
-			<a className="header-action">
-				<Icon name="nav" />
-			</a>
-			<div className="header-title">{props.name}</div>
-			<a className="header-action">
-				<Icon name="gear" />
-			</a>
-			<a className="header-action">
-				<Icon name="help" />
-			</a>
-		</header>
-	);
+class Header extends Component {
+	constructor(props){
+		super(props);
+		this.handleNav = this.handleNav.bind(this);
+	}
+	handleNav(){
+		this.props.updateHeader();
+	}
+	render(){
+		return (
+			<header className="header">
+				<a className="header-action" onClick={this.handleNav}>
+					<Icon name="nav" />
+				</a>
+				<div className="header-title">{this.props.name}</div>
+				<a className="header-action">
+					<Icon name="gear" />
+				</a>
+				<a className="header-action">
+					<Icon name="help" />
+				</a>
+			</header>
+		);
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		updateHeader: updateHeader
+	}, dispatch);
 }
 
 Header.defaultProps = {
@@ -28,4 +45,4 @@ Header.propTypes = {
 	name: React.PropTypes.string,
 };
 
-export default Header;
+export default connect(null, mapDispatchToProps)(Header);
