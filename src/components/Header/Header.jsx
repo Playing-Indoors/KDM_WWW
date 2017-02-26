@@ -3,12 +3,18 @@ import Icon from '../../components/Icon/Icon';
 
 // TODO: handle button clicks.
 
+function handleMenu() {
+	// replace window.showNav with redux
+	window.showNav = true;
+	document.getElementsByClassName('mainNav')[0].className += 'is-active';
+}
+
 function Header(props) {
 	return (
 		<header className="header">
-			<a className="header-action">
+			<button onClick={handleMenu} className="header-action">
 				<Icon name="nav" />
-			</a>
+			</button>
 			<div className="header-title">{props.name}</div>
 			<a className="header-action">
 				<Icon name="gear" />
