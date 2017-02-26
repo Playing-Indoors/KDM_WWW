@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import Icon from '../../components/Icon/Icon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,6 +21,7 @@ class Nav extends Component {
 		}
 	}
 	handleMainNav(idx, e) {
+		e.preventDefault();
 		this.state.activeSubNav = true;
 		this.state.activeIndex = idx;
 		this.setState({
@@ -58,21 +60,19 @@ class Nav extends Component {
 	renderNavClose() {
 		if (this.state.activeSubNav) {
 			return <div onClick={this.handleCloseNav} className="subNavClose" />;
-		} else {
-			return null;
 		}
+		return null;
 	}
 	renderNodes() {
 		return this.props.data.map((item, index) => {
-			const boundClick = this.handleMainNav.bind(this, index);
 			return (
 				<li key={index}>
-					<a onClick={boundClick} data-href={item.link} className={`mainNav-link ${(item.isActive ? ' is-active' : '')}`}>
+					<Link to={item.link} onClick={(e) => { this.handleMainNav(index, e); }} className="mainNav-link" activeClassName="is-active">
 						<div className="mainNav-link-icon">
 							<Icon name={item.icon} />
 						</div>
 						<div className="sr-only">{item.title}</div>
-					</a>
+					</Link>
 					{this.renderSubNav(index, item.title, item.children)}
 				</li>
 			);
@@ -80,7 +80,8 @@ class Nav extends Component {
 	}
 	render() {
 		return (
-			<nav className="mainNav">
+			// replace window.showNav with redux
+			<nav className={`mainNav ${window.showNav ? 'is-active' : ''}`}>
 				<ol>
 					{this.renderNodes()}
 				</ol>
