@@ -4,7 +4,7 @@ class Settlements extends React.Component {
 	render() {
 		return (
 			<div>
-				Single Settlement
+				Settlements
 			</div>
 		);
 	}

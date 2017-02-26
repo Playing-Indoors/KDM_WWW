@@ -12,6 +12,7 @@ import Login from './containers/Login/Login.jsx';
 import Survivor from './containers/Survivor/Survivor.jsx';
 import Glossary from './containers/Glossary/Glossary.jsx';
 import Survivors from './containers/Survivors/Survivors.jsx';
+import Settlements from './containers/Settlement/Settlements.jsx';
 import Settlement from './containers/Settlement/Settlement.jsx';
 import Storage from './containers/Storage/Storage.jsx';
 import Campaign from './containers/Campaign/Campaign.jsx';
@@ -51,7 +52,8 @@ render(
 				<Route path="/world" component={World} />
 				<Route path="/glossary" component={Glossary} />
 				<Route path="/survivors" component={Survivors} />
-				<Route path="/settlement" component={Settlement} />
+				<Route path="/settlements" component={Settlements} />
+				<Route path="/settlement/:oid" component={Settlement} />
 				<Route path="/storage" component={Storage} />
 				<Route path="/aya" component={Aya} />
 				<Route path="/survivor/" component={SurvivorHome} />

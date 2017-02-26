@@ -16,10 +16,11 @@ export function authenticate({ username, password }) {
 			.then(response => {
 				dispatch({ type: AUTH_USER });
 				localStorage.setItem('access_token', response.data.access_token);
-				browserHistory.push('/survivors');
+				localStorage.setItem('userId', response.data._id);
+				browserHistory.push(`/settlement/${response.data._id}`);
 			})
 			.catch((err) => {
-				console.log('WHY', err);
+				console.log('Error:', err);
 				dispatch(authError(true));
 			});
 	};
