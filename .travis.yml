@@ -1,4 +1,4 @@
-image: node:latest
+language: node_js
 
 stages:
   - test
