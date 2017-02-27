@@ -13,6 +13,10 @@
 	flex: 2 1 auto;
 	padding: 0.5rem;
 	text-align: center;
+
+	@include breakpoint(l) {
+		text-align: left;
+	}
 }
 
 .header-action {
@@ -32,6 +36,12 @@
 		fill: #fff;
 		width: 20px;
 		height: 20px;
+	}
+}
+
+.header-action--nav {
+	@include breakpoint(l) {
+		display: none;
 	}
 }
 

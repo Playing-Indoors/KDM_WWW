@@ -71,27 +71,23 @@ class App extends Component {
 					link: '/storage',
 					children: [
 						{
-							title: 'Storage',
-							link: '/Storage',
+							title: 'Resources',
+							link: '/storage',
 						},
 						{
-							title: 'A link',
-							link: '#',
-						},
-						{
-							title: 'Another link',
-							link: '#',
+							title: 'Gear',
+							link: '/storage/gear',
 						},
 					],
 				},
 				{
 					title: 'Campaign Log',
 					icon: 'log',
-					link: '/campaign',
+					link: '/log',
 					children: [
 						{
 							title: 'Campaign Log',
-							link: '/campaign',
+							link: '/log',
 						},
 						{
 							title: 'A link',
@@ -123,9 +119,15 @@ class App extends Component {
 					],
 				},
 				{
-					title: 'Aya',
+					title: 'Dev',
 					icon: 'logo',
 					link: '/aya',
+					children: [
+						{
+							title: 'Style Guide',
+							link: '/aya',
+						},
+					],
 				},
 			],
 		};

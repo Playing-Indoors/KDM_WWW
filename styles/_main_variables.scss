@@ -2,7 +2,8 @@
 //
 // Variable format should follow the `$component-modifier-state-property` order.
 
-$menu-width: 50px;
+$menu-width: 250px;
+$menu-button-width: 50px;
 
 // Bootstrap 4 variables (refer to node modules for new values (might bring this in as a read only file)
 
@@ -15,7 +16,7 @@ $gray-light:                #626366;
 $gray-lighter:              #DBDCDE;
 $gray-lightest:             #EEEFF0;
 
-$brand-primary:             #E59D32;
+$brand-primary:             #E59D31;
 $brand-success:             #458F7C;
 $brand-info:                #5bc0de;
 $brand-warning:             #f0ad4e;

@@ -16,7 +16,7 @@ class Header extends Component {
 	render(){
 		return (
 			<header className="header">
-				<a className="header-action" onClick={this.handleNav}>
+				<a className="header-action header-action--nav" onClick={this.handleNav}>
 					<Icon name="nav" />
 				</a>
 				<div className="header-title">{this.props.name}</div>

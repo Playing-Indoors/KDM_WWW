@@ -9,34 +9,37 @@ class Nav extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeSubNav: false,
+			showNav: false,
+			// activeSubNav: false,
 			activeIndex: 0,
 		};
 		this.handleMainNav = this.handleMainNav.bind(this);
 		this.handleCloseNav = this.handleCloseNav.bind(this);
 	}
-	componentWillReceiveProps(nextProps){
-		if(nextProps.headerData.showNav){
-			console.log('YAY NAV');
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.headerData.showNav) {
+			this.setState({
+				showNav: true,
+			});
 		}
 	}
 	handleMainNav(idx, e) {
 		e.preventDefault();
-		this.state.activeSubNav = true;
+		// this.state.activeSubNav = true;
 		this.state.activeIndex = idx;
 		this.setState({
-			activeSubNav: true,
+			// activeSubNav: true,
 			activeIndex: idx,
 		});
 	}
 	handleCloseNav() {
-		console.log('close');
 		this.setState({
-			activeSubNav: false,
+			showNav: false,
 		});
 	}
 	renderSubNav(index, title, children) {
-		if (!this.state.activeSubNav || index !== this.state.activeIndex) {
+		// if (!this.state.activeSubNav || index !== this.state.activeIndex) {
+		if (index !== this.state.activeIndex) {
 			return null;
 		}
 		return (
@@ -52,13 +55,13 @@ class Nav extends Component {
 		return children.map((item, index) => {
 			return (
 				<li key={index}>
-					<a href={item.link} className="subNav-link">{item.title}</a>
+					<Link to={item.link} className="subNav-link" activeClassName="is-active">{item.title}</Link>
 				</li>
 			);
 		});
 	}
 	renderNavClose() {
-		if (this.state.activeSubNav) {
+		if (this.state.showNav) {
 			return <div onClick={this.handleCloseNav} className="subNavClose" />;
 		}
 		return null;
@@ -81,7 +84,7 @@ class Nav extends Component {
 	render() {
 		return (
 			// replace window.showNav with redux
-			<nav className={`mainNav ${window.showNav ? 'is-active' : ''}`}>
+			<nav className={`mainNav ${this.state.showNav ? 'is-active' : ''}`}>
 				<ol>
 					{this.renderNodes()}
 				</ol>
