@@ -85,6 +85,7 @@
 	// display: none7;
 	// overflow: hidden; // hides the active state
 	// padding: 2rem 1rem;
+	// display: none;
 	position: absolute;
 	top: 0;
 	left: $menu-button-width;
@@ -92,7 +93,12 @@
 	width: calc(100% - #{$menu-button-width});
 	background: $gray-dark;
 	text-align: left;
+
+	// .mainNav-link.is-active + & {
+	// 	display: block;
+	// }
 }
+
 
 .subNav-link {
 	display: block;

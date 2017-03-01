@@ -24,7 +24,7 @@ class Nav extends Component {
 		}
 	}
 	handleMainNav(idx, e) {
-		e.preventDefault();
+		// e.preventDefault();
 		// this.state.activeSubNav = true;
 		this.state.activeIndex = idx;
 		this.setState({

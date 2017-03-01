@@ -9,12 +9,16 @@ import requireAuth from './containers/Require_auth';
 import Home from './containers/Home/Home.jsx';
 import App from './App.jsx';
 import Login from './containers/Login/Login.jsx';
+import About from './containers/About/About.jsx';
+import System from './containers/System/System.jsx';
 import Survivor from './containers/Survivor/Survivor.jsx';
 import Glossary from './containers/Glossary/Glossary.jsx';
 import Survivors from './containers/Survivors/Survivors.jsx';
 import Settlements from './containers/Settlement/Settlements.jsx';
 import Settlement from './containers/Settlement/Settlement.jsx';
 import Storage from './containers/Storage/Storage.jsx';
+import Resources from './containers/Storage/Resources.jsx';
+import Gear from './containers/Storage/Gear.jsx';
 import Campaign from './containers/Campaign/Campaign.jsx';
 import SurvivorHome from './containers/SurvivorHome/SurvivorHome.jsx';
 import World from './containers/World/World.jsx';
@@ -47,14 +51,21 @@ render(
 			<Route path="/" component={Login} />
 			<Route component={App}>
 				{/*<IndexRoute component={Splash} />*/}
-				<Route path="/campaign" component={Campaign} />
 				<Route path="/home" component={Home} />
+				<Route path="/campaigns" component={Campaign} />
+				<Route path="/system" component={System} />
 				<Route path="/world" component={World} />
+				<Route path="/about" component={About} />
 				<Route path="/glossary" component={Glossary} />
 				<Route path="/survivors" component={Survivors} />
 				<Route path="/settlements" component={Settlements} />
+				<Route path="/settlement/" component={Settlement} />
 				<Route path="/settlement/:oid" component={Settlement} />
-				<Route path="/storage" component={Storage} />
+				<Route path="/storage">
+   				<IndexRoute component={Storage} />
+    			<Route path="resources" component={Resources} />
+    			<Route path="gear" component={Gear} />
+				</Route>
 				<Route path="/aya" component={Aya} />
 				<Route path="/survivor/" component={SurvivorHome} />
 				<Route path="/splash" component={Splash} />
