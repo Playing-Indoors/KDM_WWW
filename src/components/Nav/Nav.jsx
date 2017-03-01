@@ -62,7 +62,7 @@ class Nav extends Component {
 	}
 	renderNavClose() {
 		if (this.state.showNav) {
-			return <div onClick={this.handleCloseNav} className="subNavClose" />;
+			return <button onClick={this.handleCloseNav} className="subNavClose" />;
 		}
 		return null;
 	}

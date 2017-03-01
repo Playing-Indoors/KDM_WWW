@@ -2,8 +2,12 @@
 //
 // Variable format should follow the `$component-modifier-state-property` order.
 
-$menu-width: 250px;
+// $menu-width: 250px;
 $menu-button-width: 50px;
+$menu-width: 250px;
+
+// z index
+$z-index-9000--menu: 9000;
 
 // Bootstrap 4 variables (refer to node modules for new values (might bring this in as a read only file)
 
