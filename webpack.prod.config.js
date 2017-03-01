@@ -1,5 +1,8 @@
 // webpack.prod.config.js
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+process.env.NODE_ENV = 'production';
 
 var path = require('path'),
 	assets_path = path.join('client'),
@@ -13,6 +16,7 @@ var config = {
 	],
 	output: {
 		path: path.join(__dirname, '/public/'),
+		// filename: 'bundle.[chunkhash].js',
 		filename: 'bundle.js',
 		publicPath: '/'
 	},
@@ -77,7 +81,25 @@ var config = {
 				compress: {
 						warnings: false
 				}
-		})
+		}),
+    // generate dist index.html with correct asset hash for caching.
+    // you can customize output by editing /index.html
+    // see https://github.com/ampedandwired/html-webpack-plugin
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: '../src/template.html',
+      inject: true,
+			hash: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
+    })
 	]
 };
 
