@@ -51,25 +51,24 @@ render(
 			<Route path="/" component={Login} />
 			<Route component={App}>
 				{/*<IndexRoute component={Splash} />*/}
-				<Route path="/home" component={Home} />
-				<Route path="/campaigns" component={Campaign} />
-				<Route path="/system" component={System} />
-				<Route path="/world" component={World} />
-				<Route path="/about" component={About} />
-				<Route path="/glossary" component={Glossary} />
-				<Route path="/survivors" component={Survivors} />
-				<Route path="/settlements" component={Settlements} />
-				<Route path="/settlement/" component={Settlement} />
-				<Route path="/settlement/:oid" component={Settlement} />
-				<Route path="/storage">
+				<Route title="Home" path="/home" component={Home} />
+				<Route title="Campaigns" path="/campaigns" component={Campaign} />
+				<Route title="System" path="/system" component={System} />
+				<Route title="World" path="/world" component={World} />
+				<Route title="About" path="/about" component={About} />
+				<Route title="Glossary" path="/glossary" component={Glossary} />
+				<Route title="Survivors" path="/survivors" component={Survivors} />
+				<Route title="Settlements" path="/settlements" component={Settlements} />
+				<Route title="Current Settlement" path="/settlement/:oid" component={Settlement} />
+				<Route title="Storage" path="/storage">
    				<IndexRoute component={Storage} />
-    			<Route path="resources" component={Resources} />
-    			<Route path="gear" component={Gear} />
+    			<Route title="Resources" path="resources" component={Resources} />
+    			<Route title="Gear" path="gear" component={Gear} />
 				</Route>
-				<Route path="/aya" component={Aya} />
-				<Route path="/survivor/" component={SurvivorHome} />
-				<Route path="/splash" component={Splash} />
-				<Route path="*" component={NotFound} />
+				<Route title="Aya" path="/aya" component={Aya} />
+				<Route title="Survivor" path="/survivor/" component={SurvivorHome} />
+				<Route title="Splash" path="/splash" component={Splash} />
+				<Route title="Not Found" path="*" component={NotFound} />
 			</Route>
 		</Router>
 	</Provider>
