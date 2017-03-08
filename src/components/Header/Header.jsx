@@ -19,7 +19,9 @@ class Header extends Component {
 				<a className="header-action header-action--nav" onClick={this.handleNav}>
 					<Icon name="nav" />
 				</a>
-				<div className="header-title">{this.props.name}</div>
+				<div className="header-title">{this.props.name}
+					{this.props.subName ? ` - ${this.props.subName}` : null}
+				</div>
 				<a className="header-action">
 					<Icon name="gear" />
 				</a>

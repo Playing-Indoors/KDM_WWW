@@ -10,40 +10,40 @@ class App extends Component {
 			nav: [
 				{
 					title: 'Dashboard',
-					link: '/campaign',
+					link: '/campaigns',
 					icon: 'logo',
 					children: [
 						{
 							title: 'Campaigns',
-							link: '/campaign',
+							link: '/campaigns',
+						},
+						{
+							title: 'System',
+							link: '/system',
 						},
 						{
 							title: 'World Stats',
-							link: '#',
+							link: '/world',
 						},
 						{
-							title: 'User Preferences',
-							link: '#',
+							title: 'About',
+							link: '/about',
+						},
+						{
+							title: 'Log Out',
+							link: '/log-out',
 						},
 					],
 				},
 				{
 					title: 'Settlements',
 					icon: 'settlement',
-					link: '/settlement',
+					link: '/settlement/',
 					children: [
 						{
 							title: 'Settlement',
-							link: '/settlement',
-						},
-						{
-							title: 'A link',
-							link: '#',
-						},
-						{
-							title: 'Another link',
-							link: '#',
-						},
+							link: '/settlement/',
+						}
 					],
 				},
 				{
@@ -53,15 +53,7 @@ class App extends Component {
 					children: [
 						{
 							title: 'Survivors',
-							link: '/Survivors',
-						},
-						{
-							title: 'A link',
-							link: '#',
-						},
-						{
-							title: 'Another link',
-							link: '#',
+							link: '/survivors',
 						},
 					],
 				},
@@ -72,7 +64,7 @@ class App extends Component {
 					children: [
 						{
 							title: 'Resources',
-							link: '/storage',
+							link: '/storage/resources',
 						},
 						{
 							title: 'Gear',
@@ -89,14 +81,6 @@ class App extends Component {
 							title: 'Campaign Log',
 							link: '/log',
 						},
-						{
-							title: 'A link',
-							link: '#',
-						},
-						{
-							title: 'Another link',
-							link: '#',
-						},
 					],
 				},
 				{
@@ -111,10 +95,6 @@ class App extends Component {
 						{
 							title: 'FAQ',
 							link: '/glossary',
-						},
-						{
-							title: 'Another link',
-							link: '#',
 						},
 					],
 				},
@@ -133,10 +113,11 @@ class App extends Component {
 		};
 	}
 	render() {
+		let subName = this.props.routes[2] ? this.props.routes[2].title : null;
 		return (
 			<div className="app">
 				<Nav data={this.state.nav} />
-				<Header data={this.state.pageName} />
+				<Header name={this.props.routes[1].title} subName={subName} />
 				<main className="main">
 					{ this.props.children }
 				</main>

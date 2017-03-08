@@ -9,12 +9,16 @@ import requireAuth from './containers/Require_auth';
 import Home from './containers/Home/Home.jsx';
 import App from './App.jsx';
 import Login from './containers/Login/Login.jsx';
+import About from './containers/About/About.jsx';
+import System from './containers/System/System.jsx';
 import Survivor from './containers/Survivor/Survivor.jsx';
 import Glossary from './containers/Glossary/Glossary.jsx';
 import Survivors from './containers/Survivors/Survivors.jsx';
 import Settlements from './containers/Settlement/Settlements.jsx';
 import Settlement from './containers/Settlement/Settlement.jsx';
 import Storage from './containers/Storage/Storage.jsx';
+import Resources from './containers/Storage/Resources.jsx';
+import Gear from './containers/Storage/Gear.jsx';
 import Campaign from './containers/Campaign/Campaign.jsx';
 import SurvivorHome from './containers/SurvivorHome/SurvivorHome.jsx';
 import World from './containers/World/World.jsx';
@@ -47,18 +51,24 @@ render(
 			<Route path="/" component={Login} />
 			<Route component={App}>
 				{/*<IndexRoute component={Splash} />*/}
-				<Route path="/campaign" component={Campaign} />
-				<Route path="/home" component={Home} />
-				<Route path="/world" component={World} />
-				<Route path="/glossary" component={Glossary} />
-				<Route path="/survivors" component={Survivors} />
-				<Route path="/settlements" component={Settlements} />
-				<Route path="/settlement/:oid" component={Settlement} />
-				<Route path="/storage" component={Storage} />
-				<Route path="/aya" component={Aya} />
-				<Route path="/survivor/" component={SurvivorHome} />
-				<Route path="/splash" component={Splash} />
-				<Route path="*" component={NotFound} />
+				<Route title="Home" path="/home" component={Home} />
+				<Route title="Campaigns" path="/campaigns" component={Campaign} />
+				<Route title="System" path="/system" component={System} />
+				<Route title="World" path="/world" component={World} />
+				<Route title="About" path="/about" component={About} />
+				<Route title="Glossary" path="/glossary" component={Glossary} />
+				<Route title="Survivors" path="/survivors" component={Survivors} />
+				<Route title="Settlements" path="/settlements" component={Settlements} />
+				<Route title="Current Settlement" path="/settlement/:oid" component={Settlement} />
+				<Route title="Storage" path="/storage">
+   				<IndexRoute component={Storage} />
+    			<Route title="Resources" path="resources" component={Resources} />
+    			<Route title="Gear" path="gear" component={Gear} />
+				</Route>
+				<Route title="Aya" path="/aya" component={Aya} />
+				<Route title="Survivor" path="/survivor/" component={SurvivorHome} />
+				<Route title="Splash" path="/splash" component={Splash} />
+				<Route title="Not Found" path="*" component={NotFound} />
 			</Route>
 		</Router>
 	</Provider>

@@ -24,7 +24,7 @@ class Nav extends Component {
 		}
 	}
 	handleMainNav(idx, e) {
-		e.preventDefault();
+		// e.preventDefault();
 		// this.state.activeSubNav = true;
 		this.state.activeIndex = idx;
 		this.setState({
@@ -62,7 +62,7 @@ class Nav extends Component {
 	}
 	renderNavClose() {
 		if (this.state.showNav) {
-			return <div onClick={this.handleCloseNav} className="subNavClose" />;
+			return <button onClick={this.handleCloseNav} className="subNavClose" />;
 		}
 		return null;
 	}

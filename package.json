@@ -7,7 +7,7 @@
     "build": "webpack",
     "test": "jest",
     "dev": "npm run build && webpack-dev-server --inline --no-info --content-base .",
-    "prod": "NODE_ENV=production webpack --config webpack.prod.config.js",
+    "prod": "webpack --config webpack.prod.config.js",
     "deploy": "firebase deploy"
   },
   "author": "",
@@ -30,6 +30,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "expose-loader": "^0.7.0",
+    "html-webpack-plugin": "^2.28.0",
     "node-sass": "^3.7.0",
     "postcss-loader": "^0.13.0",
     "react-hot-loader": "^1.3.0",

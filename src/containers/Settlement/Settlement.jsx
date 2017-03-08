@@ -13,7 +13,7 @@ class Settlement extends React.Component {
 	render() {
 		return (
 			<div>
-				Single Settlement
+				Settlement page
 			</div>
 		);
 	}

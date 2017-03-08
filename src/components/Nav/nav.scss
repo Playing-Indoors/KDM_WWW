@@ -2,9 +2,10 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: $z-index-9000--menu;
 	height: 100%;
-	max-width: $menu-width;
-	width: 90%;
+	width: calc(100% - #{$menu-button-width});
+	// width: 90%;
 	// overflow-x: visible;
 	// overflow-y: auto;
 	background: $gray-darker;
@@ -16,12 +17,13 @@
 
 	@include breakpoint(l) {
 		display: block;
+		width: $menu-width;
 	}
 
-	> ol {
-		position: relative;
-		z-index: 2;
-	}
+	// > ol {
+	// 	position: relative;
+	// 	z-index: 2;
+	// }
 
 	ol, li {
 		display: block;
@@ -31,6 +33,15 @@
 
 	> ol > li + li {
 		border-top: 1px solid $gray;
+	}
+}
+
+.mainNav.is-active ~ .header,
+.mainNav.is-active ~ .main {
+	transform: translateX(calc(100% - #{$menu-button-width}));
+
+	@include breakpoint(l) {
+		transform: translateX(0);
 	}
 }
 
@@ -74,14 +85,20 @@
 	// display: none7;
 	// overflow: hidden; // hides the active state
 	// padding: 2rem 1rem;
+	// display: none;
 	position: absolute;
 	top: 0;
 	left: $menu-button-width;
 	height: 100%;
-	width: $menu-width - $menu-button-width;
+	width: calc(100% - #{$menu-button-width});
 	background: $gray-dark;
 	text-align: left;
+
+	// .mainNav-link.is-active + & {
+	// 	display: block;
+	// }
 }
+
 
 .subNav-link {
 	display: block;
@@ -98,13 +115,13 @@
 .subNavClose {
 	position: fixed;
 	top: 0;
-	left: 0;
-	// right: $menu-width/2;
-	width: 100%;
+	right: 0;
+	width: $menu-button-width;
 	height: 100%;
 	z-index: 1;
 	cursor: pointer;
 	background: rgba($body-bg, 0.64);
+	border: 0;
 
 	@include breakpoint(l) {
 		display: none;
