@@ -1,4 +1,7 @@
-#### KDM React-Redux
+# The Watcher
+[![Build Status](https://travis-ci.org/Playing-Indoors/KDM_WWW.svg?branch=master)](https://travis-ci.org/Playing-Indoors/KDM_WWW)
+
+##### React-Redux
 ##### Contains
  - React 15
  - Redux (Redux Thunk)
