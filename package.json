@@ -44,6 +44,7 @@
     "axios": "^0.11.1",
     "bootstrap": "^4.0.0-alpha.6",
     "classnames": "^2.2.5",
+    "firebase": "^3.7.0",
     "font-awesome": "^4.6.1",
     "html-webpack-plugin": "^2.19.0",
     "lodash": "^4.17.4",
