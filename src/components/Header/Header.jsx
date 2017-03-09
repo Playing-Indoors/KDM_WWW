@@ -23,10 +23,10 @@ class Header extends Component {
 					{this.props.subName ? ` - ${this.props.subName}` : null}
 				</div>
 				<a className="header-action">
-					<Icon name="gear" />
+					<Icon name="help" />
 				</a>
 				<a className="header-action">
-					<Icon name="help" />
+					<Icon name="gear" />
 				</a>
 			</header>
 		);

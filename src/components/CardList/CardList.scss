@@ -1,14 +1,15 @@
 
 .cardList {
+	margin: 1rem 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
 	padding: 1rem;
 	background: $gray-dark;
 
-	& + & {
-		margin-top: 1rem;
-	}
+	// & + & {
+	// 	margin-top: 1rem;
+	// }
 }
 
 .cardList-name {
@@ -25,4 +26,9 @@
 	color: $gray-light;
 	font-weight: bold;
 	font-size: 0.875rem;
+}
+
+.cardList-meta-item {
+	display: inline-block;
+	margin-right: 1rem;
 }

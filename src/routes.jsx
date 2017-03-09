@@ -27,10 +27,10 @@ import NotFound from './components/NotFound/NotFound.jsx';
 import Splash from './components/Splash/Splash.jsx';
 import { AUTH_USER } from './actions/types';
 
-const ReactGA = require('react-ga');
-ReactGA.initialize('UA-89982304-01');
-
 require('../styles/main.scss');
+const ReactGA = require('react-ga');
+
+ReactGA.initialize('UA-89982304-01');
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -52,18 +52,18 @@ render(
 			<Route component={App}>
 				{/*<IndexRoute component={Splash} />*/}
 				<Route title="Home" path="/home" component={Home} />
-				<Route title="Campaigns" path="/campaigns" component={Campaign} />
+				<Route title="Settlements" path="/campaigns" component={Campaign} />
 				<Route title="System" path="/system" component={System} />
 				<Route title="World" path="/world" component={World} />
 				<Route title="About" path="/about" component={About} />
 				<Route title="Glossary" path="/glossary" component={Glossary} />
 				<Route title="Survivors" path="/survivors" component={Survivors} />
 				<Route title="Settlements" path="/settlements" component={Settlements} />
-				<Route title="Current Settlement" path="/settlement/:oid" component={Settlement} />
+				<Route title="Username" path="/settlement/:oid" component={Settlement} />
 				<Route title="Storage" path="/storage">
-   				<IndexRoute component={Storage} />
-    			<Route title="Resources" path="resources" component={Resources} />
-    			<Route title="Gear" path="gear" component={Gear} />
+					<IndexRoute component={Storage} />
+					<Route title="Resources" path="resources" component={Resources} />
+					<Route title="Gear" path="gear" component={Gear} />
 				</Route>
 				<Route title="Aya" path="/aya" component={Aya} />
 				<Route title="Survivor" path="/survivor/" component={SurvivorHome} />

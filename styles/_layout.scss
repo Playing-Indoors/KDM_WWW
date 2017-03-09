@@ -18,6 +18,7 @@ body {
 }
 
 .app {
+	overflow-x: hidden;
 	@include breakpoint(l) {
 		margin-left: $menu-width;
 	}
@@ -29,7 +30,7 @@ body {
 
 // Widget --- this belongs in a component after finalized
 
-.widget {
+.widgetOld {
 	background: $gray-light;
 	padding: 1rem
 }
@@ -59,6 +60,12 @@ progress::-moz-progress-bar {
 
 progress::-webkit-progress-value {
 	background: $brand-primary;
+}
+
+// Button
+
+.btn {
+	font-weight: bold;
 }
 
 // Button Group

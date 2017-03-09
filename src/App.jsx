@@ -14,7 +14,7 @@ class App extends Component {
 					icon: 'logo',
 					children: [
 						{
-							title: 'Campaigns',
+							title: 'Settlements',
 							link: '/campaigns',
 						},
 						{
@@ -38,11 +38,15 @@ class App extends Component {
 				{
 					title: 'Settlements',
 					icon: 'settlement',
-					link: '/settlement/',
+					link: '/settlement/1234',
 					children: [
 						{
+							title: 'Dashboard',
+							link: '/settlement/1234',
+						},
+						{
 							title: 'Settlement',
-							link: '/settlement/',
+							link: '/settlement/1234/settlement',
 						}
 					],
 				},

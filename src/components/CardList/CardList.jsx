@@ -7,19 +7,21 @@ class CardList extends Component {
 		this.state = {
 		};
 	}
-	renderMeta() {
-		if (this.props.meta) {
-			return <div className="cardList-meta">{this.props.meta.join(' | ')}</div>
-		}
-		return null;
-	}
+	// renderMeta() {
+	// 	if (this.props.meta) {
+	// 		return <div className="cardList-meta">{this.props.meta.join(' | ')}</div>;
+	// 	}
+	// 	return null;
+	// }
 	render() {
 		return (
 			<div className="cardList">
 				<div className="cardList-content">
 					<a href={this.props.href} className="cardList-name">{this.props.name}</a>
 					<div className="cardList-desc">{this.props.desc}</div>
-					{this.renderMeta()}
+					<div className="cardList-meta">
+						{ this.props.children }
+					</div>
 				</div>
 				<Button>{this.props.button}</Button>
 			</div>
@@ -39,15 +41,7 @@ CardList.propTypes = {
 	desc: React.PropTypes.string,
 	href: React.PropTypes.string,
 	button: React.PropTypes.string,
-	meta: React.PropTypes.arrayOf(
-		React.PropTypes.string,
-	),
-	// meta: React.PropTypes.arrayOf(
-	// 	React.PropTypes.shape({
-	// 		name: React.PropTypes.string,
-	// 		value: React.PropTypes.string,
-	// 	}),
-	// ),
+	children: React.PropTypes.node,
 };
 
 export default CardList;

@@ -18,6 +18,8 @@ import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
 import Milestone from '../../components/Milestone/Milestone';
 import Icon from '../../components/Icon/Icon';
+import Toggle from '../../components/Toggle/Toggle';
+import Widget from '../../components/Widget/Widget';
 
 class Aya extends Component {
 	constructor(props) {
@@ -163,6 +165,21 @@ class Aya extends Component {
 
 				<br />
 				<br />
+
+
+				<h3>Toggle</h3>
+
+				<Widget>
+					<Toggle
+						label="Automatically add weapon specilization if Innovations include the mastery"
+					/>
+					<Toggle
+						label="Automatically add weapon specilization if Innovations include the mastery"
+					/>
+				</Widget>
+
+
+				<br /> <br />
 
 				<h3>Modal</h3>
 				<Button onClick={this.toggleModal}>Toggle Modal</Button>

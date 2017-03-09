@@ -1,28 +1,40 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 import CardList from '../../components/CardList/CardList';
+import CardListMeta from '../../components/CardList/CardListMeta';
 
 class Campaign extends React.Component {
 	render() {
 		return (
 			<div>
+				<Button color="secondary" block>Create New Campaign</Button>
 				<CardList
 					name="Campaing Name"
-					desc="People of the Lantern (Campaign Rules)"
+					desc="People of the Lantern"
 					href="#route"
-					meta={['Lantern Year 4', 'Population 15', 'Players 3']}
-				/>
+				>
+					<CardListMeta value="Lantern Year 00" />
+					<CardListMeta value="Population 00" />
+					<CardListMeta value="Players 0" />
+				</CardList>
 				<CardList
 					name="Campaing Name"
-					desc="People of the Lantern (Campaign Rules)"
+					desc="People of the Sun"
 					href="#route"
-					meta={['Lantern Year 4', 'Population 15', 'Players 3']}
-				/>
+				>
+					<CardListMeta value="Lantern Year 00" />
+					<CardListMeta value="Population 00" />
+					<CardListMeta value="Players 0" />
+				</CardList>
 				<CardList
 					name="Campaing Name"
-					desc="People of the Lantern (Campaign Rules)"
+					desc="People of the Stars"
 					href="#route"
-					meta={['Lantern Year 4', 'Population 15', 'Players 3']}
-				/>
+				>
+					<CardListMeta value="Lantern Year 00" />
+					<CardListMeta value="Population 00" />
+					<CardListMeta value="Players 0" />
+				</CardList>
 			</div>
 		);
 	}
