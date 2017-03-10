@@ -70,7 +70,7 @@ class Nav extends Component {
 		return this.props.data.map((item, index) => {
 			return (
 				<li key={index}>
-					<Link to={item.link} onClick={(e) => { this.handleMainNav(index, e); }} className="mainNav-link" activeClassName="is-active">
+					<Link onClick={(e) => { this.handleMainNav(index, e); }} className="mainNav-link" activeClassName="is-active">
 						<div className="mainNav-link-icon">
 							<Icon name={item.icon} />
 						</div>
