@@ -4,7 +4,7 @@ import React from 'react';
 // - Make it so that you can pass a link/action if you click on it
 // - If this is true then change the color of the header
 
-const Widget = ({ title, children }) => (
+const Widget = ({ title, event, children }) => (
 	<div className="widget">
 		<header className="widget-header">
 			<div className="widget-header-title">{title}</div>
@@ -17,6 +17,7 @@ const Widget = ({ title, children }) => (
 
 Widget.propTypes = {
 	title: React.PropTypes.string,
+	event: React.PropTypes.string,
 	children: React.PropTypes.node,
 };
 
