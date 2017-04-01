@@ -235,7 +235,7 @@ export default {
             "entry_amendment": ""
         },
         {
-            "id": 351,
+            "id": 352,
             "entry_title": "Automatic Hit",
             "entry_content": "Automatic hits happen in the place of attack rolls. When a survivor attacks, they make attack rolls equal to their weapon's Speed (plus modifiers). Each automatic hit foregoes one of these rolls and adds 1 to the total number of hits when hits are determined. The remaining attack rolls are performed normally, and all hits (rolled or automatic) are drawn and resolved together. Automatic hits are not Perfect hits.",
             "entry_amendment": "*added 10.27.15"

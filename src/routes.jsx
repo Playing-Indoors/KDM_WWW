@@ -61,8 +61,6 @@ render(
 				<Route title="FAQ" path="/faq" component={FAQ} />
 				<Route title="Glossary" path="/glossary" component={Glossary} />
 				<Route title="About" path="/about" component={About} />
-				<Route title="Aya" path="/aya" component={Aya} />
-
 
 				{/* User Routes */}
 				<Route title="System" path="/system" component={System} />
@@ -78,6 +76,10 @@ render(
 				<Route title="Gear" path="/settlements/:oid/gear" component={Gear} />
 				<Route title="Log" path="/settlements/:oid/log" component={Log} />
 
+				{/* Dev Routes */}
+				<Route title="Aya" path="/aya" component={Aya} />
+
+				{/* Error Handling */}
 				<Route title="Not Found" path="*" component={NotFound} />
 			</Route>
 		</Router>

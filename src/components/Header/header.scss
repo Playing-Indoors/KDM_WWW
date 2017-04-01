@@ -1,12 +1,21 @@
 
 .header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0 0.5rem;
-	height: 50px;
+	height: $menu-button-width;
 	color: $gray-lightest;
 	background: $brand-primary;
+
+	@include breakpoint(l) {
+		left: $menu-width;
+		width: calc(100% - #{$menu-width});
+	}
 }
 
 .header-title {
