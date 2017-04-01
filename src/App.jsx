@@ -72,26 +72,26 @@ class App extends Component {
 				{
 					title: 'Storage',
 					icon: 'storage',
-					link: '/settlements/:oid/resources',
+					link: '/settlements/1234/resources',
 					children: [
 						{
 							title: 'Resources',
-							link: '/settlements/:oid/resources',
+							link: '/settlements/1234/resources',
 						},
 						{
 							title: 'Gear',
-							link: '/settlements/:oid/gear',
+							link: '/settlements/1234/gear',
 						},
 					],
 				},
 				{
 					title: 'Campaign Log',
 					icon: 'log',
-					link: '/settlements/:oid/log',
+					link: '/settlements/1234/log',
 					children: [
 						{
 							title: 'Campaign Log',
-							link: '/settlements/:oid/log',
+							link: '/settlements/1234/log',
 						},
 					],
 				},
