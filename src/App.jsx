@@ -10,12 +10,12 @@ class App extends Component {
 			nav: [
 				{
 					title: 'Dashboard',
-					link: '/campaigns',
+					link: '/settlements',
 					icon: 'logo',
 					children: [
 						{
 							title: 'Settlements',
-							link: '/campaigns',
+							link: '/settlements',
 						},
 						{
 							title: 'System',
@@ -38,52 +38,60 @@ class App extends Component {
 				{
 					title: 'Settlements',
 					icon: 'settlement',
-					link: '/settlement/1234',
+					link: '/settlements/1234',
 					children: [
 						{
 							title: 'Dashboard',
-							link: '/settlement/1234',
+							link: '/settlements/1234',
 						},
 						{
 							title: 'Settlement',
-							link: '/settlement/1234/settlement',
+							link: '/settlements/1234/settlement',
 						}
 					],
 				},
 				{
 					title: 'Survivors',
 					icon: 'survivors',
-					link: '/survivors',
+					link: '/settlements/1234/survivors',
 					children: [
 						{
 							title: 'Survivors',
-							link: '/survivors',
+							link: '/settlements/1234/survivors',
+						},
+						{
+							title: 'Adam',
+							link: '/settlements/1234/survivors/1',
+						},
+						{
+							title: 'Eve',
+							link: '/settlements/1234/survivors/2',
 						},
 					],
 				},
 				{
 					title: 'Storage',
 					icon: 'storage',
-					link: '/storage',
+					link: '/settlements/:oid/resources',
 					children: [
 						{
 							title: 'Resources',
-							link: '/storage/resources',
+							link: '/settlements/:oid/resources',
 						},
 						{
 							title: 'Gear',
-							link: '/storage/gear',
+							link: '/settlements/:oid/gear',
 						},
 					],
 				},
 				{
 					title: 'Campaign Log',
 					icon: 'log',
-					link: '/log',
+					link: '/settlements/:oid/log',
 					children: [
 						{
 							title: 'Campaign Log',
-							link: '/log',
+							link: '/settlements/:oid/log',
 						},
 					],
 				},
@@ -98,7 +106,7 @@ class App extends Component {
 						},
 						{
 							title: 'FAQ',
-							link: '/glossary',
+							link: '/faq',
 						},
 					],
 				},

@@ -13,6 +13,8 @@ import About from './containers/About/About.jsx';
 import System from './containers/System/System.jsx';
 import Survivor from './containers/Survivor/Survivor.jsx';
 import Glossary from './containers/Glossary/Glossary.jsx';
+import FAQ from './containers/FAQ/FAQ.jsx';
+import Log from './containers/Log/Log.jsx';
 import Survivors from './containers/Survivors/Survivors.jsx';
 import Settlements from './containers/Settlement/Settlements.jsx';
 import Settlement from './containers/Settlement/Settlement.jsx';
@@ -50,24 +52,32 @@ render(
 		<Router history={browserHistory} onUpdate={logPageView} >
 			<Route path="/" component={Login} />
 			<Route component={App}>
-				{/*<IndexRoute component={Splash} />*/}
-				<Route title="Home" path="/home" component={Home} />
-				<Route title="Settlements" path="/campaigns" component={Campaign} />
-				<Route title="System" path="/system" component={System} />
+				{/* <IndexRoute component={Splash} /> */}
+				{/* <Route title="Splash" path="/splash" component={Splash} /> */}
+				{/* <Route title="Home" path="/home" component={Home} /> */}
+
+				{/* Global Routes */}
 				<Route title="World" path="/world" component={World} />
-				<Route title="About" path="/about" component={About} />
+				<Route title="FAQ" path="/faq" component={FAQ} />
 				<Route title="Glossary" path="/glossary" component={Glossary} />
-				<Route title="Survivors" path="/survivors" component={Survivors} />
-				<Route title="Settlements" path="/settlements" component={Settlements} />
-				<Route title="Username" path="/settlement/:oid" component={Settlement} />
-				<Route title="Storage" path="/storage">
-					<IndexRoute component={Storage} />
-					<Route title="Resources" path="resources" component={Resources} />
-					<Route title="Gear" path="gear" component={Gear} />
-				</Route>
+				<Route title="About" path="/about" component={About} />
 				<Route title="Aya" path="/aya" component={Aya} />
-				<Route title="Survivor" path="/survivor/" component={SurvivorHome} />
-				<Route title="Splash" path="/splash" component={Splash} />
+
+
+				{/* User Routes */}
+				<Route title="System" path="/system" component={System} />
+				<Route title="Settlements" path="/settlements" component={Settlements} />
+
+
+				{/* Settlement Routes */}
+				<Route title="Dashboard" path="/settlements/:oid" component={Campaign} />
+				<Route title="Settlement" path="/settlements/:oid/settlement" component={Settlement} />
+				<Route title="Survivors" path="/settlements/:oid/survivors" component={Survivors} />
+				<Route title="Survivor" path="/settlements/:oid/survivors/:id" component={SurvivorHome} />
+				<Route title="Resources" path="/settlements/:oid/resources" component={Resources} />
+				<Route title="Gear" path="/settlements/:oid/gear" component={Gear} />
+				<Route title="Log" path="/settlements/:oid/log" component={Log} />
+
 				<Route title="Not Found" path="*" component={NotFound} />
 			</Route>
 		</Router>
