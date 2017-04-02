@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getSettlement } from '../../actions/getSettlement';
 import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 
 class Survivor extends React.Component {

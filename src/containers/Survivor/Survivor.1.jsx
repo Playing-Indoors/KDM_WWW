@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getWorld } from '../../actions/getWorld';
-import { getSettlement } from '../../actions/getSettlement';
-// import { getSurvivor } from '../../actions/getSurvivor';
 import Stat from '../../components/Stats/Stats';
 import StatGroup from '../../components/Stats/StatGroup';
 import StatGroupObj from '../../components/Stats/StatGroupObj';
@@ -22,8 +20,6 @@ class World extends React.Component {
 	}
 	componentDidMount() {
 		this.props.getWorld(); // eslint-disable-line react/prop-types
-		this.props.getSettlement(); // eslint-disable-line react/prop-types
-		// this.props.getSurvivor(); // eslint-disable-line react/prop-types
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.worldData) {
@@ -47,7 +43,7 @@ class World extends React.Component {
 			return (
 				<div className="page-world">
 					<main className="main">
-					
+
 						<div className="boxGroup">
 							<StatGroupObj statObj={this.state.survivorData.mock.survival} />
 							<StatGroupObj statObj={this.state.survivorData.mock.bleeding} />
@@ -133,16 +129,13 @@ class World extends React.Component {
 function mapStateToProps(state) {
 	return {
 		worldData: state.worldData,
-		// survivorData: state.survivorData,
 		settlementData: state.settlementData,
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		getWorld,
-		getSettlement,
-		// getSurvivor,
+		getWorld
 	}, dispatch);
 }
 

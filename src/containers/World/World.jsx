@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getHome } from '../../actions/getHome';
 import { getWorld } from '../../actions/getWorld';
-import { getSettlement } from '../../actions/getSettlement';
 import { getSurvivor } from '../../actions/getSurvivor';
 import TugGraph from '../../components/TugGraph/TugGraph';
 import Stat from '../../components/Stats/Stats';
@@ -23,8 +22,6 @@ class World extends React.Component {
 	}
 	componentDidMount() {
 		this.props.getWorld();
-		this.props.getSettlement();
-		//this.props.getSurvivor();
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.worldData) {
@@ -125,16 +122,13 @@ class World extends React.Component {
 function mapStateToProps(state) {
 	return {
 		worldData: state.worldData,
-		survivorData: state.survivorData,
 		settlementData: state.settlementData,
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		getWorld,
-		getSettlement,
-		getSurvivor,
+		getWorld
 	}, dispatch);
 }
 

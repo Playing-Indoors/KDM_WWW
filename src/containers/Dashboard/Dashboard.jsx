@@ -2,16 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'reactstrap';
-import { getSettlement } from '../../actions/getSettlement';
 import Widget from '../../components/Widget/Widget';
 
 
 class Dashboard extends React.Component {
 	constructor(props){
 		super(props);
-	}
-	componentDidMount(){
-		this.props.getSettlement();
 	}
 	render() {
 		return (
@@ -72,10 +68,4 @@ function mapStateToProps(state) {
 	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		getSettlement,
-	}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);

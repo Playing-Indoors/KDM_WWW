@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getSettlement } from '../../actions/getSettlement';
 import Survivor from '../Survivor/Survivor.jsx';
 import CardList from '../../components/CardList/CardList';
 import _ from 'underscore';
@@ -14,9 +13,6 @@ class SurvivorHome extends React.Component {
 			survivorData: null,
 			currentSurvivor: null
 		};
-	}
-	componentDidMount() {
-		this.props.getSettlement();
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.settlementData) {
@@ -79,10 +75,4 @@ function mapStateToProps(state) {
 	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		getSettlement,
-	}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SurvivorHome);
+export default connect(mapStateToProps, null)(SurvivorHome);
