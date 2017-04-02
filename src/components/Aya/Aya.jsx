@@ -200,8 +200,23 @@ class Aya extends Component {
 
 				<h2>Patterns</h2>
 
-				<h3>Box</h3>
+				<h3>Widget</h3>
 
+				<Widget>
+					A Widget is a container to put things in.
+				</Widget>
+
+				<Widget title="I have a title">
+					A Widget is a container to put things in.
+				</Widget>
+
+				<Widget title="I am clickable" event="test">
+					A Widget is a container to put things in. You can make it
+					into a button with the event flag.
+				</Widget>
+
+
+{/*
 				<div className="box">
 					<header className="box-header">
 						<div className="box-header-title">Box</div>
@@ -219,7 +234,7 @@ class Aya extends Component {
 					<button className="box-content">
 						You can make me clickable
 					</button>
-				</div>
+				</div>*/}
 
 				<br />
 				<br />

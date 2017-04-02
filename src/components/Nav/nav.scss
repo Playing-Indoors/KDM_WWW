@@ -51,16 +51,18 @@
 	height: $menu-button-width;
 	background: $gray-darker;
 
-	&:hover, &:focus {
+	&:hover, &:focus, .is-active > & {
 		cursor: pointer;
-		background: mix($brand-primary, $gray-darker, 50%);
+		// background: mix($brand-primary, $gray-darker, 25%);
+		box-shadow: inset 0 0 0 2px $brand-primary;
 		outline: 0;
 	}
 
-	&.is-active {
+	&.mainNav-link--current {
 		background: $brand-primary;
 	}
 }
+
 
 .mainNav-link-icon {
 	padding: 17px;
@@ -86,6 +88,7 @@
 	// overflow: hidden; // hides the active state
 	// padding: 2rem 1rem;
 	// display: none;
+	display: none;
 	position: absolute;
 	top: 0;
 	left: $menu-button-width;
@@ -97,6 +100,15 @@
 	// .mainNav-link.is-active + & {
 	// 	display: block;
 	// }
+
+	.mainNav-link--current + & {
+		display: block;
+	}
+
+	.is-active > & {
+		display: block;
+		z-index: 100;
+	}
 }
 
 
@@ -109,6 +121,10 @@
 
 	&.is-active {
 		color: $brand-primary;
+	}
+
+	&:hover, &:focus {
+		outline: 0;
 	}
 }
 

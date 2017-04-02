@@ -10,7 +10,7 @@ class App extends Component {
 			nav: [
 				{
 					title: 'Dashboard',
-					link: '/settlements',
+					link: '/',
 					icon: 'logo',
 					children: [
 						{
@@ -38,15 +38,15 @@ class App extends Component {
 				{
 					title: 'Settlements',
 					icon: 'settlement',
-					link: '/settlements/1234',
+					link: '/settlements/1234/settlement/',
 					children: [
 						{
 							title: 'Dashboard',
-							link: '/settlements/1234',
+							link: '/settlements/1234/settlement/dashboard',
 						},
 						{
 							title: 'Settlement',
-							link: '/settlements/1234/settlement',
+							link: '/settlements/1234/settlement/records',
 						}
 					],
 				},
@@ -56,8 +56,8 @@ class App extends Component {
 					link: '/settlements/1234/survivors',
 					children: [
 						{
-							title: 'Survivors',
-							link: '/settlements/1234/survivors',
+							title: 'All',
+							link: '/settlements/1234/survivors/all',
 						},
 						{
 							title: 'Adam',
@@ -72,15 +72,15 @@ class App extends Component {
 				{
 					title: 'Storage',
 					icon: 'storage',
-					link: '/settlements/1234/resources',
+					link: '/settlements/1234/storage',
 					children: [
 						{
 							title: 'Resources',
-							link: '/settlements/1234/resources',
+							link: '/settlements/1234/storage/resources',
 						},
 						{
 							title: 'Gear',
-							link: '/settlements/1234/gear',
+							link: '/settlements/1234/storage/gear',
 						},
 					],
 				},
@@ -96,17 +96,17 @@ class App extends Component {
 					],
 				},
 				{
-					title: 'Glossary/FAQ',
+					title: 'Resources',
 					icon: 'faq',
-					link: '/glossary',
+					link: '/resources',
 					children: [
 						{
 							title: 'Glossary',
-							link: '/glossary',
+							link: '/resources/glossary',
 						},
 						{
 							title: 'FAQ',
-							link: '/faq',
+							link: '/resources/faq',
 						},
 					],
 				},

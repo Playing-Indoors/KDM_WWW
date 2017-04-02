@@ -56,25 +56,40 @@ render(
 				{/* <Route title="Splash" path="/splash" component={Splash} /> */}
 				{/* <Route title="Home" path="/home" component={Home} /> */}
 
-				{/* Global Routes */}
-				<Route title="World" path="/world" component={World} />
-				<Route title="FAQ" path="/faq" component={FAQ} />
-				<Route title="Glossary" path="/glossary" component={Glossary} />
-				<Route title="About" path="/about" component={About} />
-
-				{/* User Routes */}
-				<Route title="System" path="/system" component={System} />
-				<Route title="Settlements" path="/settlements" component={Settlements} />
-
+				<Route path="/">
+					<Route title="Settlements" path="/settlements" component={Settlements} />
+					<Route title="System" path="/system" component={System} />
+					<Route title="World" path="/world" component={World} />
+					<Route title="About" path="/about" component={About} />
+				</Route>
 
 				{/* Settlement Routes */}
-				<Route title="Dashboard" path="/settlements/:oid" component={Campaign} />
-				<Route title="Settlement" path="/settlements/:oid/settlement" component={Settlement} />
-				<Route title="Survivors" path="/settlements/:oid/survivors" component={Survivors} />
-				<Route title="Survivor" path="/settlements/:oid/survivors/:id" component={SurvivorHome} />
-				<Route title="Resources" path="/settlements/:oid/resources" component={Resources} />
-				<Route title="Gear" path="/settlements/:oid/gear" component={Gear} />
-				<Route title="Log" path="/settlements/:oid/log" component={Log} />
+				<Route path="/settlements/:oid">
+
+					<Route path="settlement">
+						<Route title="Dashboard" path="dashboard" component={Campaign} />
+						<Route title="Records" path="records" component={SurvivorHome} />
+					</Route>
+
+					<Route path="survivors">
+						<Route title="Survivor" path="all" component={Survivors} />
+						<Route title="Survivor" path=":id" component={SurvivorHome} />
+					</Route>
+
+					<Route path="storage">
+						<Route title="Resources" path="resources" component={Resources} />
+						<Route title="Gear" path="gear" component={Gear} />
+					</Route>
+
+					<Route title="Log" path="log">
+						<IndexRoute component={Log} />
+					</Route>
+				</Route>
+
+				<Route path="resources">
+					<Route title="FAQ" path="faq" component={FAQ} />
+					<Route title="Glossary" path="glossary" component={Glossary} />
+				</Route>
 
 				{/* Dev Routes */}
 				<Route title="Aya" path="/aya" component={Aya} />

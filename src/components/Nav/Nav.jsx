@@ -10,10 +10,9 @@ class Nav extends Component {
 		super(props);
 		this.state = {
 			showNav: false,
-			// activeSubNav: false,
-			activeIndex: 0,
+			activeIndex: null,
 		};
-		this.handleMainNav = this.handleMainNav.bind(this);
+		// this.handleMainNav = this.handleMainNav.bind(this);
 		this.handleCloseNav = this.handleCloseNav.bind(this);
 	}
 	componentWillReceiveProps(nextProps) {
@@ -23,15 +22,15 @@ class Nav extends Component {
 			});
 		}
 	}
-	handleMainNav(idx, e) {
-		// e.preventDefault();
-		// this.state.activeSubNav = true;
-		this.state.activeIndex = idx;
-		this.setState({
-			// activeSubNav: true,
-			activeIndex: idx,
-		});
-	}
+	// handleMainNav(idx, e) {
+	// 	// e.preventDefault();
+	// 	// this.state.activeSubNav = true;
+	// 	this.state.activeIndex = idx;
+	// 	this.setState({
+	// 		// activeSubNav: true,
+	// 		activeIndex: idx,
+	// 	});
+	// }
 	handleCloseNav() {
 		this.setState({
 			showNav: false,
@@ -39,9 +38,9 @@ class Nav extends Component {
 	}
 	renderSubNav(index, title, children) {
 		// if (!this.state.activeSubNav || index !== this.state.activeIndex) {
-		if (index !== this.state.activeIndex) {
-			return null;
-		}
+		// if (index !== this.state.activeIndex) {
+		// 	return null;
+		// }
 		return (
 			<div className="subNav">
 				<div className="subNav-title">{title}</div>
@@ -67,19 +66,27 @@ class Nav extends Component {
 		return null;
 	}
 	renderNodes() {
-		return this.props.data.map((item, index) => {
-			return (
-				<li key={index}>
-					<Link onClick={(e) => { this.handleMainNav(index, e); }} className="mainNav-link" activeClassName="is-active">
-						<div className="mainNav-link-icon">
-							<Icon name={item.icon} />
-						</div>
-						<div className="sr-only">{item.title}</div>
-					</Link>
-					{this.renderSubNav(index, item.title, item.children)}
-				</li>
-			);
-		});
+		return this.props.data.map((item, index) =>
+			<li key={index} className={(this.state.activeIndex === index) ? 'is-active' : ''}>
+				<Link
+					onClick={(e) => {
+						e.preventDefault();
+						this.setState({
+							activeIndex: index,
+						});
+					}}
+					className="mainNav-link"
+					activeClassName="mainNav-link--current"
+					to={item.link}
+				>
+					<div className="mainNav-link-icon">
+						<Icon name={item.icon} />
+					</div>
+					<div className="sr-only">{item.title}</div>
+				</Link>
+				{this.renderSubNav(index, item.title, item.children)}
+			</li>,
+		);
 	}
 	render() {
 		return (
@@ -104,4 +111,6 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, null)(Nav);
+export default connect(mapStateToProps, null, null, {
+	pure: false,
+})(Nav);

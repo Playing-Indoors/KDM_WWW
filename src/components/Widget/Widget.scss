@@ -6,8 +6,12 @@
 
 .widget-header {
   padding: 0.25rem 0.5rem;
-  background: $gray-light;
+  background: $gray-darker;
   color: #fff;
+}
+
+.widget-header--link {
+  background: $gray-light;
 }
 
 .widget-content {
