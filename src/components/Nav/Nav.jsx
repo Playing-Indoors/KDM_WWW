@@ -54,7 +54,13 @@ class Nav extends Component {
 		return children.map((item, index) => {
 			return (
 				<li key={index}>
-					<Link to={item.link} className="subNav-link" activeClassName="is-active">{item.title}</Link>
+					<Link
+						to={item.link}
+						className="subNav-link"
+						activeClassName="is-active"
+					>
+						{item.title}
+					</Link>
 				</li>
 			);
 		});

@@ -3,11 +3,11 @@ import { Button } from 'reactstrap';
 import CardList from '../../components/CardList/CardList';
 import CardListMeta from '../../components/CardList/CardListMeta';
 
-class Campaign extends React.Component {
+class Settlements extends React.Component {
 	render() {
 		return (
 			<div>
-				<Button color="secondary" block>Create New Campaign</Button>
+				<Button color="secondary" block className="mb-3">Create New Settlement</Button>
 				<CardList
 					name="Campaing Name"
 					desc="People of the Lantern"
@@ -40,4 +40,4 @@ class Campaign extends React.Component {
 	}
 }
 
-export default Campaign;
+export default Settlements;

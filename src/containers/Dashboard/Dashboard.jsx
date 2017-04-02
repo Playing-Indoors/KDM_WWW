@@ -6,7 +6,7 @@ import { getSettlement } from '../../actions/getSettlement';
 import Widget from '../../components/Widget/Widget';
 
 
-class Settlement extends React.Component {
+class Dashboard extends React.Component {
 	constructor(props){
 		super(props);
 	}
@@ -78,4 +78,4 @@ function mapDispatchToProps(dispatch) {
 	}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settlement);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

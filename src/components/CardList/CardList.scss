@@ -1,9 +1,9 @@
 
 .cardList {
-	margin: 1rem 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
+	margin-bottom: $spacer-y;
 	padding: 1rem;
 	background: $gray-dark;
 

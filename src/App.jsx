@@ -45,9 +45,13 @@ class App extends Component {
 							link: '/settlements/1234/settlement/dashboard',
 						},
 						{
-							title: 'Settlement',
-							link: '/settlements/1234/settlement/records',
-						}
+							title: 'Timeline',
+							link: '/settlements/1234/settlement/timeline',
+						},
+						{
+							title: 'Innovations',
+							link: '/settlements/1234/settlement/innovations',
+						},
 					],
 				},
 				{

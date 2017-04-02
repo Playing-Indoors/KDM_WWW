@@ -48,7 +48,7 @@ class SurvivorHome extends React.Component {
 						href="#route"
 					/>
 				</div>
-			)
+			);
 		});
 	}
 	render() {

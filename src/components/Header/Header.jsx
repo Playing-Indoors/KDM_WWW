@@ -19,8 +19,8 @@ class Header extends Component {
 				<a className="header-action header-action--nav" onClick={this.handleNav}>
 					<Icon name="nav" />
 				</a>
-				<div className="header-title">{this.props.name}
-					{this.props.subName ? ` - ${this.props.subName}` : null}
+				<div className="header-title">
+					{this.props.subName ? this.props.subName : this.props.name}
 				</div>
 				<a className="header-action">
 					<Icon name="help" />
@@ -45,6 +45,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
 	name: React.PropTypes.string,
+	subName: React.PropTypes.string,
 };
 
 export default connect(null, mapDispatchToProps)(Header);

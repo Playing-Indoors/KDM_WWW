@@ -16,12 +16,12 @@ import Glossary from './containers/Glossary/Glossary.jsx';
 import FAQ from './containers/FAQ/FAQ.jsx';
 import Log from './containers/Log/Log.jsx';
 import Survivors from './containers/Survivors/Survivors.jsx';
-import Settlements from './containers/Settlement/Settlements.jsx';
-import Settlement from './containers/Settlement/Settlement.jsx';
+import Settlements from './containers/Settlements/Settlements.jsx';
+import Timeline from './containers/Timeline/Timeline.jsx';
 import Storage from './containers/Storage/Storage.jsx';
 import Resources from './containers/Storage/Resources.jsx';
 import Gear from './containers/Storage/Gear.jsx';
-import Campaign from './containers/Campaign/Campaign.jsx';
+import Dashboard from './containers/Dashboard/Dashboard.jsx';
 import SurvivorHome from './containers/SurvivorHome/SurvivorHome.jsx';
 import World from './containers/World/World.jsx';
 import Aya from './components/Aya/Aya.jsx';
@@ -67,8 +67,8 @@ render(
 				<Route path="/settlements/:oid">
 
 					<Route path="settlement">
-						<Route title="Dashboard" path="dashboard" component={Campaign} />
-						<Route title="Records" path="records" component={SurvivorHome} />
+						<Route title="Dashboard" path="dashboard" component={Dashboard} />
+						<Route title="Timeline" path="timeline" component={Timeline} />
 					</Route>
 
 					<Route path="survivors">
