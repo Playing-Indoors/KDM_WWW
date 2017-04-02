@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Nav from './components/Nav/Nav';
 import Header from './components/Header/Header';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getSettlement } from './actions/getSettlement';
 
 class App extends Component {
 	constructor(props) {
@@ -128,6 +131,9 @@ class App extends Component {
 			],
 		};
 	}
+	componentDidMount(){
+		this.props.getSettlement();
+	}
 	render() {
 		let subName = this.props.routes[2] ? this.props.routes[2].title : null;
 		return (
@@ -146,5 +152,16 @@ App.propTypes = {
 	children: React.PropTypes.node,
 };
 
+function mapStateToProps(state) {
+	return {
+		settlementData: state.settlementData,
+	};
+}
 
-export default App;
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		getSettlement,
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

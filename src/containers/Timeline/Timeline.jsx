@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getSettlement } from '../../actions/getSettlement';
 import Widget from '../../components/Widget/Widget';
 
 class Timeline extends React.Component {
@@ -10,9 +9,6 @@ class Timeline extends React.Component {
 		this.state = {
 			settlementData: null
 		};
-	}
-	componentDidMount() {
-		this.props.getSettlement();
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.settlementData) {
@@ -52,10 +48,4 @@ function mapStateToProps(state) {
 	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		getSettlement,
-	}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Timeline);
+export default connect(mapStateToProps, null)(Timeline);
