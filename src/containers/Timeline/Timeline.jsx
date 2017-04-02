@@ -18,11 +18,7 @@ class Timeline extends React.Component {
 		}
 	}
 	renderYear() {
-		if (
-			this.state.settlementData &&
-			this.state.settlementData.sheet &&
-			this.state.settlementData.sheet.timeline
-		) {
+		if (this.state.settlementData) {
 			return this.state.settlementData.sheet.timeline.map((year) => {
 				return (
 					<Widget title={`Lantern Year ${year.year}`}>
