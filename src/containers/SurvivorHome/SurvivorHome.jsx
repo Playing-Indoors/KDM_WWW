@@ -14,6 +14,10 @@ class SurvivorHome extends React.Component {
 			currentSurvivor: null
 		};
 	}
+	componentDidMount(){
+		let path = this.props.location.pathname.match(/^\/settlements\/(\d+)/);
+		console.log(path[1]);
+	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.settlementData) {
 			this.setState({
