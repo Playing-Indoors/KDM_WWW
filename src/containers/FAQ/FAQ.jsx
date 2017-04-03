@@ -2,13 +2,16 @@ import React from 'react';
 import { InputGroup, Input, InputGroupButton, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import faqJSON from './faqData.js';
 import Widget from '../../components/Widget/Widget';
+import _ from 'lodash';
 
 class FAQ extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			originalFaqData: faqJSON.entry,
 			faqData: faqJSON.entry,
 		};
+		this.handleTypeahead = this.handleTypeahead.bind(this);
 	}
 	renderFAQItems() {
 		return this.state.faqData.map((faq) => {
@@ -19,17 +22,26 @@ class FAQ extends React.Component {
 			);
 		});
 	}
+	handleTypeahead(e){
+		let filteredFAQ = this.state.originalFaqData.filter((faq)=>{
+			let stringInContent = _.includes(faq.content.$t, e.target.value);
+			if(stringInContent){
+				return faq;
+			}
+		});
+		this.setState({ faqData: filteredFAQ});
+	}
 	render() {
 		return (
 			<div>
 				<Widget>
 					<InputGroup>
-						<Input placeholder="Search FAQ" />
-						<InputGroupButton color="primary">Search</InputGroupButton>
+						<Input onChange={this.handleTypeahead} placeholder="Search FAQ" />
+						{/* <InputGroupButton color="primary">Search</InputGroupButton> */}
 					</InputGroup>
 				</Widget>
 				{this.renderFAQItems()}
-				<Pagination>
+				{/* <Pagination>
 					<PaginationItem disabled>
 						<PaginationLink previous href="#" />
 					</PaginationItem>
@@ -61,7 +73,7 @@ class FAQ extends React.Component {
 					<PaginationItem>
 						<PaginationLink next href="#" />
 					</PaginationItem>
-				</Pagination>
+				</Pagination> */}
 			</div>
 		);
 	}
