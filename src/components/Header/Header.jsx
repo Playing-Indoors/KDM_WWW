@@ -13,6 +13,15 @@ class Header extends Component {
 	handleNav(){
 		this.props.updateHeader();
 	}
+	renderName(){
+		if(this.props.superSubName){
+			return `${this.props.superSubName}`;
+		} else if (this.props.subName){
+			return `${this.props.subName}`;
+		} else {
+			return `${this.props.name}`;
+		}
+	}
 	render(){
 		return (
 			<header className="header">
@@ -20,7 +29,7 @@ class Header extends Component {
 					<Icon name="nav" />
 				</a>
 				<div className="header-title">
-					{this.props.subName ? this.props.subName : this.props.name}
+					{this.renderName()}
 				</div>
 				<a className="header-action">
 					<Icon name="help" />

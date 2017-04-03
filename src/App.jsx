@@ -136,10 +136,11 @@ class App extends Component {
 	}
 	render() {
 		let subName = this.props.routes[2] ? this.props.routes[2].title : null;
+		let superSubName = this.props.routes[3] ? this.props.routes[3].title : null;
 		return (
 			<div className="app">
 				<Nav data={this.state.nav} />
-				<Header name={this.props.routes[1].title} subName={subName} />
+				<Header name={this.props.routes[1].title} subName={subName} superSubName={superSubName}/>
 				<main className="main">
 					{ this.props.children }
 				</main>
