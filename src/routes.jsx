@@ -73,7 +73,7 @@ render(
 
 					<Route path="survivors">
 						<Route title="Survivor" path="all" component={Survivors} />
-						<Route title="Survivor" path=":id" component={SurvivorHome} />
+						<Route title="Survivor" path=":id" component={Survivor} />
 					</Route>
 
 					<Route path="storage">

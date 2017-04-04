@@ -6,9 +6,6 @@ import Widget from '../../components/Widget/Widget';
 class Timeline extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			settlementData: null
-		};
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.settlementData) {
@@ -17,12 +14,27 @@ class Timeline extends React.Component {
 			});
 		}
 	}
-	renderYear() {
-		if (this.state.settlementData) {
-			return this.state.settlementData.sheet.timeline.map((year) => {
+	renderEvent(events) {
+		if (events) {
+			return events.map(event => {
 				return (
-					<Widget title={`Lantern Year ${year.year}`}>
-						Endless Screams [115]
+					<div>
+						{event.name}
+					</div>
+				)
+			});
+		}
+	}
+	renderYear() {
+		if (this.props.settlementData) {
+			return this.props.settlementData.sheet.timeline.map((year) => {
+				return (
+					<Widget title={`Lantern Year ${year.year}`} key={year.year}>
+						{this.renderEvent(year.showdown_event)}
+						{this.renderEvent(year.settlement_event)}
+						{this.renderEvent(year.nemesis_encounter)}
+						{this.renderEvent(year.special_showdown)}
+						{this.renderEvent(year.story_event)}
 					</Widget>
 				);
 			});

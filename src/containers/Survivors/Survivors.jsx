@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import CardList from '../../components/CardList/CardList';
 
 class Survivors extends React.Component {
@@ -6,27 +8,41 @@ class Survivors extends React.Component {
 		let path = this.props.location.pathname.match(/^\/settlements\/(\d+)/);
 		console.log(path[1]);
 	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.settlementData) {
+			this.setState({
+				settlementData: nextProps.settlementData,
+			});
+		}
+	}
+	renderSurvivors() {
+		if (this.props.settlementData) {
+			return this.props.settlementData.user_assets.survivors.map((survivor) => {
+				return (
+					<CardList
+						key={survivor.sheet._id.$oid}
+						name={survivor.sheet.name}
+						href={survivor.sheet._id.$oid}
+					/>
+				);
+			});
+		}
+		return null;
+	}
 	render() {
 		return (
 			<div>
-				<CardList
-					name="Survivor Name"
-					desc="Hunt XP: 10"
-					href="#route"
-				/>
-				<CardList
-					name="Survivor Name"
-					desc="Hunt XP: 10"
-					href="#route"
-				/>
-				<CardList
-					name="Survivor Name"
-					desc="Hunt XP: 10"
-					href="#route"
-				/>
+				{this.renderSurvivors()}
 			</div>
 		);
 	}
 }
 
-export default Survivors;
+function mapStateToProps(state) {
+	return {
+		settlementData: state.settlementData,
+	};
+}
+
+export default connect(mapStateToProps, null)(Survivors);
+
