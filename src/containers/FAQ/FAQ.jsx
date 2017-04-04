@@ -24,7 +24,7 @@ class FAQ extends React.Component {
 	}
 	handleTypeahead(e){
 		let filteredFAQ = this.state.originalFaqData.filter((faq)=>{
-			let stringInContent = _.includes(faq.content.$t, e.target.value);
+			let stringInContent = _.includes(faq.content.$t.toLowerCase(), e.target.value.toLowerCase());
 			if(stringInContent){
 				return faq;
 			}
