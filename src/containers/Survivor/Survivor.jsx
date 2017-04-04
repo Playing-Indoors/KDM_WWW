@@ -12,29 +12,16 @@ class Survivor extends React.Component {
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.settlementData) {
+			let arr = _.filter(nextProps.settlementData.user_assets.survivors, (survivor) => {
+				if(survivor.sheet._id.$oid === this.props.routeParams.id){
+					return survivor;
+				}
+			});
 			this.setState({
 				settlementData: nextProps.settlementData,
+				survivor: arr[0],
 			});
 		}
-	}
-	componentWillMount() {
-		this.loadSurvivor(this.props.routeParams.id);
-	}
-
-	loadSurvivor(id) {
-		// this didn't load so... TIMEOUT!
-		setTimeout(() => {
-			if (this.props.settlementData) {
-				let arr = _.filter(this.props.settlementData.user_assets.survivors, (survivor) => {
-					if(survivor.sheet._id.$oid === id){
-						return survivor;
-					}
-				});
-				this.setState({
-					survivor: arr[0],
-				});
-			}
-		}, 1000);
 	}
 	renderSurvivor() {
 		if (this.state.survivor) {
@@ -64,4 +51,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(Survivor);
-
