@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Icon from '../../components/Icon/Icon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { closeHeader } from '../../actions/updateHeader';
 
 class Nav extends Component {
 	constructor(props) {
@@ -16,9 +16,9 @@ class Nav extends Component {
 		this.handleCloseNav = this.handleCloseNav.bind(this);
 	}
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.headerData.showNav) {
+		if (nextProps.headerData) {
 			this.setState({
-				showNav: true,
+				showNav: nextProps.headerData.showNav,
 			});
 		}
 	}
@@ -32,9 +32,7 @@ class Nav extends Component {
 	// 	});
 	// }
 	handleCloseNav() {
-		this.setState({
-			showNav: false,
-		});
+		this.props.closeHeader();
 	}
 	renderSubNav(index, title, children) {
 		// if (!this.state.activeSubNav || index !== this.state.activeIndex) {
@@ -58,6 +56,7 @@ class Nav extends Component {
 						to={item.link}
 						className="subNav-link"
 						activeClassName="is-active"
+						onClick={this.handleCloseNav}
 					>
 						{item.title}
 					</Link>
@@ -117,6 +116,12 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, null, null, {
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		closeHeader: closeHeader
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {
 	pure: false,
 })(Nav);
