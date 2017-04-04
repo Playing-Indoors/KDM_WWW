@@ -186,3 +186,9 @@ progress::-webkit-progress-value {
 		margin: 0 0.5rem 1rem;
 	}
 }
+
+// Remove Highlight focus
+
+button {
+  outline: none !important;
+}
