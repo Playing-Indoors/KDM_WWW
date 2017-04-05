@@ -22,6 +22,11 @@ class Nav extends Component {
 				showNav: nextProps.headerData.showNav,
 			});
 		}
+		const actIndex = parseInt(document.body.querySelector('.mainNav-link--current').closest('li').dataset.i, 10);
+		console.log('actIndex', actIndex);
+		this.setState({
+			initialIndex: actIndex,
+		});
 	}
 	// handleMainNav(idx, e) {
 	// 	// e.preventDefault();
@@ -72,9 +77,9 @@ class Nav extends Component {
 		}
 		return null;
 	}
-	renderNodes() {
+	renderMainNav() {
 		return this.props.data.map((item, index) =>
-			<li key={index} className={(this.state.activeIndex === index) ? 'is-active' : ''}>
+			<li data-i={index} key={index} className={(this.state.activeIndex === index) ? 'is-active' : ''}>
 				<Link
 					onClick={(e) => {
 						e.preventDefault();
@@ -113,7 +118,7 @@ class Nav extends Component {
 				}}
 			>
 				<ol>
-					{this.renderNodes()}
+					{this.renderMainNav()}
 				</ol>
 				{this.renderNavClose()}
 			</nav>

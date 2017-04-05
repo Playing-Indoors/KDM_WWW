@@ -51,7 +51,7 @@
 	height: $menu-button-width;
 	background: $gray-darker;
 
-	&:hover, &:focus, .is-active > & {
+	&:hover, .is-active > & {
 		background: $brand-primary;
 		// cursor: pointer;
 		// background: mix($brand-primary, $gray-darker, 25%);
