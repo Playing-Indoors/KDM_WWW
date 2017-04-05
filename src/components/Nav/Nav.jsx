@@ -11,11 +11,11 @@ class Nav extends Component {
 		this.state = {
 			showNav: false,
 			activeIndex: null,
-			initialIndex: 0,
+			initialIndex: null,
 		};
 		// this.handleMainNav = this.handleMainNav.bind(this);
 		this.handleCloseNav = this.handleCloseNav.bind(this);
-		this.handleGetIndex = this.handleGetIndex.bind(this);
+		// this.handleGetIndex = this.handleGetIndex.bind(this);
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.headerData) {
@@ -23,34 +23,24 @@ class Nav extends Component {
 				showNav: nextProps.headerData.showNav,
 			});
 		}
-		//this.calculateIndex();
 	}
-	// handleMainNav(idx, e) {
-	// 	// e.preventDefault();
-	// 	// this.state.activeSubNav = true;
-	// 	this.state.activeIndex = idx;
-	// 	this.setState({
-	// 		// activeSubNav: true,
-	// 		activeIndex: idx,
-	// 	});
-	// }
-	// calculateIndex() {
-	// 	const actIndex = parseInt(document.body.querySelector('.mainNav-link--current').closest('li').dataset.i, 10);
-	// 	console.log('actIndex', actIndex);
-	// 	this.setState({
-	// 		initialIndex: actIndex,
-	// 	});
-	// }
+	componentDidMount() {
+		const inIndex = parseInt(document.body.querySelector('.mainNav-link--current').closest('li').dataset.i, 10);
+		this.setState({
+			initialIndex: inIndex,
+			activeIndex: inIndex,
+		});
+	}
 	handleCloseNav() {
 		window.scrollTo(0, 0);
 		this.props.closeHeader();
 		//this.calculateIndex();
 	}
-	handleGetIndex(index){
-			this.setState({
-				initialIndex: index,
-			});
-	}
+	// handleGetIndex(index) {
+	// 	this.setState({
+	// 		initialIndex: index,
+	// 	});
+	// }
 	renderSubNav(index, title, children) {
 		// if (!this.state.activeSubNav || index !== this.state.activeIndex) {
 		// if (index !== this.state.activeIndex) {
@@ -92,7 +82,7 @@ class Nav extends Component {
 			<li data-i={index} key={index} className={(this.state.activeIndex === index) ? 'is-active' : ''}>
 				<Link
 					onClick={(e) => {
-						this.handleGetIndex(index)
+						{/*this.handleGetIndex(index)*/}
 						e.preventDefault();
 					}}
 					onFocus={(e) => {
