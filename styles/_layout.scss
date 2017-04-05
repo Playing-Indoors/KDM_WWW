@@ -66,9 +66,19 @@ progress::-webkit-progress-value {
 
 .btn {
 	font-weight: bold;
+	cursor: pointer;
+
+	&:focus {
+		opacity: 0.87;
+		box-shadow: none;
+	}
 }
 
 // Button Group
+
+a:focus {
+	outline: 0;
+}
 
 .btn-group--full {
 	width: 100%;
@@ -185,10 +195,4 @@ progress::-webkit-progress-value {
 		flex-direction: column;
 		margin: 0 0.5rem 1rem;
 	}
-}
-
-// Remove Highlight focus
-
-button {
-  outline: none !important;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputGroup, Input, InputGroupButton } from 'reactstrap';
+import { Input } from 'reactstrap';
 import faqJSON from './faqData.js';
 import Widget from '../../components/Widget/Widget';
 import _ from 'lodash';
@@ -35,9 +35,7 @@ class FAQ extends React.Component {
 		return (
 			<div>
 				<Widget>
-					<InputGroup>
-						<Input onChange={this.handleTypeahead} placeholder="Search FAQ" />
-					</InputGroup>
+					<Input onChange={this.handleTypeahead} placeholder="Search FAQ" />
 				</Widget>
 				{this.renderFAQItems()}
 			</div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputGroup, Input, InputGroupButton } from 'reactstrap';
+import { Input } from 'reactstrap';
 import glossaryJSON from './GlossaryData.js';
 import Widget from '../../components/Widget/Widget';
 import _ from 'lodash';
@@ -24,7 +24,7 @@ class Glossary extends React.Component {
 		this.setState({ glossaryData: filteredGlossary});
 	}
 	renderGlossaryItems() {
-		return this.state.glossaryData.slice(0, 10).map((glossary) => {
+		return this.state.glossaryData.map((glossary) => {
 			return (
 				<Widget title={glossary.entry_title} key={glossary.id}>
 					<div dangerouslySetInnerHTML={{__html: glossary.entry_content }} />
@@ -37,13 +37,11 @@ class Glossary extends React.Component {
 		return (
 			<div>
 				<Widget>
-					<InputGroup>
-						<Input onChange={this.handleTypeahead} placeholder="Search glossary" />
-					</InputGroup>
+					<Input onChange={this.handleTypeahead} placeholder="Search glossary" />
 				</Widget>
 				{this.renderGlossaryItems()}
 			</div>
-		);
+	);
 	}
 }
 
