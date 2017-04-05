@@ -33,6 +33,7 @@ class Nav extends Component {
 	// 	});
 	// }
 	handleCloseNav() {
+		window.scrollTo(0, 0);
 		this.props.closeHeader();
 	}
 	renderSubNav(index, title, children) {
