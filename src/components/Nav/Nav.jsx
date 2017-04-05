@@ -13,9 +13,7 @@ class Nav extends Component {
 			activeIndex: null,
 			initialIndex: null,
 		};
-		// this.handleMainNav = this.handleMainNav.bind(this);
 		this.handleCloseNav = this.handleCloseNav.bind(this);
-		// this.handleGetIndex = this.handleGetIndex.bind(this);
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.headerData) {
@@ -25,37 +23,30 @@ class Nav extends Component {
 		}
 	}
 	componentDidMount() {
+		this.calculateIndex();
+	}
+	handleCloseNav() {
+		window.scrollTo(0, 0);
+		this.props.closeHeader();
+	}
+	calculateIndex() {
 		const inIndex = parseInt(document.body.querySelector('.mainNav-link--current').closest('li').dataset.i, 10);
 		this.setState({
 			initialIndex: inIndex,
 			activeIndex: inIndex,
 		});
 	}
-	handleCloseNav() {
-		window.scrollTo(0, 0);
-		this.props.closeHeader();
-		//this.calculateIndex();
-	}
-	// handleGetIndex(index) {
-	// 	this.setState({
-	// 		initialIndex: index,
-	// 	});
-	// }
-	renderSubNav(index, title, children) {
-		// if (!this.state.activeSubNav || index !== this.state.activeIndex) {
-		// if (index !== this.state.activeIndex) {
-		// 	return null;
-		// }
+	renderSubNav(mainIndex, title, children) {
 		return (
 			<div className="subNav">
 				<div className="subNav-title">{title}</div>
 				<ol>
-					{this.renderSubNavChildren(children)}
+					{this.renderSubNavChildren(children, mainIndex)}
 				</ol>
 			</div>
 		);
 	}
-	renderSubNavChildren(children) {
+	renderSubNavChildren(children, mainIndex) {
 		return children.map((item, index) => {
 			return (
 				<li key={index}>
@@ -63,7 +54,13 @@ class Nav extends Component {
 						to={item.link}
 						className="subNav-link"
 						activeClassName="is-active"
-						onClick={this.handleCloseNav}
+						onClick={(e) => {
+							this.handleCloseNav();
+							this.setState({
+								activeIndex: mainIndex,
+								initialIndex: mainIndex,
+							});
+						}}
 					>
 						{item.title}
 					</Link>
@@ -79,10 +76,9 @@ class Nav extends Component {
 	}
 	renderMainNav() {
 		return this.props.data.map((item, index) =>
-			<li data-i={index} key={index} className={(this.state.activeIndex === index) ? 'is-active' : ''}>
+			<li data-i={index} key={index}>
 				<Link
 					onClick={(e) => {
-						{/*this.handleGetIndex(index)*/}
 						e.preventDefault();
 					}}
 					onFocus={(e) => {
@@ -95,7 +91,7 @@ class Nav extends Component {
 							activeIndex: index,
 						});
 					}}
-					className="mainNav-link"
+					className={(this.state.activeIndex === index) ? 'mainNav-link is-active' : 'mainNav-link'}
 					activeClassName="mainNav-link--current"
 					to={item.link}
 				>

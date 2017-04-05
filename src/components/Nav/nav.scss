@@ -51,17 +51,13 @@
 	height: $menu-button-width;
 	background: $gray-darker;
 
-	&:hover, .is-active > & {
+	&:hover, &.is-active {
 		background: $brand-primary;
 		// cursor: pointer;
 		// background: mix($brand-primary, $gray-darker, 25%);
 		// box-shadow: inset 0 0 0 2px $brand-primary;
 		// outline: 0;
 	}
-
-	// &.mainNav-link--current {
-	// 	background: $brand-primary;
-	// }
 }
 
 
@@ -98,15 +94,7 @@
 	background: $gray-dark;
 	text-align: left;
 
-	// .mainNav-link.is-active + & {
-	// 	display: block;
-	// }
-
-	.mainNav-link--current + & {
-		display: block;
-	}
-
-	.is-active > & {
+	.mainNav-link.is-active + & {
 		display: block;
 		z-index: 100;
 	}
