@@ -11,6 +11,7 @@ class Nav extends Component {
 		this.state = {
 			showNav: false,
 			activeIndex: null,
+			initialIndex: 0,
 		};
 		// this.handleMainNav = this.handleMainNav.bind(this);
 		this.handleCloseNav = this.handleCloseNav.bind(this);
@@ -76,6 +77,13 @@ class Nav extends Component {
 				<Link
 					onClick={(e) => {
 						e.preventDefault();
+					}}
+					onFocus={(e) => {
+						this.setState({
+							activeIndex: index,
+						});
+					}}
+					onMouseEnter={(e) => {
 						this.setState({
 							activeIndex: index,
 						});
@@ -95,8 +103,14 @@ class Nav extends Component {
 	}
 	render() {
 		return (
-			// replace window.showNav with redux
-			<nav className={`mainNav ${this.state.showNav ? 'is-active' : ''}`}>
+			<nav
+				className={`mainNav ${this.state.showNav ? 'is-active' : ''}`}
+				onMouseLeave={(e) => {
+					this.setState({
+						activeIndex: this.state.initialIndex,
+					});
+				}}
+			>
 				<ol>
 					{this.renderNodes()}
 				</ol>

@@ -52,15 +52,16 @@
 	background: $gray-darker;
 
 	&:hover, &:focus, .is-active > & {
-		cursor: pointer;
+		background: $brand-primary;
+		// cursor: pointer;
 		// background: mix($brand-primary, $gray-darker, 25%);
-		box-shadow: inset 0 0 0 2px $brand-primary;
-		outline: 0;
+		// box-shadow: inset 0 0 0 2px $brand-primary;
+		// outline: 0;
 	}
 
-	&.mainNav-link--current {
-		background: $brand-primary;
-	}
+	// &.mainNav-link--current {
+	// 	background: $brand-primary;
+	// }
 }
 
 
