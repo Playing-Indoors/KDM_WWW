@@ -23,7 +23,7 @@ class Nav extends Component {
 				showNav: nextProps.headerData.showNav,
 			});
 		}
-		this.calculateIndex();
+		//this.calculateIndex();
 	}
 	// handleMainNav(idx, e) {
 	// 	// e.preventDefault();
@@ -34,20 +34,22 @@ class Nav extends Component {
 	// 		activeIndex: idx,
 	// 	});
 	// }
-	calculateIndex() {
-		const actIndex = parseInt(document.body.querySelector('.mainNav-link--current').closest('li').dataset.i, 10);
-		console.log('actIndex', actIndex);
-		this.setState({
-			initialIndex: actIndex,
-		});
-	}
+	// calculateIndex() {
+	// 	const actIndex = parseInt(document.body.querySelector('.mainNav-link--current').closest('li').dataset.i, 10);
+	// 	console.log('actIndex', actIndex);
+	// 	this.setState({
+	// 		initialIndex: actIndex,
+	// 	});
+	// }
 	handleCloseNav() {
 		window.scrollTo(0, 0);
 		this.props.closeHeader();
-		this.calculateIndex();
+		//this.calculateIndex();
 	}
 	handleGetIndex(index){
-		console.log(index);
+			this.setState({
+				initialIndex: index,
+			});
 	}
 	renderSubNav(index, title, children) {
 		// if (!this.state.activeSubNav || index !== this.state.activeIndex) {
