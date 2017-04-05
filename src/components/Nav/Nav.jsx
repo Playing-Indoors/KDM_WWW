@@ -15,6 +15,7 @@ class Nav extends Component {
 		};
 		// this.handleMainNav = this.handleMainNav.bind(this);
 		this.handleCloseNav = this.handleCloseNav.bind(this);
+		this.handleGetIndex = this.handleGetIndex.bind(this);
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.headerData) {
@@ -40,6 +41,9 @@ class Nav extends Component {
 	handleCloseNav() {
 		window.scrollTo(0, 0);
 		this.props.closeHeader();
+	}
+	handleGetIndex(index){
+		console.log(index);
 	}
 	renderSubNav(index, title, children) {
 		// if (!this.state.activeSubNav || index !== this.state.activeIndex) {
@@ -82,6 +86,7 @@ class Nav extends Component {
 			<li data-i={index} key={index} className={(this.state.activeIndex === index) ? 'is-active' : ''}>
 				<Link
 					onClick={(e) => {
+						this.handleGetIndex(index)
 						e.preventDefault();
 					}}
 					onFocus={(e) => {
