@@ -311,10 +311,14 @@ class Aya extends Component {
 				</div>
 
 				<div className="boxGroup">
-					<SurvivorStats
-						amount={5}
-						max={7}
-					/>
+						<SurvivorStats
+							movement={4}
+							accuracy={4}
+							strength={4}
+							evasion={4}
+							luck={4}
+							speed={4}
+						/>
 				</div>
 
 				<div className="boxGroup">

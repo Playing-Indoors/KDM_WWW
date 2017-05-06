@@ -9,43 +9,6 @@ class SurvivorStats extends Component {
 		this.state = {
 			showModal: false,
 			name: 'Primary Stats',
-			min: 0,
-			movement: {
-				name: 'Movement',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			accuracy: {
-				name: 'Accuracy',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			strength: {
-				name: 'Strength',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			evasion: {
-				name: 'Evasion',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			luck: {
-				name: 'Luck',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			speed: {
-				name: 'Speed',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
 		};
 		this.handleModal = this.handleModal.bind(this);
 	}
@@ -61,80 +24,80 @@ class SurvivorStats extends Component {
 				stats={
 					<div className="statGroup">
 						<Stats
-							name={this.state.movement.name}
-							amount={this.state.movement.amount}
-							max={this.state.movement.max}
-							min={this.state.movement.min}
+							name="Movement"
+							amount={this.props.movement}
+							max={1000}
+							min={-1000}
 						/>
 						<Stats
-							name={this.state.accuracy.name}
-							amount={this.state.accuracy.amount}
-							max={this.state.accuracy.max}
-							min={this.state.accuracy.min}
+							name="Accuracy"
+							amount={this.props.accuracy}
+							max={1000}
+							min={-1000}
 						/>
 						<Stats
-							name={this.state.strength.name}
-							amount={this.state.strength.amount}
-							max={this.state.strength.max}
-							min={this.state.strength.min}
+							name="Strength"
+							amount={this.props.strength}
+							max={1000}
+							min={-1000}
 						/>
 						<Stats
-							name={this.state.evasion.name}
-							amount={this.state.evasion.amount}
-							max={this.state.evasion.max}
-							min={this.state.evasion.min}
+							name="Evasion"
+							amount={this.props.evasion}
+							max={1000}
+							min={-1000}
 						/>
 						<Stats
-							name={this.state.luck.name}
-							amount={this.state.luck.amount}
-							max={this.state.luck.max}
-							min={this.state.luck.min}
+							name="Luck"
+							amount={this.props.luck}
+							max={1000}
+							min={-1000}
 						/>
 						<Stats
-							name={this.state.speed.name}
-							amount={this.state.speed.amount}
-							max={this.state.speed.max}
-							min={this.state.speed.min}
+							name="Speed"
+							amount={this.props.speed}
+							max={1000}
+							min={-1000}
 						/>
 					</div>
 				}
 				modalBody={
 					<div className="statSpendGroup">
 						<StatAdjust
-							name={this.state.movement.name}
-							amount={this.state.movement.amount}
-							max={this.state.movement.max}
-							min={this.state.movement.min}
+							name="Movement"
+							amount={this.props.movement}
+							max={1000}
+							min={-1000}
 						/>
 						<StatAdjust
-							name={this.state.accuracy.name}
-							amount={this.state.accuracy.amount}
-							max={this.state.accuracy.max}
-							min={this.state.accuracy.min}
+							name="Accuracy"
+							amount={this.props.accuracy}
+							max={1000}
+							min={-1000}
 						/>
 						<StatAdjust
-							name={this.state.strength.name}
-							amount={this.state.strength.amount}
-							max={this.state.strength.max}
-							min={this.state.strength.min}
+							name="Strength"
+							amount={this.props.strength}
+							max={1000}
+							min={-1000}
 						/>
 						<StatAdjust
-							name={this.state.evasion.name}
-							amount={this.state.evasion.amount}
-							max={this.state.evasion.max}
-							min={this.state.evasion.min}
+							name="Evasion"
+							amount={this.props.evasion}
+							max={1000}
+							min={-1000}
 						/>
 						<StatAdjust
-							name={this.state.luck.name}
-							amount={this.state.luck.amount}
-							max={this.state.luck.max}
-							min={this.state.luck.min}
+							name="Luck"
+							amount={this.props.luck}
+							max={1000}
+							min={-1000}
 						/>
 						<StatAdjust
-							name={this.state.speed.name}
-							amount={this.state.speed.amount}
-							max={this.state.speed.max}
-							min={this.state.speed.min}
+							name="Speed"
+							amount={this.props.speed}
+							max={1000}
+							min={-1000}
 						/>
 					</div>
 				}
@@ -144,8 +107,12 @@ class SurvivorStats extends Component {
 }
 
 SurvivorStats.propTypes = {
-	amount: React.PropTypes.number,
-	max: React.PropTypes.number,
+	movement: React.PropTypes.number,
+	accuracy: React.PropTypes.number,
+	strength: React.PropTypes.number,
+	evasion: React.PropTypes.number,
+	luck: React.PropTypes.number,
+	speed: React.PropTypes.number,
 };
 
 export default SurvivorStats;

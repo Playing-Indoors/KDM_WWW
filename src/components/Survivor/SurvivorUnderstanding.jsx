@@ -3,12 +3,12 @@ import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
 
-class SurvivorXP extends Component {
+class SurvivorUnderstanding extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showModal: false,
-			title: 'XP',
+			title: 'Understanding',
 			min: 0,
 		};
 		this.handleModal = this.handleModal.bind(this);
@@ -56,9 +56,9 @@ class SurvivorXP extends Component {
 	}
 }
 
-SurvivorXP.propTypes = {
+SurvivorUnderstanding.propTypes = {
 	amount: React.PropTypes.number,
 	max: React.PropTypes.number,
 };
 
-export default SurvivorXP;
+export default SurvivorUnderstanding;

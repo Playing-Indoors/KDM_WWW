@@ -10,6 +10,9 @@ import SurvivorImpairments from '../../components/Survivor/SurvivorImpairments';
 import SurvivorNotes from '../../components/Survivor/SurvivorNotes';
 import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
+import SurvivorWeapon from '../../components/Survivor/SurvivorWeapon';
+import SurvivorCourage from '../../components/Survivor/SurvivorCourage';
+import SurvivorUnderstanding from '../../components/Survivor/SurvivorUnderstanding';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
 
 class Survivor extends React.Component {
@@ -40,31 +43,40 @@ class Survivor extends React.Component {
 					<h1 className="text-center">{this.state.survivor.sheet.name}</h1>
 					<div className="boxGroup">
 						<SurvivorSurvival
-							amount={this.state.survivor.sheet.survival}
+							amount={parseInt(this.state.survivor.sheet.survival, 10)}
 							max={7}
 						/>
 						<SurvivorBleeding
 							amount={0}
 						/>
-						{this.state.survivor.sheet.Courage}
-						{this.state.survivor.sheet.Understanding}
-						{this.state.survivor.sheet['Weapon Proficiency']}
 						<SurvivorXP
-							amount={this.state.survivor.sheet.hunt_xp}
+							amount={parseInt(this.state.survivor.sheet.hunt_xp, 10)}
+							max={7}
+						/>
+					</div>
+					<div className="boxGroup">
+						<SurvivorUnderstanding
+							amount={parseInt(this.state.survivor.sheet.Understanding, 10)}
+							max={7}
+						/>
+						<SurvivorCourage
+							amount={parseInt(this.state.survivor.sheet.Courage, 10)}
+							max={7}
+						/>
+						<SurvivorWeapon
+							amount={this.state.survivor.sheet['Weapon Proficiency']}
 							max={7}
 						/>
 					</div>
 
 					<div className="boxGroup">
-						{this.state.survivor.sheet.Movement}
-						{this.state.survivor.sheet.Accuracy}
-						{this.state.survivor.sheet.Strength}
-						{this.state.survivor.sheet.Evasion}
-						{this.state.survivor.sheet.Luck}
-						{this.state.survivor.sheet.Speed}
 						<SurvivorStats
-							amount={5}
-							max={7}
+							movement={parseInt(this.state.survivor.sheet.Movement, 10)}
+							accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
+							strength={parseInt(this.state.survivor.sheet.Strength, 10)}
+							evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
+							luck={parseInt(this.state.survivor.sheet.Luck, 10)}
+							speed={parseInt(this.state.survivor.sheet.Speed, 10)}
 						/>
 					</div>
 
