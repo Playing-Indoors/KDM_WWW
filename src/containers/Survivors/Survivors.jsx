@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Input } from 'reactstrap';
+import Widget from '../../components/Widget/Widget';
 import CardList from '../../components/CardList/CardList';
 
 class Survivors extends React.Component {
@@ -32,6 +34,9 @@ class Survivors extends React.Component {
 	render() {
 		return (
 			<div>
+				<Widget>
+					<Input placeholder="Search survivors..." />
+				</Widget>
 				{this.renderSurvivors()}
 			</div>
 		);
