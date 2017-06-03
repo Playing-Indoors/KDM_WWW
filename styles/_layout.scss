@@ -74,6 +74,11 @@ progress::-webkit-progress-value {
 	}
 }
 
+.btn-link {
+	color: #fff;
+	text-decoration: underline;
+}
+
 // Button Group
 
 a:focus {
@@ -91,6 +96,18 @@ a:focus {
 
 // Update Model
 
+.modal-content {
+	background: none;
+}
+
+.modal-header {
+	background: $modal-content-bg;
+}
+
+.modal-body {
+	background: $modal-content-bg;
+}
+
 .modal-title {
 	flex: 1 1 auto;
 	font-size: 1.75rem;
@@ -99,11 +116,13 @@ a:focus {
 }
 
 .modal-footer {
+	display: block;
 	padding: 0;
-	display: flex;
 
-	> .btn {
-		flex: 1 1 auto;
+	.btn {
+		display: block;
+		width: 100%;
+		margin: 0;
 	}
 }
 

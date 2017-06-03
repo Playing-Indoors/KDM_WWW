@@ -20,6 +20,7 @@ class SurvivorStats extends Component {
 	render() {
 		return (
 			<StatBox
+				myClass="survivorStats"
 				name={this.state.name}
 				stats={
 					<div className="statGroup">

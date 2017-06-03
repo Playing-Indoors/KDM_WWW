@@ -37,7 +37,7 @@ class SurvivorBleeding extends Component {
 	}
 	render() {
 		return (
-			<div className="box">
+			<div className="box survivorBleeding">
 				<header className="box-header">
 					<div className="box-header-title">{this.state.title}</div>
 				</header>

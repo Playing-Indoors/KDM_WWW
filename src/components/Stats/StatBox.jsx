@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
+import classNames from 'classnames';
 
 class StatBox extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showModal: false,
+			classList: classNames([
+				'box',
+				this.props.myClass,
+			])
 		};
 		this.handleModal = this.handleModal.bind(this);
 		this.confirm = this.confirm.bind(this);
@@ -20,7 +25,7 @@ class StatBox extends Component {
 	}
 	render() {
 		return (
-			<div className="box">
+			<div className={this.state.classList}>
 				<header className="box-header">
 					<div className="box-header-title">{this.props.name}</div>
 				</header>

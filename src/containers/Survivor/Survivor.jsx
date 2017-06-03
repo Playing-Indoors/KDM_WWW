@@ -15,6 +15,11 @@ import SurvivorCourage from '../../components/Survivor/SurvivorCourage';
 import SurvivorUnderstanding from '../../components/Survivor/SurvivorUnderstanding';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
 
+// TODO
+// [ ] Survivor name should be in page heading
+// [x] Survivor boxes should be css grid
+//
+
 class Survivor extends React.Component {
 	constructor(props) {
 		super(props);
@@ -39,96 +44,62 @@ class Survivor extends React.Component {
 	render() {
 		if (this.state.survivor) {
 			return (
-				<div>
-					<h1 className="text-center">{this.state.survivor.sheet.name}</h1>
-					<div className="boxGroup">
-						<SurvivorSurvival
-							amount={parseInt(this.state.survivor.sheet.survival, 10)}
-							max={7}
-						/>
-						<SurvivorBleeding
-							amount={0}
-						/>
-						<SurvivorXP
-							amount={parseInt(this.state.survivor.sheet.hunt_xp, 10)}
-							max={7}
-						/>
-					</div>
-					<div className="boxGroup">
-						<SurvivorUnderstanding
-							amount={parseInt(this.state.survivor.sheet.Understanding, 10)}
-							max={7}
-						/>
-						<SurvivorCourage
-							amount={parseInt(this.state.survivor.sheet.Courage, 10)}
-							max={7}
-						/>
-						<SurvivorWeapon
-							amount={this.state.survivor.sheet['Weapon Proficiency']}
-							max={7}
-						/>
-					</div>
-
-					<div className="boxGroup">
-						<SurvivorStats
-							movement={parseInt(this.state.survivor.sheet.Movement, 10)}
-							accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
-							strength={parseInt(this.state.survivor.sheet.Strength, 10)}
-							evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
-							luck={parseInt(this.state.survivor.sheet.Luck, 10)}
-							speed={parseInt(this.state.survivor.sheet.Speed, 10)}
-						/>
-					</div>
-
-					<div className="boxGroup">
-						{this.state.survivor.sheet.Insanity}
-						{this.state.survivor.sheet.Head}
-						{this.state.survivor.sheet.Arms}
-						{this.state.survivor.sheet.Body}
-						{this.state.survivor.sheet.Waist}
-						{this.state.survivor.sheet.Feet}
-						<SurvivorArmor
-							amount={5}
-							max={7}
-						/>
-					</div>
-
-					<div className="boxGroup">
-						{this.state.survivor.sheet.fighting_arts}
-						<SurvivorFightArts
-							amount={5}
-							max={7}
-						/>
-						{this.state.survivor.sheet.disorders}
-						<SurvivorDisorders
-							amount={5}
-							max={7}
-						/>
-					</div>
-
-					<div className="boxGroup">
-						{this.state.survivor.sheet.abilities_and_impairments}
-						<SurvivorAbilities
-							amount={5}
-							max={7}
-						/>
-					</div>
-
-					<div className="boxGroup">
-						{this.state.survivor.sheet.abilities_and_impairments}
-						<SurvivorImpairments
-							amount={5}
-							max={7}
-						/>
-					</div>
-
-					<div className="boxGroup">
-						{this.state.survivor.sheet.notes}
-						<SurvivorNotes
-							amount={5}
-							max={7}
-						/>
-					</div>
+				<div className="survivor">
+					{ /* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */ }
+					<SurvivorSurvival
+						amount={parseInt(this.state.survivor.sheet.survival, 10)}
+						max={7}
+					/>
+					<SurvivorBleeding
+						amount={0}
+					/>
+					<SurvivorXP
+						amount={parseInt(this.state.survivor.sheet.hunt_xp, 10)}
+						max={7}
+					/>
+					<SurvivorUnderstanding
+						amount={parseInt(this.state.survivor.sheet.Understanding, 10)}
+						max={7}
+					/>
+					<SurvivorCourage
+						amount={parseInt(this.state.survivor.sheet.Courage, 10)}
+						max={7}
+					/>
+					<SurvivorWeapon
+						amount={this.state.survivor.sheet['Weapon Proficiency']}
+						max={7}
+					/>
+					<SurvivorStats
+						movement={parseInt(this.state.survivor.sheet.Movement, 10)}
+						accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
+						strength={parseInt(this.state.survivor.sheet.Strength, 10)}
+						evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
+						luck={parseInt(this.state.survivor.sheet.Luck, 10)}
+						speed={parseInt(this.state.survivor.sheet.Speed, 10)}
+					/>
+					<SurvivorArmor
+						insanity={parseInt(this.state.survivor.sheet.Insanity, 10)}
+						head={parseInt(this.state.survivor.sheet.Head, 10)}
+						arms={parseInt(this.state.survivor.sheet.Arms, 10)}
+						body={parseInt(this.state.survivor.sheet.Body, 10)}
+						waist={parseInt(this.state.survivor.sheet.Waist, 10)}
+						feet={parseInt(this.state.survivor.sheet.Feet, 10)}
+					/>
+					<SurvivorFightArts
+						arts={this.state.survivor.sheet.fighting_arts}
+					/>
+					<SurvivorDisorders
+						disorders={this.state.survivor.sheet.disorders}
+					/>
+					<SurvivorAbilities
+						abilities={this.state.survivor.sheet.abilities_and_impairments}
+					/>
+					<SurvivorImpairments
+						impairments={this.state.survivor.sheet.abilities_and_impairments}
+					/>
+					<SurvivorNotes
+						notes={this.state.survivor.sheet.notes}
+					/>
 				</div>
 			);
 		}

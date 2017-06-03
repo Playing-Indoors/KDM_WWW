@@ -15,13 +15,6 @@ textarea {
   font-family: inherit;
 }
 
-// Custom Layout
-@import "_layout";
-
-// Custom Containers
-@import "../src/containers/Home/home";
-@import "../src/containers/Login/login";
-@import "../src/containers/World/world";
 
 // Custom Components
 @import "../src/components/Aya/Aya";
@@ -40,3 +33,12 @@ textarea {
 @import "../src/components/Splash/Splash";
 @import "../src/components/Toggle/Toggle";
 @import "../src/components/Widget/Widget";
+
+// Custom Containers
+@import "../src/containers/Home/home";
+@import "../src/containers/Login/login";
+@import "../src/containers/Survivor/Survivor";
+@import "../src/containers/World/world";
+
+// Custom Layouts
+@import "_layout";

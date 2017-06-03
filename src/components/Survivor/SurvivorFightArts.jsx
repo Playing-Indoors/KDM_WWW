@@ -21,6 +21,7 @@ class SurvivorFightArts extends Component {
 	render() {
 		return (
 			<StatBox
+				myClass="survivorArts"
 				name={this.state.name}
 				modalBody={
 					<StatAdjust

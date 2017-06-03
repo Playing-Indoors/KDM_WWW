@@ -184,15 +184,14 @@ class Aya extends Component {
 				<h3>Modal</h3>
 				<Button onClick={this.toggleModal}>Toggle Modal</Button>
 				<Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-					<ModalHeader toggle={this.toggleModal}>Modal title</ModalHeader>
+					<ModalHeader>Modal title</ModalHeader>
 					<ModalBody>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</ModalBody>
 					<ModalFooter>
-						<ButtonGroup className="btn-group--full">
-							<Button color="primary" onClick={this.toggle}>Do Something</Button>
-							<Button color="secondary" onClick={this.toggle}>Cancel</Button>
-						</ButtonGroup>
+						<Button color="primary" onClick={this.toggleModal}>Do Something</Button>
+						<Button color="secondary" onClick={this.toggleModal}>Do Something</Button>
+						<Button color="link" onClick={this.toggleModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>
 
@@ -294,9 +293,10 @@ class Aya extends Component {
 				/>
 
 				<br />
-				<h4>Survival</h4>
 
-				<div className="boxGroup">
+				
+				<h4>Survival</h4>
+				<div className="survivor">
 					<SurvivorSurvival
 						amount={5}
 						max={7}
@@ -308,27 +308,18 @@ class Aya extends Component {
 						amount={5}
 						max={7}
 					/>
-				</div>
-
-				<div className="boxGroup">
-						<SurvivorStats
-							movement={4}
-							accuracy={4}
-							strength={4}
-							evasion={4}
-							luck={4}
-							speed={4}
-						/>
-				</div>
-
-				<div className="boxGroup">
+					<SurvivorStats
+						movement={4}
+						accuracy={4}
+						strength={4}
+						evasion={4}
+						luck={4}
+						speed={4}
+					/>
 					<SurvivorArmor
 						amount={5}
 						max={7}
 					/>
-				</div>
-
-				<div className="boxGroup">
 					<SurvivorFightArts
 						amount={5}
 						max={7}
@@ -337,23 +328,14 @@ class Aya extends Component {
 						amount={5}
 						max={7}
 					/>
-				</div>
-
-				<div className="boxGroup">
 					<SurvivorAbilities
 						amount={5}
 						max={7}
 					/>
-				</div>
-
-				<div className="boxGroup">
 					<SurvivorImpairments
 						amount={5}
 						max={7}
 					/>
-				</div>
-
-				<div className="boxGroup">
 					<SurvivorNotes
 						amount={5}
 						max={7}
