@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Nav, N
 import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
 import CardList from '../../components/CardList/CardList';
-import StatAdjust from '../../components/Stats/StatAdjust';
+import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
 import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
 import SurvivorArmor from '../../components/Survivor/SurvivorArmor';
@@ -17,6 +17,7 @@ import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
 import Milestone from '../../components/Milestone/Milestone';
+import MilestoneDots from '../../components/MilestoneDots/MilestoneDots';
 import Icon from '../../components/Icon/Icon';
 import Toggle from '../../components/Toggle/Toggle';
 import Widget from '../../components/Widget/Widget';
@@ -263,16 +264,42 @@ class Aya extends Component {
 				</div>
 				<br />
 
-				<h4>Stat Adjustor</h4>
+				<h4>NumberIncrement</h4>
+				<p>Default settings</p>
 				<div style={{ width: '200px' }}>
-					<StatAdjust
-						name={this.state.statXP.name}
-						amount={this.state.statXP.amount}
-						max={this.state.statXP.max}
-						min={this.state.statXP.min}
-						milestone={this.state.statXP.milestones}
+					<NumberIncrement />
+				</div>
+				<p>Custom name, amount, min(0), max(6)</p>
+				<div style={{ width: '200px' }}>
+					<NumberIncrement
+						name={'Movement'}
+						amount={5}
+						min={0}
+						max={5}
 					/>
 				</div>
+				<p>Custom display (for armor H and L)</p>
+				<div style={{ width: '200px' }}>
+					<em>coming soon</em>
+				</div>
+
+				<h4>MilestoneDots</h4>
+
+				<MilestoneDots />
+				<MilestoneDots
+					current={3}
+					count={5}
+				/>
+				<MilestoneDots
+					current={3}
+					count={10}
+					milestones={[1, 3, 5, 7, 10]}
+				/>
+
+
+
+
+
 
 
 
@@ -294,7 +321,7 @@ class Aya extends Component {
 
 				<br />
 
-				
+
 				<h4>Survival</h4>
 				<div className="survivor">
 					<SurvivorSurvival
