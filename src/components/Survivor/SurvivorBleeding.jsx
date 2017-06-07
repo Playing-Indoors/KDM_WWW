@@ -11,12 +11,26 @@ class SurvivorBleeding extends Component {
 		this.state = {
 			showModal: false,
 			title: 'Bleeding',
+			amount: props.amount
 		};
 		this.handleModal = this.handleModal.bind(this);
+		this.updateAmount = this.updateAmount.bind(this);
+		this.handleConfirm = this.handleConfirm.bind(this);
 	}
 	handleModal() {
 		this.setState({
 			showModal: !this.state.showModal,
+		});
+	}
+	handleConfirm(){
+		// dispatches data to api to save
+		this.setState({
+			showModal: false,
+		});
+	}
+	updateAmount(amount){
+		this.setState({
+			amount
 		});
 	}
 	render() {
@@ -28,10 +42,10 @@ class SurvivorBleeding extends Component {
 				<button onClick={this.handleModal} type="button" className="box-content">
 					<div className="statGroup">
 						<Stats
-							amount={this.props.amount}
+							amount={this.state.amount}
 						></Stats>
 						<MilestoneDots
-							current={this.props.amount}
+							current={this.state.amount}
 							count={this.props.max}
 						/>
 					</div>
@@ -40,17 +54,19 @@ class SurvivorBleeding extends Component {
 					<ModalHeader toggle={this.handleModal}>{this.state.title}</ModalHeader>
 					<ModalBody>
 						<NumberIncrement
-							amount={this.props.amount}
+							name='bleeding'
+							amount={this.state.amount}
 							min={this.props.min}
 							max={this.props.max}
+							updateAmount={this.updateAmount}
 						/>
 						<MilestoneDots
-							current={this.props.amount}
+							current={this.state.amount}
 							count={this.props.max}
 						/>
 					</ModalBody>
 					<ModalFooter>
-						<Button color="secondary" onClick={this.handleModal}>Confirm</Button>
+						<Button color="secondary" onClick={this.handleConfirm}>Confirm</Button>
 						{/*<Button color="primary" onClick={this.handleModal}>Confirm</Button>*/}
 						{/* Primary button is the only one that does the save action and should only be visible when there is stuff to save */}
 						<Button color="link" onClick={this.handleModal}>Cancel</Button>

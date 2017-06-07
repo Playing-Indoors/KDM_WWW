@@ -51,7 +51,7 @@ class Survivor extends React.Component {
 						max={7}
 					/>
 					<SurvivorBleeding
-						amount={0}
+						amount={parseInt(this.state.survivor.sheet.Movement, 10)}
 					/>
 					<SurvivorXP
 						amount={parseInt(this.state.survivor.sheet.hunt_xp, 10)}
@@ -86,6 +86,7 @@ class Survivor extends React.Component {
 						feet={parseInt(this.state.survivor.sheet.Feet, 10)}
 					/>
 					<SurvivorFightArts
+						amount={parseInt(this.state.survivor.sheet.Courage, 10)}
 						arts={this.state.survivor.sheet.fighting_arts}
 					/>
 					<SurvivorDisorders

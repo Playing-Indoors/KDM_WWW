@@ -15,15 +15,20 @@ class NumberIncrement extends Component {
 			max: props.max || 999,
 		};
 	}
+	componentWillReceiveProps(nextProps){
+		if(nextProps.amount){
+			this.setState({
+				amount: nextProps.amount,
+			});
+		}
+	}
 	onAdjustAmount(amount = 1) {
 		// Temporary adjust value
 		let newAmount = this.state.amount + amount;
 		// Make sure we don't go beyond our min/max
 		newAmount = Math.min(Math.max(newAmount, this.state.min), this.state.max);
 		console.log(`${this.state.name} changed from ${this.state.amount} to ${newAmount}`);
-		this.setState({
-			amount: newAmount,
-		});
+		this.props.updateAmount(newAmount);
 	}
 
 	render() {
