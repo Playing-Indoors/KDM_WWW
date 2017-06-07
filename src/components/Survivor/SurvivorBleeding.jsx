@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import Stats from '../../components/Stats/Stats';
-import StatAdjust from '../../components/Stats/StatAdjust';
 import Milestone from '../../components/Milestone/Milestone';
+import MilestoneDots from '../../components/MilestoneDots/MilestoneDots';
+import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
 
 class SurvivorBleeding extends Component {
 	constructor(props) {
@@ -10,23 +11,6 @@ class SurvivorBleeding extends Component {
 		this.state = {
 			showModal: false,
 			title: 'Bleeding',
-			milestones: [
-				{
-					at: 1,
-				},
-				{
-					at: 2,
-				},
-				{
-					at: 3,
-				},
-				{
-					at: 4,
-				},
-				{
-					at: 5,
-				},
-			],
 		};
 		this.handleModal = this.handleModal.bind(this);
 	}
@@ -44,34 +28,32 @@ class SurvivorBleeding extends Component {
 				<button onClick={this.handleModal} type="button" className="box-content">
 					<div className="statGroup">
 						<Stats
-							name={this.state.title}
 							amount={this.props.amount}
-							max={this.props.max}
-							min={this.props.min}
-						>
-							<Milestone />
-							<Milestone />
-							<Milestone />
-							<Milestone />
-							<Milestone />
-						</Stats>
+						></Stats>
+						<MilestoneDots
+							current={this.props.amount}
+							count={this.props.max}
+						/>
 					</div>
 				</button>
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
 					<ModalHeader toggle={this.handleModal}>{this.state.title}</ModalHeader>
 					<ModalBody>
-						<div className="statSpendGroup">
-							<StatAdjust
-								name={this.state.title}
-								amount={this.props.amount}
-								max={this.props.max}
-								min={this.props.min}
-							/>
-						</div>
+						<NumberIncrement
+							amount={this.props.amount}
+							min={this.props.min}
+							max={this.props.max}
+						/>
+						<MilestoneDots
+							current={this.props.amount}
+							count={this.props.max}
+						/>
 					</ModalBody>
 					<ModalFooter>
-						<Button onClick={this.handleModal}>Cancel</Button>
-						<Button color="primary">Confirm</Button>
+						<Button color="secondary" onClick={this.handleModal}>Confirm</Button>
+						{/*<Button color="primary" onClick={this.handleModal}>Confirm</Button>*/}
+						{/* Primary button is the only one that does the save action and should only be visible when there is stuff to save */}
+						<Button color="link" onClick={this.handleModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>
 			</div>

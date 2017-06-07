@@ -14,7 +14,8 @@ class MilestoneDots extends Component {
 		if(this.props.count > 0) {
 			return Array(this.props.count).fill().map((x, index) => {
 				// TODO: replace mod with true event array
-				const IS_EVENT = index % 3 === 0;
+				// const IS_EVENT = index % 3 === 0;
+				const IS_EVENT = false;
 				const IS_FILLED = this.props.current > index;
 				let type = 'default';
 				// If milestone event happened
