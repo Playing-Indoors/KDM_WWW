@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 // TODO
@@ -50,9 +51,9 @@ class Widget extends React.Component {
 }
 
 Widget.propTypes = {
-	title: React.PropTypes.string,
-	event: React.PropTypes.string,
-	children: React.PropTypes.node,
+	title: PropTypes.string,
+	event: PropTypes.string,
+	children: PropTypes.node,
 };
 
 export default Widget;

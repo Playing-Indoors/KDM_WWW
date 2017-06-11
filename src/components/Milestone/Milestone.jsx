@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 // default = unfilled
@@ -24,7 +25,7 @@ Milestone.defaultProps = {
 };
 
 Milestone.propTypes = {
-	type: React.PropTypes.string,
+	type: PropTypes.string,
 };
 
 export default Milestone;

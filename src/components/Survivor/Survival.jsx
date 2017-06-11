@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Button } from 'reactstrap';
 import Stat from '../../components/Stats/Stats';
 
-const { number } = React.PropTypes;
+const { number } = PropTypes;
 
 class Survival extends Component {
 	constructor(props) {

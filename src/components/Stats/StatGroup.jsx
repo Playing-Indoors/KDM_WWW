@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import Stat from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
@@ -59,9 +60,9 @@ class StatGroup extends Component {
 }
 
 StatGroup.propTypes = {
-	title: React.PropTypes.string.isRequired,
-	stats: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-	description: React.PropTypes.string,
+	title: PropTypes.string.isRequired,
+	stats: PropTypes.arrayOf(PropTypes.string).isRequired,
+	description: PropTypes.string,
 };
 
 export default StatGroup;

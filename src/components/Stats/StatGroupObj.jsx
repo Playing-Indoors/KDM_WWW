@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import Stat from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
@@ -76,11 +77,11 @@ class StatGroupObj extends Component {
 }
 
 StatGroupObj.propTypes = {
-	statObj: React.PropTypes.shape({
-		title: React.PropTypes.string.isRequired,
-		style: React.PropTypes.string,
-		description: React.PropTypes.string,
-		// children: React.PropTypes.arrayOf(React.PropTypes.shape().isRequired,
+	statObj: PropTypes.shape({
+		title: PropTypes.string.isRequired,
+		style: PropTypes.string,
+		description: PropTypes.string,
+		// children: PropTypes.arrayOf(PropTypes.shape().isRequired,
 	}),
 };
 

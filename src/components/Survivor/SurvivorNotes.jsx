@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
 import StatBox from '../../components/Stats/StatBox';
@@ -24,12 +25,7 @@ class SurvivorNotes extends Component {
 				myClass="survivorNotes"
 				name={this.state.name}
 				modalBody={
-					<StatAdjust
-						name={this.state.name}
-						amount={this.props.amount}
-						max={this.props.max}
-						min={this.state.min}
-					/>
+					<div>Nothing</div>
 				}
 			/>
 		);
@@ -37,8 +33,8 @@ class SurvivorNotes extends Component {
 }
 
 SurvivorNotes.propTypes = {
-	amount: React.PropTypes.number,
-	max: React.PropTypes.number,
+	amount: PropTypes.number,
+	max: PropTypes.number,
 };
 
 export default SurvivorNotes;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
 import StatBox from '../../components/Stats/StatBox';
@@ -37,8 +38,8 @@ class SurvivorFightArts extends Component {
 }
 
 SurvivorFightArts.propTypes = {
-	amount: React.PropTypes.number,
-	max: React.PropTypes.number,
+	amount: PropTypes.number,
+	max: PropTypes.number,
 };
 
 export default SurvivorFightArts;

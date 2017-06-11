@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'reactstrap';
 import Icon from '../../components/Icon/Icon';
 
@@ -42,8 +43,8 @@ class Toggle extends React.Component {
 }
 
 Toggle.propTypes = {
-	active: React.PropTypes.bool,
-	label: React.PropTypes.string,
+	active: PropTypes.bool,
+	label: PropTypes.string,
 };
 
 export default Toggle;

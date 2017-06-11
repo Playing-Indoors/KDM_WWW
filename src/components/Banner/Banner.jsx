@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // remember to change the class name as well
 class Banner extends Component {
@@ -12,7 +13,7 @@ class Banner extends Component {
 }
 
 Banner.propTypes = {
-	message: React.PropTypes.string,
+	message: PropTypes.string,
 };
 
 export default Banner;

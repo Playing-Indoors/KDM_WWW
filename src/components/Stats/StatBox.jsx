@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import classNames from 'classnames';
 
@@ -52,9 +53,9 @@ class StatBox extends Component {
 }
 
 StatBox.propTypes = {
-	name: React.PropTypes.string,
-	stats: React.PropTypes.node,
-	modalBody: React.PropTypes.node,
+	name: PropTypes.string,
+	stats: PropTypes.node,
+	modalBody: PropTypes.node,
 };
 
 export default StatBox;

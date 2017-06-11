@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Nav from './components/Nav/Nav';
 import Header from './components/Header/Header';
 import { connect } from 'react-redux';
@@ -150,7 +151,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-	children: React.PropTypes.node,
+	children: PropTypes.node,
 };
 
 function mapStateToProps(state) {

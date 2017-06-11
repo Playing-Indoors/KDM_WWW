@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
@@ -47,7 +48,7 @@ export let StatWidget = ComposedComponent => class extends Component {
 };
 
 // StatWidget.propTypes = {
-//   title: React.PropTypes.string.isRequired,
-//   stats: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-//   description: React.PropTypes.string,
+//   title: PropTypes.string.isRequired,
+//   stats: PropTypes.arrayOf(PropTypes.string).isRequired,
+//   description: PropTypes.string,
 // };

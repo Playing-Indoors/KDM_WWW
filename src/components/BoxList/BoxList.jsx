@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class BoxList extends Component {
 	constructor(props) {
@@ -22,7 +23,7 @@ class BoxList extends Component {
 }
 
 BoxList.propTypes = {
-	list: React.PropTypes.arrayOf(React.PropTypes.string),
+	list: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default BoxList;

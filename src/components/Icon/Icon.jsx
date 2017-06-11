@@ -1,5 +1,6 @@
 // import './icons';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // based entirely off of https://github.com/Justineo/vue-awesome
 // this might not be the most elegant solution but it works...
@@ -103,8 +104,8 @@ Icon.defaultProps = {
 };
 
 Icon.propTypes = {
-	name: React.PropTypes.string,
-	color: React.PropTypes.string,
+	name: PropTypes.string,
+	color: PropTypes.string,
 };
 
 export default Icon;

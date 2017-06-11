@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../../components/Icon/Icon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -53,8 +54,8 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-	name: React.PropTypes.string,
-	subName: React.PropTypes.string,
+	name: PropTypes.string,
+	subName: PropTypes.string,
 };
 
 export default connect(null, mapDispatchToProps)(Header);

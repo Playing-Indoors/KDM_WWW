@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class StatAdjust extends Component {
 	constructor(props) {
@@ -103,11 +104,11 @@ class StatAdjust extends Component {
 }
 
 StatAdjust.propTypes = {
-	name: React.PropTypes.string,
-	amount: React.PropTypes.number.isRequired,
-	min: React.PropTypes.number,
-	max: React.PropTypes.number,
-	// milestones: React.PropTypes.arrayOf(React.PropTypes.string),
+	name: PropTypes.string,
+	amount: PropTypes.number.isRequired,
+	min: PropTypes.number,
+	max: PropTypes.number,
+	// milestones: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default StatAdjust;

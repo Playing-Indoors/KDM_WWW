@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import Stats from '../../components/Stats/Stats';
 import Milestone from '../../components/Milestone/Milestone';
@@ -33,6 +34,22 @@ class SurvivorBleeding extends Component {
 			amount
 		});
 	}
+	renderConfirm() {
+		if (this.state.amount == this.props.amount) {
+			return (
+				<Button
+					color="secondary"
+					onClick={this.handleConfirm}
+				>Confirm</Button>
+			);
+		}
+		return (
+			<Button
+				color="primary"
+				onClick={this.handleModal}
+			>Confirm</Button>
+		);
+	}
 	render() {
 		return (
 			<div className="box survivorBleeding">
@@ -51,10 +68,9 @@ class SurvivorBleeding extends Component {
 					</div>
 				</button>
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
-					<ModalHeader toggle={this.handleModal}>{this.state.title}</ModalHeader>
+					<ModalHeader>Adjust {this.state.title}</ModalHeader>
 					<ModalBody>
 						<NumberIncrement
-							name='bleeding'
 							amount={this.state.amount}
 							min={this.props.min}
 							max={this.props.max}
@@ -66,9 +82,7 @@ class SurvivorBleeding extends Component {
 						/>
 					</ModalBody>
 					<ModalFooter>
-						<Button color="secondary" onClick={this.handleConfirm}>Confirm</Button>
-						{/*<Button color="primary" onClick={this.handleModal}>Confirm</Button>*/}
-						{/* Primary button is the only one that does the save action and should only be visible when there is stuff to save */}
+						{this.renderConfirm()}
 						<Button color="link" onClick={this.handleModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>
@@ -83,9 +97,9 @@ SurvivorBleeding.defaultProps = {
 };
 
 SurvivorBleeding.propTypes = {
-	amount: React.PropTypes.number,
-	max: React.PropTypes.number,
-	min: React.PropTypes.number,
+	amount: PropTypes.number,
+	max: PropTypes.number,
+	min: PropTypes.number,
 };
 
 export default SurvivorBleeding;

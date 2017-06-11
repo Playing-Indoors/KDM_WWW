@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Stats from '../../components/Stats/Stats';
 import StatAdjust from '../../components/Stats/StatAdjust';
 import StatBox from '../../components/Stats/StatBox';
@@ -108,12 +109,12 @@ class SurvivorStats extends Component {
 }
 
 SurvivorStats.propTypes = {
-	movement: React.PropTypes.number,
-	accuracy: React.PropTypes.number,
-	strength: React.PropTypes.number,
-	evasion: React.PropTypes.number,
-	luck: React.PropTypes.number,
-	speed: React.PropTypes.number,
+	movement: PropTypes.number,
+	accuracy: PropTypes.number,
+	strength: PropTypes.number,
+	evasion: PropTypes.number,
+	luck: PropTypes.number,
+	speed: PropTypes.number,
 };
 
 export default SurvivorStats;

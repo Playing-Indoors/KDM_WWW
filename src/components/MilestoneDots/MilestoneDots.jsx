@@ -41,9 +41,9 @@ class MilestoneDots extends Component {
 }
 
 MilestoneDots.propTypes = {
-	count: React.PropTypes.number,
-	current: React.PropTypes.number,
-	milestones: React.PropTypes.arrayOf(React.PropTypes.number),
+	count: PropTypes.number,
+	current: PropTypes.number,
+	milestones: PropTypes.arrayOf(PropTypes.number),
 };
 
 MilestoneDots.defaultProps = {

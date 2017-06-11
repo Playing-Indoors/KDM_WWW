@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // TODO RENAME THIS TO Stat.jsx :\
 
@@ -62,23 +63,23 @@ class Stats extends Component {
 }
 
 Stats.propTypes = {
-	name: React.PropTypes.string,
-	amount: React.PropTypes.number,
-	min: React.PropTypes.number,
-	max: React.PropTypes.number,
-	milestones: React.PropTypes.arrayOf(
-		React.PropTypes.shape({
-			at: React.PropTypes.number,
-			name: React.PropTypes.string,
-			type: React.PropTypes.string,
+	name: PropTypes.string,
+	amount: PropTypes.number,
+	min: PropTypes.number,
+	max: PropTypes.number,
+	milestones: PropTypes.arrayOf(
+		PropTypes.shape({
+			at: PropTypes.number,
+			name: PropTypes.string,
+			type: PropTypes.string,
 		}),
 	),
-	status: React.PropTypes.arrayOf(
-		React.PropTypes.shape({
-			type: React.PropTypes.string,
+	status: PropTypes.arrayOf(
+		PropTypes.shape({
+			type: PropTypes.string,
 		}),
 	),
-	children: React.PropTypes.node,
+	children: PropTypes.node,
 };
 
 export default Stats;

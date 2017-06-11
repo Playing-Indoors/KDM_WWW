@@ -9,10 +9,7 @@ class NumberIncrement extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: props.name,
 			amount: props.amount || 0,
-			min: props.min || -999,
-			max: props.max || 999,
 		};
 	}
 	componentWillReceiveProps(nextProps){
@@ -26,8 +23,8 @@ class NumberIncrement extends Component {
 		// Temporary adjust value
 		let newAmount = this.state.amount + amount;
 		// Make sure we don't go beyond our min/max
-		newAmount = Math.min(Math.max(newAmount, this.state.min), this.state.max);
-		console.log(`${this.state.name} changed from ${this.state.amount} to ${newAmount}`);
+		newAmount = Math.min(Math.max(newAmount, this.props.min), this.props.max);
+		console.log(`${this.props.name} changed from ${this.state.amount} to ${newAmount}`);
 		this.props.updateAmount(newAmount);
 	}
 
@@ -46,19 +43,24 @@ class NumberIncrement extends Component {
 					className="numberIncrement-change"
 				>+</button>
 				<div className="numberIncrement-title">
-					{this.state.name}
+					{this.props.name}
 				</div>
 			</div>
 		);
 	}
 }
 
+NumberIncrement.defaultProps = {
+	min: -999,
+	max: 999,
+};
+
 NumberIncrement.propTypes = {
-	name: React.PropTypes.string,
-	amount: React.PropTypes.number,
-	min: React.PropTypes.number,
-	max: React.PropTypes.number,
-	// milestones: React.PropTypes.arrayOf(React.PropTypes.string),
+	name: PropTypes.string,
+	amount: PropTypes.number,
+	min: PropTypes.number,
+	max: PropTypes.number,
+	// milestones: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default NumberIncrement;

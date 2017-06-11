@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 class CardList extends Component {
@@ -37,11 +38,11 @@ CardList.defaultProps = {
 };
 
 CardList.propTypes = {
-	name: React.PropTypes.string,
-	desc: React.PropTypes.string,
-	href: React.PropTypes.string,
-	button: React.PropTypes.string,
-	children: React.PropTypes.node,
+	name: PropTypes.string,
+	desc: PropTypes.string,
+	href: PropTypes.string,
+	button: PropTypes.string,
+	children: PropTypes.node,
 };
 
 export default CardList;

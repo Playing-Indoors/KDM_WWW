@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AyaColor extends Component {
 	render() {
@@ -12,7 +13,7 @@ class AyaColor extends Component {
 }
 
 AyaColor.propTypes = {
-	name: React.PropTypes.string,
+	name: PropTypes.string,
 };
 
 export default AyaColor;

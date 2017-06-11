@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Icon from '../../components/Icon/Icon';
 import { connect } from 'react-redux';
@@ -124,7 +125,7 @@ class Nav extends Component {
 }
 
 Nav.propTypes = {
-	data: React.PropTypes.arrayOf(React.PropTypes.object),
+	data: PropTypes.arrayOf(PropTypes.object),
 };
 
 function mapStateToProps(state) {
