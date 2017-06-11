@@ -2,22 +2,53 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import Stats from '../../components/Stats/Stats';
-import StatAdjust from '../../components/Stats/StatAdjust';
+import Milestone from '../../components/Milestone/Milestone';
+import MilestoneDots from '../../components/MilestoneDots/MilestoneDots';
+import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
 
 class SurvivorWeapon extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showModal: false,
-			title: 'Weapon',
-			min: 0,
+			title: 'Weapon XP',
+			amount: props.amount
 		};
 		this.handleModal = this.handleModal.bind(this);
+		this.updateAmount = this.updateAmount.bind(this);
+		this.handleConfirm = this.handleConfirm.bind(this);
 	}
 	handleModal() {
 		this.setState({
 			showModal: !this.state.showModal,
 		});
+	}
+	handleConfirm(){
+		// dispatches data to api to save
+		this.setState({
+			showModal: false,
+		});
+	}
+	updateAmount(amount){
+		this.setState({
+			amount
+		});
+	}
+	renderConfirm() {
+		if (this.state.amount == this.props.amount) {
+			return (
+				<Button
+					color="secondary"
+					onClick={this.handleConfirm}
+				>Confirm</Button>
+			);
+		}
+		return (
+			<Button
+				color="primary"
+				onClick={this.handleModal}
+			>Confirm</Button>
+		);
 	}
 	render() {
 		return (
@@ -28,28 +59,31 @@ class SurvivorWeapon extends Component {
 				<button onClick={this.handleModal} type="button" className="box-content">
 					<div className="statGroup">
 						<Stats
-							name={this.state.title}
-							amount={this.props.amount}
-							max={this.props.max}
-							min={this.state.min}
+							amount={this.state.amount}
+						></Stats>
+						<MilestoneDots
+							current={this.state.amount}
+							count={this.props.max}
 						/>
 					</div>
 				</button>
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
-					<ModalHeader toggle={this.handleModal}>{this.state.title}</ModalHeader>
+					<ModalHeader>Adjust {this.state.title}</ModalHeader>
 					<ModalBody>
-						<div className="statSpendGroup">
-							<StatAdjust
-								name={this.state.title}
-								amount={this.props.amount}
-								max={this.props.max}
-								min={this.state.min}
-							/>
-						</div>
+						<NumberIncrement
+							amount={this.state.amount}
+							min={this.props.min}
+							max={this.props.max}
+							updateAmount={this.updateAmount}
+						/>
+						<MilestoneDots
+							current={this.state.amount}
+							count={this.props.max}
+						/>
 					</ModalBody>
 					<ModalFooter>
-						<Button onClick={this.handleModal}>Cancel</Button>
-						<Button color="primary">Confirm</Button>
+						{this.renderConfirm()}
+						<Button color="link" onClick={this.handleModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>
 			</div>
@@ -57,9 +91,15 @@ class SurvivorWeapon extends Component {
 	}
 }
 
+SurvivorWeapon.defaultProps = {
+	min: 0,
+	max: 5,
+};
+
 SurvivorWeapon.propTypes = {
 	amount: PropTypes.number,
 	max: PropTypes.number,
+	min: PropTypes.number,
 };
 
 export default SurvivorWeapon;

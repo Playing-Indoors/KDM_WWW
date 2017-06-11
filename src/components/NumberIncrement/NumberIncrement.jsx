@@ -24,7 +24,7 @@ class NumberIncrement extends Component {
 		let newAmount = this.state.amount + amount;
 		// Make sure we don't go beyond our min/max
 		newAmount = Math.min(Math.max(newAmount, this.props.min), this.props.max);
-		console.log(`${this.props.name} changed from ${this.state.amount} to ${newAmount}`);
+		// console.log(`${this.props.name} changed from ${this.state.amount} to ${newAmount}`);
 		this.props.updateAmount(newAmount);
 	}
 
