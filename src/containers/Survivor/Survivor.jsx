@@ -26,6 +26,11 @@ class Survivor extends React.Component {
 		this.state = {
 			settlementData: null,
 			survivor: null,
+			fightingArts: [
+				'Unconscious Fighter',
+				'Knights Step',
+				'Keg Smash'
+			]
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -82,7 +87,7 @@ class Survivor extends React.Component {
 						feet={parseInt(this.state.survivor.sheet.Feet, 10)}
 					/>
 					<SurvivorFightArts
-						arts={this.state.survivor.sheet.fighting_arts}
+						arts={this.state.fightingArts}
 					/>
 					<SurvivorDisorders
 						disorders={this.state.survivor.sheet.disorders}

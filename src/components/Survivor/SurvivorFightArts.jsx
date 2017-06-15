@@ -13,7 +13,7 @@ class SurvivorFightArts extends Component {
 		this.state = {
 			showModal: false,
 			title: 'Fighting Arts',
-			amount: props.amount
+			arts: props.arts
 		};
 		this.handleModal = this.handleModal.bind(this);
 		this.updateAmount = this.updateAmount.bind(this);
@@ -35,21 +35,29 @@ class SurvivorFightArts extends Component {
 			amount
 		});
 	}
+	renderFightingArt(){
+		if(this.state.arts){
+			return this.state.arts.map((art, index) => {
+				return <StatList name={art} />
+			});
+		}
+	}
 	renderConfirm() {
-		if (this.state.amount == this.props.amount) {
+		if (this.state.arts == this.props.arts) {
 			return (
 				<Button
 					color="secondary"
 					onClick={this.handleConfirm}
 				>Confirm</Button>
 			);
+		} else {
+			return (
+				<Button
+					color="primary"
+					onClick={this.handleModal}
+				>Confirm</Button>
+			);
 		}
-		return (
-			<Button
-				color="primary"
-				onClick={this.handleModal}
-			>Confirm</Button>
-		);
 	}
 	render() {
 		return (
@@ -59,9 +67,7 @@ class SurvivorFightArts extends Component {
 				</header>
 				<button onClick={this.handleModal} type="button" className="box-content">
 					<div className="statGroup">
-						<StatList name="Unconscious Fighter" />
-						<StatList />
-						<StatList />
+						{this.renderFightingArt()}
 					</div>
 				</button>
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
