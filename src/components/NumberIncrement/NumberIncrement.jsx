@@ -13,19 +13,30 @@ class NumberIncrement extends Component {
 		};
 	}
 	componentWillReceiveProps(nextProps){
-		if(nextProps.amount){
-			this.setState({
-				amount: nextProps.amount,
-			});
-		}
+		this.setState({
+			amount: nextProps.amount
+		});
 	}
-	onAdjustAmount(amount = 1) {
+	onAdjustAmount(amount) {
 		// Temporary adjust value
 		let newAmount = this.state.amount + amount;
 		// Make sure we don't go beyond our min/max
-		newAmount = Math.min(Math.max(newAmount, this.props.min), this.props.max);
-		// console.log(`${this.props.name} changed from ${this.state.amount} to ${newAmount}`);
-		this.props.updateAmount(newAmount);
+		if(newAmount < this.props.min){
+			this.props.updateAmount(this.props.min);
+		} else if (newAmount > this.props.max){
+			this.props.updateAmount(this.props.max);
+		} else {
+			this.props.updateAmount(newAmount);
+		}
+	}
+	renderAmount(){
+		if(this.state.amount === -1 && this.props.type === 'armor'){
+			return 'L';
+		} else if (this.state.amount === -2 && this.props.type === 'armor'){
+			return 'H';
+		} else {
+			return this.state.amount;
+		}
 	}
 
 	render() {
@@ -36,7 +47,7 @@ class NumberIncrement extends Component {
 					onClick={() => { this.onAdjustAmount(-1); }}
 					className="numberIncrement-change"
 				>&ndash;</button>
-				<div className="numberIncrement-num">{this.state.amount}</div>
+				<div className="numberIncrement-num">{this.renderAmount()}</div>
 				<button
 					type="button"
 					onClick={() => { this.onAdjustAmount(1); }}

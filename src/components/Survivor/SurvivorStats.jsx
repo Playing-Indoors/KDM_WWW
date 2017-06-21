@@ -44,9 +44,9 @@ class SurvivorStats extends Component {
 			showModal: false,
 		});
 	}
-	updateAmount(amount){
+	updateAmount(type, amount){
 		this.setState({
-			amount
+			[type]: amount
 		});
 	}
 	renderConfirm() {
@@ -113,42 +113,42 @@ class SurvivorStats extends Component {
 									amount={this.state.movement}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'movement')}
 								/>
 								<NumberIncrement
 									name={'Accuracy'}
 									amount={this.state.accuracy}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'accuracy')}
 								/>
 								<NumberIncrement
 									name={'Strength'}
 									amount={this.state.strength}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'strength')}
 								/>
 								<NumberIncrement
 									name={'Evasion'}
 									amount={this.state.evasion}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'evasion')}
 								/>
 								<NumberIncrement
 									name={'Luck'}
 									amount={this.state.luck}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'luck')}
 								/>
 								<NumberIncrement
 									name={'Speed'}
 									amount={this.state.speed}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'speed')}
 								/>
 							</TabPane>
 							<TabPane tabId="temporary">
@@ -157,42 +157,42 @@ class SurvivorStats extends Component {
 									amount={this.state.movement}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'movement')}
 								/>
 								<NumberIncrement
 									name={'Accuracy'}
 									amount={this.state.accuracy}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'accuracy')}
 								/>
 								<NumberIncrement
 									name={'Strength'}
 									amount={this.state.strength}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'strength')}
 								/>
 								<NumberIncrement
 									name={'Evasion'}
 									amount={this.state.evasion}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'evasion')}
 								/>
 								<NumberIncrement
 									name={'Luck'}
 									amount={this.state.luck}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'luck')}
 								/>
 								<NumberIncrement
 									name={'Speed'}
 									amount={this.state.speed}
 									min={this.props.min}
 									max={this.props.max}
-									updateAmount={this.updateAmount}
+									updateAmount={this.updateAmount.bind(this, 'speed')}
 								/>
 							</TabPane>
 						</TabContent>

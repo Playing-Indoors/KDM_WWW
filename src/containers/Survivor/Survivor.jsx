@@ -84,7 +84,7 @@ class Survivor extends React.Component {
 						arms={parseInt(this.state.survivor.sheet.Arms, 10)}
 						body={parseInt(this.state.survivor.sheet.Body, 10)}
 						waist={parseInt(this.state.survivor.sheet.Waist, 10)}
-						feet={parseInt(this.state.survivor.sheet.Feet, 10)}
+						legs={parseInt(this.state.survivor.sheet.Legs, 10)}
 					/>
 					<SurvivorFightArts
 						arts={this.state.fightingArts}

@@ -1,161 +1,153 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
+import { Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
+import classNames from 'classnames';
 import Stats from '../../components/Stats/Stats';
-import StatAdjust from '../../components/Stats/StatAdjust';
-import StatAdjust2 from '../../components/Stats/StatAdjust2';
+import Milestone from '../../components/Milestone/Milestone';
+import MilestoneDots from '../../components/MilestoneDots/MilestoneDots';
+import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
 
 class SurvivorArmor extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showModal: false,
-			name: 'Armor',
-			min: 0,
-			brain: {
-				name: 'Brain',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			head: {
-				name: 'Head',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			arms: {
-				name: 'Arms',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			body: {
-				name: 'Body',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			waist: {
-				name: 'Waist',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
-			feet: {
-				name: 'Feet',
-				amount: 5,
-				max: 10,
-				min: 0,
-			},
+			title: 'Adjust Armor',
+			insanity: props.insanity,
+			head: props.head,
+			arms: props.arms,
+			body: props.body,
+			waist: props.waist,
+			legs: props.legs,
+			min: -2,
+			max: 10
 		};
 		this.handleModal = this.handleModal.bind(this);
-		this.updateFromChild = this.updateFromChild.bind(this);
+		this.handleConfirm = this.handleConfirm.bind(this);
 	}
+
 	handleModal() {
 		this.setState({
 			showModal: !this.state.showModal,
 		});
 	}
-	confirm() {
-		console.log('hmmmmm....... dickbutts');
-		console.log(this.state);
-	}
-	// How we get the data from the child
-	updateFromChild(locationName, newArmorState){
+	handleConfirm(){
+		// dispatches data to api to save
 		this.setState({
-			[locationName]: newArmorState
-		})
+			showModal: false,
+		});
+	}
+	updateAmount(type, amount){
+		this.setState({
+			[type]: amount
+		});
+	}
+	renderConfirm() {
+		if (this.state.amount == this.props.amount) {
+			return (
+				<Button
+					color="secondary"
+					onClick={this.handleConfirm}
+				>Confirm</Button>
+			);
+		}
+		return (
+			<Button
+				color="primary"
+				onClick={this.handleModal}
+			>Confirm</Button>
+		);
 	}
 	render() {
 		return (
 			<div className="box survivorArmor">
 				<header className="box-header">
-					<div className="box-header-title">{this.state.name}</div>
+					<div className="box-header-title">{this.state.title}</div>
 				</header>
 				<button onClick={this.handleModal} type="button" className="box-content">
 					<div className="statGroup">
 						<Stats
-							name={this.state.brain.name}
-							amount={this.state.brain.amount}
-							max={this.state.brain.max}
-							min={this.state.brain.min}
+							name={"Insty"}
+							amount={this.state.insanity}
 						/>
 						<Stats
-							name={this.state.head.name}
-							amount={this.state.head.amount}
-							max={this.state.head.max}
-							min={this.state.head.min}
+							name={"Head"}
+							amount={this.state.head}
 						/>
 						<Stats
-							name={this.state.arms.name}
-							amount={this.state.arms.amount}
-							max={this.state.arms.max}
-							min={this.state.arms.min}
+							name={"Arms"}
+							amount={this.state.arms}
 						/>
 						<Stats
-							name={this.state.body.name}
-							amount={this.state.body.amount}
-							max={this.state.body.max}
-							min={this.state.body.min}
+							name={"Body"}
+							amount={this.state.body}
 						/>
 						<Stats
-							name={this.state.waist.name}
-							amount={this.state.waist.amount}
-							max={this.state.waist.max}
-							min={this.state.waist.min}
+							name={"Waist"}
+							amount={this.state.waist}
 						/>
 						<Stats
-							name={this.state.feet.name}
-							amount={this.state.feet.amount}
-							max={this.state.feet.max}
-							min={this.state.feet.min}
+							name={"Legs"}
+							amount={this.state.legs}
 						/>
 					</div>
 				</button>
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>
-					<ModalHeader toggle={this.handleModal}>{this.state.name}</ModalHeader>
+					<ModalHeader>Adjust {this.state.title}</ModalHeader>
 					<ModalBody>
-						<StatAdjust2
-							updateToParent={this.updateFromChild}
-							armorPart={this.state.brain}
+
+						<NumberIncrement
+							type='armor'
+							name={'Insanity'}
+							amount={this.state.insanity}
+							min={this.state.min}
+							max={this.state.max}
+							updateAmount={this.updateAmount.bind(this, 'insanity')}
 						/>
-						<StatAdjust
-							name={this.state.head.name}
-							amount={this.state.head.amount}
-							max={this.state.head.max}
-							min={this.state.head.min}
+						<NumberIncrement
+							type='armor'
+							name={'Head'}
+							amount={this.state.head}
+							min={this.state.min}
+							max={this.state.max}
+							updateAmount={this.updateAmount.bind(this, 'head')}
 						/>
-						<StatAdjust
-							name={this.state.arms.name}
-							amount={this.state.arms.amount}
-							max={this.state.arms.max}
-							min={this.state.arms.min}
+						<NumberIncrement
+							type='armor'
+							name={'Arms'}
+							amount={this.state.arms}
+							min={this.state.min}
+							max={this.state.max}
+							updateAmount={this.updateAmount.bind(this, 'arms')}
 						/>
-						<StatAdjust
-							name={this.state.body.name}
-							amount={this.state.body.amount}
-							max={this.state.body.max}
-							min={this.state.body.min}
+						<NumberIncrement
+							type='armor'
+							name={'Body'}
+							amount={this.state.body}
+							min={this.state.min}
+							max={this.state.max}
+							updateAmount={this.updateAmount.bind(this, 'body')}
 						/>
-						<StatAdjust
-							name={this.state.waist.name}
-							amount={this.state.waist.amount}
-							max={this.state.waist.max}
-							min={this.state.waist.min}
+						<NumberIncrement
+							type='armor'
+							name={'Waist'}
+							amount={this.state.waist}
+							min={this.state.min}
+							max={this.state.max}
+							updateAmount={this.updateAmount.bind(this, 'waist')}
 						/>
-						<StatAdjust
-							name={this.state.feet.name}
-							amount={this.state.feet.amount}
-							max={this.state.feet.max}
-							min={this.state.feet.min}
+						<NumberIncrement
+							type='armor'
+							name={'Legs'}
+							amount={this.state.legs}
+							min={this.state.min}
+							max={this.state.max}
+							updateAmount={this.updateAmount.bind(this, 'legs')}
 						/>
 					</ModalBody>
 					<ModalFooter>
-						<div className="btn-group btn-group--full">
-							<Button onClick={this.handleModal}>Cancel</Button>
-							<Button onClick={this.confirm} color="primary">Confirm</Button>
-						</div>
+						{this.renderConfirm()}
+						<Button color="link" onClick={this.handleModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>
 			</div>
@@ -163,9 +155,22 @@ class SurvivorArmor extends Component {
 	}
 }
 
+SurvivorArmor.defaultProps = {
+	insanity: 5,
+	head: 0,
+	arms: 0,
+	body: 0,
+	waist: 0,
+	speed: 0,
+};
+
 SurvivorArmor.propTypes = {
-	amount: PropTypes.number,
-	max: PropTypes.number,
+	insanity: PropTypes.number,
+	head: PropTypes.number,
+	arms: PropTypes.number,
+	body: PropTypes.number,
+	waist: PropTypes.number,
+	legs: PropTypes.number,
 };
 
 export default SurvivorArmor;
