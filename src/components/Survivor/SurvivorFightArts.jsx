@@ -38,7 +38,7 @@ class SurvivorFightArts extends Component {
 	renderFightingArt(){
 		if(this.state.arts){
 			return this.state.arts.map((art, index) => {
-				return <StatList name={art} />
+				return <StatList name={art} key={index} />
 			});
 		}
 	}

@@ -60,11 +60,13 @@ class SurvivorBleeding extends Component {
 					<div className="statGroup">
 						<Stats
 							amount={this.state.amount}
-						></Stats>
-						<MilestoneDots
-							current={this.state.amount}
-							count={this.props.max}
-						/>
+						>
+							<MilestoneDots
+								current={this.state.amount}
+								count={this.props.max}
+								mini
+							/>
+						</Stats>
 					</div>
 				</button>
 				<Modal isOpen={this.state.showModal} toggle={this.handleModal}>

@@ -26,7 +26,7 @@ class MilestoneDots extends Component {
 				} else if (IS_FILLED) {
 					type = 'active';
 				}
-				return <MilestoneDot type={type} key={index} />
+				return <MilestoneDot type={type} key={index} mini={this.props.mini} />
 			})
 		}
 		return null;
@@ -44,12 +44,14 @@ MilestoneDots.propTypes = {
 	count: PropTypes.number,
 	current: PropTypes.number,
 	milestones: PropTypes.arrayOf(PropTypes.number),
+	mini: PropTypes.bool,
 };
 
 MilestoneDots.defaultProps = {
 	count: 1,
 	current: 0,
 	milestones: [],
+	mini: false,
 }
 
 export default MilestoneDots;
