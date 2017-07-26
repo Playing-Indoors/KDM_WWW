@@ -16,6 +16,9 @@ class Nav extends Component {
 		};
 		this.handleCloseNav = this.handleCloseNav.bind(this);
 	}
+	componentDidMount() {
+		this.calculateIndex();
+	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.headerData) {
 			this.setState({
@@ -23,102 +26,31 @@ class Nav extends Component {
 			});
 		}
 	}
-	componentDidMount() {
-		this.calculateIndex();
-	}
 	handleCloseNav() {
-		window.scrollTo(0, 0);
 		this.props.closeHeader();
-	}
-	calculateIndex() {
-		const inIndex = parseInt(document.body.querySelector('.mainNav-link--current').closest('li').dataset.i, 10);
-		this.setState({
-			initialIndex: inIndex,
-			activeIndex: inIndex,
-		});
-	}
-	renderSubNav(mainIndex, title, children) {
-		return (
-			<div className="subNav">
-				<div className="subNav-title">{title}</div>
-				<ol>
-					{this.renderSubNavChildren(children, mainIndex)}
-				</ol>
-			</div>
-		);
-	}
-	renderSubNavChildren(children, mainIndex) {
-		return children.map((item, index) => {
-			return (
-				<li key={index}>
-					<Link
-						to={item.link}
-						className="subNav-link"
-						activeClassName="is-active"
-						onClick={(e) => {
-							this.handleCloseNav();
-							this.setState({
-								activeIndex: mainIndex,
-								initialIndex: mainIndex,
-							});
-						}}
-					>
-						{item.title}
-					</Link>
-				</li>
-			);
-		});
-	}
-	renderNavClose() {
-		if (this.state.showNav) {
-			return <button onClick={this.handleCloseNav} className="subNavClose" />;
-		}
-		return null;
 	}
 	renderMainNav() {
 		return this.props.data.map((item, index) =>
-			<li data-i={index} key={index}>
+			<li data-i={index} key={index} className="nav-item">
 				<Link
-					onClick={(e) => {
-						e.preventDefault();
-					}}
-					onFocus={(e) => {
-						this.setState({
-							activeIndex: index,
-						});
-					}}
-					onMouseEnter={(e) => {
-						this.setState({
-							activeIndex: index,
-						});
-					}}
-					className={(this.state.activeIndex === index) ? 'mainNav-link is-active' : 'mainNav-link'}
-					activeClassName="mainNav-link--current"
+					className="nav-link"
+					activeClassName="active"
 					to={item.link}
 				>
-					<div className="mainNav-link-icon">
+					<div className="nav-link-icon">
 						<Icon name={item.icon} />
 					</div>
-					<div className="sr-only">{item.title}</div>
+					<div className="nav-link-text">{item.title}</div>
 				</Link>
-				{this.renderSubNav(index, item.title, item.children)}
 			</li>,
 		);
 	}
 	render() {
 		return (
-			<nav
-				className={`mainNav ${this.state.showNav ? 'is-active' : ''}`}
-				onMouseLeave={(e) => {
-					this.setState({
-						activeIndex: this.state.initialIndex,
-					});
-				}}
-			>
-				<ol>
+			<nav className="mainNav">
+				<ol className="nav nav-fill">
 					{this.renderMainNav()}
 				</ol>
-				{this.renderNavClose()}
 			</nav>
 		);
 	}
@@ -136,7 +68,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		closeHeader: closeHeader
+		closeHeader,
 	}, dispatch);
 }
 

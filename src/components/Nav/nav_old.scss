@@ -1,0 +1,134 @@
+.mainNav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: $z-index-9000--menu;
+	height: 100%;
+	width: calc(100% - #{$menu-button-width});
+	// width: 90%;
+	// overflow-x: visible;
+	// overflow-y: auto;
+	background: $gray-darker;
+	display: none;
+
+	&.is-active {
+		display: block;
+	}
+
+	@include breakpoint(l) {
+		display: block;
+		width: $menu-width;
+	}
+
+	// > ol {
+	// 	position: relative;
+	// 	z-index: 2;
+	// }
+
+	ol, li {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+
+	> ol > li + li {
+		border-top: 1px solid $gray;
+	}
+}
+
+.mainNav.is-active ~ .header,
+.mainNav.is-active ~ .main {
+	transform: translateX(calc(100% - #{$menu-button-width}));
+
+	@include breakpoint(l) {
+		transform: translateX(0);
+	}
+}
+
+.mainNav-link {
+	display: block;
+	width: $menu-button-width;
+	height: $menu-button-width;
+	background: $gray-darker;
+
+	&:hover, &.is-active {
+		background: $brand-primary;
+		// cursor: pointer;
+		// background: mix($brand-primary, $gray-darker, 25%);
+		// box-shadow: inset 0 0 0 2px $brand-primary;
+		// outline: 0;
+	}
+}
+
+
+.mainNav-link-icon {
+	padding: 17px;
+
+	> svg {
+		width: 16px;
+		height: 16px;
+		fill: $gray-lightest
+	}
+}
+
+.subNav-title {
+	margin-bottom: 0.5rem;
+	height: $menu-button-width;
+	line-height: $menu-button-width;
+	font-weight: bold;
+	text-align: center;
+	background: $gray;
+}
+
+.subNav {
+	// display: none7;
+	// overflow: hidden; // hides the active state
+	// padding: 2rem 1rem;
+	// display: none;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: $menu-button-width;
+	height: 100%;
+	width: calc(100% - #{$menu-button-width});
+	background: $gray-dark;
+	text-align: left;
+
+	.mainNav-link.is-active + & {
+		display: block;
+		z-index: 100;
+	}
+}
+
+
+.subNav-link {
+	display: block;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	font-weight: bold;
+	color: #fff;
+
+	&.is-active {
+		color: $brand-primary;
+	}
+
+	&:hover, &:focus {
+		outline: 0;
+	}
+}
+
+.subNavClose {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: $menu-button-width;
+	height: 100%;
+	z-index: 1;
+	cursor: pointer;
+	background: rgba($body-bg, 0.64);
+	border: 0;
+
+	@include breakpoint(l) {
+		display: none;
+	}
+}

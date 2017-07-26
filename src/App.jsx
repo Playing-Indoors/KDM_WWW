@@ -12,35 +12,46 @@ class App extends Component {
 		this.state = {
 			pageName: 'Page Name',
 			nav: [
+				// {
+				// 	title: 'Dashboard',
+				// 	link: '/',
+				// 	icon: 'logo',
+				// 	children: [
+				// 		{
+				// 			title: 'Settlements',
+				// 			link: '/settlements',
+				// 		},
+				// 		{
+				// 			title: 'System',
+				// 			link: '/system',
+				// 		},
+				// 		{
+				// 			title: 'World Stats',
+				// 			link: '/world',
+				// 		},
+				// 		{
+				// 			title: 'About',
+				// 			link: '/about',
+				// 		},
+				// 		{
+				// 			title: 'Log Out',
+				// 			link: '/log-out',
+				// 		},
+				// 	],
+				// },
 				{
-					title: 'Dashboard',
-					link: '/',
-					icon: 'logo',
+					title: 'Campaign Log',
+					icon: 'log',
+					link: '/settlements/1234/log',
 					children: [
 						{
-							title: 'Settlements',
-							link: '/settlements',
-						},
-						{
-							title: 'System',
-							link: '/system',
-						},
-						{
-							title: 'World Stats',
-							link: '/world',
-						},
-						{
-							title: 'About',
-							link: '/about',
-						},
-						{
-							title: 'Log Out',
-							link: '/log-out',
+							title: 'Campaign Log',
+							link: '/settlements/1234/log',
 						},
 					],
 				},
 				{
-					title: 'Settlements',
+					title: 'Settlement',
 					icon: 'settlement',
 					link: '/settlements/1234/settlement/',
 					children: [
@@ -78,7 +89,7 @@ class App extends Component {
 					],
 				},
 				{
-					title: 'Storage',
+					title: 'Resources',
 					icon: 'storage',
 					link: '/settlements/1234/storage',
 					children: [
@@ -93,42 +104,46 @@ class App extends Component {
 					],
 				},
 				{
-					title: 'Campaign Log',
-					icon: 'log',
-					link: '/settlements/1234/log',
+					title: 'Menu',
+					icon: 'menu',
+					link: '/settlements/1234/storage',
 					children: [
 						{
-							title: 'Campaign Log',
-							link: '/settlements/1234/log',
+							title: 'Resources',
+							link: '/settlements/1234/storage/resources',
+						},
+						{
+							title: 'Gear',
+							link: '/settlements/1234/storage/gear',
 						},
 					],
 				},
-				{
-					title: 'Resources',
-					icon: 'faq',
-					link: '/resources',
-					children: [
-						{
-							title: 'Glossary',
-							link: '/resources/glossary',
-						},
-						{
-							title: 'FAQ',
-							link: '/resources/faq',
-						},
-					],
-				},
-				{
-					title: 'Dev',
-					icon: 'logo',
-					link: '/aya',
-					children: [
-						{
-							title: 'Style Guide',
-							link: '/aya',
-						},
-					],
-				},
+				// {
+				// 	title: 'Resources',
+				// 	icon: 'faq',
+				// 	link: '/resources',
+				// 	children: [
+				// 		{
+				// 			title: 'Glossary',
+				// 			link: '/resources/glossary',
+				// 		},
+				// 		{
+				// 			title: 'FAQ',
+				// 			link: '/resources/faq',
+				// 		},
+				// 	],
+				// },
+				// {
+				// 	title: 'Dev',
+				// 	icon: 'logo',
+				// 	link: '/aya',
+				// 	children: [
+				// 		{
+				// 			title: 'Style Guide',
+				// 			link: '/aya',
+				// 		},
+				// 	],
+				// },
 			],
 		};
 	}

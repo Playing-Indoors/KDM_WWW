@@ -31,7 +31,7 @@ class SurvivorBleeding extends Component {
 	}
 	updateAmount(amount){
 		this.setState({
-			amount
+			amount,
 		});
 	}
 	renderConfirm() {

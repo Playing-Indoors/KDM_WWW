@@ -63,6 +63,11 @@ icons.logo = {
 	width: 39.84,
 	height: 50.79,
 };
+icons.menu = {
+	icon: '<g><path d="M30.11,28.32h-28a2.16,2.16,0,1,1,0-4.31h28a2.16,2.16,0,1,1,0,4.31Z" /><path d="M30.11,16.49h-28a2.16,2.16,0,0,1,0-4.31h28a2.16,2.16,0,0,1,0,4.31Z" /><path d="M30.11,4.31h-28A2.16,2.16,0,0,1,2.16,0h28a2.16,2.16,0,0,1,0,4.31Z" /></g>',
+	width: 32.27,
+	height: 28.32,
+};
 
 class Icon extends Component {
 	constructor(props) {
