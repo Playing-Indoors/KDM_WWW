@@ -81,7 +81,7 @@ render(
 						<Route title="Gear" path="gear" component={Gear} />
 					</Route>
 
-					<Route title="Log" path="log">
+					<Route title="Campaign Log" path="log">
 						<IndexRoute component={Log} />
 					</Route>
 				</Route>
