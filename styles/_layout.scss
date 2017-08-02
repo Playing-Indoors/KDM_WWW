@@ -4,6 +4,7 @@ html {
 
 body {
 	min-height:100%;
+	padding-bottom: 100px;
 	// background: $gray-dark;
 	// font-family: 'Ruda', sans-serif;
 }
@@ -19,9 +20,6 @@ body {
 
 .app {
 	overflow-x: hidden;
-	@include breakpoint(l) {
-		margin-left: $menu-width;
-	}
 }
 
 .main {

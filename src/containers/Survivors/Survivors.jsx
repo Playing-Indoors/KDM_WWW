@@ -25,7 +25,11 @@ class Survivors extends React.Component {
 						key={survivor.sheet._id.$oid}
 						name={survivor.sheet.name}
 						href={survivor.sheet._id.$oid}
-					/>
+					>
+						Hunt XP: {survivor.sheet.hunt_xp} &nbsp; &nbsp;
+						Courage: {survivor.sheet.Courage} &nbsp; &nbsp;
+						Understanding {survivor.sheet.Understanding}
+					</CardList>
 				);
 			});
 		}

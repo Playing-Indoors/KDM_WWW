@@ -66,17 +66,17 @@ render(
 				{/* Settlement Routes */}
 				<Route path="/settlements/:oid">
 
-					<Route path="settlement">
+					<Route path="settlement" component={Dashboard}>
 						<Route title="Dashboard" path="dashboard" component={Dashboard} />
 						<Route title="Timeline" path="timeline" component={Timeline} />
 					</Route>
 
-					<Route path="survivors">
+					<Route path="survivors" component={Survivors}>
 						<Route title="Survivor" path="all" component={Survivors} />
 						<Route title="Survivor" path=":id" component={Survivor} />
 					</Route>
 
-					<Route path="storage">
+					<Route path="storage" component={Resources}>
 						<Route title="Resources" path="resources" component={Resources} />
 						<Route title="Gear" path="gear" component={Gear} />
 					</Route>

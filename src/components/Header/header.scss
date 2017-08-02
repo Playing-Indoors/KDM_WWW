@@ -13,10 +13,10 @@
 	color: $gray-lightest;
 	background: $brand-primary;
 
-	@include breakpoint(l) {
-		left: $menu-width;
-		width: calc(100% - #{$menu-width});
-	}
+	// @include breakpoint(l) {
+	// 	left: $menu-width;
+	// 	width: calc(100% - #{$menu-width});
+	// }
 }
 
 .header-title {
