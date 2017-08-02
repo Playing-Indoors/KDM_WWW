@@ -158,7 +158,7 @@ class App extends Component {
 				<Nav data={this.state.nav} />
 				<Header name={this.props.routes[1].title} subName={subName} superSubName={superSubName}/>
 				<main className="main">
-					{ this.props.children }
+					{ React.cloneElement(this.props.children, {...this.props}) }
 				</main>
 			</div>
 		);
