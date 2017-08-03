@@ -72,9 +72,8 @@ render(
 					</Route>
 
 					<Route path="survivors" >
-						<IndexRoute component={Survivors} />
-						<Route title="Survivor" path="/" component={Survivors} />
-						<Route title="Survivor" path=":id" component={Survivor} />
+						<IndexRoute title="Survivors" component={Survivors} />
+						<Route title="Survivor" path="/:id" component={Survivor} />
 					</Route>
 
 					<Route path="storage" component={Resources}>

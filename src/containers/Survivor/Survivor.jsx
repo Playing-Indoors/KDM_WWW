@@ -33,10 +33,25 @@ class Survivor extends React.Component {
 			]
 		};
 	}
+	componentDidMount(){
+		if (this.props.settlementData) {
+			let routeId = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+			let arr = _.filter(this.props.settlementData.user_assets.survivors, (survivor) => {
+				if (survivor.sheet._id.$oid === routeId){
+					return survivor;
+				}
+			});
+			this.setState({
+				settlementData: this.props.settlementData,
+				survivor: arr[0],
+			});
+		}
+	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.settlementData) {
+			let routeId = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
 			let arr = _.filter(nextProps.settlementData.user_assets.survivors, (survivor) => {
-				if (survivor.sheet._id.$oid === this.props.routeParams.id){
+				if (survivor.sheet._id.$oid === routeId){
 					return survivor;
 				}
 			});
