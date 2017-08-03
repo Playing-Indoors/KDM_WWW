@@ -72,7 +72,7 @@ class App extends Component {
 				{
 					title: 'Survivors',
 					icon: 'survivors',
-					link: '/settlements/1234/survivors',
+					link: '/settlements/1234/survivors/',
 					children: [
 						{
 							title: 'All',
