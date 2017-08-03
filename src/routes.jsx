@@ -71,8 +71,9 @@ render(
 						<Route title="Timeline" path="timeline" component={Timeline} />
 					</Route>
 
-					<Route path="survivors" component={Survivors}>
-						<Route title="Survivor" path="all" component={Survivors} />
+					<Route path="survivors" >
+						<IndexRoute component={Survivors} />
+						<Route title="Survivor" path="/" component={Survivors} />
 						<Route title="Survivor" path=":id" component={Survivor} />
 					</Route>
 
