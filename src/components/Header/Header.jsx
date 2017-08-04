@@ -4,6 +4,7 @@ import Icon from '../../components/Icon/Icon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateHeader } from '../../actions/updateHeader';
+import { browserHistory } from 'react-router';
 // TODO: handle button clicks.
 
 class Header extends Component {
@@ -12,7 +13,7 @@ class Header extends Component {
 		this.handleNav = this.handleNav.bind(this);
 	}
 	handleNav(){
-		this.props.updateHeader();
+		browserHistory.goBack();
 	}
 	renderName(){
 		if(this.props.superSubName){
