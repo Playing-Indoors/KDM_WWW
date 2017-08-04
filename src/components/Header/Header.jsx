@@ -26,7 +26,8 @@ class Header extends Component {
 	render(){
 		return (
 			<header className="header">
-				<a className="header-action header-action--nav" onClick={this.handleNav}>
+				{/* Only show this if back is activated */}
+				<a tabIndex="0" className="header-action header-action--nav" onClick={this.handleNav}>
 					<Icon name="nav" />
 				</a>
 				<div className="header-title">
