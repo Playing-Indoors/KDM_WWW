@@ -10,48 +10,57 @@ class Log extends Component {
 		if(this.props.settlementData){
 			return (
 				<div>
-					<h1>{this.props.settlementData.sheet.campaign}</h1>
+					<h1>{this.props.settlementData.sheet.name}</h1>
 					<Row>
+						<Col>
+							<Button color="danger" block>Depart For Hunt</Button>
+						</Col>
+					</Row>
+					<br />
+					<Row>
+						<Col>
+							<Widget title="Survival Limit">{this.props.settlementData.sheet.survival_limit}</Widget>
+						</Col>
 						<Col>
 							<Widget title="Lantern Year">{this.props.settlementData.sheet.lantern_year}</Widget>
 						</Col>
 						<Col>
 							<Widget title="Population">{this.props.settlementData.sheet.population}</Widget>
 						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<Widget title="Innovations">{this.props.settlementData.sheet.innovations.length}</Widget>
+						</Col>
+						<Col>
+							<Widget title="Principles">{this.props.settlementData.sheet.principles.length}</Widget>
+						</Col>
 						<Col>
 							<Widget title="Milestones">{this.props.settlementData.sheet.milestone_story_events.length}</Widget>
 						</Col>
 					</Row>
+
 					<Row>
 						<Col>
-							<Widget title="Most Recent Milestone">{this.props.settlementData.sheet.milestone_story_events[this.props.settlementData.sheet.milestone_story_events.length -1]}</Widget>
+							<Widget title="Locations">{this.props.settlementData.sheet.locations.length}</Widget>
+						</Col>
+						<Col>
+							<Widget title="Death Count">{this.props.settlementData.sheet.death_count}</Widget>
+						</Col>
+						<Col>
+							<Widget title="Defeated Monsters">{this.props.settlementData.sheet.defeated_monsters.length}</Widget>
 						</Col>
 					</Row>
 					<Row>
 						<Col>
-							<Widget title="Most Recent Death">[Survivor Name]</Widget>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<Widget title="Most Recent Birth">[Survivor Name]</Widget>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<Widget title="Most Recent Monster Quarry">{this.props.settlementData.sheet.quarries[this.props.settlementData.sheet.quarries.length-1] }</Widget>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<Widget title="Last 5 logs">[Last 5 logs]</Widget>
+							<Widget title="Notes">~</Widget>
+							{/* <Widget title="Notes">{this.props.settlementData.sheet.settlement_notes}</Widget> */}
 						</Col>
 					</Row>
 				</div>
 			);
-		} else {
-			return null;
 		}
+		return null;
 	}
 }
 

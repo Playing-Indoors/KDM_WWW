@@ -39,36 +39,41 @@ class App extends Component {
 				// 		},
 				// 	],
 				// },
-				{
-					title: 'Campaign Log',
-					icon: 'log',
-					link: '/settlements/1234/log',
-					children: [
-						{
-							title: 'Campaign Log',
-							link: '/settlements/1234/log',
-						},
-					],
-				},
+				// {
+				// 	title: 'Campaign Log',
+				// 	icon: 'log',
+				// 	link: '/settlements/1234/log',
+				// 	children: [
+				// 		{
+				// 			title: 'Campaign Log',
+				// 			link: '/settlements/1234/log',
+				// 		},
+				// 	],
+				// },
 				{
 					title: 'Settlement',
 					icon: 'settlement',
-					link: '/settlements/1234/settlement/',
-					children: [
-						{
-							title: 'Dashboard',
-							link: '/settlements/1234/settlement/dashboard',
-						},
-						{
-							title: 'Timeline',
-							link: '/settlements/1234/settlement/timeline',
-						},
-						{
-							title: 'Innovations',
-							link: '/settlements/1234/settlement/innovations',
-						},
-					],
+					link: '/settlements/1234/log',
 				},
+				// {
+				// 	title: 'Settlement',
+				// 	icon: 'settlement',
+				// 	link: '/settlements/1234/settlement/',
+				// 	children: [
+				// 		{
+				// 			title: 'Dashboard',
+				// 			link: '/settlements/1234/settlement/dashboard',
+				// 		},
+				// 		{
+				// 			title: 'Timeline',
+				// 			link: '/settlements/1234/settlement/timeline',
+				// 		},
+				// 		{
+				// 			title: 'Innovations',
+				// 			link: '/settlements/1234/settlement/innovations',
+				// 		},
+				// 	],
+				// },
 				{
 					title: 'Survivors',
 					icon: 'survivors',
