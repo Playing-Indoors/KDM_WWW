@@ -24,13 +24,21 @@ class Header extends Component {
 			return `${this.props.name}`;
 		}
 	}
+	renderBack() {
+		if (this.props.showBack) {
+			return (
+				<a tabIndex="0" className="header-action header-action--nav" onClick={this.handleNav}>
+					<Icon name="nav" />
+				</a>
+			);
+		}
+		return null;
+	}
 	render(){
 		return (
 			<header className="header">
 				{/* Only show this if back is activated */}
-				<a tabIndex="0" className="header-action header-action--nav" onClick={this.handleNav}>
-					<Icon name="nav" />
-				</a>
+				{this.renderBack()}
 				<div className="header-title">
 					{this.renderName()}
 				</div>
@@ -53,11 +61,13 @@ function mapDispatchToProps(dispatch) {
 
 Header.defaultProps = {
 	name: 'Page Title',
+	showBack: false,
 };
 
 Header.propTypes = {
 	name: PropTypes.string,
 	subName: PropTypes.string,
+	showBack: PropTypes.bool,
 };
 
 export default connect(null, mapDispatchToProps)(Header);

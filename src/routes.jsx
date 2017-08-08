@@ -73,7 +73,7 @@ render(
 
 					<Route path="survivors" >
 						<IndexRoute title="Survivors" component={Survivors} />
-						<Route title="Survivor" path="/:id" component={Survivor} />
+						<Route title="Survivor" back path="/:id" component={Survivor} />
 					</Route>
 
 					<Route path="storage" component={Resources}>
@@ -82,7 +82,7 @@ render(
 					</Route>
 
 					<Route title="Campaign Log" path="log">
-						<IndexRoute component={Log} />
+						<IndexRoute component={Log} back />
 					</Route>
 				</Route>
 
