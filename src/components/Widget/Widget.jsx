@@ -12,7 +12,7 @@ class Widget extends React.Component {
 		this.state = {
 			headerClass: classNames({
 				'widget-header': true,
-				'widget-header--link': this.props.event,
+				'widget-header--link': this.props.event || this.props.link,
 			}),
 		};
 	}
@@ -52,6 +52,7 @@ class Widget extends React.Component {
 
 Widget.propTypes = {
 	title: PropTypes.string,
+	link: PropTypes.bool,
 	event: PropTypes.string,
 	children: PropTypes.node,
 };

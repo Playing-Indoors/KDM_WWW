@@ -1,5 +1,6 @@
 import { Button, Col, Row } from 'reactstrap';
-import Widget from '../../components/Widget/Widget';
+import SurvivalLimit from '../../components/SurvivalLimit/SurvivalLimit'
+import Widget from '../../components/Widget/Widget';;
 import React, { Component } from 'react';
 
 class Log extends Component {
@@ -19,13 +20,20 @@ class Log extends Component {
 					<br />
 					<Row>
 						<Col>
-							<Widget title="Survival Limit">{this.props.settlementData.sheet.survival_limit}</Widget>
+							<SurvivalLimit amount={1} />
+							<Widget title="Lantern Year">
+								{this.props.settlementData.sheet.lantern_year}
+							</Widget>
 						</Col>
 						<Col>
-							<Widget title="Lantern Year">{this.props.settlementData.sheet.lantern_year}</Widget>
+							<Widget title="Population">
+								{this.props.settlementData.sheet.population}
+							</Widget>
 						</Col>
 						<Col>
-							<Widget title="Population">{this.props.settlementData.sheet.population}</Widget>
+							<Widget title="Survival Limit">
+								{this.props.settlementData.sheet.survival_limit}
+							</Widget>
 						</Col>
 					</Row>
 					<Row>

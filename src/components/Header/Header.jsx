@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateHeader } from '../../actions/updateHeader';
 import { browserHistory } from 'react-router';
-// TODO: handle button clicks.
 
 class Header extends Component {
 	constructor(props){

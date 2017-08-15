@@ -21,22 +21,27 @@ class Nav extends Component {
 		);
 	}
 	render() {
-		return (
-			<nav className="mainNav">
-				<ol className="nav nav-fill">
-					{this.renderMainNav()}
-				</ol>
-			</nav>
-		);
+		if (!this.props.showBack) {
+			return (
+				<nav className="mainNav">
+					<ol className="nav nav-fill">
+						{this.renderMainNav()}
+					</ol>
+				</nav>
+			);
+		}
+		return null;
 	}
 }
 
 Nav.defaultProps = {
 	data: [],
+	showNav: true,
 };
 
 Nav.propTypes = {
 	data: PropTypes.arrayOf(PropTypes.object),
+	showNav: PropTypes.bool,
 };
 
 export default Nav;

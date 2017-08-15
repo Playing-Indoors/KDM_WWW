@@ -24,6 +24,7 @@ import Gear from './containers/Storage/Gear.jsx';
 import Dashboard from './containers/Dashboard/Dashboard.jsx';
 import SurvivorHome from './containers/SurvivorHome/SurvivorHome.jsx';
 import World from './containers/World/World.jsx';
+import More from './containers/More/More.jsx';
 import Aya from './components/Aya/Aya.jsx';
 import NotFound from './components/NotFound/NotFound.jsx';
 import Splash from './components/Splash/Splash.jsx';
@@ -66,7 +67,11 @@ render(
 				{/* Settlement Routes */}
 				<Route path="/settlements/:oid">
 
-					<Route path="settlement" component={Dashboard}>
+					<Route
+						title="Settlement"
+						path="settlement"
+						component={Dashboard}
+					>
 						<Route title="Dashboard" path="dashboard" component={Dashboard} />
 						<Route title="Timeline" path="timeline" component={Timeline} />
 					</Route>
@@ -82,14 +87,22 @@ render(
 					</Route>
 
 					<Route title="Campaign Log" path="log">
-						<IndexRoute component={Log} back />
+						<IndexRoute component={Log} />
+					</Route>
+
+					<Route title="More" path="more">
+						<IndexRoute component={More} />
+					</Route>
+
+					<Route title="aya" path="aya">
+						<IndexRoute component={Aya} />
 					</Route>
 				</Route>
 
-				<Route path="resources">
-					<Route title="FAQ" path="faq" component={FAQ} />
-					<Route title="Glossary" path="glossary" component={Glossary} />
-				</Route>
+				// <Route path="resources">
+				// 	<Route title="FAQ" path="faq" component={FAQ} />
+				// 	<Route title="Glossary" path="glossary" component={Glossary} />
+				// </Route>
 
 				{/* Dev Routes */}
 				<Route title="Aya" path="/aya" component={Aya} />

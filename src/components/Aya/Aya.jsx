@@ -16,11 +16,14 @@ import SurvivorNotes from '../../components/Survivor/SurvivorNotes';
 import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
+import SurvivalLimit from '../../components/SurvivalLimit/SurvivalLimit';
+import SurvivalLimitModal from '../../components/SurvivalLimit/SurvivalLimit-Modal';
 import Milestone from '../../components/Milestone/Milestone';
 import MilestoneDots from '../../components/MilestoneDots/MilestoneDots';
 import Icon from '../../components/Icon/Icon';
 import Toggle from '../../components/Toggle/Toggle';
 import Widget from '../../components/Widget/Widget';
+import WidgetVariant from '../../components/Widget/WidgetVariant';
 
 class Aya extends Component {
 	constructor(props) {
@@ -98,8 +101,11 @@ class Aya extends Component {
 		return (
 			<div className="page-aya">
 				<h1>Style Guide</h1>
-				<Link to="/campaign">test</Link>
 
+				<WidgetVariant title="Survival Limit">
+					<Stat amount={5} />
+					<div>test</div>
+				</WidgetVariant>
 
 				<br />
 
