@@ -17,7 +17,6 @@ import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
 import SurvivorXP from '../../components/Survivor/SurvivorXP';
 import SurvivalLimit from '../../components/SurvivalLimit/SurvivalLimit';
-import SurvivalLimitModal from '../../components/SurvivalLimit/SurvivalLimit-Modal';
 import Milestone from '../../components/Milestone/Milestone';
 import MilestoneDots from '../../components/MilestoneDots/MilestoneDots';
 import Icon from '../../components/Icon/Icon';
@@ -102,10 +101,10 @@ class Aya extends Component {
 			<div className="page-aya">
 				<h1>Style Guide</h1>
 
-				<WidgetVariant title="Survival Limit">
-					<Stat amount={5} />
-					<div>test</div>
-				</WidgetVariant>
+				<SurvivalLimit
+					amount={5}
+					sid={'12345'}
+				/>
 
 				<br />
 

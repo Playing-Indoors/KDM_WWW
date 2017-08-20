@@ -62,6 +62,8 @@ class NumberIncrement extends Component {
 }
 
 NumberIncrement.defaultProps = {
+	name: '',
+	amount: 0,
 	min: -999,
 	max: 999,
 };
