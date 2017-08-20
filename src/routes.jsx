@@ -99,11 +99,6 @@ render(
 					</Route>
 				</Route>
 
-				// <Route path="resources">
-				// 	<Route title="FAQ" path="faq" component={FAQ} />
-				// 	<Route title="Glossary" path="glossary" component={Glossary} />
-				// </Route>
-
 				{/* Dev Routes */}
 				<Route title="Aya" path="/aya" component={Aya} />
 

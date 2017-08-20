@@ -24,9 +24,9 @@
 	padding: 0.5rem;
 	text-align: center;
 
-	@include breakpoint(l) {
-		text-align: left;
-	}
+	// @include breakpoint(l) {
+	// 	text-align: left;
+	// }
 }
 
 .header-action {

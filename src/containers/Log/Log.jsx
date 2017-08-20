@@ -1,14 +1,19 @@
-import { Button, Col, Row } from 'reactstrap';
-import SurvivalLimit from '../../components/SurvivalLimit/SurvivalLimit'
-import Widget from '../../components/Widget/Widget';;
+import { Button } from 'reactstrap';
 import React, { Component } from 'react';
+import Innovations from '../../components/Innovations/Innovations';
+import SurvivalLimit from '../../components/SurvivalLimit/SurvivalLimit';
+import LanternYear from '../../components/LanternYear/LanternYear';
+import Population from '../../components/Population/Population';
+import Principles from '../../components/Principles/Principles';
+import Milestones from '../../components/Milestones/Milestones';
+import Locations from '../../components/Locations/Locations';
+import DeathCount from '../../components/DeathCount/DeathCount';
+import DefeatedMonsters from '../../components/DefeatedMonsters/DefeatedMonsters';
+import Notes from '../../components/Notes/Notes';
 
 class Log extends Component {
-	constructor(props){
-		super(props);
-	}
 	render() {
-		if(this.props.settlementData){
+		if (this.props.settlementData) {
 			return (
 				<div className="layoutLog">
 					<h1 className="text-center">{this.props.settlementData.sheet.name}</h1>
@@ -18,31 +23,39 @@ class Log extends Component {
 						amount={5}
 					/>
 
-					<Widget title="Lantern Year">
-						{this.props.settlementData.sheet.lantern_year}
-					</Widget>
+					<LanternYear
+						amount={this.props.settlementData.sheet.lantern_year}
+					/>
 
-					<Widget title="Population">
-						{this.props.settlementData.sheet.population}
-					</Widget>
+					<Population
+						amount={this.props.settlementData.sheet.population}
+					/>
 
-					<Widget title="Survival Limit">
-						{this.props.settlementData.sheet.survival_limit}
-					</Widget>
+					<Innovations
+						list={this.props.settlementData.sheet.innovations}
+					/>
 
-					<Widget title="Innovations">{this.props.settlementData.sheet.innovations.length}</Widget>
+					<Principles
+						amount={this.props.settlementData.sheet.principles.length}
+					/>
 
-					<Widget title="Principles">{this.props.settlementData.sheet.principles.length}</Widget>
+					<Milestones
+						amount={this.props.settlementData.sheet.milestone_story_events.length}
+					/>
 
-					<Widget title="Milestones">{this.props.settlementData.sheet.milestone_story_events.length}</Widget>
+					<Locations
+						amount={this.props.settlementData.sheet.locations.length}
+					/>
 
-					<Widget title="Locations">{this.props.settlementData.sheet.locations.length}</Widget>
+					<DeathCount
+						amount={this.props.settlementData.sheet.death_count}
+					/>
 
-					<Widget title="Death Count">{this.props.settlementData.sheet.death_count}</Widget>
+					<DefeatedMonsters
+						amount={this.props.settlementData.sheet.defeated_monsters.length}
+					/>
 
-					<Widget title="Defeated Monsters">{this.props.settlementData.sheet.defeated_monsters.length}</Widget>
-
-					<Widget title="Notes">~</Widget>
+					<Notes />
 
 				</div>
 			);

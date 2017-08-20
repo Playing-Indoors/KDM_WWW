@@ -14,7 +14,14 @@
 	}
 }
 
-
-.survivalLimit {
+.survivalLimit,
+.lanternYear,
+.population,
+.innovations,
+.principles,
+.milestones,
+.locations,
+.deathCount,
+.defeatedMonsters {
 	grid-column: span 1;
 }
