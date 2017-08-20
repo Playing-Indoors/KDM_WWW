@@ -103,7 +103,7 @@ class Aya extends Component {
 
 				<SurvivalLimit
 					amount={5}
-					sid={'12345'}
+					id={'12345'}
 				/>
 
 				<br />

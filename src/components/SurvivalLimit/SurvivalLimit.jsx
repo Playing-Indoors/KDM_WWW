@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Button } from 'reactstrap';
+import { ModalFooter, Button } from 'reactstrap';
 import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
 import Stat from '../../components/Stats/Stats';
 import WidgetVariant from '../../components/Widget/WidgetVariant';
@@ -18,28 +18,28 @@ class SurvivalLimit extends Component {
 		this.handleConfirm = this.handleConfirm.bind(this);
 		this.handleModal = this.handleModal.bind(this);
 	}
-	handleModal(){
+	handleModal() {
 		this.setState({
 			toggleModal: !this.state.toggleModal,
 		});
 	}
-	handleCancel(){
+	handleCancel() {
 		this.setState({
 			amount: this.props.amount,
 		});
 		this.handleModal();
 	}
-	handleConfirm(){
-		console.warn('save survival limit', this.props.sid);
+	handleConfirm() {
+		console.warn('save survival limit');
 		// dispatches data to api to save
 		this.handleModal();
 	}
 	updateAmount(amount) {
 		console.log(`Amount changed to ${amount}`);
-		this.setState({amount});
+		this.setState({ amount });
 	}
 	renderConfirm() {
-		if (this.state.amount == this.props.amount) {
+		if (this.state.amount === this.props.amount) {
 			return (
 				<Button
 					color="secondary"
@@ -59,6 +59,7 @@ class SurvivalLimit extends Component {
 			<WidgetVariant
 				title={this.state.title}
 				toggleModal={this.state.toggleModal}
+				myClass={'survivalLimit'}
 			>
 				{ /* This is in the widget */ }
 				<Stat amount={this.state.amount} />
@@ -66,7 +67,7 @@ class SurvivalLimit extends Component {
 				<NumberIncrement
 					amount={this.state.amount}
 					min={1}
-					updateAmount={this.updateAmount.bind(this)}
+					updateAmount={this.updateAmount}
 				/>
 				<ModalFooter>
 					{ this.renderConfirm() }
@@ -82,12 +83,10 @@ class SurvivalLimit extends Component {
 
 SurvivalLimit.propTypes = {
 	amount: PropTypes.number,
-	sid: PropTypes.string,
 };
 
 SurvivalLimit.defaultProps = {
 	amount: 0,
-	sid: '0',
 };
 
 export default SurvivalLimit;

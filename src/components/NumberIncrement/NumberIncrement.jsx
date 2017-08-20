@@ -12,9 +12,9 @@ class NumberIncrement extends Component {
 			amount: props.amount || 0,
 		};
 	}
-	componentWillReceiveProps(nextProps){
+	componentWillReceiveProps(nextProps) {
 		this.setState({
-			amount: nextProps.amount
+			amount: nextProps.amount,
 		});
 	}
 	onAdjustAmount(amount) {

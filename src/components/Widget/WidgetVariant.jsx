@@ -7,7 +7,7 @@ class WidgetVariant extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showModal: this.props.showModal,
+			showModal: this.props.toggleModal,
 			headerClass: classNames({
 				'widget-header': true,
 				'widget-header--link': this.props.children.length > 1,
@@ -19,7 +19,7 @@ class WidgetVariant extends React.Component {
 		if (nextProps.toggleModal !== this.props.toggleModal) {
 			this.setState({
 				showModal: !this.state.showModal,
-			})
+			});
 		}
 	}
 	handleModal() {
@@ -67,7 +67,7 @@ class WidgetVariant extends React.Component {
 					color="link"
 				>Cancel</Button>
 			</ModalFooter>
-		)
+		);
 	}
 	renderModal() {
 		if (this.props.children.length > 1) {
@@ -79,13 +79,13 @@ class WidgetVariant extends React.Component {
 					</ModalBody>
 					{ this.renderModalClose() }
 				</Modal>
-			)
+			);
 		}
 		return null;
 	}
 	render() {
 		return (
-			<div className="widget">
+			<div className={`widget ${this.props.myClass}`}>
 				{this.renderHeader()}
 				{this.renderContent()}
 				{this.renderModal()}
@@ -98,11 +98,13 @@ WidgetVariant.propTypes = {
 	title: PropTypes.string,
 	children: PropTypes.node,
 	toggleModal: PropTypes.bool,
+	myClass: PropTypes.string,
 };
 
 WidgetVariant.defaultProps = {
 	title: '',
 	toggleModal: false,
+	myClass: '',
 };
 
 export default WidgetVariant;
