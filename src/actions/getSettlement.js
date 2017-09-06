@@ -23,3 +23,25 @@ export function getSettlement() {
 		});
 	};
 }
+
+export function createSettlement(){
+	return dispatch => {
+		axios({
+			method: 'post',
+			url: `${KDM_API}/new/settlement`,
+			data: {
+		    'campaign': 'Fred'
+		  }
+		}).then((res) => {
+			console.log('CREATE', res);
+
+		});
+		// axios({
+		// 	method: 'get',
+		// 	url: `${KDM_API}/authorization/check`,
+		// }).then((res) => {
+		// 	console.log('AUTH CHECK', res);
+		//
+		// });
+	};
+}
