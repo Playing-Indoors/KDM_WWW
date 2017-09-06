@@ -79,10 +79,12 @@ class SurvivorSurvival extends Component {
 							max={this.props.max}
 							updateAmount={this.updateAmount}
 						/>
-						<span>Dodge</span>
-						<span style={{ opacity: 0.54 }}>Encourage</span>
-						<span style={{ opacity: 0.54 }}>Dash</span>
-						<span style={{ opacity: 0.54 }}>Surge</span>
+						<div className="survivalSkills">
+							<span className="is-active">Dodge</span>
+							<span>Encourage</span>
+							<span>Dash</span>
+							<span>Surge</span>
+						</div>
 					</ModalBody>
 					<ModalFooter>
 						{this.renderConfirm()}

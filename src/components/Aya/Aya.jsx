@@ -3,8 +3,10 @@ import { Link } from 'react-router';
 import { Modal, ModalHeader, ModalBody, ModalFooter, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, ButtonGroup, Row, Col } from 'reactstrap';
 import AyaColor from './Aya-Color';
 import Stat from '../../components/Stats/Stats';
+import DataList from '../../components/DataList/DataList';
 import CardList from '../../components/CardList/CardList';
 import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
+import Survival from '../../components/Survivor/Survival';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
 import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
 import SurvivorArmor from '../../components/Survivor/SurvivorArmor';
@@ -22,7 +24,6 @@ import MilestoneDots from '../../components/MilestoneDots/MilestoneDots';
 import Icon from '../../components/Icon/Icon';
 import Toggle from '../../components/Toggle/Toggle';
 import Widget from '../../components/Widget/Widget';
-import WidgetVariant from '../../components/Widget/WidgetVariant';
 
 class Aya extends Component {
 	constructor(props) {
@@ -78,12 +79,25 @@ class Aya extends Component {
 					},
 				],
 			},
-
+			dataList: [
+				'a',
+				'b',
+				'c',
+			],
+			dataList2: [
+				'a',
+				'b',
+				'c',
+			],
 		};
 		this.toggle = this.toggle.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
 	}
-
+	updateDataList2(list) {
+		this.setState({
+			dataList2: list,
+		});
+	}
 	toggle(tab) {
 		if (this.state.activeTab !== tab) {
 			this.setState({
@@ -101,10 +115,22 @@ class Aya extends Component {
 			<div className="page-aya">
 				<h1>Style Guide</h1>
 
+				<h3>DataList</h3>
+				<p>Simple list to show data.</p>
+				<DataList list={this.state.dataList} />
+				<p>With removal</p>
+				<DataList list={this.state.dataList2} updateList={this.updateDataList2} />
+
 				<SurvivalLimit
 					amount={5}
 					id={'12345'}
 				/>
+
+				<Survival
+					amount={5}
+					id={'12345'}
+				/>
+
 
 				<br />
 
