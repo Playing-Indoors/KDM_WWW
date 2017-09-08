@@ -8,7 +8,7 @@
     "test": "jest",
     "dev": "npm run build && webpack-dev-server --inline --no-info --content-base .",
     "prod": "webpack --config webpack.prod.config.js",
-    "deploy": "firebase deploy"
+    "surge": "surge --project ./public --domain thewatcher.surge.sh"
   },
   "author": "",
   "license": "ISC",
