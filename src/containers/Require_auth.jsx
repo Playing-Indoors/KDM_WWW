@@ -6,12 +6,12 @@ export default function(ComposedComponent){
 	class Authentication extends Component {
 		componentWillMount(){
 			if(!this.props.authenticated.authenticated){
-				this.context.router.push('/login');
+				this.context.router.push('/');
 			}
 		}
 		componentWillUpdate(nextProps){
 			if(!nextProps.authenticated.authenticated){
-				this.context.router.push('/login');
+				this.context.router.push('/');
 			}
 		}
 		render(){

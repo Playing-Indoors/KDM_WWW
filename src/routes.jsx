@@ -58,10 +58,10 @@ render(
 				{/* <Route title="Home" path="/home" component={Home} /> */}
 
 				<Route path="/">
-					<Route title="Settlements" path="/settlements" component={Settlements} />
-					<Route title="System" path="/system" component={System} />
-					<Route title="World" path="/world" component={World} />
-					<Route title="About" path="/about" component={About} />
+					<Route title="Settlements" path="/settlements" component={requireAuth(Settlements)} />
+					<Route title="System" path="/system" component={requireAuth(System)} />
+					<Route title="World" path="/world" component={requireAuth(World)} />
+					<Route title="About" path="/about" component={requireAuth(About)} />
 				</Route>
 
 				{/* Settlement Routes */}
@@ -70,32 +70,32 @@ render(
 					<Route
 						title="Settlement"
 						path="settlement"
-						component={Dashboard}
+						component={requireAuth(Dashboard)}
 					>
-						<Route title="Dashboard" path="dashboard" component={Dashboard} />
-						<Route title="Timeline" path="timeline" component={Timeline} />
+						<Route title="Dashboard" path="dashboard" component={requireAuth(Dashboard)} />
+						<Route title="Timeline" path="timeline" component={requireAuth(Timeline)} />
 					</Route>
 
 					<Route path="survivors" >
-						<IndexRoute title="Survivors" component={Survivors} />
-						<Route title="Survivor" back path="/:id" component={Survivor} />
+						<IndexRoute title="Survivors" component={requireAuth(Survivors)} />
+						<Route title="Survivor" back path="/:id" component={requireAuth(Survivor)} />
 					</Route>
 
-					<Route path="storage" component={Resources}>
-						<Route title="Resources" path="resources" component={Resources} />
-						<Route title="Gear" path="gear" component={Gear} />
+					<Route path="storage" component={requireAuth(Resources)}>
+						<Route title="Resources" path="resources" component={requireAuth(Resources)} />
+						<Route title="Gear" path="gear" component={requireAuth(Gear)} />
 					</Route>
 
 					<Route title="Campaign Log" path="log">
-						<IndexRoute component={Log} />
+						<IndexRoute component={requireAuth(Log)} />
 					</Route>
 
 					<Route title="More" path="more">
-						<IndexRoute component={More} />
+						<IndexRoute component={requireAuth(More)} />
 					</Route>
 
 					<Route title="aya" path="aya">
-						<IndexRoute component={Aya} />
+						<IndexRoute component={requireAuth(Aya)} />
 					</Route>
 				</Route>
 
