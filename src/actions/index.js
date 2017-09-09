@@ -27,6 +27,6 @@ export function authenticate({ username, password }) {
 }
 
 export function signoutUser() {
-	localStorage.removeItem('token');
+	localStorage.removeItem('access_token');
 	return { type: UNAUTH_USER };
 }
