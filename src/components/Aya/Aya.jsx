@@ -6,7 +6,7 @@ import Stat from '../../components/Stats/Stats';
 import DataList from '../../components/DataList/DataList';
 import CardList from '../../components/CardList/CardList';
 import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
-import Survival from '../../components/Survivor/Survival';
+import SurvivalManage from '../../components/Survivor/Survival/Survival';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
 import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
 import SurvivorArmor from '../../components/Survivor/SurvivorArmor';
@@ -126,11 +126,19 @@ class Aya extends Component {
 					id={'12345'}
 				/>
 
-				<Survival
+				<SurvivalManage
 					amount={5}
-					id={'12345'}
+					oid={'5681fa9a421aa939c05496e7'}
+					limit={7}
+					actions={[{ handle: 'dodge', available: true, name: 'Dodge' }]}
 				/>
 
+				{/* <Survival
+					amount={5}
+					id={this.state.survivor.sheet._id.$oid}
+					limit={this.state.settlementData.sheet.survival_limit}
+					actions={this.state.survivor.survival_actions}
+				/> */}
 
 				<br />
 

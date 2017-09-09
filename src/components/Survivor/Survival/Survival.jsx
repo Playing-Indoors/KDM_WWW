@@ -35,6 +35,7 @@ class Survival extends Component {
 	// Handle's the save and makes the API Call
 	handleConfirm() {
 		// TODO: KHOA SAVE THIS SHIT.
+		console.warn('Saving survival for survivor oid', this.props.oid);
 		this.handleModal();
 	}
 	// Function to pass to Number Increment
@@ -48,15 +49,24 @@ class Survival extends Component {
 			return (
 				<Button
 					color="secondary"
-					onClick={this.handleModal}
+					onClick={this.handleConfirm}
 				>Confirm</Button>
 			);
 		}
 		return (
 			<Button
 				color="primary"
-				onClick={this.handleModal}
+				onClick={this.handleConfirm}
 			>Confirm</Button>
+		);
+	}
+	renderActions() {
+		return this.props.actions.map(action =>
+			(
+				<span className={(action.available) ? 'is-active' : ''} key={action.handle}>
+					{action.name}
+				</span>
+			),
 		);
 	}
 	render() {
@@ -64,17 +74,23 @@ class Survival extends Component {
 			<WidgetVariant
 				title={this.state.title}
 				toggleModal={this.state.toggleModal}
-				myClass={'survival'}
+				myClass={'survivorSurvival'}
 			>
 				{ /* This is in the widget */ }
 				<Stat amount={this.state.amount} />
-				{ /* This is in the modal */ }
-				<NumberIncrement
-					amount={this.state.amount}
-					min={1}
-					updateAmount={this.updateAmount}
-				/>
-				{ /* This get's passed to the footer */ }
+				{ /* This is in the modal body */ }
+				<div>
+					<NumberIncrement
+						amount={this.state.amount}
+						min={1}
+						max={this.props.limit}
+						updateAmount={this.updateAmount}
+					/>
+					<div className="survivalSkills">
+						{ this.renderActions() }
+					</div>
+				</div>
+				{ /* This get's passed to the modal footer */ }
 				<ModalFooter>
 					{ this.renderConfirm() }
 					<Button
@@ -89,10 +105,16 @@ class Survival extends Component {
 
 Survival.propTypes = {
 	amount: PropTypes.number,
+	oid: PropTypes.string,
+	limit: PropTypes.number,
+	actions: PropTypes.arrayOf(PropTypes.object),
 };
 
 Survival.defaultProps = {
 	amount: 0,
+	limit: 1,
+	oid: '',
+	actions: [],
 };
 
 export default Survival;

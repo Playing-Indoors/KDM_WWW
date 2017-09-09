@@ -10,6 +10,7 @@ import SurvivorImpairments from '../../components/Survivor/SurvivorImpairments';
 import SurvivorNotes from '../../components/Survivor/SurvivorNotes';
 import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import SurvivorSurvival from '../../components/Survivor/SurvivorSurvival';
+import Survival from '../../components/Survivor/Survival/Survival';
 import SurvivorWeapon from '../../components/Survivor/SurvivorWeapon';
 import SurvivorCourage from '../../components/Survivor/SurvivorCourage';
 import SurvivorUnderstanding from '../../components/Survivor/SurvivorUnderstanding';
@@ -66,9 +67,15 @@ class Survivor extends React.Component {
 			return (
 				<div className="survivor">
 					{ /* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */ }
-					<SurvivorSurvival
+					{/* <SurvivorSurvival
 						amount={parseInt(this.state.survivor.sheet.survival, 10)}
 						max={7}
+					/> */}
+					<Survival
+						amount={this.state.survivor.sheet.survival}
+						id={this.state.survivor.sheet._id.$oid}
+						limit={this.state.settlementData.sheet.survival_limit}
+						actions={this.state.survivor.survival_actions}
 					/>
 					<SurvivorBleeding
 						amount={parseInt(this.state.survivor.sheet.Movement, 10)}
