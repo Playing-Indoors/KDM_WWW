@@ -52,10 +52,14 @@ render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
 		<Router history={browserHistory} onUpdate={logPageView} >
 			<Route path="/" component={Login} />
+			{/* Dev Routes */}
+			<Route title="Aya" path="/aya" component={Aya} />
+
 			<Route component={App}>
 				{/* <IndexRoute component={Splash} /> */}
 				{/* <Route title="Splash" path="/splash" component={Splash} /> */}
 				{/* <Route title="Home" path="/home" component={Home} /> */}
+
 
 				<Route path="/">
 					<Route title="Settlements" path="/settlements" component={requireAuth(Settlements)} />
@@ -93,14 +97,12 @@ render(
 					<Route title="More" path="more">
 						<IndexRoute component={requireAuth(More)} />
 					</Route>
-
+{/*
 					<Route title="aya" path="aya">
 						<IndexRoute component={requireAuth(Aya)} />
-					</Route>
+					</Route> */}
 				</Route>
 
-				{/* Dev Routes */}
-				<Route title="Aya" path="/aya" component={Aya} />
 
 				{/* Error Handling */}
 				<Route title="Not Found" path="*" component={NotFound} />
