@@ -37,7 +37,7 @@ ReactGA.initialize('UA-89982304-01');
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('access_token');
 
 if (token) {
 	store.dispatch({ type: AUTH_USER });
