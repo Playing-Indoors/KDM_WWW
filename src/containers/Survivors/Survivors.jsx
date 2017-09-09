@@ -32,8 +32,11 @@ class Survivors extends React.Component {
 					</CardList>
 				);
 			});
+		} else {
+				return (
+					<div>"Loading Survivors..."</div>
+				)
 		}
-		return null;
 	}
 	render() {
 		return (
@@ -54,4 +57,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(Survivors);
-

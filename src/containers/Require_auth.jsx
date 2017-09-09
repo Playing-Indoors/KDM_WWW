@@ -22,7 +22,6 @@ export default function(ComposedComponent){
 		router: PropTypes.object
 	};
 	function mapStateToProps(state){
-		console.log('before', state);
 		return {
 			authenticated: state.authenticated
 		};
