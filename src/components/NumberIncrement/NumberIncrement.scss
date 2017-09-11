@@ -5,14 +5,17 @@
 	align-items: center;
 	flex-wrap: wrap;
 	flex: 1 1 200px;
-	padding: 1rem;
+	// padding: 1rem;
 	font-size: 2rem;
 }
 
 .numberIncrement-num {
 	padding: 0 0.5rem;
-	font-size: 3rem;
+	min-width: 56px;
+	text-align: center;
+	font-size: 4rem;
 	line-height: 1em;
+	font-weight: bold;
 }
 
 .numberIncrement-change {

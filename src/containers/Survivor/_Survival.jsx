@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ModalFooter, Button } from 'reactstrap';
-import NumberIncrement from '../../../components/NumberIncrement/NumberIncrement';
-import Stat from '../../../components/Stats/Stats';
-import WidgetVariant from '../../../components/Widget/WidgetVariant';
+import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
+import Stat from '../../components/Stats/Stats';
+import WidgetVariant from '../../components/Widget/WidgetVariant';
 
 class Survival extends Component {
 	constructor(props) {
@@ -60,13 +60,43 @@ class Survival extends Component {
 			>Confirm</Button>
 		);
 	}
+	// Displays the survivor actions
 	renderActions() {
 		return this.props.actions.map(action =>
 			(
-				<span className={(action.available) ? 'is-active' : ''} key={action.handle}>
-					{action.name}
-				</span>
+				<span
+					className={(action.available) ? 'is-active' : ''}
+					key={action.handle}
+				>{action.name}</span>
 			),
+		);
+	}
+	// Controls what shows inside of the modal
+	renderModalBody() {
+		return (
+			<div>
+				<NumberIncrement
+					amount={this.state.amount}
+					min={1}
+					max={this.props.limit}
+					updateAmount={this.updateAmount}
+				/>
+				<div className="survivalSkills">
+					{ this.renderActions() }
+				</div>
+			</div>
+		);
+	}
+	// Controls the functionality of modal footer buttons
+	renderModalFooter() {
+		return (
+			<ModalFooter>
+				{ this.renderConfirm() }
+				<Button
+					onClick={this.handleCancel}
+					color="link"
+				>Cancel</Button>
+			</ModalFooter>
 		);
 	}
 	render() {
@@ -76,28 +106,10 @@ class Survival extends Component {
 				toggleModal={this.state.toggleModal}
 				myClass={'survivorSurvival'}
 			>
-				{ /* This is in the widget */ }
-				<Stat amount={this.state.amount} />
-				{ /* This is in the modal body */ }
-				<div>
-					<NumberIncrement
-						amount={this.state.amount}
-						min={1}
-						max={this.props.limit}
-						updateAmount={this.updateAmount}
-					/>
-					<div className="survivalSkills">
-						{ this.renderActions() }
-					</div>
-				</div>
-				{ /* This get's passed to the modal footer */ }
-				<ModalFooter>
-					{ this.renderConfirm() }
-					<Button
-						onClick={this.handleCancel}
-						color="link"
-					>Cancel</Button>
-				</ModalFooter>
+				{/* We use this.props so we only show the saved value */}
+				<Stat amount={this.props.amount} />
+				{ this.renderModalBody() }
+				{ this.renderModalFooter() }
 			</WidgetVariant>
 		);
 	}

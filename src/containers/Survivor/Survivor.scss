@@ -30,3 +30,19 @@
 .survivorAbilities     { grid-area: abilities }
 .survivorImpairments   { grid-area: impairments }
 .survivorNotes         { grid-area: notes }
+
+// Survival
+
+.survivalSkills {
+	text-align: center;
+
+	span {
+		display: inline-block;
+		padding: 0.5rem;
+		color: $gray-light;
+
+		&.is-active {
+			color: #fff;
+		}
+	}
+}

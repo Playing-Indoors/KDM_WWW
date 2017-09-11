@@ -6,7 +6,7 @@ import Stat from '../../components/Stats/Stats';
 import DataList from '../../components/DataList/DataList';
 import CardList from '../../components/CardList/CardList';
 import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
-import SurvivalManage from '../../components/Survivor/Survival/Survival';
+import SurvivalManage from '../../containers/Survivor/_Survival';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
 import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
 import SurvivorArmor from '../../components/Survivor/SurvivorArmor';

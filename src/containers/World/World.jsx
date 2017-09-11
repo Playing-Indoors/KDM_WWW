@@ -5,11 +5,6 @@ import { getHome } from '../../actions/getHome';
 import { getWorld } from '../../actions/getWorld';
 import { getSurvivor } from '../../actions/getSurvivor';
 import TugGraph from '../../components/TugGraph/TugGraph';
-import Stat from '../../components/Stats/Stats';
-import StatGroup from '../../components/Stats/StatGroup';
-import BoxList from '../../components/BoxList/BoxList';
-import Survival from '../../components/Survivor/Survival';
-import SurvivorXP from '../../components/Survivor/Survivor-XP';
 
 class World extends React.Component {
 	constructor(props) {
