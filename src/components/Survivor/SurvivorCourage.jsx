@@ -52,7 +52,7 @@ class SurvivorCourage extends Component {
 	}
 	render() {
 		return (
-			<div className="box Courage">
+			<div className="box survivorCourage">
 				<header className="box-header">
 					<div className="box-header-title">{this.state.title}</div>
 				</header>

@@ -10,7 +10,6 @@ import SurvivalManage from '../../containers/Survivor/_Survival';
 import StatSurvival from '../../containers/StatWidget/StatWidget-Example';
 import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
 import SurvivorArmor from '../../components/Survivor/SurvivorArmor';
-import SurvivorBleeding from '../../components/Survivor/SurvivorBleeding';
 import SurvivorDisorders from '../../components/Survivor/SurvivorDisorders';
 import SurvivorFightArts from '../../components/Survivor/SurvivorFightArts';
 import SurvivorImpairments from '../../components/Survivor/SurvivorImpairments';
@@ -366,9 +365,6 @@ class Aya extends Component {
 					<SurvivorSurvival
 						amount={5}
 						max={7}
-					/>
-					<SurvivorBleeding
-						amount={0}
 					/>
 					<SurvivorXP
 						amount={5}
