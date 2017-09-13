@@ -61,10 +61,6 @@ class Bleeding extends Component {
 			>Confirm</Button>
 		);
 	}
-	// Displays the survivor actions
-	renderActions() {
-		return null;
-	}
 	// Controls what shows inside of the modal
 	renderModalBody() {
 		return (
@@ -102,7 +98,15 @@ class Bleeding extends Component {
 				myClass={'survivorBleeding'}
 			>
 				{/* We use this.props so we only show the saved value */}
-				<Stat amount={this.props.amount} />
+				<Stat
+					amount={this.props.amount}
+				>
+					<MilestoneDots
+						current={this.state.amount}
+						count={this.props.limit}
+						mini
+					/>
+				</Stat>
 				{ this.renderModalBody() }
 				{ this.renderModalFooter() }
 			</WidgetVariant>

@@ -33,9 +33,12 @@ class MilestoneDots extends Component {
 	}
 	render() {
 		return (
-			<div className="milestoneDots">
-				{this.renderMilestones()}
-			</div>
+			<div
+				className={classNames(
+					'milestoneDots',
+					{ 'milestoneDots--mini': this.props.mini },
+				)}
+			>{this.renderMilestones()}</div>
 		);
 	}
 }
@@ -52,6 +55,6 @@ MilestoneDots.defaultProps = {
 	current: 0,
 	milestones: [],
 	mini: false,
-}
+};
 
 export default MilestoneDots;

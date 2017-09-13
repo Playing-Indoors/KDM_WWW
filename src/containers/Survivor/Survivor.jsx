@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SurvivorAbilities from '../../components/Survivor/SurvivorAbilities';
 import SurvivorArmor from '../../components/Survivor/SurvivorArmor';
-import SurvivorBleeding from '../../components/Survivor/SurvivorBleeding';
 import SurvivorDisorders from '../../components/Survivor/SurvivorDisorders';
 import SurvivorFightArts from '../../components/Survivor/SurvivorFightArts';
 import SurvivorImpairments from '../../components/Survivor/SurvivorImpairments';
 import SurvivorNotes from '../../components/Survivor/SurvivorNotes';
 import SurvivorStats from '../../components/Survivor/SurvivorStats';
+import Bleeding from './_Bleeding';
 import Survival from './_Survival';
 import SurvivorWeapon from '../../components/Survivor/SurvivorWeapon';
 import SurvivorCourage from '../../components/Survivor/SurvivorCourage';
@@ -76,8 +76,10 @@ class Survivor extends React.Component {
 						limit={this.state.settlementData.sheet.survival_limit}
 						actions={this.state.survivor.survival_actions}
 					/>
-					<SurvivorBleeding
-						amount={parseInt(this.state.survivor.sheet.Movement, 10)}
+					<Bleeding
+						amount={0}
+						id={this.state.survivor.sheet._id.$oid}
+						limit={5}
 					/>
 					<SurvivorXP
 						amount={parseInt(this.state.survivor.sheet.hunt_xp, 10)}

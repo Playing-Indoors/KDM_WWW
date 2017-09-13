@@ -5,6 +5,9 @@ import NumberIncrement from '../../components/NumberIncrement/NumberIncrement';
 import Stat from '../../components/Stats/Stats';
 import WidgetVariant from '../../components/Widget/WidgetVariant';
 
+// TODO:
+// - API has can_gain_survival and cannot_spend_survival
+
 class Survival extends Component {
 	constructor(props) {
 		super(props);
