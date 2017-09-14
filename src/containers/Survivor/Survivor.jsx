@@ -10,10 +10,10 @@ import SurvivorNotes from '../../components/Survivor/SurvivorNotes';
 import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import Bleeding from './_Bleeding';
 import Survival from './_Survival';
+import XP from './_XP';
 import SurvivorWeapon from '../../components/Survivor/SurvivorWeapon';
 import SurvivorCourage from '../../components/Survivor/SurvivorCourage';
 import SurvivorUnderstanding from '../../components/Survivor/SurvivorUnderstanding';
-import SurvivorXP from '../../components/Survivor/SurvivorXP';
 
 // TODO
 // [ ] Survivor name should be in page heading
@@ -66,10 +66,6 @@ class Survivor extends React.Component {
 			return (
 				<div className="survivor">
 					{ /* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */ }
-					{/* <SurvivorSurvival
-						amount={parseInt(this.state.survivor.sheet.survival, 10)}
-						max={7}
-					/> */}
 					<Survival
 						amount={this.state.survivor.sheet.survival}
 						id={this.state.survivor.sheet._id.$oid}
@@ -81,8 +77,10 @@ class Survivor extends React.Component {
 						id={this.state.survivor.sheet._id.$oid}
 						limit={5}
 					/>
-					<SurvivorXP
-						amount={parseInt(this.state.survivor.sheet.hunt_xp, 10)}
+					<XP
+						id={this.state.survivor.sheet._id.$oid}
+						amount={this.state.survivor.sheet.hunt_xp}
+						milestones={this.state.settlementData.survivor_attribute_milestones.hunt_xp[0].values}
 					/>
 					<SurvivorCourage
 						amount={parseInt(this.state.survivor.sheet.Courage, 10)}

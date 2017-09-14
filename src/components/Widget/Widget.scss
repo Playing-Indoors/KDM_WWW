@@ -1,5 +1,7 @@
 
 .widget {
+	display: flex;
+	flex-direction: column;
   background: $gray-dark;
 	margin-bottom: $spacer-y;
 }
