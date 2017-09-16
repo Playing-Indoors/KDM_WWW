@@ -1,41 +1,41 @@
 .milestoneDots {
-	display: flex;
-	margin: 1rem 0;
-	justify-content: center;
+  display: flex;
+  margin: 1rem 0;
+  justify-content: center;
 }
 
 .milestoneDots--mini {
-	margin: 0.5rem 0 0;
+  margin: 0.5rem 0 0;
 }
 
 .milestoneDot {
-	display: block;
-	width: 15px;
-	height: 15px;
-	box-shadow: inset 0 0 0 1px #fff;
+  display: block;
+  width: 15px;
+  height: 15px;
+  box-shadow: inset 0 0 0 1px #fff;
 
-	& + & {
-		margin-left: 5px;
-	}
+  & + & {
+    margin-left: 5px;
+  }
 }
 
 .milestoneDot--mini {
-	width: 5px;
-	height: 5px;
-	background: $gray-light;
-	box-shadow: inset 0 0 0 1px $gray-light;
+  width: 5px;
+  height: 5px;
+  background: $gray-light;
+  box-shadow: inset 0 0 0 1px $gray-light;
 }
 
 .milestoneDot--active {
-	background: #fff;
-	box-shadow: inset 0 0 0 1px #fff;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #fff;
 }
 
 .milestoneDot--event {
-	box-shadow: inset 0 0 0 3px #fff;
+  box-shadow: inset 0 0 0 3px #fff;
 
-	&.milestoneDot--active {
-		background: $brand-primary;
-		box-shadow: none;
-	}
+  &.milestoneDot--active {
+    background: $brand-primary;
+    box-shadow: none;
+  }
 }

@@ -5,44 +5,43 @@
 // }
 
 .login {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	max-width: 300px;
-	transform: translate(-50%, -50%);
-	text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 300px;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .login-logo {
-	margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .login-logo > svg {
-	overflow: hidden;
-	width: 200px;
-	height: 160px;
-	fill: #000;
+  overflow: hidden;
+  width: 200px;
+  height: 160px;
+  fill: #000;
 }
 
 .login-logo-tagline {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .inputForm {
-	position: relative;
+  position: relative;
 
-	& + & {
-		margin-top: 0.5rem;
-	}
+  & + & {
+    margin-top: 0.5rem;
+  }
 
-	.fa {
-		position: absolute;
-		top: 50%;
-		left: 0.5rem;
-		color: #E0E0E0;
-		transform: translateY(-50%);
-	}
-
+  .fa {
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    color: #e0e0e0;
+    transform: translateY(-50%);
+  }
 }
 
 // input {
@@ -65,7 +64,6 @@
 // 		padding-left: 2.25rem;
 // 	}
 // }
-
 
 // #_Path_8 {
 //   animation: blink 2.4s infinite;

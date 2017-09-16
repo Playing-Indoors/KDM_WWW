@@ -1,24 +1,24 @@
 .milestone {
-	display: inline-block;
-	width: 7px;
-	height: 7px;
-	margin: 2px 2px;
-	background: $gray-lighter;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 2px 2px;
+  background: $gray-lighter;
 }
 
 // filled was an old way, we will remove this and just use event
 
 .milestone--active,
 .milestone--filled {
-	background: #fff;
+  background: #fff;
 }
 
 .milestone--event {
-	box-shadow: inset 0 0 0 1px $brand-primary;
+  box-shadow: inset 0 0 0 1px $brand-primary;
 
-	&.milestone--active,
-	&.milestone--filled {
-		box-shadow: none;
-		background: $brand-primary;
-	}
+  &.milestone--active,
+  &.milestone--filled {
+    box-shadow: none;
+    background: $brand-primary;
+  }
 }

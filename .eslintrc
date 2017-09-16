@@ -1,19 +1,20 @@
 {
 	"parser": "babel-eslint",
 	"plugins": [
-		"react"
+		"react",
+		"prettier"
   ],
-	"extends": "airbnb",
+	"extends": [
+		"airbnb",
+		"prettier",
+		"prettier/react"
+	],
 	"globals": {
 		"document": true,
 		"window": true,
 		"localStorage": true
 	},
   "rules": {
-    "no-console": 0,
-		"indent": ["error", "tab"],
-		"react/jsx-indent": [2, "tab"],
-		"react/jsx-indent-props": [2, "tab"],
-    "no-tabs": 0
+    "prettier/prettier": "error"
   }
 }

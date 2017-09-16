@@ -1,56 +1,55 @@
-
 .header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: $zindex-navbar;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0 0.5rem;
-	height: $menu-button-width;
-	color: $gray-lightest;
-	background: $brand-primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: $zindex-navbar;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  height: $menu-button-width;
+  color: $gray-lightest;
+  background: $brand-primary;
 
-	// @include breakpoint(l) {
-	// 	left: $menu-width;
-	// 	width: calc(100% - #{$menu-width});
-	// }
+  // @include breakpoint(l) {
+  // 	left: $menu-width;
+  // 	width: calc(100% - #{$menu-width});
+  // }
 }
 
 .header-title {
-	flex: 2 1 auto;
-	padding: 0.5rem;
-	text-align: center;
+  flex: 2 1 auto;
+  padding: 0.5rem;
+  text-align: center;
 
-	// @include breakpoint(l) {
-	// 	text-align: left;
-	// }
+  // @include breakpoint(l) {
+  // 	text-align: left;
+  // }
 }
 
 .header-action {
-	display: block;
-	border: 0;
-	background: none;
-	padding: 0.5rem;
-	transition: background 0.3s ease-out;
+  display: block;
+  border: 0;
+  background: none;
+  padding: 0.5rem;
+  transition: background 0.3s ease-out;
 
-	&:hover, &:focus {
-		cursor: pointer;
-		outline: 0;
-		background: hsla(0, 0%, 0%, 0.12);
-	}
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    outline: 0;
+    background: hsla(0, 0%, 0%, 0.12);
+  }
 
-	svg {
-		fill: #fff;
-		width: 20px;
-		height: 20px;
-	}
+  svg {
+    fill: #fff;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .header-action--nav {
-
 }
 
 // .header-navToggle {

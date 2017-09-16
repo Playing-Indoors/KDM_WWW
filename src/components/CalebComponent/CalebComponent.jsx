@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class CalebComponent extends Component {
   // The constructor is the initial state of the component, pretty much the same as getInititalState
@@ -7,7 +7,7 @@ class CalebComponent extends Component {
     // you set your initial state like so but this only happens in the constructor
     // usually initial state is the default state of the component
     this.state = {
-      calebState: 'lame',
+      calebState: "lame"
     };
 
     // es6 changes the context of this for inputs so you have to bind the context
@@ -24,7 +24,7 @@ class CalebComponent extends Component {
     // This is the only way to change state once it is set in the constructor,
     // DO NOT do this.state = {potato: whatever}
     this.setState({
-      calebState: 'cool',
+      calebState: "cool"
     });
   }
 
@@ -32,8 +32,17 @@ class CalebComponent extends Component {
     return (
       <div>
         <h3 className="example-style">Caleb&lsqu;s Example</h3>
-        <p>Clicking this button fires an onClick event that triggers the function that is in it</p>
-        <button className="btn btn-primary" onClick={this.handleCalebButtonClick}> Press Me! </button>
+        <p>
+          Clicking this button fires an onClick event that triggers the function
+          that is in it
+        </p>
+        <button
+          className="btn btn-primary"
+          onClick={this.handleCalebButtonClick}
+        >
+          {" "}
+          Press Me!{" "}
+        </button>
         <p>Caleb is so {this.state.calebState}</p>
       </div>
     );

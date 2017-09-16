@@ -3,56 +3,56 @@
 //
 
 @function strip-unit($number) {
-	@if type-of($number) == 'number' and not unitless($number) {
-		@return $number / ($number * 0 + 1);
-	}
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
 
-	@return $number;
+  @return $number;
 }
 
 // Colors
 $ayaColor: (
-	'body-color': $body-color,
-	'gray-dark': $gray-dark,
-	'gray': $gray,
-	'gray-light': $gray-light,
-	'gray-lighter': $gray-lighter,
-	'gray-lightest': $gray-lightest,
-	'brand-primary': $brand-primary,
-	'brand-success': $brand-success,
-	'brand-info': $brand-info,
-	'brand-warning': $brand-warning,
-	'brand-danger': $brand-danger
+  "body-color": $body-color,
+  "gray-dark": $gray-dark,
+  "gray": $gray,
+  "gray-light": $gray-light,
+  "gray-lighter": $gray-lighter,
+  "gray-lightest": $gray-lightest,
+  "brand-primary": $brand-primary,
+  "brand-success": $brand-success,
+  "brand-info": $brand-info,
+  "brand-warning": $brand-warning,
+  "brand-danger": $brand-danger
 );
 
 .ayaColor {
-	display: flex;
-	justify-content: space-between;
-	padding: 0.25rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 1rem;
 }
 
 @each $ayaName, $ayaColor in $ayaColor {
-	.ayaColor--#{$ayaName} {
-		background: $ayaColor;
-		@if (lightness($ayaColor) > 80) {
-			color: $gray-dark;
-		}
+  .ayaColor--#{$ayaName} {
+    background: $ayaColor;
+    @if (lightness($ayaColor) > 80) {
+      color: $gray-dark;
+    }
 
-		&::before {
-			content: '#{$ayaName}';
-		}
-		&::after {
-			content: '#{$ayaColor}';
-		}
-	}
+    &::before {
+      content: "#{$ayaName}";
+    }
+    &::after {
+      content: "#{$ayaColor}";
+    }
+  }
 }
 
 // Font Sizes
 
 .ayah1::after {
-	content: ': #{$font-size-h1} (#{strip-unit($font-size-h1)*16}px)';
+  content: ": #{$font-size-h1} (#{strip-unit($font-size-h1)*16}px)";
 }
 
 .ayah2::after {
-	content: ': #{$font-size-h2} (#{strip-unit($font-size-h2)*16}px)';
+  content: ": #{$font-size-h2} (#{strip-unit($font-size-h2)*16}px)";
 }

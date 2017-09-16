@@ -1,15 +1,14 @@
-
 .icon {
-	display: block; // Block removes the weird vertical padding due to inline
-	width: 32px;
-	height: 32px;
-	fill: currentColor;
+  display: block; // Block removes the weird vertical padding due to inline
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
 }
 
 .icon--yellow {
-	fill: $brand-primary;
+  fill: $brand-primary;
 }
 
 .icon--white {
-	fill: $gray-lighter;
+  fill: $gray-lighter;
 }
