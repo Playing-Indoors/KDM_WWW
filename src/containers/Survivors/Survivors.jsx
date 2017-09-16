@@ -8,7 +8,6 @@ import CardList from '../../components/CardList/CardList';
 class Survivors extends React.Component {
 	componentDidMount(){
 		let path = this.props.location.pathname.match(/^\/settlements\/(\d+)/);
-		console.log(path[1]);
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.settlementData) {

@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import MilestoneDot from './MilestoneDot';
 
-// TODO
-// [ ] Hook up the milestones prop. example: milestones={[1, 3, 5, 7, 10]}
-
 class MilestoneDots extends Component {
 	constructor(props) {
 		super(props);
@@ -46,6 +43,7 @@ class MilestoneDots extends Component {
 MilestoneDots.propTypes = {
 	count: PropTypes.number,
 	current: PropTypes.number,
+	// milestones describe the style as well as emits and event
 	milestones: PropTypes.arrayOf(PropTypes.number),
 	mini: PropTypes.bool,
 };

@@ -88,6 +88,31 @@ class Aya extends Component {
 				'b',
 				'c',
 			],
+			milestone1: [
+				{
+					handle: 'core_bold',
+					values: [
+						3,
+					],
+				},
+				{
+					handle: 'core_see_the_truth',
+					values: [
+						9,
+					],
+				},
+			],
+			milestone2: [
+				{
+					handle: 'core_age',
+					values: [
+						2,
+						6,
+						10,
+						15,
+					],
+				},
+			],
 		};
 		this.toggle = this.toggle.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
@@ -113,6 +138,23 @@ class Aya extends Component {
 		return (
 			<div className="page-aya">
 				<h1>Style Guide</h1>
+
+				<MilestoneDots />
+				<MilestoneDots
+					current={3}
+					count={5}
+					mini
+				/>
+				<MilestoneDots
+					current={3}
+					count={9}
+					milestones={this.state.milestone1}
+				/>
+				<MilestoneDots
+					current={3}
+					count={16}
+					milestones={this.state.milestone2}
+				/>
 
 				<h3>DataList</h3>
 				<p>Simple list to show data.</p>

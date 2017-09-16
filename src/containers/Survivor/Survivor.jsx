@@ -11,8 +11,8 @@ import SurvivorStats from '../../components/Survivor/SurvivorStats';
 import Bleeding from './_Bleeding';
 import Survival from './_Survival';
 import XP from './_XP';
+import Courage from './_Courage';
 import SurvivorWeapon from '../../components/Survivor/SurvivorWeapon';
-import SurvivorCourage from '../../components/Survivor/SurvivorCourage';
 import SurvivorUnderstanding from '../../components/Survivor/SurvivorUnderstanding';
 
 // TODO
@@ -82,8 +82,10 @@ class Survivor extends React.Component {
 						amount={this.state.survivor.sheet.hunt_xp}
 						milestones={this.state.settlementData.survivor_attribute_milestones.hunt_xp[0].values}
 					/>
-					<SurvivorCourage
-						amount={parseInt(this.state.survivor.sheet.Courage, 10)}
+					<Courage
+						id={this.state.survivor.sheet._id.$oid}
+						amount={this.state.survivor.sheet.Courage}
+						milestones={this.state.settlementData.survivor_attribute_milestones.Courage}
 					/>
 					<SurvivorUnderstanding
 						amount={parseInt(this.state.survivor.sheet.Understanding, 10)}
