@@ -13,7 +13,7 @@ class XP extends Component {
       toggleModal: false,
       title: "Hunt XP",
       amount: props.amount,
-      limit: props.milestones[props.milestones.length - 1] + 1
+      limit: 16
     };
     // Binding Events
     this.updateAmount = this.updateAmount.bind(this);
@@ -22,20 +22,20 @@ class XP extends Component {
     this.handleModal = this.handleModal.bind(this);
   }
   // Get the filled amount of boxes
-  getFilled() {
-    // Reverse the array
-    const reverse = this.props.milestones.slice().reverse();
-    // Loop through to find the first (or last in the original array) instance
-    // where the milestone is reached.
-    const current = reverse.findIndex(
-      milestone => this.state.amount >= milestone
-    );
-    // If we don't find anything, then none are filled
-    if (current === -1) {
-      return 0;
-    }
-    return reverse.length - current;
-  }
+  // getFilled() {
+  //   // Reverse the array
+  //   const reverse = this.props.milestones.slice().reverse();
+  //   // Loop through to find the first (or last in the original array) instance
+  //   // where the milestone is reached.
+  //   const current = reverse.findIndex(
+  //     milestone => this.state.amount >= milestone
+  //   );
+  //   // If we don't find anything, then none are filled
+  //   if (current === -1) {
+  //     return 0;
+  //   }
+  //   return reverse.length - current;
+  // }
   // Controls opening up the modal
   handleModal() {
     this.setState({
@@ -86,8 +86,9 @@ class XP extends Component {
           updateAmount={this.updateAmount}
         />
         <MilestoneDots
-          current={this.getFilled()}
-          count={this.props.milestones.length}
+          current={this.state.amount}
+          count={this.state.limit}
+          milestones={this.props.milestones}
         />
       </div>
     );
@@ -113,9 +114,11 @@ class XP extends Component {
         {/* We use this.props so we only show the saved value */}
         <Stat amount={this.props.amount}>
           <MilestoneDots
-            current={this.getFilled()}
-            count={this.props.milestones.length}
+            current={this.props.amount}
+            count={this.state.limit}
+            milestones={this.props.milestones}
             mini
+            onlyMilestones
           />
         </Stat>
         {this.renderModalBody()}
@@ -128,13 +131,13 @@ class XP extends Component {
 XP.propTypes = {
   amount: PropTypes.number,
   oid: PropTypes.string,
-  milestones: PropTypes.arrayOf(PropTypes.number)
+  milestones: PropTypes.arrayOf(PropTypes.object)
 };
 
 XP.defaultProps = {
   amount: 0,
   oid: "",
-  milestones: [2, 6, 10, 15]
+  milestones: []
 };
 
 export default XP;

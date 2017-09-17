@@ -87,8 +87,7 @@ class Survivor extends React.Component {
             id={this.state.survivor.sheet._id.$oid}
             amount={this.state.survivor.sheet.hunt_xp}
             milestones={
-              this.state.settlementData.survivor_attribute_milestones.hunt_xp[0]
-                .values
+              this.state.settlementData.survivor_attribute_milestones.hunt_xp
             }
           />
           <Courage

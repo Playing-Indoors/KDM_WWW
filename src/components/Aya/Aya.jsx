@@ -139,14 +139,15 @@ class Aya extends Component {
         <MilestoneDots />
         <MilestoneDots current={3} count={5} mini />
         <MilestoneDots
-          current={3}
+          current={0}
           count={9}
           milestones={this.state.milestone1}
         />
         <MilestoneDots
-          current={3}
+          current={0}
           count={16}
           milestones={this.state.milestone2}
+          onlyMilestones
         />
         <h3>DataList</h3>
         <p>Simple list to show data.</p>
@@ -325,9 +326,9 @@ class Aya extends Component {
           <em>coming soon</em>
         </div>
         <h4>MilestoneDots</h4>
-        <MilestoneDots />
+        {/* <MilestoneDots />
         <MilestoneDots current={3} count={5} />
-        <MilestoneDots current={3} count={10} milestones={[1, 3, 5, 7, 10]} />
+        <MilestoneDots current={3} count={10} milestones={[1, 3, 5, 7, 10]} /> */}
         <h2>Components</h2>
         <h3>Milestones</h3>
         <Milestone /> &lt;Milestone /&gt;<br />

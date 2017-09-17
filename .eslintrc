@@ -1,20 +1,14 @@
 {
-	"parser": "babel-eslint",
-	"plugins": [
-		"react",
-		"prettier"
-  ],
-	"extends": [
-		"airbnb",
-		"prettier",
-		"prettier/react"
-	],
-	"globals": {
-		"document": true,
-		"window": true,
-		"localStorage": true
-	},
+  "parser": "babel-eslint",
+  "plugins": ["react", "prettier"],
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "globals": {
+    "document": true,
+    "window": true,
+    "localStorage": true
+  },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-underscore-dangle": 0
   }
 }
