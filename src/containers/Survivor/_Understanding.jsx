@@ -6,14 +6,13 @@ import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 
-class XP extends Component {
+class Understanding extends Component {
   constructor(props) {
     super(props);
     this.state = {
       toggleModal: false,
-      title: "Hunt XP",
-      amount: props.amount,
-      limit: 16
+      title: "Understanding",
+      amount: props.amount
     };
     // Binding Events
     this.updateAmount = this.updateAmount.bind(this);
@@ -37,7 +36,7 @@ class XP extends Component {
   // Handle's the save and makes the API Call
   handleConfirm() {
     // TODO: KHOA SAVE THIS SHIT.
-    console.warn("Saving xp for survivor oid", this.props.oid);
+    console.warn("Saving Understanding for survivor oid", this.props.oid);
     this.handleModal();
   }
   // Function to pass to Number Increment
@@ -67,12 +66,12 @@ class XP extends Component {
         <NumberIncrement
           amount={this.state.amount}
           min={0}
-          max={this.state.limit}
+          max={this.props.limit}
           updateAmount={this.updateAmount}
         />
         <MilestoneDots
           current={this.state.amount}
-          count={this.state.limit}
+          count={this.props.limit}
           milestones={this.props.milestones}
         />
       </div>
@@ -94,13 +93,13 @@ class XP extends Component {
       <WidgetVariant
         title={this.state.title}
         toggleModal={this.state.toggleModal}
-        myClass={"survivorXP"}
+        myClass={"survivorUnderstanding"}
       >
         {/* We use this.props so we only show the saved value */}
         <Stat amount={this.props.amount}>
           <MilestoneDots
-            current={this.props.amount}
-            count={this.state.limit}
+            current={this.state.amount}
+            count={this.props.limit}
             milestones={this.props.milestones}
             mini
             onlyMilestones
@@ -113,16 +112,23 @@ class XP extends Component {
   }
 }
 
-XP.propTypes = {
+Understanding.propTypes = {
   amount: PropTypes.number,
   oid: PropTypes.string,
-  milestones: PropTypes.arrayOf(PropTypes.object)
+  limit: PropTypes.number,
+  milestones: PropTypes.arrayOf(
+    PropTypes.shape({
+      handle: PropTypes.string,
+      values: PropTypes.arrayOf(PropTypes.number)
+    })
+  )
 };
 
-XP.defaultProps = {
+Understanding.defaultProps = {
   amount: 0,
   oid: "",
+  limit: 1,
   milestones: []
 };
 
-export default XP;
+export default Understanding;

@@ -104,7 +104,12 @@ MilestoneDots.propTypes = {
   count: PropTypes.number,
   current: PropTypes.number,
   // milestones describe the style as well as emits and event
-  milestones: PropTypes.arrayOf(PropTypes.number),
+  milestones: PropTypes.arrayOf(
+    PropTypes.shape({
+      handle: PropTypes.string,
+      values: PropTypes.arrayOf(PropTypes.number)
+    })
+  ),
   mini: PropTypes.bool,
   onlyMilestones: PropTypes.bool
 };

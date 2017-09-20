@@ -69,7 +69,11 @@ class Courage extends Component {
           max={this.props.limit}
           updateAmount={this.updateAmount}
         />
-        <MilestoneDots current={this.state.amount} count={this.props.limit} />
+        <MilestoneDots
+          current={this.state.amount}
+          count={this.props.limit}
+          milestones={this.props.milestones}
+        />
       </div>
     );
   }
@@ -96,7 +100,9 @@ class Courage extends Component {
           <MilestoneDots
             current={this.state.amount}
             count={this.props.limit}
+            milestones={this.props.milestones}
             mini
+            onlyMilestones
           />
         </Stat>
         {this.renderModalBody()}
@@ -109,6 +115,7 @@ class Courage extends Component {
 Courage.propTypes = {
   amount: PropTypes.number,
   oid: PropTypes.string,
+  limit: PropTypes.number,
   milestones: PropTypes.arrayOf(
     PropTypes.shape({
       handle: PropTypes.string,
@@ -120,6 +127,7 @@ Courage.propTypes = {
 Courage.defaultProps = {
   amount: 0,
   oid: "",
+  limit: 1,
   milestones: []
 };
 

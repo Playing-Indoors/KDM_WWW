@@ -12,8 +12,8 @@ import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
 import XP from "./_XP";
 import Courage from "./_Courage";
-import SurvivorWeapon from "../../components/Survivor/SurvivorWeapon";
-import SurvivorUnderstanding from "../../components/Survivor/SurvivorUnderstanding";
+import Understanding from "./_Understanding";
+import Weapon from "./_Weapon";
 
 // TODO
 // [ ] Survivor name should be in page heading
@@ -93,15 +93,25 @@ class Survivor extends React.Component {
           <Courage
             id={this.state.survivor.sheet._id.$oid}
             amount={this.state.survivor.sheet.Courage}
+            limit={9}
             milestones={
               this.state.settlementData.survivor_attribute_milestones.Courage
             }
           />
-          <SurvivorUnderstanding
-            amount={parseInt(this.state.survivor.sheet.Understanding, 10)}
+          <Understanding
+            id={this.state.survivor.sheet._id.$oid}
+            amount={this.state.survivor.sheet.Understanding}
+            limit={9}
+            milestones={
+              this.state.settlementData.survivor_attribute_milestones
+                .Understanding
+            }
           />
-          <SurvivorWeapon
+          <Weapon
+            id={this.state.survivor.sheet._id.$oid}
             amount={this.state.survivor.sheet["Weapon Proficiency"]}
+            limit={8}
+            milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
           />
           <SurvivorStats
             movement={parseInt(this.state.survivor.sheet.Movement, 10)}

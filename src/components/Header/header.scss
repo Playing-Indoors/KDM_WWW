@@ -10,7 +10,8 @@
   padding: 0 0.5rem;
   height: $menu-button-width;
   color: $gray-lightest;
-  background: $brand-primary;
+  background: #000;
+  // background: $brand-primary;
 
   // @include breakpoint(l) {
   // 	left: $menu-width;

@@ -346,7 +346,7 @@ class Aya extends Component {
         <br />
         <h4>Survival</h4>
         <div className="survivor">
-          <SurvivorSurvival amount={5} max={7} />
+          {/* <SurvivorSurvival amount={5} max={7} />
           <SurvivorXP amount={5} max={7} />
           <SurvivorStats
             movement={4}
@@ -361,7 +361,7 @@ class Aya extends Component {
           <SurvivorDisorders amount={5} max={7} />
           <SurvivorAbilities amount={5} max={7} />
           <SurvivorImpairments amount={5} max={7} />
-          <SurvivorNotes amount={5} max={7} />
+          <SurvivorNotes amount={5} max={7} /> */}
         </div>
       </div>
     );

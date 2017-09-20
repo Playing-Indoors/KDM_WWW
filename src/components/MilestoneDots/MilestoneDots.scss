@@ -19,13 +19,6 @@
   }
 }
 
-.milestoneDot--mini {
-  width: 5px;
-  height: 5px;
-  background: $gray-light;
-  box-shadow: inset 0 0 0 1px $gray-light;
-}
-
 .milestoneDot--active {
   background: #fff;
   box-shadow: inset 0 0 0 1px #fff;
@@ -37,5 +30,17 @@
   &.milestoneDot--active {
     background: $brand-primary;
     box-shadow: none;
+  }
+}
+
+.milestoneDot--mini {
+  width: 5px;
+  height: 5px;
+  background: $gray-light;
+  box-shadow: inset 0 0 0 1px $gray-light;
+
+  &.milestoneDot--active {
+    background: #fff;
+    box-shadow: inset 0 0 0 3px #fff;
   }
 }
