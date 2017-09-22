@@ -50,9 +50,9 @@ $ayaColor: (
 // Font Sizes
 
 .ayah1::after {
-  content: ": #{$font-size-h1} (#{strip-unit($font-size-h1)*16}px)";
+  content: ": #{$h1-font-size} (#{strip-unit($h1-font-size)*16}px)";
 }
 
 .ayah2::after {
-  content: ": #{$font-size-h2} (#{strip-unit($font-size-h2)*16}px)";
+  content: ": #{$h2-font-size} (#{strip-unit($h2-font-size)*16}px)";
 }

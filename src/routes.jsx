@@ -32,7 +32,7 @@ import Dashboard from "./containers/Dashboard/Dashboard.jsx";
 import SurvivorHome from "./containers/SurvivorHome/SurvivorHome.jsx";
 import World from "./containers/World/World.jsx";
 import More from "./containers/More/More.jsx";
-import Aya from "./components/Aya/Aya.jsx";
+import Aya from "./containers/Aya/Aya.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";
 import Splash from "./components/Splash/Splash.jsx";
 import { AUTH_USER } from "./actions/types";
@@ -78,8 +78,8 @@ render(
             path="/system"
             component={requireAuth(System)}
           />
-          <Route title="World" path="/world" component={requireAuth(World)} />
-          <Route title="About" path="/about" component={requireAuth(About)} />
+          {/* <Route title="World" path="/world" component={requireAuth(World)} />
+          <Route title="About" path="/about" component={requireAuth(About)} /> */}
         </Route>
 
         {/* Settlement Routes */}

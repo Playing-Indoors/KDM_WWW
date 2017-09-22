@@ -7,5 +7,6 @@
   },
   "editor.tabSize": 2,
 	"editor.insertSpaces": false,
-	"vsicons.presets.angular": false
+  "vsicons.presets.angular": false,
+  "editor.formatOnSave": true
 }

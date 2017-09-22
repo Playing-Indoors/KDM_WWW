@@ -1,15 +1,15 @@
 import { Button } from "reactstrap";
 import React, { Component } from "react";
-import Innovations from "../../components/Innovations/Innovations";
-import SurvivalLimit from "../../components/SurvivalLimit/SurvivalLimit";
-import LanternYear from "../../components/LanternYear/LanternYear";
-import Population from "../../components/Population/Population";
-import Principles from "../../components/Principles/Principles";
-import Milestones from "../../components/Milestones/Milestones";
-import Locations from "../../components/Locations/Locations";
-import DeathCount from "../../components/DeathCount/DeathCount";
-import DefeatedMonsters from "../../components/DefeatedMonsters/DefeatedMonsters";
-import Notes from "../../components/Notes/Notes";
+import Innovations from "./_Innovations";
+import SurvivalLimit from "./_SurvivalLimit";
+import LanternYear from "./_Year";
+import Population from "./_Population";
+import Principles from "./_Principles";
+import Milestones from "./_Milestones";
+import Locations from "./_Locations";
+import DeathCount from "./_Deaths";
+import DefeatedMonsters from "./_Monsters";
+import Notes from "./_Notes";
 
 class Log extends Component {
   render() {
