@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack",
     "test": "jest",
-    "dev":
-      "npm run build && webpack-dev-server --inline --no-info --content-base .",
+    "dev": "npm run build && webpack-dev-server --inline --no-info --content-base .",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "prod": "webpack --config webpack.prod.config.js",
     "surge": "surge --project ./public --domain thewatcher.surge.sh",
@@ -15,11 +14,15 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,json,scss}": ["prettier --write", "git add"]
+    "*.{js,jsx,json,scss}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@storybook/addon-knobs": "^3.2.8",
     "@storybook/react": "^3.2.8",
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.5.1",
@@ -80,7 +83,14 @@
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testFileExtensions": ["es6", "js"],
-    "moduleFileExtensions": ["js", "json", "es6"]
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
   }
 }
