@@ -5,10 +5,14 @@
   fill: currentColor;
 }
 
+.icon--stroke {
+  stroke: currentColor;
+}
+
 .icon--yellow {
   fill: $brand-primary;
 }
 
 .icon--white {
-  fill: $gray-lighter;
+  fill: $gray-200;
 }

@@ -37,27 +37,20 @@ class Nav extends Component {
   }
   renderMainNav() {
     return this.state.nav.map((item, index) => (
-      <li data-i={index} key={index} className="nav-item">
-        <Link
-          className="nav-link"
-          activeClassName="active"
-          to={item.link}
-          title={item.title}
-        >
-          <div className="nav-link-icon">
-            <Icon name={item.icon} />
-          </div>
-          {/* <div className="nav-link-text">{item.title}</div> */}
-        </Link>
-      </li>
+      <Link
+        key={index}
+        className="nav-link"
+        activeClassName="active"
+        to={item.link}
+        title={item.title}
+      >
+        <Icon name={item.icon} />
+        {/* <div className="nav-link-text">{item.title}</div> */}
+      </Link>
     ));
   }
   render() {
-    return (
-      <nav className="mainNav">
-        <ol className="nav nav-fill">{this.renderMainNav()}</ol>
-      </nav>
-    );
+    return <nav className="mainNav">{this.renderMainNav()}</nav>;
   }
 }
 

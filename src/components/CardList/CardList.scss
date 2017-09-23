@@ -4,7 +4,7 @@
   align-items: stretch;
   margin-bottom: $spacer;
   padding: 1rem;
-  background: $gray-dark;
+  background: $gray-800;
 
   // & + & {
   // 	margin-top: 1rem;
@@ -22,7 +22,7 @@
 
 .cardList-meta {
   margin-top: 1rem;
-  color: $gray-light;
+  color: $gray-600;
   font-weight: bold;
   font-size: 0.875rem;
 }

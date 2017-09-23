@@ -11,19 +11,18 @@
 }
 
 // Colors
-$ayaColor: (
-  "body-color": $body-color,
-  "gray-dark": $gray-dark,
-  "gray": $gray,
-  "gray-light": $gray-light,
-  "gray-lighter": $gray-lighter,
-  "gray-lightest": $gray-lightest,
-  "brand-primary": $brand-primary,
-  "brand-success": $brand-success,
-  "brand-info": $brand-info,
-  "brand-warning": $brand-warning,
-  "brand-danger": $brand-danger
-);
+$ayaColor: ();
+// "body-color": $body-color,
+// "gray-dark": $gray-800,
+// "gray": $gray-700,
+// "gray-light": $gray-600,
+// "gray-lighter": $gray-200,
+// "gray-lightest": $white,
+// "brand-primary": $brand-primary,
+// "brand-success": $brand-success,
+// "brand-info": $brand-info,
+// "brand-warning": $brand-warning,
+// "brand-danger": $brand-danger
 
 .ayaColor {
   display: flex;
@@ -35,7 +34,7 @@ $ayaColor: (
   .ayaColor--#{$ayaName} {
     background: $ayaColor;
     @if (lightness($ayaColor) > 80) {
-      color: $gray-dark;
+      color: $gray-800;
     }
 
     &::before {

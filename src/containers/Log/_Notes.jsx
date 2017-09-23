@@ -40,7 +40,7 @@ class Notes extends Component {
   renderConfirm() {
     if (this.state.amount === this.props.amount) {
       return (
-        <Button color="secondary" onClick={this.handleModal}>
+        <Button color="light" onClick={this.handleModal}>
           Confirm
         </Button>
       );

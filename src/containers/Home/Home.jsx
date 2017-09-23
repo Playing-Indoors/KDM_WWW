@@ -13,7 +13,7 @@ class Home extends React.Component {
     if (this.props.homeData) {
       return (
         <div>
-          <Button color="secondary" size="lg" block>
+          <Button color="light" size="lg" block>
             Create New Campaign
           </Button>
           <List data={this.props.homeData.campaign} />

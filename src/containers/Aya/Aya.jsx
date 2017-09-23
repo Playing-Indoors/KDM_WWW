@@ -180,7 +180,7 @@ class Aya extends Component {
         <br />
         <h4>Grays</h4>
         <AyaColor name="gray-dark" />
-        <AyaColor name="gray-darker" />
+        <AyaColor name="gray-900" />
         <AyaColor name="gray" />
         <AyaColor name="gray-light" />
         <AyaColor name="gray-lighter" />
@@ -239,7 +239,7 @@ class Aya extends Component {
             <Button color="primary" onClick={this.toggleModal}>
               Do Something
             </Button>
-            <Button color="secondary" onClick={this.toggleModal}>
+            <Button color="light" onClick={this.toggleModal}>
               Do Something
             </Button>
             <Button color="link" onClick={this.toggleModal}>

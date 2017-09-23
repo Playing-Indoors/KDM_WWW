@@ -40,7 +40,7 @@ class Innovations extends Component {
   renderConfirm() {
     if (this.state.list === this.props.list) {
       return (
-        <Button color="secondary" onClick={this.handleModal}>
+        <Button color="light" onClick={this.handleModal}>
           Confirm
         </Button>
       );

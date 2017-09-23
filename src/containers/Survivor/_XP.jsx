@@ -49,7 +49,7 @@ class XP extends Component {
     // Disable confirm unless we've changed data
     if (this.state.amount === this.props.amount) {
       return (
-        <Button color="secondary" onClick={this.handleConfirm}>
+        <Button color="light" onClick={this.handleConfirm}>
           Confirm
         </Button>
       );

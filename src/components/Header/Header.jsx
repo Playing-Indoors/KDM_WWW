@@ -31,7 +31,7 @@ class Header extends Component {
           className="header-action header-action--nav"
           onClick={this.handleNav}
         >
-          <Icon name="nav" />
+          <Icon name="left" />
         </a>
       );
     }
@@ -43,12 +43,13 @@ class Header extends Component {
         {/* Only show this if back is activated */}
         {this.renderBack()}
         <div className="header-title">{this.renderName()}</div>
-        <a className="header-action">
-          <Icon name="help" />
+        {this.props.children}
+        {/* <a className="header-action">
+          <Icon name="info" />
         </a>
         <a className="header-action">
           <Icon name="gear" />
-        </a>
+        </a> */}
       </header>
     );
   }

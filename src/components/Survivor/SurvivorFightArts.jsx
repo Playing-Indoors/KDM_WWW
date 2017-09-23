@@ -45,7 +45,7 @@ class SurvivorFightArts extends Component {
   renderConfirm() {
     if (this.state.arts == this.props.arts) {
       return (
-        <Button color="secondary" onClick={this.handleConfirm}>
+        <Button color="light" onClick={this.handleConfirm}>
           Confirm
         </Button>
       );

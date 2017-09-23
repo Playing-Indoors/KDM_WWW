@@ -8,7 +8,7 @@ class Gear extends React.Component {
       <div>
         <Row>
           <Col>
-            <Button color="secondary" block>
+            <Button color="light" block>
               Add Gear
             </Button>
             <br />

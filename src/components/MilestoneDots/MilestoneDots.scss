@@ -36,8 +36,8 @@
 .milestoneDot--mini {
   width: 5px;
   height: 5px;
-  background: $gray-light;
-  box-shadow: inset 0 0 0 1px $gray-light;
+  background: $gray-600;
+  box-shadow: inset 0 0 0 1px $gray-600;
 
   &.milestoneDot--active {
     background: #fff;

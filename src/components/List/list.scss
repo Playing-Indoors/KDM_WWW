@@ -9,7 +9,7 @@
 .list {
   display: flex;
   padding: 1rem 0;
-  border: 1px solid $gray-lightest;
+  border: 1px solid $white;
   border-left: 0;
   border-right: 0;
 
@@ -41,7 +41,7 @@
 .list-content-meta {
   display: flex;
   flex-wrap: wrap;
-  color: $gray-lightest;
+  color: $white;
 
   strong {
     color: $body-color;

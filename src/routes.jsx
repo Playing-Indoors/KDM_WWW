@@ -13,28 +13,21 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
 import requireAuth from "./containers/Require_auth";
-import Home from "./containers/Home/Home.jsx";
-import App from "./App.jsx";
-import Login from "./containers/Login/Login.jsx";
-import About from "./containers/About/About.jsx";
-import System from "./containers/System/System.jsx";
-import Survivor from "./containers/Survivor/Survivor.jsx";
-import Glossary from "./containers/Glossary/Glossary.jsx";
-import FAQ from "./containers/FAQ/FAQ.jsx";
-import Log from "./containers/Log/Log.jsx";
-import Survivors from "./containers/Survivors/Survivors.jsx";
-import Settlements from "./containers/Settlements/Settlements.jsx";
-import Timeline from "./containers/Timeline/Timeline.jsx";
-import Storage from "./containers/Storage/Storage.jsx";
-import Resources from "./containers/Storage/Resources.jsx";
-import Gear from "./containers/Storage/Gear.jsx";
-import Dashboard from "./containers/Dashboard/Dashboard.jsx";
-import SurvivorHome from "./containers/SurvivorHome/SurvivorHome.jsx";
-import World from "./containers/World/World.jsx";
-import More from "./containers/More/More.jsx";
-import Aya from "./containers/Aya/Aya.jsx";
-import NotFound from "./components/NotFound/NotFound.jsx";
-import Splash from "./components/Splash/Splash.jsx";
+import App from "./App";
+import Login from "./containers/Login/Login";
+import System from "./containers/System/System";
+import Survivor from "./containers/Survivor/Survivor";
+import Log from "./containers/Log/Log";
+import Survivors from "./containers/Survivors/Survivors";
+import Settlements from "./containers/Settlements/Settlements";
+import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
+import Timeline from "./containers/Timeline/Timeline";
+import Resources from "./containers/Storage/Resources";
+import Gear from "./containers/Storage/Gear";
+import Dashboard from "./containers/Dashboard/Dashboard";
+import More from "./containers/More/More";
+import Aya from "./containers/Aya/Aya";
+import NotFound from "./components/NotFound/NotFound";
 import { AUTH_USER } from "./actions/types";
 
 require("../styles/main.scss");
@@ -69,9 +62,15 @@ render(
 
         <Route path="/">
           <Route
-            title="Settlements"
-            path="/settlements"
+            title="Campaigns"
+            path="/campaigns"
             component={requireAuth(Settlements)}
+            noHeader
+          />
+          <Route
+            path="/campaigns/create"
+            component={requireAuth(SettlementsCreate)}
+            noHeader
           />
           <Route
             title="System"

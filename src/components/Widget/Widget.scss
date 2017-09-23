@@ -1,23 +1,23 @@
 .widget {
   display: flex;
   flex-direction: column;
-  background: $gray-dark;
+  background: $gray-800;
   // margin-bottom: $spacer-y;
 }
 
 .widget-header {
   padding: 0.25rem 0.5rem;
-  background: $gray-darker;
+  background: $gray-900;
   color: #fff;
 }
 
 .widget-header--link {
-  background: $gray-light;
+  background: $gray-600;
 }
 
 .widget-content {
   flex: 1 1 auto;
-  padding: 1rem;
+  padding: $spacer;
 
   @at-root button#{&}, a#{&} {
     display: block;
@@ -35,5 +35,19 @@
       background: rgba($brand-primary, 0.14);
       outline: none;
     }
+  }
+}
+
+.widget-footer {
+  display: flex;
+  margin-top: $spacer;
+
+  > * {
+    flex: 1 0 100px;
+    margin-right: $spacer;
+  }
+
+  > :last-child {
+    margin-right: 0;
   }
 }

@@ -14,11 +14,9 @@ function getSettlementAsync(data) {
 
 export function getSettlement() {
   return dispatch => {
-    let auth = localStorage.getItem(
-      "access_token"
-    );
+    let auth = localStorage.getItem("access_token");
     axios({
-      headers: {"Authorization": auth},
+      headers: { Authorization: auth },
       method: "get",
       url: `${KDM_API}/settlement/get/5681f9e7421aa93924b6d013`
     }).then(res => {
@@ -28,17 +26,14 @@ export function getSettlement() {
   };
 }
 
-
 // create call
 export function createSettlement() {
   return dispatch => {
-    let userId = localStorage.getItem(
-      "userId"
-    );
+    let userId = localStorage.getItem("userId");
     axios({
       method: "post",
       url: `${KDM_API}/new/settlement`,
-      data: {"user_id": userId, "campaign": "people_of_the_lantern"}
+      data: { user_id: userId, campaign: "people_of_the_lantern" }
     }).then(res => {
       console.log("CREATE", res);
     });
@@ -53,15 +48,13 @@ export function createSettlement() {
 }
 
 //update call
-export function createSettlement() {
+export function updateSettlement() {
   return dispatch => {
-    let userId = localStorage.getItem(
-      "userId"
-    );
+    let userId = localStorage.getItem("userId");
     axios({
       method: "post",
       url: `${KDM_API}/settlement/set_attribute/59c511da8740d90655610336`,
-      data: {"user_id": userId, 'attribute': 'survival_limit', 'value': 3}
+      data: { user_id: userId, attribute: "survival_limit", value: 3 }
     }).then(res => {
       console.log("CREATE", res);
     });

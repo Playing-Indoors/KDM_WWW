@@ -9,69 +9,108 @@ $menu-width: 250px;
 // z index
 // $z-index-9000--menu: 9000;
 
-// Bootstrap 4 variables (refer to node modules for new values (might bring this in as a read only file)
+$white: #fff;
+$gray-200: #efeff0;
+$gray-500: #c2c6cf;
+$gray-600: #757575;
+$gray-700: #414042;
+$gray-800: #333132;
+$gray-900: #1e1d1e;
+$black: #000;
 
-// Colors
+$gray-700s: (
+  200: $gray-200,
+  600: $gray-600,
+  700: $gray-700,
+  800: $gray-800,
+  900: $gray-900
+);
 
-$gray-darker:               #231F20;
-$gray-dark:                 #282829;
-$gray:                      #404041;
-$gray-light:                #626366;
-$gray-lighter:              #DBDCDE;
-$gray-lightest:             #EEEFF0;
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #a21d21;
+$orange: #e69d32;
+$yellow: #ffc107 !default;
+$green: #458f7c;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
 
-$brand-primary:             #E59D31;
-$brand-success:             #458F7C;
-$brand-info:                #5bc0de;
-$brand-warning:             #f0ad4e;
-$brand-danger:              #A21D21;
+$brand-primary: $orange;
+
+$colors: (
+  blue: $blue,
+  indigo: $indigo,
+  purple: $purple,
+  pink: $pink,
+  red: $red,
+  orange: $orange,
+  yellow: $yellow,
+  green: $green,
+  teal: $teal,
+  cyan: $cyan,
+  white: $white,
+  gray: $gray-600,
+  gray-dark: $gray-800
+);
+
+$theme-colors: (
+  primary: $brand-primary,
+  secondary: $gray-700,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-200,
+  gray: $gray-600,
+  dark: $gray-900
+);
 
 // Options
-
-$enable-flex:               true;
-$enable-rounded:            false;
+$enable-rounded: false;
 
 // Spacing
 
-$border-width:               0px;
-
+$spacer: 15px;
+$border-width: 0px;
 
 // Body
 
-$body-bg:                    $gray;
-$body-color:                 #DCDDDE;
+$body-bg: $gray-700;
+$body-color: $gray-200;
 
 // Typography
-//
-// Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:     'Ruda', sans-serif;
+$font-family-sans-serif: "Ruda", sans-serif;
+$font-size-sm: 0.75rem !default;
+
+// Tabs
+
+$nav-tabs-link-active-bg: $black;
+$nav-tabs-link-active-color: $gray-200;
 
 // Buttons
-//
-// For each of Bootstrap's buttons, define text, background and border color.
 
-$btn-padding-x:                  1rem;
-$btn-padding-y:                  1rem;
+$input-btn-padding-x: 1rem;
+$input-btn-padding-y: 1rem;
+
+$input-btn-padding-y-sm: 0.5rem;
 
 $btn-focus-box-shadow: none;
 
 // Forms
 
-$input-bg:                       $body-color;
-$input-bg-disabled:              $gray;
+$input-bg: $gray-700;
+$input-bg-disabled: $gray-700;
 
-$input-color:                    #000;
-$input-color-placeholder:        #939598;
+$input-color: $white;
+$input-placeholder-color: #939598;
 
 // Modals
 
 // Padding applied to the modal body
-$modal-inner-padding:         0.5rem 1rem 1.5rem;
-$modal-content-bg:            $gray;
+$modal-inner-padding: 0.5rem 1rem 1.5rem;
+$modal-content-bg: $gray-700;
 
-$modal-backdrop-opacity:      .84;
-
-// $modal-lg:                    450px;
-// $modal-md:                    450px;
-// $modal-sm:                    450px;
+$modal-backdrop-opacity: 0.84;

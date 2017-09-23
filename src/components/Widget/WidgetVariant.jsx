@@ -66,7 +66,7 @@ class WidgetVariant extends React.Component {
   renderModal() {
     if (this.props.children.length > 1) {
       return (
-        <Modal isOpen={this.state.showModal}>
+        <Modal isOpen={this.state.showModal} toggle={this.handleModal}>
           <ModalHeader>Adjust {this.props.title}</ModalHeader>
           <ModalBody>{this.props.children[1]}</ModalBody>
           {this.renderModalClose()}

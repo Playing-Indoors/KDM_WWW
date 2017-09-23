@@ -10,74 +10,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageName: "Page Name",
-      nav: [
-        // {
-        // 	title: 'Dashboard',
-        // 	link: '/',
-        // 	icon: 'logo',
-        // 	children: [
-        // 		{
-        // 			title: 'Settlements',
-        // 			link: '/settlements',
-        // 		},
-        // 		{
-        // 			title: 'System',
-        // 			link: '/system',
-        // 		},
-        // 		{
-        // 			title: 'World Stats',
-        // 			link: '/world',
-        // 		},
-        // 		{
-        // 			title: 'About',
-        // 			link: '/about',
-        // 		},
-        // 		{
-        // 			title: 'Log Out',
-        // 			link: '/log-out',
-        // 		},
-        // 	],
-        // },
-        // {
-        // 	title: 'Campaign Log',
-        // 	icon: 'log',
-        // 	link: '/settlements/1234/log',
-        // 	children: [
-        // 		{
-        // 			title: 'Campaign Log',
-        // 			link: '/settlements/1234/log',
-        // 		},
-        // 	],
-        // },
-        {
-          title: "Settlement",
-          icon: "settlement",
-          link: "/settlements/1234/log"
-        },
-        {
-          title: "Survivors",
-          icon: "survivors",
-          link: "/settlements/1234/survivors/"
-        },
-        {
-          title: "Resources",
-          icon: "storage",
-          link: "/settlements/1234/storage"
-        },
-        {
-          title: "Menu",
-          icon: "menu",
-          link: "/settlements/1234/more"
-        }
-      ]
+      pageName: "Page Name"
     };
   }
   componentDidMount() {
     this.props.getSettlement();
   }
   showBack() {
-    return this.props.routes[3] ? this.props.routes[3].back : null;
+    if (this.props.routes[3]) {
+      return this.props.routes[3].back;
+    } else if (this.props.routes[2]) {
+      return this.props.routes[2].back;
+    }
+    return null;
   }
   renderNav() {
     if (this.showBack()) {
@@ -85,18 +30,31 @@ class App extends Component {
     }
     return <Nav />;
   }
+  renderHeader() {
+    if (this.props.routes[3] && this.props.routes[3].noHeader) {
+      return null;
+    } else if (this.props.routes[2] && this.props.routes[2].noHeader) {
+      return null;
+    }
+    const subName = this.props.routes[2] ? this.props.routes[2].title : null;
+    const superSubName = this.props.routes[3]
+      ? this.props.routes[3].title
+      : null;
+    return (
+      <Header
+        name={this.props.routes[1].title}
+        subName={subName}
+        superSubName={superSubName}
+        showBack={this.showBack()}
+      />
+    );
+  }
   render() {
-    let subName = this.props.routes[2] ? this.props.routes[2].title : null;
-    let superSubName = this.props.routes[3] ? this.props.routes[3].title : null;
     return (
       <div className="app">
         {this.renderNav()}
-        <Header
-          name={this.props.routes[1].title}
-          subName={subName}
-          superSubName={superSubName}
-          showBack={this.showBack()}
-        />
+        {this.renderHeader()}
+
         <main className="main">
           {React.cloneElement(this.props.children, { ...this.props })}
         </main>

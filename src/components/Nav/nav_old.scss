@@ -8,7 +8,7 @@
   // width: 90%;
   // overflow-x: visible;
   // overflow-y: auto;
-  background: $gray-darker;
+  background: $gray-900;
   display: none;
 
   &.is-active {
@@ -33,7 +33,7 @@
   }
 
   > ol > li + li {
-    border-top: 1px solid $gray;
+    border-top: 1px solid $gray-700;
   }
 }
 
@@ -50,13 +50,13 @@
   display: block;
   width: $menu-button-width;
   height: $menu-button-width;
-  background: $gray-darker;
+  background: $gray-900;
 
   &:hover,
   &.is-active {
     background: $brand-primary;
     // cursor: pointer;
-    // background: mix($brand-primary, $gray-darker, 25%);
+    // background: mix($brand-primary, $gray-900, 25%);
     // box-shadow: inset 0 0 0 2px $brand-primary;
     // outline: 0;
   }
@@ -68,7 +68,7 @@
   > svg {
     width: 16px;
     height: 16px;
-    fill: $gray-lightest;
+    fill: $white;
   }
 }
 
@@ -78,7 +78,7 @@
   line-height: $menu-button-width;
   font-weight: bold;
   text-align: center;
-  background: $gray;
+  background: $gray-700;
 }
 
 .subNav {
@@ -92,7 +92,7 @@
   left: $menu-button-width;
   height: 100%;
   width: calc(100% - #{$menu-button-width});
-  background: $gray-dark;
+  background: $gray-800;
   text-align: left;
 
   .mainNav-link.is-active + & {

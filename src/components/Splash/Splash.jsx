@@ -57,7 +57,7 @@ class Splash extends Component {
             </svg>
             <h1>The Watcher</h1>
             <p>A web-based management app for Kingdom Death</p>
-            <Button color="secondary" onClick={this.toggle}>
+            <Button color="light" onClick={this.toggle}>
               PLAY TEASER VIDEO
             </Button>
           </div>

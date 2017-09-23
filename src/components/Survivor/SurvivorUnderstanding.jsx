@@ -37,7 +37,7 @@ class SurvivorUnderstanding extends Component {
   renderConfirm() {
     if (this.state.amount == this.props.amount) {
       return (
-        <Button color="secondary" onClick={this.handleConfirm}>
+        <Button color="light" onClick={this.handleConfirm}>
           Confirm
         </Button>
       );
