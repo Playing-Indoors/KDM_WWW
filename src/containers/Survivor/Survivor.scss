@@ -1,8 +1,8 @@
 .survivor {
   @supports (display: grid) {
     display: grid;
-    grid-column-gap: $grid-gutter-width-base/2;
-    grid-row-gap: $grid-gutter-width-base/2;
+    grid-column-gap: $grid-gutter-width/2;
+    grid-row-gap: $grid-gutter-width/2;
     grid-template-columns: 2fr 1fr 1fr 2fr;
     grid-template-areas: "survival    bleeding      bleeding      hunt"
       "courage     understanding understanding weapon"

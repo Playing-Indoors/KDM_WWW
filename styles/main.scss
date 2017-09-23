@@ -4,7 +4,7 @@
 @import "_utilities";
 
 // Reset and dependencies
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 // Temp, waiting for https://github.com/twbs/bootstrap/pull/21741 to get merged in.
 input,
@@ -17,11 +17,10 @@ textarea {
 
 
 // Custom Components
-@import "../src/components/Aya/Aya";
+@import "../src/containers/Aya/Aya";
 @import "../src/components/Banner/Banner";
 @import "../src/components/BoxList/BoxList";
 // @import "../src/components/Button/button";
-@import "../src/components/CalebComponent/caleb_component";
 @import "../src/components/CardList/CardList";
 @import "../src/components/Header/header";
 @import "../src/components/Icon/Icon";

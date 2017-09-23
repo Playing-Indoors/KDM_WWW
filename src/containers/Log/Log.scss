@@ -1,8 +1,8 @@
 .layoutLog {
   @supports (display: grid) {
     display: grid;
-    grid-column-gap: $grid-gutter-width-base/2;
-    grid-row-gap: $grid-gutter-width-base/2;
+    grid-column-gap: $grid-gutter-width/2;
+    grid-row-gap: $grid-gutter-width/2;
     grid-template-columns: 1fr 1fr 1fr;
   }
 

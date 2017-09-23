@@ -76,18 +76,26 @@ class App extends Component {
   componentDidMount() {
     this.props.getSettlement();
   }
+  showBack() {
+    return this.props.routes[3] ? this.props.routes[3].back : null;
+  }
+  renderNav() {
+    if (this.showBack()) {
+      return null;
+    }
+    return <Nav />;
+  }
   render() {
     let subName = this.props.routes[2] ? this.props.routes[2].title : null;
     let superSubName = this.props.routes[3] ? this.props.routes[3].title : null;
-    let showBack = this.props.routes[3] ? this.props.routes[3].back : null;
     return (
       <div className="app">
-        <Nav data={this.state.nav} showBack={showBack} />
+        {this.renderNav()}
         <Header
           name={this.props.routes[1].title}
           subName={subName}
           superSubName={superSubName}
-          showBack={showBack}
+          showBack={this.showBack()}
         />
         <main className="main">
           {React.cloneElement(this.props.children, { ...this.props })}
