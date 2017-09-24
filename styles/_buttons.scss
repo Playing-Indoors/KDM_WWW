@@ -13,11 +13,19 @@
 
 .btn-primary {
   color: #fff;
+
+  &:focus {
+    color: #fff;
+  }
 }
 
 .btn-link {
   color: #fff;
   text-decoration: underline;
+
+  &:focus {
+    color: #fff;
+  }
 }
 
 // Button Group

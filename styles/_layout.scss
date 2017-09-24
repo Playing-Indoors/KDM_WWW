@@ -18,8 +18,12 @@ body {
   overflow-x: hidden;
 }
 
-.main {
-  padding: ($spacer + $menu-button-width) $spacer 0;
+// .main {
+//   padding: ($spacer + $menu-button-width) $spacer 0;
+// }
+
+.layoutContent {
+  padding-top: $menu-button-width;
 }
 
 .layout {
@@ -101,9 +105,25 @@ progress::-webkit-progress-value {
 // Navs
 
 .nav-tabs {
+  display: flex;
   background: $black;
   font-size: $font-size-sm;
-  color: $gray-600;
+
+  .nav-item {
+    flex: 1 1 auto;
+  }
+
+  .nav-link {
+    color: $gray-600;
+  }
+}
+
+.nav-link.active {
+  box-shadow: inset 0 -4px 0px $white;
+}
+
+.tab-pane {
+  padding: $spacer;
 }
 
 // EXPERIMENTAL BELOW
