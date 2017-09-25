@@ -109,7 +109,12 @@ render(
               component={requireAuth(Survivor)}
             />
           </Route>
-
+          <Route
+            title="Survivor"
+            back
+            path="survivors/:id"
+            component={requireAuth(Survivor)}
+          />
           <Route path="storage" component={requireAuth(Resources)}>
             <Route
               title="Resources"
