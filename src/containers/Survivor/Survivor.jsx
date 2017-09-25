@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import _filter from "lodash/filter";
 import SurvivorAbilities from "../../components/Survivor/SurvivorAbilities";
 import SurvivorArmor from "../../components/Survivor/SurvivorArmor";
 import SurvivorDisorders from "../../components/Survivor/SurvivorDisorders";
@@ -34,7 +35,7 @@ class Survivor extends React.Component {
       let routeId = window.location.href.substr(
         window.location.href.lastIndexOf("/") + 1
       );
-      let arr = _.filter(
+      let arr = _filter(
         this.props.settlementData.user_assets.survivors,
         survivor => {
           if (survivor.sheet._id.$oid === routeId) {
@@ -53,7 +54,7 @@ class Survivor extends React.Component {
       let routeId = window.location.href.substr(
         window.location.href.lastIndexOf("/") + 1
       );
-      let arr = _.filter(
+      let arr = _filter(
         nextProps.settlementData.user_assets.survivors,
         survivor => {
           if (survivor.sheet._id.$oid === routeId) {
