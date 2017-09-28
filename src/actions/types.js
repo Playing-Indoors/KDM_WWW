@@ -7,3 +7,4 @@ export const GET_SURVIVOR = "get_survivor";
 export const GET_WORLD = "get_world";
 export const UPDATE_HEADER = "update_header";
 export const CLOSE_HEADER = "close_header";
+export const CREATE_SETTLEMENT = "create_settlement";

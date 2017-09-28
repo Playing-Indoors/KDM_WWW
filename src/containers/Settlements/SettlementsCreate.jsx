@@ -16,6 +16,9 @@ import Icon from "../../components/Icon/Icon";
 import Toggle from "../../components/Toggle/Toggle";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
+import { createSettlement } from "../../actions/getSettlement.js";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 class Settlements extends React.Component {
   constructor(props) {
@@ -59,7 +62,14 @@ class Settlements extends React.Component {
   }
   handleCreate(e) {
     e.preventDefault();
+    let userId = localStorage.getItem("userId");
+
+    let data = {
+      user_id: userId,
+      campaign: this.state.campaign
+    }
     console.warn("KHOA CREATE SETTLEMENT!");
+    this.props.createSettlement(data);
   }
   renderCreate() {
     // TODO: This needs to be changed to see if the data is filled out, NOT last tab
@@ -335,4 +345,17 @@ class Settlements extends React.Component {
   }
 }
 
-export default Settlements;
+// function mapStateToProps(state) {
+//   return { homeData: state.homeData };
+// }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      createSettlement: createSettlement
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Settlements);

@@ -15,6 +15,7 @@ function getSettlementAsync(data) {
 export function getSettlement() {
   return dispatch => {
     let auth = localStorage.getItem("access_token");
+    let userId = localStorage.getItem("userId");
     axios({
       headers: { Authorization: auth },
       method: "get",
@@ -27,13 +28,12 @@ export function getSettlement() {
 }
 
 // create call
-export function createSettlement() {
+export function createSettlement(data) {
   return dispatch => {
-    let userId = localStorage.getItem("userId");
     axios({
       method: "post",
       url: `${KDM_API}/new/settlement`,
-      data: { user_id: userId, campaign: "people_of_the_lantern" }
+      data: data
     }).then(res => {
       console.log("CREATE", res);
     });
