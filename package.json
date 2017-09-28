@@ -9,6 +9,7 @@
     "dev":
       "npm run build && webpack-dev-server --inline --no-info --content-base .",
     "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook-b": "build-storybook -c .storybook -o docs",
     "prod": "webpack --config webpack.prod.config.js",
     "surge": "surge --project ./public --domain thewatcher.surge.sh",
     "prettier": "prettier --write \"src/**/*.{js,jsx,json,scss}\"",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/react": "^3.2.8",
+    "@storybook/storybook-deployer": "^2.0.0",
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.5.1",
     "babel-eslint": "^7.1.1",
