@@ -9,9 +9,11 @@ import {
   TabContent,
   TabPane
 } from "reactstrap";
+import { Link } from "react-router";
 import classnames from "classnames";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
+import Toggle from "../../components/Toggle/Toggle";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
 
@@ -20,9 +22,14 @@ class Settlements extends React.Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleExpansion = this.toggleExpansion.bind(this);
+    this.randomSettlement = this.randomSettlement.bind(this);
     this.state = {
-      activeTab: 1
+      activeTab: 1,
+      name: "",
+      campaign: "People of the Lantern"
     };
   }
   toggle(tab) {
@@ -32,23 +39,54 @@ class Settlements extends React.Component {
       });
     }
   }
+  toggleExpansion(bool, type) {
+    console.warn("update toggle", type);
+  }
+  randomSettlement() {
+    const names = ["Petra", "Palenque", "Teotihuacan", "Tiwanaku", "Timgad"];
+    const random = names[Math.floor(Math.random() * names.length)];
+    this.setState({
+      name: random
+    });
+  }
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.activeTab < 4) {
       this.setState({
         activeTab: this.state.activeTab + 1
       });
-    } else {
-      console.warn("KHOA CREATE SETTLEMENT!");
     }
+  }
+  handleCreate(e) {
+    e.preventDefault();
+    console.warn("KHOA CREATE SETTLEMENT!");
+  }
+  renderCreate() {
+    // TODO: This needs to be changed to see if the data is filled out, NOT last tab
+    const active = this.state.activeTab === 4;
+    if (active) {
+      return (
+        // @Khoa - th
+        <Link
+          to={"/campaigns"}
+          onClick={this.handleCreate}
+          className="header-action"
+        >
+          <Icon name={"check"} color="yellow" />
+        </Link>
+      );
+    }
+    return (
+      <span className="header-action">
+        <Icon name={"check"} />
+      </span>
+    );
   }
   render() {
     return (
       <div>
         <Header name={"Create New Campaign"} showBack>
-          <span className="header-action">
-            <Icon name={"check"} />
-          </span>
+          {this.renderCreate()}
         </Header>
         <div className="layoutContent">
           <Nav tabs>
@@ -102,16 +140,23 @@ class Settlements extends React.Component {
               <form onSubmit={this.handleSubmit}>
                 <legend>Name the Settlement</legend>
                 <Widget>
+                  {/* @Khoa bind the value to state.name correctly */}
                   <Input
                     type="text"
                     name="name"
                     placeholder="Enter settlement name..."
                     size="sm"
+                    value={this.state.name}
                     autoFocus
                     required
                   />
                   <WidgetFooter>
-                    <Button color="gray" size="sm">
+                    <Button
+                      color="gray"
+                      size="sm"
+                      type="button"
+                      onClick={this.randomSettlement}
+                    >
                       Randomize Name
                     </Button>
                     <Button color="primary" size="sm" type="submit">
@@ -132,9 +177,10 @@ class Settlements extends React.Component {
                       id="exampleSelectMulti"
                       size="sm"
                     >
-                      <option>People of the Lantern</option>
+                      <option defaultValue>People of the Lantern</option>
                       <option>People of the Stars</option>
                       <option>People of the Sun</option>
+                      <option>The Bloom People</option>
                     </Input>
                   </FormGroup>
                   <WidgetFooter>
@@ -149,6 +195,50 @@ class Settlements extends React.Component {
               <form onSubmit={this.handleSubmit}>
                 <legend>Select Expansions</legend>
                 <Widget>
+                  <div>
+                    <h4>Quarry</h4>
+                    <Toggle
+                      updateToggle={this.toggleExpansion}
+                      for="exp_gorm"
+                      active
+                      label="Gorm"
+                    />
+                    <Toggle
+                      updateToggle={this.toggleExpansion}
+                      for="exp_spidicules"
+                      active
+                      label="Spidicules"
+                    />
+                    <Toggle
+                      updateToggle={this.toggleExpansion}
+                      for="exp_dbk"
+                      active
+                      label="Dung Beetle Knight"
+                    />
+                    <Toggle
+                      updateToggle={this.toggleExpansion}
+                      for="exp_sunstalker"
+                      active
+                      label="Sunstalker"
+                    />
+                    <Toggle
+                      updateToggle={this.toggleExpansion}
+                      for="exp_lion_god"
+                      active
+                      label="Lion God"
+                    />
+                    <h4 className="mt-4">Nemisis</h4>
+                    <Toggle label="Manhunter" />
+                    <Toggle label="Lion Knight" />
+                    <Toggle label="Slenderman" />
+                    <h4 className="mt-4">Enhancement</h4>
+                    <Toggle label="Lonely Tree" />
+                    <Toggle label="Green Knight Armor" />
+                    <Toggle label="Allison the Twilight Knight" />
+                    <Toggle label="Before the Wall" />
+                    <Toggle label="Beyond the Wall" />
+                    <Toggle label="White Speaker" />
+                  </div>
                   <WidgetFooter>
                     <Button color="primary" size="sm" type="submit">
                       Confirm
@@ -164,7 +254,7 @@ class Settlements extends React.Component {
                   <Input
                     type="text"
                     name="name"
-                    placeholder="Enter settlement name..."
+                    placeholder="Enter survivor name..."
                     size="sm"
                     autoFocus
                     required
@@ -173,9 +263,67 @@ class Settlements extends React.Component {
                     <Button color="gray" size="sm">
                       Randomize Name
                     </Button>
-                    <Button color="primary" size="sm" type="submit">
-                      Confirm
+                    <Input type="select" size="sm">
+                      <option defaultValue>Female</option>
+                      <option>Male</option>
+                    </Input>
+                  </WidgetFooter>
+                </Widget>
+                <Widget>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Enter survivor name..."
+                    size="sm"
+                    autoFocus
+                    required
+                  />
+                  <WidgetFooter>
+                    <Button color="gray" size="sm">
+                      Randomize Name
                     </Button>
+                    <Input type="select" size="sm">
+                      <option defaultValue>Female</option>
+                      <option>Male</option>
+                    </Input>
+                  </WidgetFooter>
+                </Widget>
+                <Widget>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Enter survivor name..."
+                    size="sm"
+                    autoFocus
+                    required
+                  />
+                  <WidgetFooter>
+                    <Button color="gray" size="sm">
+                      Randomize Name
+                    </Button>
+                    <Input type="select" size="sm">
+                      <option defaultValue>Female</option>
+                      <option>Male</option>
+                    </Input>
+                  </WidgetFooter>
+                </Widget>
+                <Widget>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Enter survivor name..."
+                    size="sm"
+                    autoFocus
+                    required
+                  />
+                  <WidgetFooter>
+                    <Button color="gray" size="sm">
+                      Randomize Name
+                    </Button>
+                    <Input type="select" size="sm">
+                      <option defaultValue>Female</option>
+                      <option>Male</option>
+                    </Input>
                   </WidgetFooter>
                 </Widget>
               </form>

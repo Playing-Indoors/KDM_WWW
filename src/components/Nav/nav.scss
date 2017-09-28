@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   z-index: $zindex-fixed;
-  height: 52px;
+  height: $nav-height;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);

@@ -10,37 +10,34 @@ import Icon from "../../components/Icon/Icon";
 class Toggle extends React.Component {
   constructor(props) {
     super(props);
-    this.handleTrue = this.handleTrue.bind(this);
-    this.handleFalse = this.handleFalse.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
-  handleTrue() {
-    this.props.updateToggle(true, this.props.for);
+  handleToggle() {
+    this.props.updateToggle(!this.props.active, this.props.for);
   }
-  handleFalse() {
-    this.props.updateToggle(false, this.props.for);
+  renderIcon() {
+    if (this.props.active) {
+      return <Icon name="check" />;
+    }
+    return null;
   }
   render() {
     return (
       <div className="toggle">
         <Row noGutters className="align-items-center">
           <Col>
+            {/* @Caleb - Convert this to a label */}
             <div className="toggle-label">{this.props.label}</div>
           </Col>
           <Col xs="auto">
-            {/* True button */}
-            <Button color="link" onClick={this.handleTrue}>
-              <Icon
-                name="checkCircle"
-                color={this.props.active ? "yellow" : "white"}
-              />
-            </Button>
-            {/* False button */}
-            <Button color="link" onClick={this.handleFalse}>
-              <Icon
-                name="closeCircle"
-                color={this.props.active ? "white" : "yellow"}
-              />
-            </Button>
+            {/* @Caleb - convert this to a checkbox */}
+            <button
+              type="button"
+              className={`toggle-btn ${this.props.active ? "is-active" : ""}`}
+              onClick={this.handleToggle}
+            >
+              {this.renderIcon()}
+            </button>
           </Col>
         </Row>
       </div>

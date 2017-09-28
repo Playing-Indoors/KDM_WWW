@@ -4,7 +4,7 @@ html {
 
 body {
   min-height: 100%;
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
   // background: $gray-800;
   // font-family: 'Ruda', sans-serif;
 }
@@ -18,16 +18,21 @@ body {
   overflow-x: hidden;
 }
 
-// .main {
-//   padding: ($spacer + $menu-button-width) $spacer 0;
-// }
-
-.layoutContent {
+.main {
   padding-top: $menu-button-width;
 }
 
+.mainNav ~ .main {
+  padding-bottom: $nav-height;
+}
+
+// .layoutContent {
+//   padding-top: $menu-button-width;
+// }
+
 .layout {
   display: grid;
+  padding: $spacer;
   grid-gap: $spacer;
 }
 
@@ -102,12 +107,19 @@ progress::-webkit-progress-value {
   }
 }
 
+// Headings
+h4 {
+  color: $gray-600;
+  margin: 0;
+}
+
 // Navs
 
 .nav-tabs {
   display: flex;
   background: $black;
   font-size: $font-size-sm;
+  text-align: center;
 
   .nav-item {
     flex: 1 1 auto;
@@ -115,6 +127,8 @@ progress::-webkit-progress-value {
 
   .nav-link {
     color: $gray-600;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 

@@ -66,6 +66,7 @@ render(
             path="/campaigns"
             component={requireAuth(Settlements)}
             noHeader
+            back
           />
           <Route
             path="/campaigns/create"
