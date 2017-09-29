@@ -9,9 +9,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 class Settlements extends React.Component {
-  renderSettlements(){
-    if(this.props.userData){
-      console.log('HIT');
+  renderSettlements() {
+    if (this.props.userData) {
       return this.props.userData.dashboard.settlements.map((settlement, l) => {
         return (
           <CardList
@@ -23,7 +22,7 @@ class Settlements extends React.Component {
             <CardListMeta value={settlement.population} />
           </CardList>
         );
-      })
+      });
     }
   }
   render() {
@@ -34,9 +33,7 @@ class Settlements extends React.Component {
             <Icon name={"plus"} />
           </Link>
         </Header>
-        <div className="layout">
-          {this.renderSettlements()}
-        </div>
+        <div className="layout">{this.renderSettlements()}</div>
       </div>
     );
   }

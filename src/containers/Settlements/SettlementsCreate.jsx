@@ -67,7 +67,7 @@ class Settlements extends React.Component {
     let data = {
       user_id: userId,
       campaign: this.state.campaign
-    }
+    };
     console.warn("KHOA CREATE SETTLEMENT!");
     this.props.createSettlement(data);
   }
