@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSettlement } from "./actions/getSettlement";
+import { getUser } from "./actions/getUserData";
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.props.getSettlement();
+    this.props.getUser();
   }
   showBack() {
     if (this.props.routes[3]) {
@@ -76,7 +77,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      getSettlement
+      getSettlement,
+      getUser
     },
     dispatch
   );

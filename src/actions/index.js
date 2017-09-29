@@ -18,7 +18,7 @@ export function authenticate({ username, password }) {
         dispatch({ type: AUTH_USER });
         localStorage.setItem("access_token", response.data.access_token);
         localStorage.setItem("userId", response.data._id);
-        browserHistory.push(`/settlement/${response.data._id}`);
+        browserHistory.push(`/campaigns`);
       })
       .catch(err => {
         console.log("Error:", err);

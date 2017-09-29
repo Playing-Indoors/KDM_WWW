@@ -59,7 +59,11 @@ render(
         {/* <IndexRoute component={Splash} /> */}
         {/* <Route title="Splash" path="/splash" component={Splash} /> */}
         {/* <Route title="Home" path="/home" component={Home} /> */}
-
+        <Route
+          title="Dashboard"
+          path="/dashboard"
+          component={requireAuth(Dashboard)}
+        />
         <Route path="/">
           <Route
             title="Campaigns"
@@ -124,18 +128,12 @@ render(
             />
             <Route title="Gear" path="gear" component={requireAuth(Gear)} />
           </Route>
-
           <Route title="Campaign Log" path="log">
             <IndexRoute component={requireAuth(Log)} />
           </Route>
-
           <Route title="More" path="more">
             <IndexRoute component={requireAuth(More)} />
           </Route>
-          {/*
-					<Route title="aya" path="aya">
-						<IndexRoute component={requireAuth(Aya)} />
-					</Route> */}
         </Route>
 
         {/* Error Handling */}
