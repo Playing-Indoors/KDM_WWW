@@ -28,7 +28,7 @@ class Settlements extends React.Component {
   render() {
     return (
       <div>
-        <Header name={"Campaigns"} showBack>
+        <Header name={"Settlements"} back="/more">
           <Link to={"/campaigns/create"} className="header-action">
             <Icon name={"plus"} />
           </Link>

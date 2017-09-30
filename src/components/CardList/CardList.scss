@@ -1,7 +1,5 @@
 .cardList {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
+  display: block;
   // margin-bottom: $spacer;
   padding: 1rem;
   background: $gray-800;
@@ -9,9 +7,35 @@
   // & + & {
   // 	margin-top: 1rem;
   // }
+
+  &:hover,
+  &:focus {
+    background: $gray-900;
+    cursor: pointer;
+  }
 }
 
-.cardList-name {
+.cardList-header {
+  display: flex;
+  align-items: center;
+
+  .icon {
+    flex: 0 0 auto;
+    width: 15px;
+    height: 15px;
+
+    &:first-child {
+      margin-right: $spacer / 2;
+    }
+
+    &:last-child {
+      margin-left: $spacer / 2;
+    }
+  }
+}
+
+.cardList-header-name {
+  flex: 1 1 auto;
   color: $brand-primary;
   font-weight: bold;
 }
@@ -21,13 +45,27 @@
 }
 
 .cardList-meta {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 1rem;
   color: $gray-600;
   font-weight: bold;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
 }
 
 .cardList-meta-item {
-  display: inline-block;
-  margin-right: 1rem;
+  display: flex;
+  margin-right: $spacer;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.cardList-meta-item-label {
+  margin-right: $spacer / 4;
+}
+
+.cardList-meta-item-value {
+  color: $gray-200;
 }

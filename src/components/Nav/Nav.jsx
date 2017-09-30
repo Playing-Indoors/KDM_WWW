@@ -30,7 +30,7 @@ class Nav extends Component {
         {
           title: "Menu",
           icon: "menu",
-          link: "/settlements/1234/more"
+          link: "/more"
         }
       ]
     };

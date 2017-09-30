@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Icon from "../../components/Icon/Icon";
+import { Link } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateHeader } from "../../actions/updateHeader";
@@ -24,13 +25,15 @@ class Header extends Component {
     }
   }
   renderBack() {
-    if (this.props.showBack) {
+    if (this.props.back.length > 0) {
       return (
-        <a
-          tabIndex="0"
-          className="header-action header-action--nav"
-          onClick={this.handleNav}
-        >
+        <Link to={this.props.back} className="header-action">
+          <Icon name={"left"} />
+        </Link>
+      );
+    } else if (this.props.showBack) {
+      return (
+        <a tabIndex="0" className="header-action" onClick={this.handleNav}>
           <Icon name="left" />
         </a>
       );
@@ -66,12 +69,14 @@ function mapDispatchToProps(dispatch) {
 
 Header.defaultProps = {
   name: "Page Title",
+  back: "",
   showBack: false
 };
 
 Header.propTypes = {
   name: PropTypes.string,
   subName: PropTypes.string,
+  back: PropTypes.string,
   showBack: PropTypes.bool
 };
 
