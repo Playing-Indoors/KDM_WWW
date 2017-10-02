@@ -61,11 +61,6 @@ render(
         {/* <IndexRoute component={Splash} /> */}
         {/* <Route title="Splash" path="/splash" component={Splash} /> */}
         {/* <Route title="Home" path="/home" component={Home} /> */}
-        <Route
-          title="Dashboard"
-          path="/dashboard"
-          component={requireAuth(Dashboard)}
-        />
         <Route path="/">
           <Route
             path="/settlements"
@@ -93,12 +88,14 @@ render(
 
         {/* Settlement Routes */}
         <Route path="/settlements/:oid">
+          <IndexRoute title="Campaign Log" component={requireAuth(Dashboard)} />
+
           <Route
             title="Settlement"
             path="settlement"
             component={requireAuth(Dashboard)}
           >
-            <Route
+            {/* <Route
               title="Dashboard"
               path="dashboard"
               component={requireAuth(Dashboard)}
@@ -107,7 +104,7 @@ render(
               title="Timeline"
               path="timeline"
               component={requireAuth(Timeline)}
-            />
+            /> */}
           </Route>
 
           <Route
@@ -138,10 +135,6 @@ render(
           >
             <IndexRoute title="Resources" component={requireAuth(Resources)} />
             <Route title="Gear" path="gear" component={requireAuth(Gear)} />
-          </Route>
-
-          <Route title="Campaign Log" path="log">
-            <IndexRoute component={requireAuth(Log)} />
           </Route>
         </Route>
 

@@ -19,13 +19,13 @@ class Nav extends Component {
         title: "Campaign Log",
         icon: "log",
         link: `/settlements/${this.props.userData.user.current_settlement
-          .$oid}/log`
+          .$oid}/`
       },
       {
         title: "Settlement",
         icon: "settlement",
         link: `/settlements/${this.props.userData.user.current_settlement
-          .$oid}/log`
+          .$oid}/settlement`
       },
       {
         title: "Survivors",

@@ -16,7 +16,7 @@ class Settlements extends React.Component {
           <CardList
             name={settlement.name}
             desc={settlement.campaign}
-            href={`/settlement/${settlement._id.$oid}/`}
+            href={`/settlements/${settlement._id.$oid}/`}
             key={settlement._id.$oid}
           >
             <CardListMeta label="Year" value={settlement.lantern_year} />
