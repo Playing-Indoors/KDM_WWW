@@ -1,49 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router";
-import { createSettlement } from "../../actions/getSettlement";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import Icon from "../../components/Icon/Icon";
+import CardList from "../../components/CardList/CardList";
 
-class More extends React.Component {
-  constructor(props) {
-    super(props);
-    this._handleAddSettlement = this._handleAddSettlement.bind(this);
-  }
-
-  _handleAddSettlement() {
-    this.props.createSettlement();
-  }
-
+class More extends Component {
   render() {
-    return (
-      <div>
-        <button onClick={this._handleAddSettlement}>add settlement</button>
-        <h1>Username</h1>
-        [INSERT WATCHER LOGO]
-        <h3>Current Campaign</h3>
-        <h1>Campaign Name</h1>
-        <Link to={"/settlements"}>Campaigns</Link>
-        <Link to={"/resources"}>Glossary/FAQ</Link>
-        <Link to={"/settings"}>Settings</Link>
-        <Link to={"/logout"}>Log Out</Link>
-      </div>
-    );
+    if (this.props.userData) {
+      return (
+        <div className="layout layout--center">
+          <h2 className="text-center">{this.props.userData.user.login}</h2>
+          {/* <div className="text-center">
+            <Icon name="logo" />
+          </div> */}
+          <h3 className="text-center">Current Campaign</h3>
+          <h2 className="text-center">
+            {this.props.userData.user.current_settlement.$oid}
+          </h2>
+          <CardList name="Campaigns" href="/settlements" iconRight="right" />
+          <CardList name="Glossary / FAQ" href="/resources" iconRight="right" />
+          <CardList name="Settings" href="/settings" iconRight="right" />
+          <CardList name="Log Out" href="/logout" iconRight="right" />
+        </div>
+      );
+    }
+    return null;
   }
 }
 
 function mapStateToProps(state) {
-  return {
-    settlementData: state.settlementData
-  };
+  return { userData: state.userData };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      createSettlement
-    },
-    dispatch
-  );
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(More);
+export default connect(mapStateToProps, null)(More);

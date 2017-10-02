@@ -4,9 +4,6 @@ import { connect } from "react-redux";
 import Icon from "../../components/Icon/Icon";
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-  }
   getNav() {
     if (!this.props.userData) {
       return [
@@ -21,22 +18,26 @@ class Nav extends Component {
       {
         title: "Campaign Log",
         icon: "log",
-        link: `/${this.props.userData.user.current_settlement.$oid}/log`
+        link: `/settlements/${this.props.userData.user.current_settlement
+          .$oid}/log`
       },
       {
         title: "Settlement",
         icon: "settlement",
-        link: `/${this.props.userData.user.current_settlement.$oid}/log`
+        link: `/settlements/${this.props.userData.user.current_settlement
+          .$oid}/log`
       },
       {
         title: "Survivors",
         icon: "survivors",
-        link: `/${this.props.userData.user.current_settlement.$oid}/survivors/`
+        link: `/settlements/${this.props.userData.user.current_settlement
+          .$oid}/survivors/`
       },
       {
         title: "Resources",
         icon: "storage",
-        link: `/${this.props.userData.user.current_settlement.$oid}/storage`
+        link: `/settlements/${this.props.userData.user.current_settlement
+          .$oid}/storage`
       },
       {
         title: "Menu",

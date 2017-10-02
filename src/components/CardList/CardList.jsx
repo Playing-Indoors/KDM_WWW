@@ -21,6 +21,18 @@ class CardList extends Component {
     }
     return null;
   }
+  renderDesc() {
+    if (this.props.desc.length > 0) {
+      return <div className="cardList-desc">{this.props.desc}</div>;
+    }
+    return null;
+  }
+  renderMeta() {
+    if (this.props.children.length > 0) {
+      return <div className="cardList-meta">{this.props.children}</div>;
+    }
+    return null;
+  }
   render() {
     return (
       <Link to={this.props.href} className="cardList">
@@ -29,15 +41,17 @@ class CardList extends Component {
           <div className="cardList-header-name">{this.props.name}</div>
           {this.renderIcon(this.props.iconRight)}
         </div>
-        <div className="cardList-desc">{this.props.desc}</div>
-        <div className="cardList-meta">{this.props.children}</div>
+        {this.renderDesc()}
+        {this.renderMeta()}
       </Link>
     );
   }
 }
 
 CardList.defaultProps = {
-  // name: 'Name',
+  name: "",
+  desc: "",
+  children: [],
   button: "View",
   href: "#openCampaign",
   iconLeft: "",

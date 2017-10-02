@@ -54,7 +54,7 @@ class Settlements extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.activeTab < 4) {
+    if (this.state.activeTab < 3) {
       this.setState({
         activeTab: this.state.activeTab + 1
       });
@@ -133,7 +133,7 @@ class Settlements extends React.Component {
                 Expansions
               </NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink
                 tabIndex="0"
                 className={classnames({ active: this.state.activeTab === 4 })}
@@ -143,7 +143,7 @@ class Settlements extends React.Component {
               >
                 Survivors
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId={1}>
@@ -257,7 +257,7 @@ class Settlements extends React.Component {
                 </Widget>
               </form>
             </TabPane>
-            <TabPane tabId={4}>
+            {/* <TabPane tabId={4}>
               <form onSubmit={this.handleSubmit}>
                 <legend>Create Starting Survivors</legend>
                 <Widget>
@@ -337,7 +337,7 @@ class Settlements extends React.Component {
                   </WidgetFooter>
                 </Widget>
               </form>
-            </TabPane>
+            </TabPane> */}
           </TabContent>
         </div>
       </div>

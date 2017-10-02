@@ -75,6 +75,7 @@ render(
             path="/settlements/create"
             component={requireAuth(SettlementsCreate)}
             noHeader
+            back
           />
           <Route
             title="System"
