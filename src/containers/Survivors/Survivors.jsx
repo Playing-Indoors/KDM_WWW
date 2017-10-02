@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Input } from "reactstrap";
+import { Link } from "react-router";
+import { Input, Nav, NavItem, NavLink } from "reactstrap";
+import Header from "../../components/Header/Header";
+import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
 import CardList from "../../components/CardList/CardList";
 
@@ -38,6 +41,23 @@ class Survivors extends React.Component {
   render() {
     return (
       <div>
+        <Header name={"Survivors"}>
+          <Link to={"create"} className="header-action">
+            <Icon name={"plus"} />
+          </Link>
+        </Header>
+        <Nav tabs>
+          <NavItem>
+            <NavLink>Alive (12)</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink>Dead (3)</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink>Hunting</NavLink>
+          </NavItem>
+        </Nav>
+
         <Widget>
           <Input placeholder="Search survivors..." />
         </Widget>

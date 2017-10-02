@@ -19,9 +19,11 @@ import System from "./containers/System/System";
 import Survivor from "./containers/Survivor/Survivor";
 import Log from "./containers/Log/Log";
 import Survivors from "./containers/Survivors/Survivors";
+import SurvivorsCreate from "./containers/Survivors/SurvivorsCreate";
 import Settlements from "./containers/Settlements/Settlements";
 import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
 import Timeline from "./containers/Timeline/Timeline";
+import Storage from "./containers/Storage/Storage";
 import Resources from "./containers/Storage/Resources";
 import Gear from "./containers/Storage/Gear";
 import Dashboard from "./containers/Dashboard/Dashboard";
@@ -108,29 +110,36 @@ render(
             />
           </Route>
 
-          <Route path="survivors">
-            <IndexRoute title="Survivors" component={requireAuth(Survivors)} />
-            <Route
-              title="Survivor"
-              back
-              path="/:id"
-              component={requireAuth(Survivor)}
-            />
-          </Route>
+          <Route
+            title="Survivors"
+            noHeader
+            path="survivors"
+            component={requireAuth(Survivors)}
+          />
+
+          <Route
+            title="Survivors"
+            noHeader
+            back
+            path="survivors/create"
+            component={requireAuth(SurvivorsCreate)}
+          />
+
           <Route
             title="Survivor"
             back
             path="survivors/:id"
             component={requireAuth(Survivor)}
           />
-          <Route path="storage" component={requireAuth(Resources)}>
-            <Route
-              title="Resources"
-              path="resources"
-              component={requireAuth(Resources)}
-            />
+          <Route
+            title="Storage"
+            path="storage"
+            component={requireAuth(Storage)}
+          >
+            <IndexRoute title="Resources" component={requireAuth(Resources)} />
             <Route title="Gear" path="gear" component={requireAuth(Gear)} />
           </Route>
+
           <Route title="Campaign Log" path="log">
             <IndexRoute component={requireAuth(Log)} />
           </Route>

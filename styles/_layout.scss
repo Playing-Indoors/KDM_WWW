@@ -36,6 +36,14 @@ body {
   grid-gap: $spacer;
 }
 
+.layout--resources {
+  grid-template-areas: 1fr 1fr 1fr;
+}
+
+.grid-3 {
+  grid-column: span 3;
+}
+
 // Widget --- this belongs in a component after finalized
 
 .widgetOld {

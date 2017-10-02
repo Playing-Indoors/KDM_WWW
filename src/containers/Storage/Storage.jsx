@@ -1,8 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 
-class Storage extends React.Component {
+class Storage extends Component {
   render() {
-    return <div>Coming soon</div>;
+    return (
+      <div>
+        Why is this repeated twice
+        {this.props.children}
+      </div>
+    );
   }
 }
 
