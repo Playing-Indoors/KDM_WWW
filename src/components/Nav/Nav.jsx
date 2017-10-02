@@ -1,42 +1,52 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import { connect } from "react-redux";
 import Icon from "../../components/Icon/Icon";
 
 class Nav extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      nav: [
-        {
-          title: "Campaign Log",
-          icon: "log",
-          link: "/settlements/1234/log"
-        },
-        {
-          title: "Settlement",
-          icon: "settlement",
-          link: "/settlements/1234/log"
-        },
-        {
-          title: "Survivors",
-          icon: "survivors",
-          link: "/settlements/1234/survivors/"
-        },
-        {
-          title: "Resources",
-          icon: "storage",
-          link: "/settlements/1234/storage"
-        },
+  }
+  getNav() {
+    if (!this.props.userData) {
+      return [
         {
           title: "Menu",
           icon: "menu",
           link: "/more"
         }
-      ]
-    };
+      ];
+    }
+    return [
+      {
+        title: "Campaign Log",
+        icon: "log",
+        link: `/${this.props.userData.user.current_settlement.$oid}/log`
+      },
+      {
+        title: "Settlement",
+        icon: "settlement",
+        link: `/${this.props.userData.user.current_settlement.$oid}/log`
+      },
+      {
+        title: "Survivors",
+        icon: "survivors",
+        link: `/${this.props.userData.user.current_settlement.$oid}/survivors/`
+      },
+      {
+        title: "Resources",
+        icon: "storage",
+        link: `/${this.props.userData.user.current_settlement.$oid}/storage`
+      },
+      {
+        title: "Menu",
+        icon: "menu",
+        link: "/more"
+      }
+    ];
   }
   renderMainNav() {
-    return this.state.nav.map((item, index) => (
+    return this.getNav().map((item, index) => (
       <Link
         key={index}
         className="nav-link"
@@ -54,4 +64,8 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+function mapStateToProps(state) {
+  return { userData: state.userData };
+}
+
+export default connect(mapStateToProps, null)(Nav);

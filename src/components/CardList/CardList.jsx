@@ -15,13 +15,19 @@ class CardList extends Component {
   // 	}
   // 	return null;
   // }
+  renderIcon(name) {
+    if (name.length > 0) {
+      return <Icon name={name} />;
+    }
+    return null;
+  }
   render() {
     return (
       <Link to={this.props.href} className="cardList">
         <div className="cardList-header">
-          <Icon name={"left"} />
+          {this.renderIcon(this.props.iconLeft)}
           <div className="cardList-header-name">{this.props.name}</div>
-          <Icon name={"left"} />
+          {this.renderIcon(this.props.iconRight)}
         </div>
         <div className="cardList-desc">{this.props.desc}</div>
         <div className="cardList-meta">{this.props.children}</div>
@@ -33,7 +39,9 @@ class CardList extends Component {
 CardList.defaultProps = {
   // name: 'Name',
   button: "View",
-  href: "#openCampaign"
+  href: "#openCampaign",
+  iconLeft: "",
+  iconRight: ""
   // desc: 'Description',
 };
 
@@ -42,6 +50,8 @@ CardList.propTypes = {
   desc: PropTypes.string,
   href: PropTypes.string,
   button: PropTypes.string,
+  iconLeft: PropTypes.string,
+  iconRight: PropTypes.string,
   children: PropTypes.node
 };
 

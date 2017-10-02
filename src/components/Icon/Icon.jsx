@@ -75,7 +75,7 @@ icons.male = {
   width: 14,
   height: 14
 };
-icons.favorite = {
+icons.star = {
   icon:
     '<g><path d="M8.6.75,11,5.67l5.44.76-3.92,3.83.9,5.39L8.6,13.09,3.73,15.64l.95-5.39L.75,6.42l5.39-.76Z" stroke-linejoin="round" stroke-width="1.5"/></g>',
   width: 17.2,
@@ -136,6 +136,13 @@ class Icon extends Component {
       width: icons[props.name].width,
       height: icons[props.name].height
     };
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      name: nextProps.name,
+      width: icons[nextProps.name].width,
+      height: icons[nextProps.name].height
+    });
   }
   myClass() {
     const classArr = ["icon"];
