@@ -18,6 +18,8 @@ class Settlements extends React.Component {
             desc={settlement.campaign}
             href={`/settlements/${settlement._id.$oid}/`}
             key={settlement._id.$oid}
+            id={settlement._id.$oid}
+            setButton
           >
             <CardListMeta label="Year" value={settlement.lantern_year} />
             <CardListMeta label="Population" value={settlement.population} />

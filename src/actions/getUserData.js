@@ -25,3 +25,15 @@ export function getUser() {
     });
   };
 }
+
+export function setCurrentSettlement(id) {
+  let auth = localStorage.getItem("access_token");
+  let userId = localStorage.getItem("userId");
+  let data = {"current_settlement": id};
+  return axios({
+    headers: { Authorization: auth },
+    method: "get",
+    url: `${KDM_API}/user/set/${userId}`,
+    data: data
+  })
+}

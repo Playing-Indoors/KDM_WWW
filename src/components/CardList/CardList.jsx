@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
-import { Link } from "react-router";
 import Icon from "../../components/Icon/Icon";
+import { Link, browserHistory } from "react-router";
+import { setCurrentSettlement } from '../../actions/getUserData';
 
 class CardList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleSetRedirect = this.handleSetRedirect.bind(this);
   }
   // renderMeta() {
   // 	if (this.props.meta) {
@@ -15,6 +17,21 @@ class CardList extends Component {
   // 	}
   // 	return null;
   // }
+  handleSetRedirect(){
+      setCurrentSettlement(this.props.id)
+        .then(res => {
+          console.log('res', res);
+        })
+        .catch(err => {
+          console.log('err', err)
+        });
+      browserHistory.push(`${this.props.href}`);
+  }
+  renderButton(){
+    if(this.props.setButton){
+      return <Button onClick={this.handleSetRedirect}>Play</Button>
+    }
+  }
   renderIcon(name) {
     if (name.length > 0) {
       return <Icon name={name} />;
@@ -35,7 +52,7 @@ class CardList extends Component {
   }
   render() {
     return (
-      <Link to={this.props.href} className="cardList">
+      <div className="cardList">
         <div className="cardList-header">
           {this.renderIcon(this.props.iconLeft)}
           <div className="cardList-header-name">{this.props.name}</div>
@@ -43,7 +60,8 @@ class CardList extends Component {
         </div>
         {this.renderDesc()}
         {this.renderMeta()}
-      </Link>
+        {this.renderButton()}
+      </div>
     );
   }
 }
