@@ -1,6 +1,6 @@
 import { browserHistory } from "react-router";
 import axios from "axios";
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from "./types";
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, GET_USER } from "./types";
 const KDM_API = require("KDM_API");
 
 export function authError(error) {
@@ -15,10 +15,17 @@ export function authenticate({ username, password }) {
     axios
       .post(`${KDM_API}/login`, { username: username, password: password })
       .then(response => {
-        dispatch({ type: AUTH_USER });
         localStorage.setItem("access_token", response.data.access_token);
         localStorage.setItem("userId", response.data._id);
-        browserHistory.push(`/settlements`);
+        axios({
+          headers: { Authorization: response.data.access_token },
+          method: "get",
+          url: `${KDM_API}/user/dashboard/${response.data._id}`
+        }).then(res => {
+          console.log('yay works');
+          dispatch({ type: AUTH_USER });
+          browserHistory.push(`/settlements/${res.data.user.current_settlement.$oid}`);
+        });
       })
       .catch(err => {
         console.log("Error:", err);

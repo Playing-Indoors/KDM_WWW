@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Header from "../../components/Header/Header";
