@@ -22,7 +22,7 @@ class More extends React.Component {
         [INSERT WATCHER LOGO]
         <h3>Current Campaign</h3>
         <h1>Campaign Name</h1>
-        <Link to={"/campaigns"}>Campaigns</Link>
+        <Link to={"/settlements"}>Campaigns</Link>
         <Link to={"/resources"}>Glossary/FAQ</Link>
         <Link to={"/settings"}>Settings</Link>
         <Link to={"/logout"}>Log Out</Link>

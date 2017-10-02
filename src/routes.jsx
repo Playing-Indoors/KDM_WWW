@@ -66,14 +66,13 @@ render(
         />
         <Route path="/">
           <Route
-            title="Campaigns"
-            path="/campaigns"
+            path="/settlements"
             component={requireAuth(Settlements)}
             noHeader
             back
           />
           <Route
-            path="/campaigns/create"
+            path="/settlements/create"
             component={requireAuth(SettlementsCreate)}
             noHeader
           />

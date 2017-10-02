@@ -34,7 +34,7 @@ class Settlements extends React.Component {
     return (
       <div>
         <Header name={"Settlements"} back="/more">
-          <Link to={"/campaigns/create"} className="header-action">
+          <Link to={"/settlements/create"} className="header-action">
             <Icon name={"plus"} />
           </Link>
         </Header>
