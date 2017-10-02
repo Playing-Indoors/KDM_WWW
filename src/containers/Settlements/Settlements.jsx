@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import CardList from "../../components/CardList/CardList";
 import CardListMeta from "../../components/CardList/CardListMeta";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 class Settlements extends React.Component {
   renderSettlements() {
@@ -16,10 +16,15 @@ class Settlements extends React.Component {
           <CardList
             name={settlement.name}
             desc={settlement.campaign}
-            href="#route"
+            href={`/settlement/${settlement._id.$oid}/`}
+            key={settlement._id.$oid}
           >
-            <CardListMeta value={settlement.lantern_year} />
-            <CardListMeta value={settlement.population} />
+            <CardListMeta label="Year" value={settlement.lantern_year} />
+            <CardListMeta label="Population" value={settlement.population} />
+            <CardListMeta
+              label="Expansions"
+              value={settlement.expansions.length}
+            />
           </CardList>
         );
       });
@@ -28,7 +33,7 @@ class Settlements extends React.Component {
   render() {
     return (
       <div>
-        <Header name={"Campaigns"} showBack>
+        <Header name={"Settlements"} back="/more">
           <Link to={"/campaigns/create"} className="header-action">
             <Icon name={"plus"} />
           </Link>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 import { Link } from "react-router";
+import Icon from "../../components/Icon/Icon";
 
 class CardList extends Component {
   constructor(props) {
@@ -14,18 +15,23 @@ class CardList extends Component {
   // 	}
   // 	return null;
   // }
+  renderIcon(name) {
+    if (name.length > 0) {
+      return <Icon name={name} />;
+    }
+    return null;
+  }
   render() {
     return (
-      <div className="cardList">
-        <div className="cardList-content">
-          <Link to={this.props.href} className="cardList-name">
-            {this.props.name}
-          </Link>
-          <div className="cardList-desc">{this.props.desc}</div>
-          <div className="cardList-meta">{this.props.children}</div>
+      <Link to={this.props.href} className="cardList">
+        <div className="cardList-header">
+          {this.renderIcon(this.props.iconLeft)}
+          <div className="cardList-header-name">{this.props.name}</div>
+          {this.renderIcon(this.props.iconRight)}
         </div>
-        <Button>{this.props.button}</Button>
-      </div>
+        <div className="cardList-desc">{this.props.desc}</div>
+        <div className="cardList-meta">{this.props.children}</div>
+      </Link>
     );
   }
 }
@@ -33,7 +39,9 @@ class CardList extends Component {
 CardList.defaultProps = {
   // name: 'Name',
   button: "View",
-  href: "#openCampaign"
+  href: "#openCampaign",
+  iconLeft: "",
+  iconRight: ""
   // desc: 'Description',
 };
 
@@ -42,6 +50,8 @@ CardList.propTypes = {
   desc: PropTypes.string,
   href: PropTypes.string,
   button: PropTypes.string,
+  iconLeft: PropTypes.string,
+  iconRight: PropTypes.string,
   children: PropTypes.node
 };
 

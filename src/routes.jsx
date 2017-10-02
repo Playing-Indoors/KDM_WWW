@@ -82,6 +82,9 @@ render(
             path="/system"
             component={requireAuth(System)}
           />
+          <Route title="More" path="more">
+            <IndexRoute component={requireAuth(More)} />
+          </Route>
           {/* <Route title="World" path="/world" component={requireAuth(World)} />
           <Route title="About" path="/about" component={requireAuth(About)} /> */}
         </Route>
@@ -130,9 +133,6 @@ render(
           </Route>
           <Route title="Campaign Log" path="log">
             <IndexRoute component={requireAuth(Log)} />
-          </Route>
-          <Route title="More" path="more">
-            <IndexRoute component={requireAuth(More)} />
           </Route>
         </Route>
 
