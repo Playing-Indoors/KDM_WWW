@@ -2,35 +2,21 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 import Icon from "../../components/Icon/Icon";
+import CardListMeta from "../../components/CardList/CardListMeta";
 import { Link, browserHistory } from "react-router";
-import { setCurrentSettlement } from '../../actions/getUserData';
 
 class CardList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.handleSetRedirect = this.handleSetRedirect.bind(this);
-  }
-  // renderMeta() {
-  // 	if (this.props.meta) {
-  // 		return <div className="cardList-meta">{this.props.meta.join(' | ')}</div>;
-  // 	}
-  // 	return null;
-  // }
-  handleSetRedirect(){
-      setCurrentSettlement(this.props.id)
-        .then(res => {
-          console.log('res', res);
-        })
-        .catch(err => {
-          console.log('err', err)
-        });
-      browserHistory.push(`${this.props.href}`);
-  }
-  renderButton(){
-    if(this.props.setButton){
-      return <Button onClick={this.handleSetRedirect}>Play</Button>
+  renderButton() {
+    if (this.props.action) {
+      return (
+        <div className="cardList-button">
+          <Button onClick={this.props.action} color="gray">
+            Play
+          </Button>
+        </div>
+      );
     }
+    return null;
   }
   renderIcon(name) {
     if (name.length > 0) {
@@ -44,22 +30,44 @@ class CardList extends Component {
     }
     return null;
   }
+  renderMetaItems() {
+    return this.props.meta.map((item, index) => (
+      <CardListMeta label={item.label} value={item.value} key={index} />
+    ));
+  }
   renderMeta() {
-    if (this.props.children.length > 0) {
-      return <div className="cardList-meta">{this.props.children}</div>;
+    if (this.props.meta.length > 0) {
+      return <div className="cardList-meta">{this.renderMetaItems()}</div>;
     }
     return null;
   }
   render() {
+    if (this.props.href.length > 0) {
+      return (
+        <Link to={this.props.href} className="cardList">
+          <div className="cardList-content">
+            <div className="cardList-header">
+              {this.renderIcon(this.props.iconLeft)}
+              <div className="cardList-header-name">{this.props.name}</div>
+              {this.renderIcon(this.props.iconRight)}
+            </div>
+            {this.renderDesc()}
+            {this.renderMeta()}
+          </div>
+        </Link>
+      );
+    }
     return (
       <div className="cardList">
-        <div className="cardList-header">
-          {this.renderIcon(this.props.iconLeft)}
-          <div className="cardList-header-name">{this.props.name}</div>
-          {this.renderIcon(this.props.iconRight)}
+        <div className="cardList-content">
+          <div className="cardList-header">
+            {this.renderIcon(this.props.iconLeft)}
+            <div className="cardList-header-name">{this.props.name}</div>
+            {this.renderIcon(this.props.iconRight)}
+          </div>
+          {this.renderDesc()}
+          {this.renderMeta()}
         </div>
-        {this.renderDesc()}
-        {this.renderMeta()}
         {this.renderButton()}
       </div>
     );
@@ -69,19 +77,25 @@ class CardList extends Component {
 CardList.defaultProps = {
   name: "",
   desc: "",
+  meta: [],
   children: [],
-  button: "View",
-  href: "#openCampaign",
+  href: "",
   iconLeft: "",
   iconRight: ""
   // desc: 'Description',
 };
 
 CardList.propTypes = {
+  action: PropTypes.func,
   name: PropTypes.string,
   desc: PropTypes.string,
   href: PropTypes.string,
-  button: PropTypes.string,
+  meta: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.number
+    })
+  ),
   iconLeft: PropTypes.string,
   iconRight: PropTypes.string,
   children: PropTypes.node

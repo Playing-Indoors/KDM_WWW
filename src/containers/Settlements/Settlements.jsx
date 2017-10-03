@@ -6,9 +6,24 @@ import { bindActionCreators } from "redux";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import CardList from "../../components/CardList/CardList";
-import CardListMeta from "../../components/CardList/CardListMeta";
+import { setCurrentSettlement } from "../../actions/getUserData";
 
 class Settlements extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.handleSetRedirect = this.handleSetRedirect.bind(this);
+  }
+  handleSetRedirect(id) {
+    setCurrentSettlement(id)
+      .then(res => {
+        console.log("res", res);
+      })
+      .catch(err => {
+        console.log("err", err);
+      });
+    browserHistory.push(`/settlements/${id}/`);
+  }
   renderSettlements() {
     if (this.props.userData) {
       return this.props.userData.dashboard.settlements.map((settlement, l) => {
@@ -16,21 +31,19 @@ class Settlements extends React.Component {
           <CardList
             name={settlement.name}
             desc={settlement.campaign}
-            href={`/settlements/${settlement._id.$oid}/`}
+            action={() => this.handleSetRedirect(settlement._id.$oid)}
             key={settlement._id.$oid}
             id={settlement._id.$oid}
-            setButton
-          >
-            <CardListMeta label="Year" value={settlement.lantern_year} />
-            <CardListMeta label="Population" value={settlement.population} />
-            <CardListMeta
-              label="Expansions"
-              value={settlement.expansions.length}
-            />
-          </CardList>
+            meta={[
+              { label: "Year", value: settlement.lantern_year },
+              { label: "Population", value: settlement.population },
+              { label: "Expansions", value: settlement.expansions.length }
+            ]}
+          />
         );
       });
     }
+    return null;
   }
   render() {
     return (

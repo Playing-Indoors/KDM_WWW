@@ -1,14 +1,15 @@
 .cardList {
-  display: block;
+  display: flex;
   // margin-bottom: $spacer;
-  padding: 1rem;
   background: $gray-800;
   color: inherit;
 
   // & + & {
   // 	margin-top: 1rem;
   // }
+}
 
+a.cardList {
   &:hover,
   &:focus {
     color: inherit;
@@ -19,6 +20,20 @@
     .cardList-header-name {
       text-decoration: underline;
     }
+  }
+}
+
+.cardList-content {
+  flex: 1 1 auto;
+  padding: $spacer;
+}
+
+.cardList-button {
+  display: flex;
+  flex: 0 0 auto;
+
+  .btn {
+    min-width: 100px;
   }
 }
 
