@@ -22,9 +22,11 @@ export function authenticate({ username, password }) {
           method: "get",
           url: `${KDM_API}/user/dashboard/${response.data._id}`
         }).then(res => {
-          console.log('yay works');
+          console.log("yay works");
           dispatch({ type: AUTH_USER });
-          browserHistory.push(`/settlements/${res.data.user.current_settlement.$oid}`);
+          browserHistory.push(
+            `/settlements/${res.data.user.current_settlement.$oid}`
+          );
         });
       })
       .catch(err => {
