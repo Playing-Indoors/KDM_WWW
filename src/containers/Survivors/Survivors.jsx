@@ -7,10 +7,14 @@ import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
 import CardList from "../../components/CardList/CardList";
+import { getSettlement } from "../../actions/getSettlement";
 
 class Survivors extends React.Component {
   componentDidMount() {
-    let path = this.props.location.pathname.match(/^\/settlements\/(\d+)/);
+    if (this.props.settlementData === null) {
+      let id = window.location.pathname.split("/");
+      this.props.getSettlement(id[2]);
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.settlementData) {
@@ -73,4 +77,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Survivors);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      getSettlement
+    },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Survivors);
