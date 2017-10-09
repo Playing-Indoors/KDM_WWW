@@ -12,14 +12,14 @@ function getSettlementAsync(data) {
   };
 }
 
-export function getSettlement() {
+export function getSettlement(id) {
   return dispatch => {
     let auth = localStorage.getItem("access_token");
     let userId = localStorage.getItem("userId");
     axios({
       headers: { Authorization: auth },
       method: "get",
-      url: `${KDM_API}/settlement/get/5681f9e7421aa93924b6d013`
+      url: `${KDM_API}/settlement/get/${id}`
     }).then(res => {
       console.log("SETTLEMENT", res);
       dispatch(getSettlementAsync(res.data));

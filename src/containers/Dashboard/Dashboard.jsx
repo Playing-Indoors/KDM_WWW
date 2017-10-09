@@ -3,11 +3,29 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Row, Col } from "reactstrap";
 import Widget from "../../components/Widget/Widget";
+import { getSettlement } from "../../actions/getSettlement";
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      settlement: null
+    };
   }
+
+  componentDidMount() {
+    let id = window.location.pathname.split("/");
+    this.props.getSettlement(id[2]);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.settlementData) {
+      this.setState({
+        settlement: nextProps.settlementData
+      });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -67,4 +85,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Dashboard);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      getSettlement
+    },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
