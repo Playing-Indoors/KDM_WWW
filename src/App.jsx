@@ -50,15 +50,20 @@ class App extends Component {
       />
     );
   }
+  renderChildren() {
+    return React.Children.map(this.props.children, child => {
+      return React.cloneElement(this.props.children, {
+        userData: this.props.userData
+      });
+    });
+  }
   render() {
     return (
       <div className="app">
         {this.renderNav()}
         {this.renderHeader()}
 
-        <main className="main">
-          {React.cloneElement(this.props.children, { ...this.props })}
-        </main>
+        <main className="main">{this.renderChildren()}</main>
       </div>
     );
   }
@@ -70,7 +75,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    settlementData: state.settlementData
+    userData: state.userData
   };
 }
 
