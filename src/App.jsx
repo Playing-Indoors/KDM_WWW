@@ -4,7 +4,6 @@ import Nav from "./components/Nav/Nav";
 import Header from "./components/Header/Header";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getSettlement } from "./actions/getSettlement";
 import { getUser } from "./actions/getUserData";
 
 class App extends Component {
@@ -82,7 +81,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      getSettlement,
       getUser
     },
     dispatch
