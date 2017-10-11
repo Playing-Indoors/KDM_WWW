@@ -17,7 +17,7 @@ class Survivors extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.settlementData) {
+    if (nextProps.settlementData && this.props.settlementData === null) {
       this.setState({
         settlementData: nextProps.settlementData
       });

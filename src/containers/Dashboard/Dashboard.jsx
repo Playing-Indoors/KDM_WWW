@@ -15,11 +15,13 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     let id = window.location.pathname.split("/");
-    this.props.getSettlement(id[2]);
+    if (this.props.settlementData === null) {
+      this.props.getSettlement(id[2]);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.settlementData) {
+    if (nextProps.settlementData && this.props.settlementData === null) {
       this.setState({
         settlement: nextProps.settlementData
       });
