@@ -49,90 +49,66 @@ render(
       {/* Dev Routes */}
       <Route title="Aya" path="/aya" component={Aya} />
 
-      {/* Core Routes */}
+      {/* App Routes */}
       <Route component={App}>
-        <Route path="/">
-          {/* Shows list of user's settlements */}
-          <Route
-            path="/settlements"
-            component={requireAuth(Settlements)}
-            noHeader
-            back
-          />
-          {/* Allows user to create a settlement */}
-          <Route
-            path="/settlements/create"
-            component={requireAuth(SettlementsCreate)}
-            noHeader
-            back
-          />
-          <Route
-            title="System"
-            path="/system"
-            component={requireAuth(System)}
-          />
-          <Route title="More" path="more">
-            <IndexRoute component={requireAuth(More)} />
-          </Route>
-          {/* <Route title="World" path="/world" component={requireAuth(World)} />
-          <Route title="About" path="/about" component={requireAuth(About)} /> */}
+        <Route
+          path="/settlements"
+          component={requireAuth(Settlements)}
+          noHeader
+          back
+        />
+        <Route
+          path="/settlements/create"
+          component={requireAuth(SettlementsCreate)}
+          noHeader
+          back
+        />
+        <Route path="/more" title="More" component={requireAuth(More)} />
+        <Route
+          path="/settings"
+          title="System"
+          component={requireAuth(System)}
+        />
+        <Route
+          path="/settlements/:oid"
+          title="Campaign Log"
+          component={requireAuth(Dashboard)}
+        />
+        <Route
+          path="/settlements/:oid/settlement"
+          title="Settlement"
+          component={requireAuth(Dashboard)}
+        />
+        <Route
+          path="/settlements/:oid/survivors"
+          title="Survivors"
+          noHeader
+          component={requireAuth(Survivors)}
+        />
+        <Route
+          path="/settlements/:oid/survivors/create"
+          title="Survivors"
+          noHeader
+          back
+          component={requireAuth(SurvivorsCreate)}
+        />
+
+        <Route
+          path="/settlements/:oid/survivors/:id"
+          title="Survivor"
+          back
+          component={requireAuth(Survivor)}
+        />
+        <Route
+          path="/settlements/:oid/storage"
+          title="Storage"
+          component={requireAuth(Storage)}
+        >
+          <IndexRoute title="Resources" component={requireAuth(Resources)} />
+          <Route title="Gear" path="gear" component={requireAuth(Gear)} />
         </Route>
-
-        {/* Settlement Routes */}
-        <Route path="/settlements/:oid">
-          <IndexRoute title="Campaign Log" component={requireAuth(Dashboard)} />
-
-          <Route
-            title="Settlement"
-            path="settlement"
-            component={requireAuth(Dashboard)}
-          >
-            {/* <Route
-              title="Dashboard"
-              path="dashboard"
-              component={requireAuth(Dashboard)}
-            />
-            <Route
-              title="Timeline"
-              path="timeline"
-              component={requireAuth(Timeline)}
-            /> */}
-          </Route>
-
-          <Route
-            title="Survivors"
-            noHeader
-            path="survivors"
-            component={requireAuth(Survivors)}
-          />
-
-          <Route
-            title="Survivors"
-            noHeader
-            back
-            path="survivors/create"
-            component={requireAuth(SurvivorsCreate)}
-          />
-
-          <Route
-            title="Survivor"
-            back
-            path="survivors/:id"
-            component={requireAuth(Survivor)}
-          />
-          <Route
-            title="Storage"
-            path="storage"
-            component={requireAuth(Storage)}
-          >
-            <IndexRoute title="Resources" component={requireAuth(Resources)} />
-            <Route title="Gear" path="gear" component={requireAuth(Gear)} />
-          </Route>
-        </Route>
-
-        {/* Error Handling */}
-        <Route title="Not Found" path="*" component={NotFound} />
       </Route>
+      <Route title="Not Found" path="*" component={NotFound} />
     </Router>
   </Provider>,
   document.getElementById("app")
