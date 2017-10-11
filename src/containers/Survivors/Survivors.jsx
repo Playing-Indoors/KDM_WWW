@@ -30,7 +30,8 @@ class Survivors extends React.Component {
           <CardList
             key={survivor.sheet._id.$oid}
             name={survivor.sheet.name}
-            href={survivor.sheet._id.$oid}
+            href={`/settlements/${this.props.settlementData.sheet._id
+              .$oid}/survivors/${survivor.sheet._id.$oid}`}
           >
             Hunt XP: {survivor.sheet.hunt_xp} &nbsp; &nbsp; Courage:{" "}
             {survivor.sheet.Courage} &nbsp; &nbsp; Understanding{" "}
@@ -43,31 +44,41 @@ class Survivors extends React.Component {
     }
   }
   render() {
-    return (
-      <div>
-        <Header name={"Survivors"}>
-          <Link to={"create"} className="header-action">
-            <Icon name={"plus"} />
-          </Link>
-        </Header>
-        <Nav tabs>
-          <NavItem>
-            <NavLink>Alive (12)</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink>Dead (3)</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink>Hunting</NavLink>
-          </NavItem>
-        </Nav>
-
-        <Widget>
-          <Input placeholder="Search survivors..." />
-        </Widget>
-        {this.renderSurvivors()}
-      </div>
-    );
+    if (this.props.settlementData) {
+      return (
+        <div>
+          <Header name={"Survivors"}>
+            <Link
+              to={`/settlements/${this.props.settlementData.sheet._id
+                .$oid}/survivors/create`}
+              className="header-action"
+            >
+              <Icon name={"plus"} />
+            </Link>
+          </Header>
+          <Nav tabs>
+            <NavItem>
+              <NavLink>Alive (12)</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>
+                Dead ({this.props.settlementData.sheet.death_count})
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>Hunting</NavLink>
+            </NavItem>
+          </Nav>
+          <div className="layout layout--resources">
+            <Widget>
+              <Input placeholder="Search survivors..." />
+            </Widget>
+            {this.renderSurvivors()}
+          </div>
+        </div>
+      );
+    }
+    return null;
   }
 }
 

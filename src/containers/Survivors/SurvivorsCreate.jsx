@@ -22,7 +22,6 @@ class Settlements extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     this.randomName = this.randomName.bind(this);
     this.state = {
@@ -43,7 +42,6 @@ class Settlements extends React.Component {
   renderCreate() {
     if (this.state.name.length > 0) {
       return (
-        // @Khoa - th
         <Link to={"./"} onClick={this.handleCreate} className="header-action">
           <Icon name={"check"} color="yellow" />
         </Link>
