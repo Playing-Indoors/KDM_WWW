@@ -17,7 +17,7 @@ class More extends Component {
           <h2 className="text-center">
             {this.props.userData.user.current_settlement.$oid}
           </h2>
-          <CardList name="Campaigns" href="/settlements" iconRight="right" />
+          <CardList name="Settlements" href="/settlements" iconRight="right" />
           <CardList name="Glossary / FAQ" href="/resources" iconRight="right" />
           <CardList name="Settings" href="/settings" iconRight="right" />
           <CardList name="Log Out" href="/logout" iconRight="right" />
