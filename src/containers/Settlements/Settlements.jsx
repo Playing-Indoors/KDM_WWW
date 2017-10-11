@@ -25,19 +25,18 @@ class Settlements extends React.Component {
     browserHistory.push(`/settlements/${id}/`);
   }
   renderSettlements() {
-    if (this.props.userData) {
-      return this.props.userData.dashboard.settlements.map((settlement, l) => {
+    if (this.props.userData && this.props.userData.dashboard) {
+      return this.props.userData.dashboard.settlements.map(settlement => {
         return (
           <CardList
-            name={settlement.name}
-            desc={settlement.campaign}
-            action={() => this.handleSetRedirect(settlement._id.$oid)}
-            key={settlement._id.$oid}
-            id={settlement._id.$oid}
+            name={settlement.sheet.name}
+            desc={settlement.sheet.campaign}
+            action={() => this.handleSetRedirect(settlement.sheet._id.$oid)}
+            key={settlement.sheet._id.$oid}
             meta={[
-              { label: "Year", value: settlement.lantern_year },
-              { label: "Population", value: settlement.population },
-              { label: "Expansions", value: settlement.expansions.length }
+              { label: "Year", value: settlement.sheet.lantern_year },
+              { label: "Population", value: settlement.sheet.population },
+              { label: "Expansions", value: settlement.sheet.expansions.length }
             ]}
           />
         );

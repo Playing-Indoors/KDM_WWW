@@ -71,7 +71,7 @@ class Survivor extends React.Component {
   render() {
     if (this.state.survivor) {
       return (
-        <div className="survivor">
+        <div className="layout layout--survivor">
           {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
           <Survival
             amount={this.state.survivor.sheet.survival}

@@ -2,12 +2,7 @@ import React, { Component } from "react";
 
 class Storage extends Component {
   render() {
-    return (
-      <div>
-        Why is this repeated twice
-        {this.props.children}
-      </div>
-    );
+    return <div>{this.props.children}</div>;
   }
 }
 

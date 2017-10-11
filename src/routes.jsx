@@ -1,13 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import {
-  browserHistory,
-  Router,
-  Route,
-  IndexRoute,
-  Link,
-  Redirect
-} from "react-router";
+import { browserHistory, Router, Route, IndexRoute } from "react-router";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
@@ -17,12 +10,10 @@ import App from "./App";
 import Login from "./containers/Login/Login";
 import System from "./containers/System/System";
 import Survivor from "./containers/Survivor/Survivor";
-import Log from "./containers/Log/Log";
 import Survivors from "./containers/Survivors/Survivors";
 import SurvivorsCreate from "./containers/Survivors/SurvivorsCreate";
 import Settlements from "./containers/Settlements/Settlements";
 import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
-import Timeline from "./containers/Timeline/Timeline";
 import Storage from "./containers/Storage/Storage";
 import Resources from "./containers/Storage/Resources";
 import Gear from "./containers/Storage/Gear";
@@ -53,21 +44,22 @@ function logPageView() {
 render(
   <Provider store={store}>
     <Router history={browserHistory} onUpdate={logPageView}>
+      {/* Unauth public links */}
       <Route path="/" component={Login} />
       {/* Dev Routes */}
       <Route title="Aya" path="/aya" component={Aya} />
 
+      {/* Core Routes */}
       <Route component={App}>
-        {/* <IndexRoute component={Splash} /> */}
-        {/* <Route title="Splash" path="/splash" component={Splash} /> */}
-        {/* <Route title="Home" path="/home" component={Home} /> */}
         <Route path="/">
+          {/* Shows list of user's settlements */}
           <Route
             path="/settlements"
             component={requireAuth(Settlements)}
             noHeader
             back
           />
+          {/* Allows user to create a settlement */}
           <Route
             path="/settlements/create"
             component={requireAuth(SettlementsCreate)}
