@@ -1,4 +1,4 @@
-import { GET_SURVIVOR } from "../actions/types";
+import { GET_SURVIVOR, CREATE_SURVIVOR } from "../actions/types";
 
 const MILESTONE_STORY = "story";
 const MILESTONE_ARMOR = "armor";
@@ -232,11 +232,15 @@ const mockStats = {
 };
 
 export default function(state = null, action) {
-  if (action.type === GET_SURVIVOR) {
-    const survivorData = action.payload;
-    survivorData.mock = mockStats;
-    console.log("reducer_survivor", survivorData);
-    return survivorData;
+  switch (action.type) {
+    case GET_SURVIVOR:
+      const survivorData = action.payload;
+      survivorData.mock = mockStats;
+      console.log("reducer_survivor", survivorData);
+      return survivorData;
+    case CREATE_SURVIVOR:
+      return action.payload;
+    default:
+      return state;
   }
-  return state;
 }

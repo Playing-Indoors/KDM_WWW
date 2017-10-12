@@ -13,10 +13,12 @@ import { Link } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { createSettlement } from "../../actions/getSettlement.js";
+import { createSurvivor } from "../../actions/getSurvivor.js";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
+import { browserHistory } from "react-router";
 
 class Settlements extends React.Component {
   constructor(props) {
@@ -25,7 +27,8 @@ class Settlements extends React.Component {
     this.handleCreate = this.handleCreate.bind(this);
     this.randomName = this.randomName.bind(this);
     this.state = {
-      name: ""
+      name: "",
+      gender: "F"
     };
   }
   randomName() {
@@ -38,6 +41,24 @@ class Settlements extends React.Component {
   handleCreate(e) {
     e.preventDefault();
     console.warn("KHOA CREATE SURVIVOR!");
+    let settlementId = window.location.pathname.split("/")[2];
+    createSurvivor(settlementId, this.state)
+      .then(res => {
+        browserHistory.goBack();
+      })
+      .catch(err => {
+        console.warn("err", err);
+      });
+  }
+  handleNameChange(e) {
+    this.setState({
+      name: e.target.value
+    });
+  }
+  handleGenderChange(e) {
+    this.setState({
+      gender: e.target.value
+    });
   }
   renderCreate() {
     if (this.state.name.length > 0) {
@@ -64,20 +85,27 @@ class Settlements extends React.Component {
             <legend>Create Survivor</legend>
             <Widget>
               <Input
+                value={this.state.name}
                 type="text"
                 name="name"
                 placeholder="Enter survivor name..."
                 size="sm"
                 autoFocus
                 required
+                onChange={this.handleNameChange.bind(this)}
               />
               <WidgetFooter>
                 <Button color="gray" size="sm" onClick={this.randomName}>
                   Randomize Name
                 </Button>
-                <Input type="select" size="sm">
-                  <option defaultValue>Female</option>
-                  <option>Male</option>
+                <Input
+                  type="select"
+                  value={this.state.gender}
+                  size="sm"
+                  onChange={this.handleGenderChange.bind(this)}
+                >
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
                 </Input>
               </WidgetFooter>
             </Widget>

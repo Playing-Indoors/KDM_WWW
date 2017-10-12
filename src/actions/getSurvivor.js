@@ -1,11 +1,17 @@
 import axios from "axios";
-import { GET_SURVIVOR } from "./types";
+import { GET_SURVIVOR, CREATE_SURVIVOR } from "./types";
 
 const KDM_API = require("KDM_API");
 
 function getSurvivorAsync(data) {
   return {
     type: GET_SURVIVOR,
+    payload: data.sheet
+  };
+}
+function createSurvivorAsync(data) {
+  return {
+    type: CREATE_SURVIVOR,
     payload: data.sheet
   };
 }
@@ -21,4 +27,19 @@ export function getSurvivor() {
       dispatch(getSurvivorAsync(res.data));
     });
   };
+}
+
+export function createSurvivor(settlementId, data) {
+  let auth = localStorage.getItem("access_token");
+  let userId = localStorage.getItem("userId");
+  return axios({
+    method: "post",
+    url: `${KDM_API}/new/survivor`,
+    data: {
+      user_id: userId,
+      settlement: settlementId,
+      name: data.name,
+      sex: data.gender
+    }
+  });
 }
