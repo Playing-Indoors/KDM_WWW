@@ -54,7 +54,7 @@ class Settlements extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.activeTab < 3) {
+    if (this.state.activeTab < 4) {
       this.setState({
         activeTab: this.state.activeTab + 1
       });

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GET_SETTLEMENT } from "./types";
+import { browserHistory } from "react-router";
 
 const KDM_API = require("KDM_API");
 
@@ -36,6 +37,7 @@ export function createSettlement(data) {
       data: data
     }).then(res => {
       console.log("CREATE", res);
+      browserHistory.goBack();
     });
     // axios({
     // 	method: 'get',
