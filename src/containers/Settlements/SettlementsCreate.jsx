@@ -26,13 +26,15 @@ class Settlements extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleExpansion = this.toggleExpansion.bind(this);
     this.randomSettlement = this.randomSettlement.bind(this);
     this.state = {
       activeTab: 1,
       name: "",
-      campaign: "People of the Lantern"
+      campaign: "People of the Lantern",
+      expansions: []
     };
   }
   toggle(tab) {
@@ -52,6 +54,11 @@ class Settlements extends React.Component {
       name: random
     });
   }
+  handleNameChange(e) {
+    this.setState({
+      name: e.target.value
+    });
+  }
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.activeTab < 4) {
@@ -63,12 +70,12 @@ class Settlements extends React.Component {
   handleCreate(e) {
     e.preventDefault();
     let userId = localStorage.getItem("userId");
-
+    console.warn("CALEB ADD IN EXPANSIONS ARRAY HERE!");
     let data = {
       user_id: userId,
+      name: this.state.name,
       campaign: this.state.campaign
     };
-    console.warn("KHOA CREATE SETTLEMENT!");
     this.props.createSettlement(data);
   }
   renderCreate() {
@@ -158,6 +165,7 @@ class Settlements extends React.Component {
                     size="sm"
                     value={this.state.name}
                     autoFocus
+                    onChange={this.handleNameChange}
                     required
                   />
                   <WidgetFooter>

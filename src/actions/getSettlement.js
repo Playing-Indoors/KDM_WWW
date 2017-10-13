@@ -39,13 +39,6 @@ export function createSettlement(data) {
       console.log("CREATE", res);
       browserHistory.goBack();
     });
-    // axios({
-    // 	method: 'get',
-    // 	url: `${KDM_API}/authorization/check`,
-    // }).then((res) => {
-    // 	console.log('AUTH CHECK', res);
-    //
-    // });
   };
 }
 
@@ -58,14 +51,7 @@ export function updateSettlement() {
       url: `${KDM_API}/settlement/set_attribute/59c511da8740d90655610336`,
       data: { user_id: userId, attribute: "survival_limit", value: 3 }
     }).then(res => {
-      console.log("CREATE", res);
+      console.log("UPDATE", res);
     });
-    // axios({
-    // 	method: 'get',
-    // 	url: `${KDM_API}/authorization/check`,
-    // }).then((res) => {
-    // 	console.log('AUTH CHECK', res);
-    //
-    // });
   };
 }
