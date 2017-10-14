@@ -41,3 +41,9 @@ a:focus {
     flex: 1 1 100px;
   }
 }
+
+// Reset buttons
+
+.btn-block + .btn-block {
+  margin: 0;
+}

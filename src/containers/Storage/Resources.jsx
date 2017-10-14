@@ -1,20 +1,29 @@
 import React from "react";
 import { Button, Col, Row } from "reactstrap";
 import Widget from "../../components/Widget/Widget";
+import Bone from "./_Bone";
+import Hide from "./_Hide";
+import Organ from "./_Organ";
+import Scrap from "./_Scrap";
+import Consumable from "./_Consumable";
+import Flower from "./_Flower";
+import Herb from "./_Herb";
+import Iron from "./_Iron";
+import Silk from "./_Silk";
 
 class Resources extends React.Component {
   render() {
     return (
       <div className="layout layout--resources">
-        <Widget title="Bone">3</Widget>
-        <Widget title="Hide">13</Widget>
-        <Widget title="Organ">3</Widget>
-        <Widget title="Scrap">3</Widget>
-        <Widget title="Consumable">13</Widget>
-        <Widget title="Flower">3</Widget>
-        <Widget title="Herb">3</Widget>
-        <Widget title="Iron">13</Widget>
-        <Widget title="Silk">3</Widget>
+        <Bone amount={0} />
+        <Hide amount={0} />
+        <Organ amount={0} />
+        <Scrap amount={0} />
+        <Consumable amount={0} />
+        <Flower amount={0} />
+        <Herb amount={0} />
+        <Iron amount={0} />
+        <Silk amount={0} />
         <div className="grid-3">
           <Widget title="Basic Resources">
             <ul>

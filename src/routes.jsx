@@ -111,10 +111,7 @@ render(
           path="/settlements/:oid/storage"
           title="Storage"
           component={requireAuth(Storage)}
-        >
-          <IndexRoute title="Resources" component={requireAuth(Resources)} />
-          <Route title="Gear" path="gear" component={requireAuth(Gear)} />
-        </Route>
+        />
       </Route>
       <Route title="Not Found" path="*" component={NotFound} />
     </Router>

@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { TabPane, TabContent, Input, Nav, NavItem, NavLink } from "reactstrap";
 import Header from "../../components/Header/Header";
-import Widget from "../../components/Widget/Widget";
+import Resources from "./Resources";
+import Gear from "./Gear";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { getSettlement } from "../../actions/getSettlement";
 
@@ -67,8 +68,12 @@ class Storage extends React.Component {
             </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
-            <TabPane tabId={1}>Resources</TabPane>
-            <TabPane tabId={2}>Gear</TabPane>
+            <TabPane tabId={1}>
+              <Resources />
+            </TabPane>
+            <TabPane tabId={2}>
+              <Gear />
+            </TabPane>
           </TabContent>
         </div>
       );

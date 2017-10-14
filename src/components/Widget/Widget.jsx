@@ -38,7 +38,7 @@ class Widget extends React.Component {
   }
   render() {
     return (
-      <div className="widget">
+      <div className={classNames(["widget", this.props.className])}>
         {this.renderHeader()}
         {this.renderContent()}
       </div>
@@ -46,11 +46,16 @@ class Widget extends React.Component {
   }
 }
 
+Widget.defaultProps = {
+  className: ""
+};
+
 Widget.propTypes = {
   title: PropTypes.string,
   link: PropTypes.bool,
   event: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
 export default Widget;
