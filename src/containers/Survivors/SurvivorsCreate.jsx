@@ -40,7 +40,6 @@ class Settlements extends React.Component {
   }
   handleCreate(e) {
     e.preventDefault();
-    console.warn("KHOA CREATE SURVIVOR!");
     let settlementId = window.location.pathname.split("/")[2];
     createSurvivor(settlementId, this.state)
       .then(res => {

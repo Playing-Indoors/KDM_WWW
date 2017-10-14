@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import _filter from "lodash/filter";
 import Header from "../../components/Header/Header";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import SurvivorAbilities from "../../components/Survivor/SurvivorAbilities";
 import SurvivorArmor from "../../components/Survivor/SurvivorArmor";
 import SurvivorDisorders from "../../components/Survivor/SurvivorDisorders";
@@ -16,6 +17,7 @@ import XP from "./_XP";
 import Courage from "./_Courage";
 import Understanding from "./_Understanding";
 import Weapon from "./_Weapon";
+import { getSettlement } from "../../actions/getSettlement";
 
 // TODO
 // [ ] Survivor name should be in page heading
@@ -32,6 +34,10 @@ class Survivor extends React.Component {
     };
   }
   componentDidMount() {
+    if (this.props.settlementData === null) {
+      const id = window.location.pathname.split("/");
+      this.props.getSettlement(id[2]);
+    }
     if (this.props.settlementData) {
       let routeId = window.location.href.substr(
         window.location.href.lastIndexOf("/") + 1
@@ -51,6 +57,11 @@ class Survivor extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
+    if (nextProps.settlementData && this.props.settlementData === null) {
+      this.setState({
+        settlementData: nextProps.settlementData
+      });
+    }
     if (nextProps.settlementData) {
       let routeId = window.location.href.substr(
         window.location.href.lastIndexOf("/") + 1
@@ -148,7 +159,7 @@ class Survivor extends React.Component {
         </div>
       );
     }
-    return null;
+    return <LoadingSpinner />;
   }
 }
 
@@ -158,4 +169,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Survivor);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      getSettlement
+    },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Survivor);
