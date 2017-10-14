@@ -97,8 +97,7 @@ CardList.propTypes = {
     })
   ),
   iconLeft: PropTypes.string,
-  iconRight: PropTypes.string,
-  children: PropTypes.node
+  iconRight: PropTypes.string
 };
 
 export default CardList;

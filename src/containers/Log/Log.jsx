@@ -10,6 +10,7 @@ import Locations from "./_Locations";
 import DeathCount from "./_Deaths";
 import DefeatedMonsters from "./_Monsters";
 import Notes from "./_Notes";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 class Log extends Component {
   render() {
@@ -55,7 +56,7 @@ class Log extends Component {
         </div>
       );
     }
-    return null;
+    return <LoadingSpinner />;
   }
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import _filter from "lodash/filter";
+import Header from "../../components/Header/Header";
 import SurvivorAbilities from "../../components/Survivor/SurvivorAbilities";
 import SurvivorArmor from "../../components/Survivor/SurvivorArmor";
 import SurvivorDisorders from "../../components/Survivor/SurvivorDisorders";
@@ -71,74 +72,79 @@ class Survivor extends React.Component {
   render() {
     if (this.state.survivor) {
       return (
-        <div className="layout layout--survivor">
-          {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
-          <Survival
-            amount={this.state.survivor.sheet.survival}
-            id={this.state.survivor.sheet._id.$oid}
-            limit={this.state.settlementData.sheet.survival_limit}
-            actions={this.state.survivor.survival_actions}
-          />
-          <Bleeding
-            amount={0}
-            id={this.state.survivor.sheet._id.$oid}
-            limit={5}
-          />
-          <XP
-            id={this.state.survivor.sheet._id.$oid}
-            amount={this.state.survivor.sheet.hunt_xp}
-            milestones={
-              this.state.settlementData.survivor_attribute_milestones.hunt_xp
-            }
-          />
-          <Courage
-            id={this.state.survivor.sheet._id.$oid}
-            amount={this.state.survivor.sheet.Courage}
-            limit={9}
-            milestones={
-              this.state.settlementData.survivor_attribute_milestones.Courage
-            }
-          />
-          <Understanding
-            id={this.state.survivor.sheet._id.$oid}
-            amount={this.state.survivor.sheet.Understanding}
-            limit={9}
-            milestones={
-              this.state.settlementData.survivor_attribute_milestones
-                .Understanding
-            }
-          />
-          <Weapon
-            id={this.state.survivor.sheet._id.$oid}
-            amount={this.state.survivor.sheet["Weapon Proficiency"]}
-            limit={8}
-            milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
-          />
-          <SurvivorStats
-            movement={parseInt(this.state.survivor.sheet.Movement, 10)}
-            accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
-            strength={parseInt(this.state.survivor.sheet.Strength, 10)}
-            evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
-            luck={parseInt(this.state.survivor.sheet.Luck, 10)}
-            speed={parseInt(this.state.survivor.sheet.Speed, 10)}
-          />
-          <SurvivorArmor
-            insanity={parseInt(this.state.survivor.sheet.Insanity, 10)}
-            head={parseInt(this.state.survivor.sheet.Head, 10)}
-            arms={parseInt(this.state.survivor.sheet.Arms, 10)}
-            body={parseInt(this.state.survivor.sheet.Body, 10)}
-            waist={parseInt(this.state.survivor.sheet.Waist, 10)}
-            legs={parseInt(this.state.survivor.sheet.Legs, 10)}
-          />
-          <SurvivorFightArts arts={this.state.fightingArts} />
-          <SurvivorDisorders disorders={this.state.survivor.sheet.disorders} />
-          <SurvivorAbilities
-            abilities={this.state.survivor.sheet.abilities_and_impairments}
-          />
-          <SurvivorImpairments
-            impairments={this.state.survivor.sheet.abilities_and_impairments}
-          />
-          <SurvivorNotes notes={this.state.survivor.sheet.notes} />
+        <div>
+          <Header name={this.state.survivor.sheet.name} showBack />
+          <div className="layout layout--survivor">
+            {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
+            <Survival
+              amount={this.state.survivor.sheet.survival}
+              id={this.state.survivor.sheet._id.$oid}
+              limit={this.state.settlementData.sheet.survival_limit}
+              actions={this.state.survivor.survival_actions}
+            />
+            <Bleeding
+              amount={0}
+              id={this.state.survivor.sheet._id.$oid}
+              limit={5}
+            />
+            <XP
+              id={this.state.survivor.sheet._id.$oid}
+              amount={this.state.survivor.sheet.hunt_xp}
+              milestones={
+                this.state.settlementData.survivor_attribute_milestones.hunt_xp
+              }
+            />
+            <Courage
+              id={this.state.survivor.sheet._id.$oid}
+              amount={this.state.survivor.sheet.Courage}
+              limit={9}
+              milestones={
+                this.state.settlementData.survivor_attribute_milestones.Courage
+              }
+            />
+            <Understanding
+              id={this.state.survivor.sheet._id.$oid}
+              amount={this.state.survivor.sheet.Understanding}
+              limit={9}
+              milestones={
+                this.state.settlementData.survivor_attribute_milestones
+                  .Understanding
+              }
+            />
+            <Weapon
+              id={this.state.survivor.sheet._id.$oid}
+              amount={this.state.survivor.sheet["Weapon Proficiency"]}
+              limit={8}
+              milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
+            />
+            <SurvivorStats
+              movement={parseInt(this.state.survivor.sheet.Movement, 10)}
+              accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
+              strength={parseInt(this.state.survivor.sheet.Strength, 10)}
+              evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
+              luck={parseInt(this.state.survivor.sheet.Luck, 10)}
+              speed={parseInt(this.state.survivor.sheet.Speed, 10)}
+            />
+            <SurvivorArmor
+              insanity={parseInt(this.state.survivor.sheet.Insanity, 10)}
+              head={parseInt(this.state.survivor.sheet.Head, 10)}
+              arms={parseInt(this.state.survivor.sheet.Arms, 10)}
+              body={parseInt(this.state.survivor.sheet.Body, 10)}
+              waist={parseInt(this.state.survivor.sheet.Waist, 10)}
+              legs={parseInt(this.state.survivor.sheet.Legs, 10)}
+            />
+            <SurvivorFightArts arts={this.state.fightingArts} />
+            <SurvivorDisorders
+              disorders={this.state.survivor.sheet.disorders}
+            />
+            <SurvivorAbilities
+              abilities={this.state.survivor.sheet.abilities_and_impairments}
+            />
+            <SurvivorImpairments
+              impairments={this.state.survivor.sheet.abilities_and_impairments}
+            />
+            <SurvivorNotes notes={this.state.survivor.sheet.notes} />
+          </div>
         </div>
       );
     }

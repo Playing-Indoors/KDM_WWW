@@ -38,7 +38,7 @@ class Settlements extends React.Component {
     };
   }
   toggle(tab) {
-    if (this.state.activeTab !== tab) {
+    if (tab < this.state.activeTab) {
       this.setState({
         activeTab: tab
       });
@@ -120,7 +120,7 @@ class Settlements extends React.Component {
             </NavItem>
             <NavItem>
               <NavLink
-                tabIndex="0"
+                tabIndex={this.state.activeTab < 2 ? null : "0"}
                 className={classnames({ active: this.state.activeTab === 2 })}
                 onClick={() => {
                   this.toggle(2);
@@ -131,7 +131,7 @@ class Settlements extends React.Component {
             </NavItem>
             <NavItem>
               <NavLink
-                tabIndex="0"
+                tabIndex={this.state.activeTab < 3 ? null : "0"}
                 className={classnames({ active: this.state.activeTab === 3 })}
                 onClick={() => {
                   this.toggle(3);

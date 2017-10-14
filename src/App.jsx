@@ -21,6 +21,8 @@ class App extends Component {
       return this.props.routes[3].back;
     } else if (this.props.routes[2]) {
       return this.props.routes[2].back;
+    } else if (this.props.routes[1]) {
+      return this.props.routes[1].back;
     }
     return null;
   }

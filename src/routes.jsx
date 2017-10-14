@@ -96,6 +96,7 @@ render(
         <Route
           path="/settlements/:oid/survivors/:id"
           title="Survivor"
+          noHeader
           back
           component={requireAuth(Survivor)}
         />
