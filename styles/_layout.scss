@@ -126,6 +126,17 @@ h4 {
 
 // Navs
 
+.header + .nav-tabs {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+
+  + * {
+    margin-top: 34px;
+  }
+}
+
 .nav-tabs {
   display: flex;
   background: $black;

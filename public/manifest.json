@@ -1,0 +1,16 @@
+{
+  "name": "The Watcher",
+  "short_name": "Watcher",
+  "description": "A Kingdom Death Monster campaign tool.",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/public/lib/assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

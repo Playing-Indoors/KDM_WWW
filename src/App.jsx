@@ -37,6 +37,8 @@ class App extends Component {
       return null;
     } else if (this.props.routes[2] && this.props.routes[2].noHeader) {
       return null;
+    } else if (this.props.routes[1] && this.props.routes[1].noHeader) {
+      return null;
     }
     const subName = this.props.routes[2] ? this.props.routes[2].title : null;
     const superSubName = this.props.routes[3]
