@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Icon from "../../components/Icon/Icon";
 
 class Nav extends Component {
@@ -15,12 +16,6 @@ class Nav extends Component {
       ];
     }
     return [
-      {
-        title: "Campaign Log",
-        icon: "log",
-        link: `/settlements/${this.props.userData.user.current_settlement
-          .$oid}/`
-      },
       {
         title: "Settlement",
         icon: "settlement",
@@ -38,6 +33,12 @@ class Nav extends Component {
         icon: "storage",
         link: `/settlements/${this.props.userData.user.current_settlement
           .$oid}/storage`
+      },
+      {
+        title: "Campaign Log",
+        icon: "log",
+        link: `/settlements/${this.props.userData.user.current_settlement
+          .$oid}/log`
       },
       {
         title: "Menu",
@@ -68,5 +69,11 @@ class Nav extends Component {
 function mapStateToProps(state) {
   return { userData: state.userData };
 }
+
+Nav.propTypes = {
+  userData: PropTypes.shape({
+    user: PropTypes.object
+  })
+};
 
 export default connect(mapStateToProps, null)(Nav);

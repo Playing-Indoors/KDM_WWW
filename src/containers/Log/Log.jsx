@@ -1,58 +1,41 @@
-import { Button } from "reactstrap";
-import React, { Component } from "react";
-import Innovations from "../Settlement/_Innovations";
-import SurvivalLimit from "../Settlement/_SurvivalLimit";
-import LanternYear from "../Settlement/_Year";
-import Population from "../Settlement/_Population";
-import Principles from "../Settlement/_Principles";
-import Milestones from "../Settlement/_Milestones";
-import Locations from "../Settlement/_Locations";
-import DeathCount from "../Settlement/_Deaths";
-import DefeatedMonsters from "../Settlement/_Monsters";
-import Notes from "../Settlement/_Notes";
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import PropTypes from "prop-types";
+import Header from "../../components/Header/Header";
+import Widget from "../../components/Widget/Widget";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { getSettlement } from "../../actions/getSettlement";
 
-class Log extends Component {
+class Settlement extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      settlement: null
+    };
+  }
+
+  componentDidMount() {
+    const id = window.location.pathname.split("/");
+    if (this.props.settlementData === null) {
+      this.props.getSettlement(id[2]);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.settlementData && this.props.settlementData === null) {
+      this.setState({
+        settlement: nextProps.settlementData
+      });
+    }
+  }
+
   render() {
     if (this.props.settlementData) {
       return (
-        <div className="layoutLog">
-          <h1 className="text-center">
-            {this.props.settlementData.sheet.name}
-          </h1>
-          <Button color="danger" block>
-            Depart For Hunt
-          </Button>
-
-          <SurvivalLimit amount={5} />
-
-          <LanternYear amount={this.props.settlementData.sheet.lantern_year} />
-
-          <Population amount={this.props.settlementData.sheet.population} />
-
-          <Innovations list={this.props.settlementData.sheet.innovations} />
-
-          <Principles
-            amount={this.props.settlementData.sheet.principles.length}
-          />
-
-          <Milestones
-            amount={
-              this.props.settlementData.sheet.milestone_story_events.length
-            }
-          />
-
-          <Locations
-            amount={this.props.settlementData.sheet.locations.length}
-          />
-
-          <DeathCount amount={this.props.settlementData.sheet.death_count} />
-
-          <DefeatedMonsters
-            amount={this.props.settlementData.sheet.defeated_monsters.length}
-          />
-
-          <Notes />
+        <div>
+          <Header name={"Log"} />
+          <div className="layout">test</div>
         </div>
       );
     }
@@ -60,4 +43,27 @@ class Log extends Component {
   }
 }
 
-export default Log;
+function mapStateToProps(state) {
+  return {
+    settlementData: state.settlementData
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      getSettlement
+    },
+    dispatch
+  );
+}
+
+Settlement.propTypes = {
+  getSettlement: PropTypes.func,
+  settlementData: PropTypes.shape({
+    sheet: PropTypes.object,
+    user_assets: PropTypes.object
+  })
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settlement);

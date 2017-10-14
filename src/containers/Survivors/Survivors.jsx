@@ -2,16 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
-import {
-  Alert,
-  TabPane,
-  TabContent,
-  Input,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
 import PropTypes from "prop-types";
+import { TabPane, TabContent, Input, Nav, NavItem, NavLink } from "reactstrap";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";

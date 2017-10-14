@@ -17,7 +17,7 @@ import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
 import Storage from "./containers/Storage/Storage";
 import Resources from "./containers/Storage/Resources";
 import Gear from "./containers/Storage/Gear";
-import Dashboard from "./containers/Dashboard/Dashboard";
+import Log from "./containers/Log/Log";
 import Settlement from "./containers/Settlement/Settlement";
 import More from "./containers/More/More";
 import Aya from "./containers/Aya/Aya";
@@ -73,8 +73,13 @@ render(
         />
         <Route
           path="/settlements/:oid"
+          title="More"
+          component={requireAuth(More)}
+        />
+        <Route
+          path="/settlements/:oid/Log"
           title="Campaign Log"
-          component={requireAuth(Dashboard)}
+          component={requireAuth(Log)}
         />
         <Route
           path="/settlements/:oid/settlement"
