@@ -32,7 +32,38 @@ class Settlements extends React.Component {
     };
   }
   randomName() {
-    const names = ["Petra", "Palenque", "Teotihuacan", "Tiwanaku", "Timgad"];
+    const names = [
+      "Livio",
+      "Skrolan",
+      "Stone",
+      "Stanwick",
+      "Deston",
+      "Severinus",
+      "Tedric",
+      "Trent",
+      "Marsdon",
+      "Casey",
+      "Red",
+      "Matze",
+      "Marlow",
+      "Pirmin",
+      "Asterios",
+      "Whitby",
+      "Arden",
+      "Launcelot",
+      "Donald",
+      "Edo",
+      "Asteria",
+      "Evelia",
+      "Serilda",
+      "Binia",
+      "Mechthilde",
+      "Marvelle",
+      "Poppy",
+      "Kyla",
+      "Nikki",
+      "Manuella"
+    ];
     const random = names[Math.floor(Math.random() * names.length)];
     this.setState({
       name: random
@@ -79,37 +110,35 @@ class Settlements extends React.Component {
         <Header name={"Create Survivor"} showBack>
           {this.renderCreate()}
         </Header>
-        <div className="layout">
-          <form onSubmit={this.handleCreate}>
-            <legend>Create Survivor</legend>
-            <Widget>
+        <form className="layout" onSubmit={this.handleCreate}>
+          <legend>Create Survivor</legend>
+          <Widget>
+            <Input
+              value={this.state.name}
+              type="text"
+              name="name"
+              placeholder="Enter survivor name..."
+              size="sm"
+              autoFocus
+              required
+              onChange={this.handleNameChange.bind(this)}
+            />
+            <WidgetFooter>
+              <Button color="gray" size="sm" onClick={this.randomName}>
+                Randomize Name
+              </Button>
               <Input
-                value={this.state.name}
-                type="text"
-                name="name"
-                placeholder="Enter survivor name..."
+                type="select"
+                value={this.state.gender}
                 size="sm"
-                autoFocus
-                required
-                onChange={this.handleNameChange.bind(this)}
-              />
-              <WidgetFooter>
-                <Button color="gray" size="sm" onClick={this.randomName}>
-                  Randomize Name
-                </Button>
-                <Input
-                  type="select"
-                  value={this.state.gender}
-                  size="sm"
-                  onChange={this.handleGenderChange.bind(this)}
-                >
-                  <option value="F">Female</option>
-                  <option value="M">Male</option>
-                </Input>
-              </WidgetFooter>
-            </Widget>
-          </form>
-        </div>
+                onChange={this.handleGenderChange.bind(this)}
+              >
+                <option value="F">Female</option>
+                <option value="M">Male</option>
+              </Input>
+            </WidgetFooter>
+          </Widget>
+        </form>
       </div>
     );
   }

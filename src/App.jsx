@@ -64,7 +64,7 @@ class App extends Component {
     return (
       <div className="app">
         {this.renderNav()}
-        {this.renderHeader()}
+        {/*this.renderHeader()*/}
 
         <main className="main">{this.renderChildren()}</main>
       </div>

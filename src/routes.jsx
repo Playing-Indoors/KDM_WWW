@@ -18,6 +18,7 @@ import Storage from "./containers/Storage/Storage";
 import Resources from "./containers/Storage/Resources";
 import Gear from "./containers/Storage/Gear";
 import Dashboard from "./containers/Dashboard/Dashboard";
+import Settlement from "./containers/Settlement/Settlement";
 import More from "./containers/More/More";
 import Aya from "./containers/Aya/Aya";
 import NotFound from "./components/NotFound/NotFound";
@@ -36,14 +37,15 @@ if (token) {
   store.dispatch({ type: AUTH_USER });
 }
 
-function logPageView() {
+function handlePageChange() {
+  window.scrollTo(0, 0);
   ReactGA.set({ page: window.location.pathname });
   ReactGA.pageview(window.location.pathname);
 }
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory} onUpdate={logPageView}>
+    <Router history={browserHistory} onUpdate={handlePageChange}>
       {/* Unauth public links */}
       <Route path="/" component={Login} />
       {/* Dev Routes */}
@@ -77,7 +79,7 @@ render(
         <Route
           path="/settlements/:oid/settlement"
           title="Settlement"
-          component={requireAuth(Dashboard)}
+          component={requireAuth(Settlement)}
         />
         <Route
           path="/settlements/:oid/survivors"

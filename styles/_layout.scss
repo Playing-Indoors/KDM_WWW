@@ -80,6 +80,20 @@ progress::-webkit-progress-value {
 
 // Update Model
 
+.modal.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .modal-dialog {
+    flex: 1 1 auto;
+    padding: $spacer;
+    margin: auto;
+  }
+}
+
 .modal-content {
   background: none;
 }

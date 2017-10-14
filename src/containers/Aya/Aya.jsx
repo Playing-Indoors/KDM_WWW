@@ -23,7 +23,7 @@ import CardList from "../../components/CardList/CardList";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import SurvivalManage from "../../containers/Survivor/_Survival";
 import StatSurvival from "../../containers/StatWidget/StatWidget-Example";
-import SurvivalLimit from "../../containers/Log/_SurvivalLimit";
+import SurvivalLimit from "../../containers/Settlement/_SurvivalLimit";
 import Milestone from "../../components/Milestone/Milestone";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import Icon from "../../components/Icon/Icon";
