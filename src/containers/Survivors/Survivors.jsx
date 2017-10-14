@@ -22,10 +22,13 @@ import { getSettlement } from "../../actions/getSettlement";
 class Survivors extends React.Component {
   constructor(props) {
     super(props);
-    this.toggle = this.toggle.bind(this);
+
     this.state = {
-      activeTab: 1
+      activeTab: 1,
+      searchName: ""
     };
+    this.handleTabChange = this.handleTabChange.bind(this);
+    this.handleSearchInput = this.handleSearchInput.bind(this);
   }
   componentDidMount() {
     if (this.props.settlementData === null) {
@@ -40,15 +43,21 @@ class Survivors extends React.Component {
       });
     }
   }
-  toggle(tab) {
+  handleSearchInput(e) {
     this.setState({
+      searchName: e.target.value
+    });
+  }
+  handleTabChange(tab) {
+    this.setState({
+      searchName: "",
       activeTab: tab
     });
   }
   renderSurvivors(alive) {
     if (this.props.settlementData) {
-      console.log("alive", alive);
-      const filtered = this.props.settlementData.user_assets.survivors.filter(
+      // Filters if they are alive
+      let filtered = this.props.settlementData.user_assets.survivors.filter(
         survivor => {
           if (alive) {
             return !survivor.sheet.dead;
@@ -56,6 +65,17 @@ class Survivors extends React.Component {
           return survivor.sheet.dead;
         }
       );
+      // Check to see if we have a search query
+      if (this.state.searchName.length > 0) {
+        filtered = filtered.filter(survivor => {
+          const search = this.state.searchName.toLowerCase();
+          const name = survivor.sheet.name.toLowerCase();
+          return name.indexOf(search) >= 0;
+        });
+        if (filtered.length === 0) {
+          return <Widget>No survivors match your search.</Widget>;
+        }
+      }
       return filtered.map(survivor => {
         const attributes = [
           { label: "Survival", value: survivor.sheet.Survival },
@@ -75,9 +95,8 @@ class Survivors extends React.Component {
           />
         );
       });
-    } else {
-      return null;
     }
+    return null;
   }
   render() {
     if (this.props.settlementData) {
@@ -98,7 +117,7 @@ class Survivors extends React.Component {
                 tabIndex="0"
                 className={`${this.state.activeTab === 1 ? "active" : ""}`}
                 onClick={() => {
-                  this.toggle(1);
+                  this.handleTabChange(1);
                 }}
               >
                 Alive ({this.props.settlementData.sheet.population})
@@ -109,7 +128,7 @@ class Survivors extends React.Component {
                 tabIndex="0"
                 className={`${this.state.activeTab === 2 ? "active" : ""}`}
                 onClick={() => {
-                  this.toggle(2);
+                  this.handleTabChange(2);
                 }}
               >
                 Dead ({this.props.settlementData.sheet.death_count})
@@ -120,7 +139,7 @@ class Survivors extends React.Component {
                 tabIndex="0"
                 className={`${this.state.activeTab === 3 ? "active" : ""}`}
                 onClick={() => {
-                  this.toggle(3);
+                  this.handleTabChange(3);
                 }}
               >
                 Hunting
@@ -129,27 +148,37 @@ class Survivors extends React.Component {
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId={1}>
-              <div className="layout layout--resources">
+              <div className="layout">
                 <Widget>
-                  <Input placeholder="Search survivors..." />
+                  <Input
+                    placeholder="Search survivors..."
+                    value={this.state.searchName}
+                    onChange={this.handleSearchInput}
+                  />
                 </Widget>
                 {this.renderSurvivors(true)}
               </div>
             </TabPane>
             <TabPane tabId={2}>
-              <div className="layout layout--resources">
+              <div className="layout">
                 <Widget>
-                  <Input placeholder="Search survivors..." />
+                  <Input
+                    placeholder="Search survivors..."
+                    value={this.state.searchName}
+                    onChange={this.handleSearchInput}
+                  />
                 </Widget>
                 {this.renderSurvivors(false)}
               </div>
             </TabPane>
             <TabPane tabId={3}>
-              <Alert color="warning">
-                <strong>Coming soon!</strong> <br />
-                To manage survivors on the hunt/showdown go back to the alive
-                tab and edit them individually.
-              </Alert>
+              <div className="layout">
+                <h3 className="text-center mb-0">Hunting Coming Soon</h3>
+                <Widget>
+                  To manage survivors on the hunt/showdown go back to the alive
+                  tab and edit them individually.
+                </Widget>
+              </div>
             </TabPane>
           </TabContent>
         </div>

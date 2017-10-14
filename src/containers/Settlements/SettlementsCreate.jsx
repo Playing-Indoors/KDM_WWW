@@ -109,52 +109,29 @@ class Settlements extends React.Component {
           <Nav tabs>
             <NavItem>
               <NavLink
-                tabIndex="0"
                 className={classnames({ active: this.state.activeTab === 1 })}
-                onClick={() => {
-                  this.toggle(1);
-                }}
               >
                 Name
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                tabIndex={this.state.activeTab < 2 ? null : "0"}
                 className={classnames({ active: this.state.activeTab === 2 })}
-                onClick={() => {
-                  this.toggle(2);
-                }}
               >
                 Campaign
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                tabIndex={this.state.activeTab < 3 ? null : "0"}
                 className={classnames({ active: this.state.activeTab === 3 })}
-                onClick={() => {
-                  this.toggle(3);
-                }}
               >
                 Expansions
               </NavLink>
             </NavItem>
-            {/* <NavItem>
-              <NavLink
-                tabIndex="0"
-                className={classnames({ active: this.state.activeTab === 4 })}
-                onClick={() => {
-                  this.toggle(4);
-                }}
-              >
-                Survivors
-              </NavLink>
-            </NavItem> */}
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId={1}>
-              <form onSubmit={this.handleSubmit}>
+              <form className="layout" onSubmit={this.handleSubmit}>
                 <legend>Name the Settlement</legend>
                 <Widget>
                   {/* @Khoa bind the value to state.name correctly */}
@@ -185,7 +162,7 @@ class Settlements extends React.Component {
               </form>
             </TabPane>
             <TabPane tabId={2}>
-              <form onSubmit={this.handleSubmit}>
+              <form className="layout" onSubmit={this.handleSubmit}>
                 <legend>Select Campaign</legend>
                 <Widget>
                   <FormGroup>
@@ -210,7 +187,7 @@ class Settlements extends React.Component {
               </form>
             </TabPane>
             <TabPane tabId={3}>
-              <form onSubmit={this.handleSubmit}>
+              <form className="layout" onSubmit={this.handleSubmit}>
                 <legend>Select Expansions</legend>
                 <Widget>
                   <div>
@@ -265,87 +242,6 @@ class Settlements extends React.Component {
                 </Widget>
               </form>
             </TabPane>
-            {/* <TabPane tabId={4}>
-              <form onSubmit={this.handleSubmit}>
-                <legend>Create Starting Survivors</legend>
-                <Widget>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Enter survivor name..."
-                    size="sm"
-                    autoFocus
-                    required
-                  />
-                  <WidgetFooter>
-                    <Button color="gray" size="sm">
-                      Randomize Name
-                    </Button>
-                    <Input type="select" size="sm">
-                      <option defaultValue>Female</option>
-                      <option>Male</option>
-                    </Input>
-                  </WidgetFooter>
-                </Widget>
-                <Widget>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Enter survivor name..."
-                    size="sm"
-                    autoFocus
-                    required
-                  />
-                  <WidgetFooter>
-                    <Button color="gray" size="sm">
-                      Randomize Name
-                    </Button>
-                    <Input type="select" size="sm">
-                      <option defaultValue>Female</option>
-                      <option>Male</option>
-                    </Input>
-                  </WidgetFooter>
-                </Widget>
-                <Widget>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Enter survivor name..."
-                    size="sm"
-                    autoFocus
-                    required
-                  />
-                  <WidgetFooter>
-                    <Button color="gray" size="sm">
-                      Randomize Name
-                    </Button>
-                    <Input type="select" size="sm">
-                      <option defaultValue>Female</option>
-                      <option>Male</option>
-                    </Input>
-                  </WidgetFooter>
-                </Widget>
-                <Widget>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Enter survivor name..."
-                    size="sm"
-                    autoFocus
-                    required
-                  />
-                  <WidgetFooter>
-                    <Button color="gray" size="sm">
-                      Randomize Name
-                    </Button>
-                    <Input type="select" size="sm">
-                      <option defaultValue>Female</option>
-                      <option>Male</option>
-                    </Input>
-                  </WidgetFooter>
-                </Widget>
-              </form>
-            </TabPane> */}
           </TabContent>
         </div>
       </div>
