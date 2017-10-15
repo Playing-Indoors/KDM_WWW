@@ -25,6 +25,13 @@ class MilestoneDots extends Component {
       milestones: newMiles
     };
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.current) {
+      this.setState({
+        current: nextProps.current
+      });
+    }
+  }
   renderMilestones() {
     if (this.props.count > 0) {
       return Array(this.props.count)
@@ -77,28 +84,6 @@ class MilestoneDots extends Component {
     );
   }
 }
-
-/*
-	Gameplan for props
-
-	Create a milestone array of objects
-	[
-		{
-			value: 1,
-			handle: 'core_bold',
-		}
-	]
-
-	To render
-
-	for 0 in count
-		check if current >= count, fill
-		if there's a milestone value that matches i
-			display []story
-		else if !onlyMilestones
-			display normal
-
-*/
 
 MilestoneDots.propTypes = {
   count: PropTypes.number,

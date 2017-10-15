@@ -7,14 +7,7 @@ import Widget from "../../components/Widget/Widget";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { getSettlement } from "../../actions/getSettlement";
 
-class Settlement extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      settlement: null
-    };
-  }
-
+class Log extends React.Component {
   componentDidMount() {
     const id = window.location.pathname.split("/");
     if (this.props.settlementData === null) {
@@ -34,8 +27,15 @@ class Settlement extends React.Component {
     if (this.props.settlementData) {
       return (
         <div>
-          <Header name={"Log"} />
-          <div className="layout">test</div>
+          <Header name={"Campaign Log"} />
+          <div className="layout layout--log">
+            <h3 className="text-center">Doomhaven</h3>
+            <Widget title="Most Recent Milestone">123</Widget>
+            <Widget title="Most Recent Death">123</Widget>
+            <Widget title="Most Recent Birth">123</Widget>
+            <Widget title="Most Recent Hunt">123</Widget>
+            <Widget title="Last 5 Logs">123</Widget>
+          </div>
         </div>
       );
     }
@@ -58,7 +58,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-Settlement.propTypes = {
+Log.propTypes = {
   getSettlement: PropTypes.func,
   settlementData: PropTypes.shape({
     sheet: PropTypes.object,
@@ -66,4 +66,4 @@ Settlement.propTypes = {
   })
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settlement);
+export default connect(mapStateToProps, mapDispatchToProps)(Log);

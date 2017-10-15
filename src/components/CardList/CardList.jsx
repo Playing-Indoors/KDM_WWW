@@ -26,7 +26,12 @@ class CardList extends Component {
   }
   renderDesc() {
     if (this.props.desc.length > 0) {
-      return <div className="cardList-desc">{this.props.desc}</div>;
+      return (
+        <div
+          className="cardList-desc"
+          dangerouslySetInnerHTML={{ __html: this.props.desc }}
+        />
+      );
     }
     return null;
   }

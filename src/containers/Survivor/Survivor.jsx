@@ -11,6 +11,10 @@ import SurvivorFightArts from "../../components/Survivor/SurvivorFightArts";
 import SurvivorImpairments from "../../components/Survivor/SurvivorImpairments";
 import SurvivorNotes from "../../components/Survivor/SurvivorNotes";
 import SurvivorStats from "../../components/Survivor/SurvivorStats";
+import Arts from "./_Arts";
+import Disorders from "./_Disorders";
+import Impairments from "./_Impairments";
+import Abilities from "./_Abilities";
 import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
 import XP from "./_XP";
@@ -89,24 +93,24 @@ class Survivor extends React.Component {
             {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
             <Survival
               amount={this.state.survivor.sheet.survival}
-              id={this.state.survivor.sheet._id.$oid}
+              oid={this.state.survivor.sheet._id.$oid}
               limit={this.state.settlementData.sheet.survival_limit}
               actions={this.state.survivor.survival_actions}
             />
             <Bleeding
               amount={0}
-              id={this.state.survivor.sheet._id.$oid}
+              oid={this.state.survivor.sheet._id.$oid}
               limit={5}
             />
             <XP
-              id={this.state.survivor.sheet._id.$oid}
+              oid={this.state.survivor.sheet._id.$oid}
               amount={this.state.survivor.sheet.hunt_xp}
               milestones={
                 this.state.settlementData.survivor_attribute_milestones.hunt_xp
               }
             />
             <Courage
-              id={this.state.survivor.sheet._id.$oid}
+              oid={this.state.survivor.sheet._id.$oid}
               amount={this.state.survivor.sheet.Courage}
               limit={9}
               milestones={
@@ -114,7 +118,7 @@ class Survivor extends React.Component {
               }
             />
             <Understanding
-              id={this.state.survivor.sheet._id.$oid}
+              oid={this.state.survivor.sheet._id.$oid}
               amount={this.state.survivor.sheet.Understanding}
               limit={9}
               milestones={
@@ -123,7 +127,7 @@ class Survivor extends React.Component {
               }
             />
             <Weapon
-              id={this.state.survivor.sheet._id.$oid}
+              oid={this.state.survivor.sheet._id.$oid}
               amount={this.state.survivor.sheet["Weapon Proficiency"]}
               limit={8}
               milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
@@ -144,16 +148,30 @@ class Survivor extends React.Component {
               waist={parseInt(this.state.survivor.sheet.Waist, 10)}
               legs={parseInt(this.state.survivor.sheet.Legs, 10)}
             />
-            <SurvivorFightArts arts={this.state.fightingArts} />
-            <SurvivorDisorders
-              disorders={this.state.survivor.sheet.disorders}
+            <Arts
+              settlementList={
+                this.state.settlementData.game_assets.fighting_arts
+              }
+              survivorList={this.state.survivor.sheet.fighting_arts}
+              oid={this.state.survivor.sheet._id.$oid}
             />
-            <SurvivorAbilities
+            <Disorders list={this.state.survivor.sheet.disorders} />
+            {/* <SurvivorFightArts arts={this.state.survivor.sheet.fighting_arts} /> */}
+            {/* <SurvivorDisorders
+              disorders={this.state.survivor.sheet.disorders}
+            /> */}
+            <Abilities
+              list={this.state.survivor.sheet.abilities_and_impairments}
+            />
+            <Impairments
+              list={this.state.survivor.sheet.abilities_and_impairments}
+            />
+            {/* <SurvivorAbilities
               abilities={this.state.survivor.sheet.abilities_and_impairments}
             />
             <SurvivorImpairments
               impairments={this.state.survivor.sheet.abilities_and_impairments}
-            />
+            /> */}
             <SurvivorNotes notes={this.state.survivor.sheet.notes} />
           </div>
         </div>

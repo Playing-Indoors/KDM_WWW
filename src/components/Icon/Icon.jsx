@@ -152,6 +152,9 @@ class Icon extends Component {
     if (icons[this.props.name].stroke) {
       classArr.push("icon--stroke");
     }
+    if (this.props.size) {
+      classArr.push(`icon--${this.props.size}`);
+    }
     return classArr.join(" ");
   }
   svgBox() {
@@ -179,7 +182,8 @@ Icon.defaultProps = {
 
 Icon.propTypes = {
   name: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  size: PropTypes.string
 };
 
 export default Icon;

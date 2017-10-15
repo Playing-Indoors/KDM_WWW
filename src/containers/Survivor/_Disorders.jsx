@@ -1,23 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ModalFooter, Button } from "reactstrap";
-import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
-import Stat from "../../components/Stats/Stats";
+import TextList from "../../components/TextList/TextList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 
-// TODO:
-// - API has can_gain_survival and cannot_spend_survival
-
-class Survival extends Component {
+class Disorders extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      list: props.list,
       toggleModal: false,
-      title: "Survival",
-      amount: props.amount
+      title: "Disorders"
     };
     // Binding Events
-    this.updateAmount = this.updateAmount.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleModal = this.handleModal.bind(this);
@@ -31,19 +26,15 @@ class Survival extends Component {
   // Cancel event from the modal, reset the state.
   handleCancel() {
     this.setState({
-      amount: this.props.amount
+      list: this.props.list
     });
     this.handleModal();
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
     // TODO: KHOA SAVE THIS SHIT.
-    console.warn("Saving survival for survivor oid", this.props.oid);
+    console.warn("Saving Disorders for survivor oid", this.props.oid);
     this.handleModal();
-  }
-  // Function to pass to Number Increment
-  updateAmount(amount) {
-    this.setState({ amount });
   }
   // We pass the confirm function into the modal so that we have a pending state
   renderConfirm() {
@@ -61,27 +52,9 @@ class Survival extends Component {
       </Button>
     );
   }
-  // Displays the survivor actions
-  renderActions() {
-    return this.props.actions.map(action => (
-      <span className={action.available ? "is-active" : ""} key={action.handle}>
-        {action.name}
-      </span>
-    ));
-  }
   // Controls what shows inside of the modal
   renderModalBody() {
-    return (
-      <div>
-        <NumberIncrement
-          amount={this.state.amount}
-          min={0}
-          max={this.props.limit}
-          updateAmount={this.updateAmount}
-        />
-        <div className="survivalSkills">{this.renderActions()}</div>
-      </div>
-    );
+    return <div>Select Disorders</div>;
   }
   // Controls the functionality of modal footer buttons
   renderModalFooter() {
@@ -99,10 +72,9 @@ class Survival extends Component {
       <WidgetVariant
         title={this.state.title}
         toggleModal={this.state.toggleModal}
-        myClass={"survivorSurvival"}
+        myClass={"survivorDisorders"}
       >
-        {/* We use this.props so we only show the saved value */}
-        <Stat amount={this.props.amount} />
+        <TextList list={this.props.list} minimum={this.props.minimum} />
         {this.renderModalBody()}
         {this.renderModalFooter()}
       </WidgetVariant>
@@ -110,18 +82,16 @@ class Survival extends Component {
   }
 }
 
-Survival.propTypes = {
-  amount: PropTypes.number,
-  oid: PropTypes.string,
-  limit: PropTypes.number,
-  actions: PropTypes.arrayOf(PropTypes.object)
+Disorders.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.string),
+  minimum: PropTypes.number,
+  oid: PropTypes.string
 };
 
-Survival.defaultProps = {
-  amount: 0,
-  limit: 1,
-  oid: "",
-  actions: []
+Disorders.defaultProps = {
+  list: [],
+  minimum: 3,
+  oid: ""
 };
 
-export default Survival;
+export default Disorders;

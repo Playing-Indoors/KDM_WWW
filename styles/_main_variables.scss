@@ -83,7 +83,9 @@ $body-color: $gray-200;
 
 // Typography
 
-$font-family-sans-serif: "Ruda", sans-serif;
+$font-family-sans-serif: "Ruda", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
 $font-size-sm: 0.75rem !default;
 
 $h1-font-size: 1.25rem;
@@ -120,6 +122,6 @@ $input-placeholder-color: #939598;
 
 // Padding applied to the modal body
 $modal-inner-padding: 0.5rem 1rem 1.5rem;
-$modal-content-bg: $gray-700;
+$modal-content-bg: $gray-800;
 
 $modal-backdrop-opacity: 0.84;

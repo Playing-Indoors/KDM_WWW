@@ -1,8 +1,8 @@
 import React from "react";
 import { Input } from "reactstrap";
+import _includes from "lodash/includes";
 import glossaryJSON from "./GlossaryData.js";
 import Widget from "../../components/Widget/Widget";
-import _ from "lodash";
 
 class Glossary extends React.Component {
   constructor(props) {
@@ -15,11 +15,11 @@ class Glossary extends React.Component {
   }
   handleTypeahead(e) {
     let filteredGlossary = this.state.originalGlossaryData.filter(glossary => {
-      let stringInContent = _.includes(
+      let stringInContent = _includes(
         glossary.entry_content.toLowerCase(),
         e.target.value.toLowerCase()
       );
-      let stringInTitle = _.includes(
+      let stringInTitle = _includes(
         glossary.entry_title.toLowerCase(),
         e.target.value.toLowerCase()
       );
