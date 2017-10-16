@@ -15,6 +15,7 @@ class Settlements extends React.Component {
     this.handleSetRedirect = this.handleSetRedirect.bind(this);
   }
   handleSetRedirect(id) {
+    console.log("id", id);
     setCurrentSettlement(id)
       .then(res => {
         console.log("res", res);
@@ -22,7 +23,7 @@ class Settlements extends React.Component {
       .catch(err => {
         console.log("err", err);
       });
-    browserHistory.push(`/settlements/${id}/`);
+    browserHistory.push(`/settlements/${id}/settlement`);
   }
   renderSettlements() {
     if (this.props.userData && this.props.userData.dashboard) {
