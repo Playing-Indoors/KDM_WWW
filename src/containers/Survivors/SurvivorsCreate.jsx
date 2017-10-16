@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { createSettlement } from "../../actions/getSettlement.js";
+import { getSettlement } from "../../actions/getSettlement.js";
 import { createSurvivor } from "../../actions/getSurvivor.js";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
@@ -74,6 +74,7 @@ class Settlements extends React.Component {
     let settlementId = window.location.pathname.split("/")[2];
     createSurvivor(settlementId, this.state)
       .then(res => {
+        this.props.getSettlement();
         browserHistory.goBack();
       })
       .catch(err => {
@@ -151,7 +152,7 @@ class Settlements extends React.Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      createSettlement: createSettlement
+      getSettlement: getSettlement
     },
     dispatch
   );
