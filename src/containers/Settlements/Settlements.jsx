@@ -23,8 +23,8 @@ class Settlements extends React.Component {
       .catch(err => {
         console.log("err", err);
       });
-    window.location.pathname = `/settlements/${id}/settlement`;
-    //browserHistory.push(`/settlements/${id}/`);
+    // window.location.pathname = `/settlements/${id}/settlement`;
+    browserHistory.push(`/settlements/${id}/settlement`);
   }
   renderSettlements() {
     if (this.props.userData && this.props.userData.dashboard) {
