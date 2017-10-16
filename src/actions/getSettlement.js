@@ -15,8 +15,8 @@ function getSettlementAsync(data) {
 
 export function getSettlement(id) {
   return dispatch => {
-    let auth = localStorage.getItem("access_token");
-    let userId = localStorage.getItem("userId");
+    dispatch(getSettlementAsync(null));
+    const auth = localStorage.getItem("access_token");
     axios({
       headers: { Authorization: auth },
       method: "get",

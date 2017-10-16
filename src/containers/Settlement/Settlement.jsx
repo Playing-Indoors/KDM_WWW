@@ -21,14 +21,14 @@ import { getSettlement } from "../../actions/getSettlement";
 class Settlement extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      settlement: null
-    };
   }
 
   componentDidMount() {
     const id = window.location.pathname.split("/");
-    if (this.props.settlementData === null) {
+    if (
+      this.props.settlementData === null ||
+      this.props.settlementData.sheet._id.id !== id[2]
+    ) {
       this.props.getSettlement(id[2]);
     }
   }
