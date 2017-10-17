@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ModalFooter, Button, Input } from "reactstrap";
 import _sortBy from "lodash/sortBy";
 import _sortedUniq from "lodash/sortedUniq";
-import _difference from "lodash/difference";
+import _isEqual from "lodash/isEqual";
 import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
 import CardList from "../../components/CardList/CardList";
@@ -17,6 +17,7 @@ class Arts extends Component {
       survivorList: props.survivorList,
       toggleModal: false,
       title: "Fighting Arts",
+      limit: 3,
       selectValue: ""
     };
     // Binding Events
@@ -67,13 +68,7 @@ class Arts extends Component {
   }
   // We pass the confirm function into the modal so that we have a pending state
   renderConfirm() {
-    console.log(
-      _difference(this.state.survivorList, this.props.survivorList).length
-    );
-    // Disable confirm unless we've changed data
-    if (
-      _difference(this.state.survivorList, this.props.survivorList).length === 0
-    ) {
+    if (_isEqual(this.state.survivorList, this.props.survivorList)) {
       return (
         <Button color="light" onClick={this.handleConfirm}>
           Confirm
@@ -108,11 +103,9 @@ class Arts extends Component {
       </div>
     ));
   }
-  // Controls what shows inside of the modal
-  renderModalBody() {
-    return (
-      <div className="layout">
-        {this.renderSurvivorList()}
+  renderAddArt() {
+    if (this.state.survivorList.length < this.state.limit) {
+      return (
         <div className="btnSelect">
           <label className="btn btn-gray btn-block" htmlFor="btnSelect">
             <Icon name="plus" size="12" />
@@ -128,6 +121,16 @@ class Arts extends Component {
             {this.renderAvailableList()}
           </select>
         </div>
+      );
+    }
+    return null;
+  }
+  // Controls what shows inside of the modal
+  renderModalBody() {
+    return (
+      <div className="layout">
+        {this.renderSurvivorList()}
+        {this.renderAddArt()}
       </div>
     );
   }

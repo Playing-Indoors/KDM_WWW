@@ -155,23 +155,21 @@ class Survivor extends React.Component {
               survivorList={this.state.survivor.sheet.fighting_arts}
               oid={this.state.survivor.sheet._id.$oid}
             />
-            <Disorders list={this.state.survivor.sheet.disorders} />
-            {/* <SurvivorFightArts arts={this.state.survivor.sheet.fighting_arts} /> */}
-            {/* <SurvivorDisorders
-              disorders={this.state.survivor.sheet.disorders}
-            /> */}
+            <Disorders
+              survivorList={this.state.survivor.sheet.disorders}
+              settlementList={this.state.settlementData.game_assets.disorders}
+              oid={this.state.survivor.sheet._id.$oid}
+            />
             <Abilities
-              list={this.state.survivor.sheet.abilities_and_impairments}
+              survivorList={this.state.survivor.sheet.abilities_and_impairments}
+              settlementList={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              oid={this.state.survivor.sheet._id.$oid}
             />
             <Impairments
               list={this.state.survivor.sheet.abilities_and_impairments}
             />
-            {/* <SurvivorAbilities
-              abilities={this.state.survivor.sheet.abilities_and_impairments}
-            />
-            <SurvivorImpairments
-              impairments={this.state.survivor.sheet.abilities_and_impairments}
-            /> */}
             <SurvivorNotes notes={this.state.survivor.sheet.notes} />
           </div>
         </div>

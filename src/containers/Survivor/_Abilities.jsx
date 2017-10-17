@@ -1,21 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ModalFooter, Button } from "reactstrap";
+import { ModalFooter, Button, Input } from "reactstrap";
+import _sortBy from "lodash/sortBy";
+import _sortedUniq from "lodash/sortedUniq";
+import _isEqual from "lodash/isEqual";
+import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
+import CardList from "../../components/CardList/CardList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import Widget from "../../components/Widget/Widget";
 
 class Abilities extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: props.list,
+      survivorList: props.survivorList,
       toggleModal: false,
-      title: "Abilities"
+      title: "Abilities",
+      selectValue: ""
     };
     // Binding Events
     this.handleCancel = this.handleCancel.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleModal = this.handleModal.bind(this);
+    this.handleAbilitySelect = this.handleAbilitySelect.bind(this);
+    this.handleAbilityDeselect = this.handleAbilityDeselect.bind(this);
   }
   // Controls opening up the modal
   handleModal() {
@@ -26,7 +35,7 @@ class Abilities extends Component {
   // Cancel event from the modal, reset the state.
   handleCancel() {
     this.setState({
-      list: this.props.list
+      survivorList: this.props.survivorList
     });
     this.handleModal();
   }
@@ -36,10 +45,29 @@ class Abilities extends Component {
     console.warn("Saving Abilities for survivor oid", this.props.oid);
     this.handleModal();
   }
+  handleAbilitySelect(event) {
+    let newSurvivorList = [...this.state.survivorList, event.target.value];
+    newSurvivorList.sort();
+    newSurvivorList = _sortedUniq(newSurvivorList);
+    this.setState({
+      selectValue: "",
+      survivorList: newSurvivorList
+    });
+  }
+  handleAbilityDeselect(index) {
+    // console.log(index);
+    // const newSurvivorList = this.state.survivorList.splice();
+    // newSurv(index, 1);
+    // this.setState({
+    //   survivorList: newSurvivorList
+    // });
+    this.setState(prevState => ({
+      survivorList: prevState.survivorList.filter((_, i) => i !== index)
+    }));
+  }
   // We pass the confirm function into the modal so that we have a pending state
   renderConfirm() {
-    // Disable confirm unless we've changed data
-    if (this.state.amount === this.props.amount) {
+    if (_isEqual(this.state.survivorList, this.props.survivorList)) {
       return (
         <Button color="light" onClick={this.handleConfirm}>
           Confirm
@@ -52,9 +80,55 @@ class Abilities extends Component {
       </Button>
     );
   }
+  renderAvailableList() {
+    const abilities = Object.entries(this.props.settlementList);
+    return abilities.map(ability => (
+      <option value={ability[0]} key={ability[0]}>
+        {ability[1].name}
+      </option>
+    ));
+  }
+  renderSurvivorList() {
+    return this.state.survivorList.map((ability, index) => (
+      <div className="btnDeselect" key={ability}>
+        {ability}
+        <Button
+          color="danger"
+          size="small"
+          onClick={() => this.handleAbilityDeselect(index)}
+        >
+          <Icon name="minus" size="12" />
+        </Button>
+      </div>
+    ));
+  }
+  renderAddAbility() {
+    return (
+      <div className="btnSelect">
+        <label className="btn btn-gray btn-block" htmlFor="btnSelect">
+          <Icon name="plus" size="12" />
+        </label>
+        <select
+          id="btnSelect"
+          onChange={this.handleAbilitySelect}
+          value={this.state.selectValue}
+        >
+          <option disabled value="">
+            Select Ability
+          </option>
+          {this.renderAvailableList()}
+        </select>
+      </div>
+    );
+  }
   // Controls what shows inside of the modal
   renderModalBody() {
-    return <div>Select Abilities</div>;
+    return (
+      <div className="layout">
+        {this.renderSurvivorList()}
+        {this.renderAddAbility()}
+      </div>
+    );
   }
   // Controls the functionality of modal footer buttons
   renderModalFooter() {
@@ -74,7 +148,7 @@ class Abilities extends Component {
         toggleModal={this.state.toggleModal}
         myClass={"survivorAbilities"}
       >
-        <TextList list={this.props.list} minimum={this.props.minimum} />
+        <TextList list={this.props.survivorList} minimum={this.props.minimum} />
         {this.renderModalBody()}
         {this.renderModalFooter()}
       </WidgetVariant>
@@ -83,13 +157,15 @@ class Abilities extends Component {
 }
 
 Abilities.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.string),
+  survivorList: PropTypes.arrayOf(PropTypes.string),
+  settlementList: PropTypes.shape(),
   minimum: PropTypes.number,
   oid: PropTypes.string
 };
 
 Abilities.defaultProps = {
-  list: [],
+  settlementList: {},
+  survivorList: [],
   minimum: 1,
   oid: ""
 };

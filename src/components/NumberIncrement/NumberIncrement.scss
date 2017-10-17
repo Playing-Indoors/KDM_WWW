@@ -27,5 +27,6 @@
   &:hover,
   &:focus {
     color: $brand-primary;
+    outline: 0;
   }
 }

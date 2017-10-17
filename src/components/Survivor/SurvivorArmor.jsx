@@ -81,7 +81,7 @@ class SurvivorArmor extends Component {
           className="box-content"
         >
           <div className="statGroup">
-            <Stats name={"Insty"} amount={this.state.insanity} />
+            <Stats name={"Brain"} amount={this.state.insanity} />
             <Stats name={"Head"} amount={this.state.head} />
             <Stats name={"Arms"} amount={this.state.arms} />
             <Stats name={"Body"} amount={this.state.body} />
