@@ -7,6 +7,7 @@
     "arts        arts          disorders     disorders"
     "abilities   abilities     abilities     abilities"
     "impairments impairments   impairments   impairments"
+    "injury      injury        injury        injury"
     "notes       notes         notes         notes";
 }
 
@@ -34,17 +35,20 @@
 .survivorArmor {
   grid-area: armor;
 }
-.survivorArts {
+.survivor-fighting_art {
   grid-area: arts;
 }
-.survivorDisorders {
+.survivor-disorder {
   grid-area: disorders;
 }
-.survivorAbilities {
+.survivor-ability {
   grid-area: abilities;
 }
-.survivorImpairments {
+.survivor-impairment {
   grid-area: impairments;
+}
+.survivor-severe_injury {
+  grid-area: injury;
 }
 .survivorNotes {
   grid-area: notes;

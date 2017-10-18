@@ -11,6 +11,7 @@ import SurvivorFightArts from "../../components/Survivor/SurvivorFightArts";
 import SurvivorImpairments from "../../components/Survivor/SurvivorImpairments";
 import SurvivorNotes from "../../components/Survivor/SurvivorNotes";
 import SurvivorStats from "../../components/Survivor/SurvivorStats";
+import Assets from "./_Assets";
 import Arts from "./_Arts";
 import Disorders from "./_Disorders";
 import Impairments from "./_Impairments";
@@ -148,27 +149,73 @@ class Survivor extends React.Component {
               waist={parseInt(this.state.survivor.sheet.Waist, 10)}
               legs={parseInt(this.state.survivor.sheet.Legs, 10)}
             />
-            <Arts
+            {/* <Arts
               settlementList={
                 this.state.settlementData.game_assets.fighting_arts
               }
               survivorList={this.state.survivor.sheet.fighting_arts}
               oid={this.state.survivor.sheet._id.$oid}
-            />
-            <Disorders
+            /> */}
+            {/* <Disorders
               survivorList={this.state.survivor.sheet.disorders}
               settlementList={this.state.settlementData.game_assets.disorders}
               oid={this.state.survivor.sheet._id.$oid}
-            />
-            <Abilities
+            /> */}
+            {/* <Abilities
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               settlementList={
                 this.state.settlementData.game_assets.abilities_and_impairments
               }
               oid={this.state.survivor.sheet._id.$oid}
-            />
-            <Impairments
+            /> */}
+            {/* <Impairments
               list={this.state.survivor.sheet.abilities_and_impairments}
+            /> */}
+            <Assets
+              name="Arts"
+              type="fighting_art"
+              survivorList={this.state.survivor.sheet.fighting_arts}
+              assetList={this.state.settlementData.game_assets.fighting_arts}
+              oid={this.state.survivor.sheet._id.$oid}
+              maximum={3}
+              placeholderNumber={3}
+            />
+            <Assets
+              name="Disorders"
+              type="disorder"
+              survivorList={this.state.survivor.sheet.disorders}
+              assetList={this.state.settlementData.game_assets.disorders}
+              oid={this.state.survivor.sheet._id.$oid}
+              maximum={3}
+              placeholderNumber={3}
+            />
+            <Assets
+              name="Abilities"
+              type="ability"
+              survivorList={this.state.survivor.sheet.abilities_and_impairments}
+              assetList={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              oid={this.state.survivor.sheet._id.$oid}
+            />
+            <Assets
+              name="Impairments"
+              type="impairment"
+              survivorList={this.state.survivor.sheet.abilities_and_impairments}
+              assetList={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              oid={this.state.survivor.sheet._id.$oid}
+            />
+            <Assets
+              name="Severe Injuries"
+              type="severe_injury"
+              survivorList={this.state.survivor.sheet.abilities_and_impairments}
+              assetList={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              oid={this.state.survivor.sheet._id.$oid}
+              duplicates
             />
             <SurvivorNotes notes={this.state.survivor.sheet.notes} />
           </div>
