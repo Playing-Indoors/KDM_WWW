@@ -21,9 +21,7 @@
   padding: $spacer;
 
   @at-root button#{&}, a#{&} {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     width: 100%;
     text-align: left;
     color: inherit;
