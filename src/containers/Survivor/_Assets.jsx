@@ -15,6 +15,7 @@ class Assets extends Component {
     super(props);
     this.state = {
       survivorList: props.survivorList,
+      survivorListHumanized: [],
       toggleModal: false,
       selectValue: ""
     };
@@ -24,6 +25,31 @@ class Assets extends Component {
     this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleAbilitySelect = this.handleAbilitySelect.bind(this);
     this.handleAbilityDeselect = this.handleAbilityDeselect.bind(this);
+  }
+  componentWillMount() {
+    this.createSurvivorListHumanized(this.state.survivorList);
+  }
+  // Builds our humanized version of our survivor list
+  createSurvivorListHumanized(survivorList) {
+    const list = [];
+    survivorList.forEach(asset => {
+      // Since assets aren't dictionaries, we have to manually make them
+      const type = this.renderAssetLookup(asset, "type");
+      if (type === this.props.type) {
+        const name = this.renderAssetLookup(asset, "name");
+        let desc = "";
+        // Because disorders have the be the ugly duckling. 😢
+        if (this.renderAssetLookup(asset, "desc")) {
+          desc = this.renderAssetLookup(asset, "desc");
+        } else if (this.renderAssetLookup(asset, "survivor_effect")) {
+          desc = this.renderAssetLookup(asset, "survivor_effect");
+        }
+        list.push({ name, desc });
+      }
+    });
+    this.setState({
+      survivorListHumanized: list
+    });
   }
   // Controls opening up the modal
   handleModalToggle() {
@@ -47,18 +73,21 @@ class Assets extends Component {
   handleAbilitySelect(event) {
     let newSurvivorList = [...this.state.survivorList, event.target.value];
     newSurvivorList.sort();
-    if (!this.props.duplicates) {
-      console.log("no no duplicates");
+    if (!this.props.allowDuplicates) {
       newSurvivorList = _sortedUniq(newSurvivorList);
     }
     this.setState({
       selectValue: "",
       survivorList: newSurvivorList
     });
+    this.createSurvivorListHumanized(newSurvivorList);
   }
   handleAbilityDeselect(index) {
     this.setState(prevState => ({
-      survivorList: prevState.survivorList.filter((_, i) => i !== index)
+      survivorList: prevState.survivorList.filter((_, i) => i !== index),
+      survivorListHumanized: prevState.survivorListHumanized.filter(
+        (_, i) => i !== index
+      )
     }));
   }
   renderAssetLookup(handle, attribute) {
@@ -97,9 +126,9 @@ class Assets extends Component {
     });
   }
   renderSurvivorList() {
-    return this.state.survivorList.map((ability, index) => (
+    return this.state.survivorListHumanized.map((ability, index) => (
       <div className="btnDeselect" key={`${ability}${index}`}>
-        {this.renderAssetLookup(ability, "name")}
+        {ability.name}
         <Button
           color="danger"
           size="small"
@@ -163,8 +192,9 @@ class Assets extends Component {
         myClass={`survivor-${this.props.type}`}
       >
         <TextList
-          list={this.props.survivorList}
+          list={this.state.survivorListHumanized}
           minimum={this.props.placeholderNumber}
+          showDetails
         />
         {this.renderModalBody()}
         {this.renderModalFooter()}
@@ -180,18 +210,18 @@ Assets.defaultProps = {
   assetList: {},
   placeholderNumber: 1,
   maximum: 999,
-  duplicates: false,
+  allowDuplicates: false,
   oid: ""
 };
 
 Assets.propTypes = {
-  name: PropTypes.string,
-  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   survivorList: PropTypes.arrayOf(PropTypes.string),
   assetList: PropTypes.shape(),
   placeholderNumber: PropTypes.number,
   maximum: PropTypes.number,
-  duplicates: PropTypes.bool,
+  allowDuplicates: PropTypes.bool,
   oid: PropTypes.string
 };
 

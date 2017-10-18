@@ -16,13 +16,31 @@ class TextList extends Component {
       });
     }
   }
+  renderName(name) {
+    if (this.props.showDetails) {
+      return <strong className="textList-item-name">{name}</strong>;
+    }
+    return name;
+  }
+  renderDescription(item) {
+    if (this.props.showDetails && item.desc) {
+      return (
+        <div
+          className="textList-item-desc"
+          dangerouslySetInnerHTML={{ __html: item.desc }}
+        />
+      );
+    }
+    return null;
+  }
   renderList() {
     const num = Math.max(this.props.minimum, this.state.list.length);
     return [...Array(num)].map((_, i) => {
       if (this.state.list[i]) {
         return (
           <li className="textList-item" key={i}>
-            {this.state.list[i]}
+            {this.renderName(this.state.list[i].name)}
+            {this.renderDescription(this.state.list[i])}
           </li>
         );
       }
@@ -40,12 +58,20 @@ class TextList extends Component {
 
 TextList.defaultProps = {
   minimum: 1,
-  list: []
+  list: [],
+  showDetails: false
 };
 
 TextList.propTypes = {
   minimum: PropTypes.number,
-  list: PropTypes.arrayOf(PropTypes.string)
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      desc: PropTypes.string,
+      survivor_effect: PropTypes.string
+    })
+  ),
+  showDetails: PropTypes.bool
 };
 
 export default TextList;

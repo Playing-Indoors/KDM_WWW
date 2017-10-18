@@ -172,7 +172,7 @@ class Survivor extends React.Component {
               list={this.state.survivor.sheet.abilities_and_impairments}
             /> */}
             <Assets
-              name="Arts"
+              name="Fighting Arts"
               type="fighting_art"
               survivorList={this.state.survivor.sheet.fighting_arts}
               assetList={this.state.settlementData.game_assets.fighting_arts}
@@ -215,7 +215,7 @@ class Survivor extends React.Component {
                 this.state.settlementData.game_assets.abilities_and_impairments
               }
               oid={this.state.survivor.sheet._id.$oid}
-              duplicates
+              allowDuplicates
             />
             <SurvivorNotes notes={this.state.survivor.sheet.notes} />
           </div>

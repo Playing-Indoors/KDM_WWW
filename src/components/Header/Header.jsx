@@ -40,13 +40,19 @@ class Header extends Component {
     }
     return null;
   }
+  renderActions() {
+    if (this.props.children) {
+      return <div className="header-actions">{this.props.children}</div>;
+    }
+    return null;
+  }
   render() {
     return (
       <header className="header">
         {/* Only show this if back is activated */}
         {this.renderBack()}
         <div className="header-title">{this.renderName()}</div>
-        {this.props.children}
+        {this.renderActions()}
         {/* <a className="header-action">
           <Icon name="info" />
         </a>
@@ -77,7 +83,8 @@ Header.propTypes = {
   name: PropTypes.string,
   subName: PropTypes.string,
   back: PropTypes.string,
-  showBack: PropTypes.bool
+  showBack: PropTypes.bool,
+  children: PropTypes.node
 };
 
 export default connect(null, mapDispatchToProps)(Header);

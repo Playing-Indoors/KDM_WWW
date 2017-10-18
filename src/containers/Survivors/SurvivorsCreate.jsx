@@ -1,27 +1,15 @@
 import React from "react";
-import {
-  Button,
-  Input,
-  FormGroup,
-  Nav,
-  NavItem,
-  NavLink,
-  TabContent,
-  TabPane,
-  ButtonGroup
-} from "reactstrap";
+import { Button, Input, ButtonGroup } from "reactstrap";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSettlement } from "../../actions/getSettlement.js";
 import { createSurvivor } from "../../actions/getSurvivor.js";
 import Header from "../../components/Header/Header";
-import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
-import { browserHistory } from "react-router";
 
-class Settlements extends React.Component {
+class SurvivorCreate extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,58 +19,215 @@ class Settlements extends React.Component {
     this.handleGenderChange = this.handleGenderChange.bind(this);
     this.state = {
       name: "",
-      gender: "F"
+      gender: "F",
+      settlementId: window.location.pathname.split("/")[2]
     };
   }
   randomName() {
-    const names = [
-      "Livio",
-      "Skrolan",
-      "Stone",
-      "Stanwick",
-      "Deston",
-      "Severinus",
-      "Tedric",
-      "Trent",
-      "Marsdon",
-      "Casey",
+    const mNames = [
+      "Green",
+      "Brown",
+      "Forest",
+      "Brock",
+      "Hubris",
+      "Zed",
       "Red",
-      "Matze",
-      "Marlow",
-      "Pirmin",
-      "Asterios",
-      "Whitby",
-      "Arden",
-      "Launcelot",
-      "Donald",
-      "Edo",
-      "Asteria",
-      "Evelia",
-      "Serilda",
-      "Binia",
-      "Mechthilde",
-      "Marvelle",
-      "Poppy",
-      "Kyla",
-      "Nikki",
-      "Manuella"
+      "Gideon",
+      "Adrastus",
+      "Logan",
+      "Xander",
+      "Pennyworth",
+      "Craaaig",
+      "Tony",
+      "Tony Rigatonis",
+      "Tony “Tony” Pepperonis",
+      "Mason",
+      "Salad",
+      "Lavash",
+      "Kebab",
+      "Humus",
+      "Falafel",
+      "Baharat",
+      "Naruto",
+      "Sasuke",
+      "Shinji",
+      "Frank",
+      "Owen",
+      "Democritus",
+      "Adam",
+      "Riddick",
+      "Tank",
+      "Gomer",
+      "Dozer",
+      "Neo",
+      "Schlumpy",
+      "Lumpy",
+      "Geoff",
+      "Geompy",
+      "Kendrick",
+      "Gruld",
+      "Baergoth",
+      "Fjornir",
+      "Esseldair",
+      "Samwise",
+      "Surly",
+      "Croaker",
+      "Milhouse",
+      "Anro",
+      "Dash",
+      "Boyo",
+      "Mano",
+      "Dado",
+      "Adrian",
+      "Frank",
+      "Charlie",
+      "Dennis",
+      "Mac",
+      "Zero",
+      "Pallas",
+      "Teos",
+      "Ceyx",
+      "Trajan",
+      "Attis",
+      "Kira",
+      "Mordred",
+      "Mougle",
+      "Sete",
+      "Kaos",
+      "Bellon",
+      "Hector",
+      "Prince",
+      "Bramble",
+      "Sha‘Guhl",
+      "Higor the Slayer",
+      "Ibron",
+      "Pan",
+      "Han Solo",
+      "Daemon",
+      "Saetan",
+      "Lucivar",
+      "Mulder",
+      "Gaius Baltar",
+      "Fred",
+      "Cross",
+      "Flute",
+      "Rhongomiant",
+      "Oaxaca",
+      "Bob the Butcher",
+      "Olaf"
     ];
-    const random = names[Math.floor(Math.random() * names.length)];
+    const fNames = [
+      "Scarlet",
+      "Red",
+      "Ruby",
+      "Rose",
+      "Antiope",
+      "Alenia",
+      "Blue",
+      "Ugg-Ugg Maker of Stew",
+      "Toto",
+      "Delilah",
+      "Lexi",
+      "Sarah",
+      "Tony Ms. Boney",
+      "Tony",
+      "Lola",
+      "Samsa",
+      "Shawarma",
+      "Dolma",
+      "Feta",
+      "Harissa",
+      "Halva",
+      "Baklava",
+      "Hinata",
+      "Sakura",
+      "Pthumeria",
+      "Hannah",
+      "Delilah",
+      "Arya",
+      "Chastity",
+      "Cher",
+      "Aloy",
+      "Griselle",
+      "Silvia",
+      "Ciaran",
+      "Tabitha",
+      "Luna",
+      "Ophelia",
+      "Merida",
+      "Bertha",
+      "Maeve",
+      "Batman's Mom",
+      "Lilith",
+      "Twilight",
+      "Skati",
+      "Aura",
+      "Girlo",
+      "Mamo",
+      "Gigi",
+      "Dee",
+      "Jade",
+      "Anyte",
+      "Danais",
+      "Eris",
+      "Hera",
+      "Iset",
+      "Lucina",
+      "Nyx",
+      "Sumia",
+      "Athena",
+      "Aurora",
+      "Keitara",
+      "Cereanna",
+      "Loreley",
+      "Zeefa",
+      "Farina",
+      "Silvia",
+      "Isla",
+      "Carleen",
+      "Francine",
+      "King Woman",
+      "Jana",
+      "Johanna",
+      "Cara",
+      "Lyra",
+      "Leia",
+      "Jaenelle",
+      "Scully",
+      "Six",
+      "Bertha",
+      "Dawn",
+      "Fen-Yll",
+      "Fenchurch",
+      "Chihuly",
+      "Carnwenhan",
+      "Kluke",
+      "Ashe",
+      "Miss Taken",
+      "Emii"
+    ];
+    let random = "";
+    if (this.state.gender === "F") {
+      random = fNames[Math.floor(Math.random() * fNames.length)];
+    } else {
+      random = mNames[Math.floor(Math.random() * mNames.length)];
+    }
     this.setState({
       name: random
     });
   }
   handleCreate(e) {
     e.preventDefault();
-    const settlementId = window.location.pathname.split("/")[2];
-    createSurvivor(settlementId, this.state)
-      .then(() => {
-        this.props.getSettlement();
-        browserHistory.goBack();
-      })
-      .catch(err => {
-        console.warn("err", err);
-      });
+    if (this.state.name.length > 0) {
+      createSurvivor(this.state.settlementId, this.state)
+        .then(() => {
+          this.props.getSettlement();
+          browserHistory.goBack();
+        })
+        .catch(err => {
+          console.warn("err", err);
+        });
+    }
   }
   handleNameChange(e) {
     this.setState({
@@ -94,26 +239,11 @@ class Settlements extends React.Component {
       gender: e.target.value
     });
   }
-  // renderCreate() {
-  //   if (this.state.name.length > 0) {
-  //     return (
-  //       <Link to={"./"} onClick={this.handleCreate} className="header-action">
-  //         <Icon name={"check"} color="yellow" />
-  //       </Link>
-  //     );
-  //   }
-  //   return (
-  //     <span className="header-action">
-  //       <Icon name={"check"} />
-  //     </span>
-  //   );
-  // }
   render() {
     return (
       <div>
         <Header name={"Create Survivor"} />
         <form className="layout" onSubmit={this.handleCreate}>
-          <legend>Create Survivor</legend>
           <Widget>
             <Input
               value={this.state.name}
@@ -142,7 +272,12 @@ class Settlements extends React.Component {
           </Widget>
           <Widget>
             <ButtonGroup className="btn-group--full">
-              <Button color="gray" block>
+              <Button
+                color="gray"
+                block
+                tag={Link}
+                to={`/settlements/${this.state.settlementId}/survivors/`}
+              >
                 Cancel
               </Button>
               <Button color="primary" block type="submit">
@@ -163,10 +298,10 @@ class Settlements extends React.Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      getSettlement: getSettlement
+      getSettlement
     },
     dispatch
   );
 }
 
-export default connect(null, mapDispatchToProps)(Settlements);
+export default connect(null, mapDispatchToProps)(SurvivorCreate);
