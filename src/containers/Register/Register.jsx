@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { reduxForm } from "redux-form";
-import { Link } from "react-router";
 import { authenticate } from "../../actions/index.js";
 
 class Login extends Component {
@@ -157,9 +156,8 @@ class Login extends Component {
 
           <br />
           <button type="submit" id="login-button" className="btn btn-primary">
-            LOGIN
+            Create
           </button>
-          <Link to={"/Register"}>Register</Link>
         </form>
       </div>
     );

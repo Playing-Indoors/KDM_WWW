@@ -8,6 +8,7 @@ import reducers from "./reducers";
 import requireAuth from "./containers/Require_auth";
 import App from "./App";
 import Login from "./containers/Login/Login";
+import Register from "./containers/Register/Register";
 import System from "./containers/System/System";
 import Survivor from "./containers/Survivor/Survivor";
 import Survivors from "./containers/Survivors/Survivors";
@@ -48,6 +49,7 @@ render(
     <Router history={browserHistory} onUpdate={handlePageChange}>
       {/* Unauth public links */}
       <Route path="/" component={Login} />
+      <Route path="/register" component={Register} />
       {/* Dev Routes */}
       <Route title="Aya" path="/aya" component={Aya} />
 
