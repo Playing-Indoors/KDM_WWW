@@ -27,15 +27,19 @@ class Header extends Component {
   renderBack() {
     if (this.props.back.length > 0) {
       return (
-        <Link to={this.props.back} className="header-action">
-          <Icon name={"left"} />
-        </Link>
+        <div className="header-actions">
+          <Link to={this.props.back} className="header-action">
+            <Icon name={"left"} />
+          </Link>
+        </div>
       );
     } else if (this.props.showBack) {
       return (
-        <a tabIndex="0" className="header-action" onClick={this.handleNav}>
-          <Icon name="left" />
-        </a>
+        <div className="header-actions">
+          <a tabIndex="0" className="header-action" onClick={this.handleNav}>
+            <Icon name="left" />
+          </a>
+        </div>
       );
     }
     return null;
