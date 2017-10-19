@@ -29,11 +29,27 @@
   // }
 }
 
+.header-actions {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding: 0 $spacer/2;
+  display: flex;
+  align-items: center;
+
+  &:first-child {
+    left: 0;
+  }
+  &:last-child {
+    right: 0;
+  }
+}
+
 .header-action {
   display: block;
   border: 0;
   background: none;
-  padding: 0.5rem;
+  padding: $spacer/2;
   color: $gray-600;
   transition: background 0.3s ease-out;
 

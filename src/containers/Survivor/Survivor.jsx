@@ -9,12 +9,10 @@ import SurvivorArmor from "../../components/Survivor/SurvivorArmor";
 import SurvivorDisorders from "../../components/Survivor/SurvivorDisorders";
 import SurvivorFightArts from "../../components/Survivor/SurvivorFightArts";
 import SurvivorImpairments from "../../components/Survivor/SurvivorImpairments";
-import SurvivorNotes from "../../components/Survivor/SurvivorNotes";
+import Notes from "./_Notes";
 import SurvivorStats from "../../components/Survivor/SurvivorStats";
-import Arts from "./_Arts";
-import Disorders from "./_Disorders";
-import Impairments from "./_Impairments";
-import Abilities from "./_Abilities";
+import Stats from "./_SurvivorStats";
+import Assets from "./_Assets";
 import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
 import XP from "./_XP";
@@ -98,9 +96,9 @@ class Survivor extends React.Component {
               actions={this.state.survivor.survival_actions}
             />
             <Bleeding
-              amount={0}
+              amount={this.state.survivor.sheet.bleeding_tokens}
               oid={this.state.survivor.sheet._id.$oid}
-              limit={5}
+              limit={this.state.survivor.sheet.max_bleeding_tokens}
             />
             <XP
               oid={this.state.survivor.sheet._id.$oid}
@@ -132,14 +130,64 @@ class Survivor extends React.Component {
               limit={8}
               milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
             />
-            <SurvivorStats
+            {/* <Stats
+              oid={this.state.survivor.sheet._id.$oid}
+              stats={[
+                { movement: this.state.survivor.sheet.Movement },
+                { accuracy: this.state.survivor.sheet.Accuracy },
+                { strength: this.state.survivor.sheet.Strength },
+                { evasion: this.state.survivor.sheet.Evasion },
+                { luck: this.state.survivor.sheet.Luck },
+                { speed: this.state.survivor.sheet.Speed }
+              ]}
+            /> */}
+            <Stats
+              oid={this.state.survivor.sheet._id.$oid}
+              movement={this.state.survivor.sheet.Movement}
+              accuracy={this.state.survivor.sheet.Accuracy}
+              strength={this.state.survivor.sheet.Strength}
+              evasion={this.state.survivor.sheet.Evasion}
+              luck={this.state.survivor.sheet.Luck}
+              speed={this.state.survivor.sheet.Speed}
+              movementGear={
+                this.state.survivor.sheet.attribute_detail.Movement.gear
+              }
+              movementTokens={
+                this.state.survivor.sheet.attribute_detail.Movement.Token
+              }
+              accuracyGear={
+                this.state.survivor.sheet.attribute_detail.Accuracy.gear
+              }
+              strengthGear={
+                this.state.survivor.sheet.attribute_detail.Strength.gear
+              }
+              evasionGear={
+                this.state.survivor.sheet.attribute_detail.Evasion.gear
+              }
+              luckGear={this.state.survivor.sheet.attribute_detail.Luck.gear}
+              speedGear={this.state.survivor.sheet.attribute_detail.Speed.gear}
+              accuracyTokens={
+                this.state.survivor.sheet.attribute_detail.Accuracy.Token
+              }
+              strengthTokens={
+                this.state.survivor.sheet.attribute_detail.Strength.Token
+              }
+              evasionTokens={
+                this.state.survivor.sheet.attribute_detail.Evasion.Token
+              }
+              luckTokens={this.state.survivor.sheet.attribute_detail.Luck.Token}
+              speedTokens={
+                this.state.survivor.sheet.attribute_detail.Speed.Token
+              }
+            />
+            {/* <SurvivorStats
               movement={parseInt(this.state.survivor.sheet.Movement, 10)}
               accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
               strength={parseInt(this.state.survivor.sheet.Strength, 10)}
               evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
               luck={parseInt(this.state.survivor.sheet.Luck, 10)}
               speed={parseInt(this.state.survivor.sheet.Speed, 10)}
-            />
+            /> */}
             <SurvivorArmor
               insanity={parseInt(this.state.survivor.sheet.Insanity, 10)}
               head={parseInt(this.state.survivor.sheet.Head, 10)}
@@ -148,29 +196,56 @@ class Survivor extends React.Component {
               waist={parseInt(this.state.survivor.sheet.Waist, 10)}
               legs={parseInt(this.state.survivor.sheet.Legs, 10)}
             />
-            <Arts
-              settlementList={
-                this.state.settlementData.game_assets.fighting_arts
-              }
+            <Assets
+              name="Fighting Arts"
+              type="fighting_art"
               survivorList={this.state.survivor.sheet.fighting_arts}
+              assetList={this.state.settlementData.game_assets.fighting_arts}
               oid={this.state.survivor.sheet._id.$oid}
+              maximum={3}
+              placeholderNumber={3}
             />
-            <Disorders
+            <Assets
+              name="Disorders"
+              type="disorder"
               survivorList={this.state.survivor.sheet.disorders}
-              settlementList={this.state.settlementData.game_assets.disorders}
+              assetList={this.state.settlementData.game_assets.disorders}
               oid={this.state.survivor.sheet._id.$oid}
+              maximum={3}
+              placeholderNumber={3}
             />
-            <Abilities
+            <Assets
+              name="Abilities"
+              type="ability"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
-              settlementList={
+              assetList={
                 this.state.settlementData.game_assets.abilities_and_impairments
               }
               oid={this.state.survivor.sheet._id.$oid}
             />
-            <Impairments
-              list={this.state.survivor.sheet.abilities_and_impairments}
+            <Assets
+              name="Impairments"
+              type="impairment"
+              survivorList={this.state.survivor.sheet.abilities_and_impairments}
+              assetList={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              oid={this.state.survivor.sheet._id.$oid}
             />
-            <SurvivorNotes notes={this.state.survivor.sheet.notes} />
+            <Assets
+              name="Severe Injuries"
+              type="severe_injury"
+              survivorList={this.state.survivor.sheet.abilities_and_impairments}
+              assetList={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              oid={this.state.survivor.sheet._id.$oid}
+              allowDuplicates
+            />
+            {/* <Notes
+              oid={this.state.survivor.sheet._id.$oid}
+              notes={this.state.survivor.sheet.notes}
+            /> */}
           </div>
         </div>
       );

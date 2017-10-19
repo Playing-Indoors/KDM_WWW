@@ -76,4 +76,4 @@ Nav.propTypes = {
   })
 };
 
-export default connect(mapStateToProps, null)(Nav);
+export default connect(mapStateToProps, null, null, { pure: false })(Nav);
