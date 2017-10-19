@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { ModalFooter, Button } from "reactstrap";
 import TextList from "../../components/TextList/TextList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import { setAssets } from "../../actions/abilities";
 
 class Impairments extends Component {
   constructor(props) {
@@ -32,9 +33,22 @@ class Impairments extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
     console.warn("Saving Impairments for survivor oid", this.props.oid);
-    this.handleModal();
+    let userId = localStorage.getItem("userId");
+    //TODO: CALEB ADD DATA HEREEEEE
+    //change "blind" with value
+    let data = {
+      user_id: userId,
+      handle: "blind",
+      type: "abilities_and_impairments"
+    };
+    setAssets(this.props.oid, data)
+      .then(res => {
+        this.handleModal();
+      })
+      .catch(err => {
+        console.log("Error:  ", err);
+      });
   }
   // We pass the confirm function into the modal so that we have a pending state
   renderConfirm() {

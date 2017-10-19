@@ -4,6 +4,7 @@ import { ModalFooter, Button } from "reactstrap";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import { setSurvival } from "../../actions/abilities";
 
 // TODO:
 // - API has can_gain_survival and cannot_spend_survival
@@ -37,9 +38,19 @@ class Survival extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
     console.warn("Saving survival for survivor oid", this.props.oid);
-    this.handleModal();
+    let userId = localStorage.getItem("userId");
+    let data = {
+      user_id: userId,
+      value: this.state.amount
+    };
+    setSurvival(this.props.oid, data)
+      .then(res => {
+        this.handleModal();
+      })
+      .catch(err => {
+        console.log("Error:  ", err);
+      });
   }
   // Function to pass to Number Increment
   updateAmount(amount) {

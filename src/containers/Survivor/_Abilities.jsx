@@ -9,6 +9,7 @@ import TextList from "../../components/TextList/TextList";
 import CardList from "../../components/CardList/CardList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 import Widget from "../../components/Widget/Widget";
+import { setAssets } from "../../actions/abilities";
 
 class Abilities extends Component {
   constructor(props) {
@@ -41,9 +42,22 @@ class Abilities extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
     console.warn("Saving Abilities for survivor oid", this.props.oid);
-    this.handleModal();
+    let userId = localStorage.getItem("userId");
+    //TODO: CALEB ADD DATA HEREEEEE
+    //change "blind" with value
+    let data = {
+      user_id: userId,
+      handle: "blind",
+      type: "abilities_and_impairments"
+    };
+    setAssets(this.props.oid, data)
+      .then(res => {
+        this.handleModal();
+      })
+      .catch(err => {
+        console.log("Error:  ", err);
+      });
   }
   handleAbilitySelect(event) {
     let newSurvivorList = [...this.state.survivorList, event.target.value];
