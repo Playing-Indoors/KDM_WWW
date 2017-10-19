@@ -22,11 +22,13 @@
 }
 
 .widget-content {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   padding: $spacer;
+  align-items: stretch;
 
   @at-root button#{&}, a#{&} {
-    display: block;
     width: 100%;
     text-align: left;
     color: inherit;
@@ -43,6 +45,10 @@
     }
   }
 }
+
+// .widget-content--center {
+//   align-items: center;
+// }
 
 .widget-footer {
   display: flex;

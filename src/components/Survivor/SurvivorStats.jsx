@@ -1,24 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
-  Row,
-  Col,
   TabContent,
   TabPane,
-  Nav,
-  NavItem,
-  NavLink,
   Modal,
   ModalBody,
   ModalHeader,
   ModalFooter,
   Button
 } from "reactstrap";
-import classNames from "classnames";
 import Stats from "../../components/Stats/Stats";
-import Milestone from "../../components/Milestone/Milestone";
-import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
+import WidgetVariant from "../../components/Widget/WidgetVariant";
 
 class SurvivorStats extends Component {
   constructor(props) {
