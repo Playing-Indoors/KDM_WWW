@@ -1,24 +1,48 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ModalFooter, Button } from "reactstrap";
+import {
+  ModalFooter,
+  Button,
+  Nav,
+  NavItem,
+  NavLink,
+  TabContent,
+  TabPane
+} from "reactstrap";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import StatGroup from "../../components/Stats/StatsGroup";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 
+/*
+
+  Stat Array
+  Attribute Array
+
+*/
+
 class SurvivorStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
       toggleModal: false,
-      title: "Primary Stats"
+      activeTab: 1,
+      title: "Primary Stats",
+      order: ["Movement", "Accuracy", "Strength", "Evasion", "Luck", "Speed"]
     };
     // Binding Events
+    this.handleTabChange = this.handleTabChange.bind(this);
     this.updateAmount = this.updateAmount.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleModal = this.handleModal.bind(this);
+  }
+  handleTabChange(tab) {
+    this.setState({
+      searchName: "",
+      activeTab: tab
+    });
   }
   // Controls opening up the modal
   handleModal() {
@@ -63,15 +87,64 @@ class SurvivorStats extends Component {
   renderModalBody() {
     return (
       <div>
-        <NumberIncrement
-          amount={this.state.amount}
-          min={0}
-          max={this.props.limit}
-          updateAmount={this.updateAmount}
-        />
-        <MilestoneDots current={this.state.amount} count={this.props.limit} />
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              tabIndex="0"
+              className={`${this.state.activeTab === 1 ? "active" : ""}`}
+              onClick={() => {
+                this.handleTabChange(1);
+              }}
+            >
+              Permanent
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              tabIndex="0"
+              className={`${this.state.activeTab === 2 ? "active" : ""}`}
+              onClick={() => {
+                this.handleTabChange(2);
+              }}
+            >
+              Gear
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              tabIndex="0"
+              className={`${this.state.activeTab === 3 ? "active" : ""}`}
+              onClick={() => {
+                this.handleTabChange(3);
+              }}
+            >
+              Tokens
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={this.state.activeTab}>
+          <TabPane tabId={1}>
+            <div className="layout">Permanent</div>
+          </TabPane>
+          <TabPane tabId={2}>
+            <StatGroup>{this.renderModifiers("gear")}</StatGroup>
+          </TabPane>
+          <TabPane tabId={3}>
+            <div className="layout">{this.renderModifiers("tokens")}</div>
+          </TabPane>
+        </TabContent>
       </div>
     );
+  }
+  renderModifiers(type) {
+    return this.state.order.map(stat => {
+      if (this.props.modifiers[stat]) {
+        const amount = this.props.modifiers[stat][type];
+        return <Stat key={`${stat}${type}`} name={stat} amount={amount} />;
+      }
+      return null;
+      // <Stat name={"Mov"} amount={this.props.movement} />
+    });
   }
   // Controls the functionality of modal footer buttons
   renderModalFooter() {
@@ -116,6 +189,7 @@ class SurvivorStats extends Component {
 SurvivorStats.propTypes = {
   amount: PropTypes.number,
   oid: PropTypes.string,
+  // modifiers: PropTypes.shape,
   limit: PropTypes.number
 };
 

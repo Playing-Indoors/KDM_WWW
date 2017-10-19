@@ -11,7 +11,7 @@ import SurvivorFightArts from "../../components/Survivor/SurvivorFightArts";
 import SurvivorImpairments from "../../components/Survivor/SurvivorImpairments";
 import Notes from "./_Notes";
 import SurvivorStats from "../../components/Survivor/SurvivorStats";
-import Stats from "./_Stats";
+import Stats from "./_SurvivorStats";
 import Assets from "./_Assets";
 import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
@@ -96,9 +96,9 @@ class Survivor extends React.Component {
               actions={this.state.survivor.survival_actions}
             />
             <Bleeding
-              amount={0}
+              amount={this.state.survivor.sheet.bleeding_tokens}
               oid={this.state.survivor.sheet._id.$oid}
-              limit={5}
+              limit={this.state.survivor.sheet.max_bleeding_tokens}
             />
             <XP
               oid={this.state.survivor.sheet._id.$oid}
@@ -130,23 +130,35 @@ class Survivor extends React.Component {
               limit={8}
               milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
             />
+            {/* <Stats
+              oid={this.state.survivor.sheet._id.$oid}
+              stats={[
+                { movement: this.state.survivor.sheet.Movement },
+                { accuracy: this.state.survivor.sheet.Accuracy },
+                { strength: this.state.survivor.sheet.Strength },
+                { evasion: this.state.survivor.sheet.Evasion },
+                { luck: this.state.survivor.sheet.Luck },
+                { speed: this.state.survivor.sheet.Speed }
+              ]}
+            /> */}
             <Stats
               oid={this.state.survivor.sheet._id.$oid}
+              movement={this.state.survivor.sheet.Movement}
+              accuracy={this.state.survivor.sheet.Accuracy}
+              strength={this.state.survivor.sheet.Strength}
+              evasion={this.state.survivor.sheet.Evasion}
+              luck={this.state.survivor.sheet.Luck}
+              speed={this.state.survivor.sheet.Speed}
+              modifiers={this.state.survivor.sheet.attribute_detail}
+            />
+            {/* <SurvivorStats
               movement={parseInt(this.state.survivor.sheet.Movement, 10)}
               accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
               strength={parseInt(this.state.survivor.sheet.Strength, 10)}
               evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
               luck={parseInt(this.state.survivor.sheet.Luck, 10)}
               speed={parseInt(this.state.survivor.sheet.Speed, 10)}
-            />
-            <SurvivorStats
-              movement={parseInt(this.state.survivor.sheet.Movement, 10)}
-              accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
-              strength={parseInt(this.state.survivor.sheet.Strength, 10)}
-              evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
-              luck={parseInt(this.state.survivor.sheet.Luck, 10)}
-              speed={parseInt(this.state.survivor.sheet.Speed, 10)}
-            />
+            /> */}
             <SurvivorArmor
               insanity={parseInt(this.state.survivor.sheet.Insanity, 10)}
               head={parseInt(this.state.survivor.sheet.Head, 10)}
