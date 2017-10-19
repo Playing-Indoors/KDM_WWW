@@ -149,7 +149,36 @@ class Survivor extends React.Component {
               evasion={this.state.survivor.sheet.Evasion}
               luck={this.state.survivor.sheet.Luck}
               speed={this.state.survivor.sheet.Speed}
-              modifiers={this.state.survivor.sheet.attribute_detail}
+              movementGear={
+                this.state.survivor.sheet.attribute_detail.Movement.gear
+              }
+              movementTokens={
+                this.state.survivor.sheet.attribute_detail.Movement.Token
+              }
+              accuracyGear={
+                this.state.survivor.sheet.attribute_detail.Accuracy.gear
+              }
+              strengthGear={
+                this.state.survivor.sheet.attribute_detail.Strength.gear
+              }
+              evasionGear={
+                this.state.survivor.sheet.attribute_detail.Evasion.gear
+              }
+              luckGear={this.state.survivor.sheet.attribute_detail.Luck.gear}
+              speedGear={this.state.survivor.sheet.attribute_detail.Speed.gear}
+              accuracyTokens={
+                this.state.survivor.sheet.attribute_detail.Accuracy.Token
+              }
+              strengthTokens={
+                this.state.survivor.sheet.attribute_detail.Strength.Token
+              }
+              evasionTokens={
+                this.state.survivor.sheet.attribute_detail.Evasion.Token
+              }
+              luckTokens={this.state.survivor.sheet.attribute_detail.Luck.Token}
+              speedTokens={
+                this.state.survivor.sheet.attribute_detail.Speed.Token
+              }
             />
             {/* <SurvivorStats
               movement={parseInt(this.state.survivor.sheet.Movement, 10)}
