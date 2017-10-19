@@ -1,57 +1,33 @@
 .layout--survivor {
-  grid-template-columns: 2fr 1fr 1fr 2fr;
-  grid-template-areas: "survival    bleeding      bleeding      hunt"
-    "courage     understanding understanding weapon"
-    "stats       stats         stats         stats"
-    "armor       armor         armor         armor"
-    "arts        arts          disorders     disorders"
-    "abilities   abilities     abilities     abilities"
-    "impairments impairments   impairments   impairments"
-    "injury      injury        injury        injury"
-    "notes       notes         notes         notes";
+  grid-template-columns: repeat(6, 1fr);
+  //   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  //   grid-template-areas: "survival    bleeding      bleeding      hunt"
+  //     "courage     understanding understanding weapon"
+  //     "stats       stats         stats         stats"
+  //     "armor       armor         armor         armor"
+  //     "arts        arts          disorders     disorders"
+  //     "abilities   abilities     abilities     abilities"
+  //     "impairments impairments   impairments   impairments"
+  //     "injury      injury        injury        injury"
+  //     "notes       notes         notes         notes";
+
+  > * {
+    grid-column-end: span 2;
+  }
 }
 
-.survivorSurvival {
-  grid-area: survival;
-}
-.survivorBleeding {
-  grid-area: bleeding;
-}
-.survivorXP {
-  grid-area: hunt;
-}
-.survivorCourage {
-  grid-area: courage;
-}
-.survivorUnderstanding {
-  grid-area: understanding;
-}
-.survivorWeapon {
-  grid-area: weapon;
-}
-.survivorStats {
-  grid-area: stats;
-}
-.survivorArmor {
-  grid-area: armor;
-}
-.survivor-fighting_art {
-  grid-area: arts;
-}
-.survivor-disorder {
-  grid-area: disorders;
-}
-.survivor-ability {
-  grid-area: abilities;
-}
-.survivor-impairment {
-  grid-area: impairments;
-}
-.survivor-severe_injury {
-  grid-area: injury;
-}
+.survivorStats,
+.survivorArmor,
+.survivor-ability,
+.survivor-impairment,
+.survivor-severe_injury,
 .survivorNotes {
-  grid-area: notes;
+  grid-column-end: span 6;
+}
+
+.survivor-fighting_art,
+.survivor-disorder {
+  grid-column-end: span 3;
 }
 
 // Survival
