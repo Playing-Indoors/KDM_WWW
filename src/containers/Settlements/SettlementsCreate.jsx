@@ -34,7 +34,22 @@ class Settlements extends React.Component {
       activeTab: 1,
       name: "",
       campaign: "People of the Lantern",
-      expansions: []
+      expansions: [
+        ("gorm": false),
+        ("spidicules": false),
+        ("dung_beetle_knight": false),
+        ("sunstalker": false),
+        ("lion_god": false),
+        ("manhunter": false),
+        ("lion_knight": false),
+        ("slenderman": false),
+        ("lonely_tree": false),
+        ("green_knight_armor": false),
+        ("allison_the_twilight_knight": false),
+        ("before_the_wall": false),
+        ("beyond_the_wall": false),
+        ("white_speakr": false)
+      ]
     };
   }
   toggle(tab) {
@@ -194,45 +209,81 @@ class Settlements extends React.Component {
                     <h4>Quarry</h4>
                     <Toggle
                       updateToggle={this.toggleExpansion}
-                      for="exp_gorm"
-                      active
+                      for="gorm"
+                      active={this.state.expansions.gorm}
                       label="Gorm"
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
                       for="exp_spidicules"
-                      active
+                      active={this.state.expansions.spidicules}
                       label="Spidicules"
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
                       for="exp_dbk"
-                      active
+                      active={this.state.expansions.dung_beetle_knight}
                       label="Dung Beetle Knight"
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
                       for="exp_sunstalker"
-                      active
+                      active={this.state.expansions.sunstalker}
                       label="Sunstalker"
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
                       for="exp_lion_god"
-                      active
+                      active={this.state.expansions.lion_god}
                       label="Lion God"
                     />
                     <h4 className="mt-4">Nemisis</h4>
-                    <Toggle label="Manhunter" />
-                    <Toggle label="Lion Knight" />
-                    <Toggle label="Slenderman" />
+                    <Toggle
+                      active={this.state.expansions.manhunter}
+                      updateToggle={this.toggleExpansion}
+                      label="Manhunter"
+                    />
+                    <Toggle
+                      active={this.state.expansions.lion_knight}
+                      updateToggle={this.toggleExpansion}
+                      label="Lion Knight"
+                    />
+                    <Toggle
+                      active={this.state.expansions.slenderman}
+                      updateToggle={this.toggleExpansion}
+                      label="Slenderman"
+                    />
                     <h4 className="mt-4">Enhancement</h4>
-                    <Toggle label="Lonely Tree" />
-                    <Toggle label="Green Knight Armor" />
-                    <Toggle label="Allison the Twilight Knight" />
-                    <Toggle label="Before the Wall" />
-                    <Toggle label="Beyond the Wall" />
-                    <Toggle label="White Speaker" />
+                    <Toggle
+                      active={this.state.expansions.lonely_tree}
+                      updateToggle={this.toggleExpansion}
+                      label="Lonely Tree"
+                    />
+                    <Toggle
+                      active={this.state.expansions.green_knight_armor}
+                      updateToggle={this.toggleExpansion}
+                      label="Green Knight Armor"
+                    />
+                    <Toggle
+                      active={this.state.expansions.allison_the_twilight_knight}
+                      updateToggle={this.toggleExpansion}
+                      label="Allison the Twilight Knight"
+                    />
+                    <Toggle
+                      active={this.state.expansions.before_the_wall}
+                      updateToggle={this.toggleExpansion}
+                      label="Before the Wall"
+                    />
+                    <Toggle
+                      active={this.state.expansions.beyond_the_wall}
+                      updateToggle={this.toggleExpansion}
+                      label="Beyond the Wall"
+                    />
+                    <Toggle
+                      active={this.state.expansions.white_speakr}
+                      updateToggle={this.toggleExpansion}
+                      label="White Speaker"
+                    />
                   </div>
                   <WidgetFooter>
                     <Button color="primary" size="sm" type="submit">
