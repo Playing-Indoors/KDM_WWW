@@ -1,12 +1,12 @@
-// Place your settings in this file to overwrite default and user settings.
 {
+  // Place your settings in this file to overwrite default and user settings.
   "files.eol": "\n",
   "files.exclude": {
-    "node_modules": true,
-    "public": true
+    "node_modules": true
+    // "public": true
   },
   "editor.tabSize": 2,
-	"editor.insertSpaces": false,
+  "editor.insertSpaces": false,
   "vsicons.presets.angular": false,
   "editor.formatOnSave": true
 }

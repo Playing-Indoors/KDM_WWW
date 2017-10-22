@@ -51,7 +51,7 @@ class Login extends Component {
       <div className="layout layout--login">
         <div className="login-logo">
           <img
-            src="/public/lib/assets/logo-mark.svg"
+            src="/lib/assets/logo-mark.svg"
             alt="The Watcher | KDM Manager"
           />
         </div>
