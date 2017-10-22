@@ -3,29 +3,51 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import MilestoneDot from "./MilestoneDot";
 
+function buildMilestone(milestones, size) {
+  // Join our milestone array
+  const joinMilestones = [];
+  milestones.forEach(event => {
+    event.values.forEach(value => {
+      joinMilestones.push({
+        value,
+        handle: event.handle
+      });
+    });
+  });
+  joinMilestones.sort((a, b) => a.value - b.value);
+
+  // Build our array of milestones
+  const arrMilestones = Array(size)
+    .fill()
+    .map((x, index) => {
+      const findMilestone = joinMilestones.findIndex(
+        item => item.value === index + 1
+      );
+      if (findMilestone > -1) {
+        return {
+          handle: joinMilestones[findMilestone].handle
+        };
+      }
+      return {};
+    });
+  return arrMilestones;
+}
+
 class MilestoneDots extends Component {
   constructor(props) {
     super(props);
 
-    // Form our new milestone array from props
-    const newMiles = [];
-    if (this.props.milestones.length > 0) {
-      this.props.milestones.forEach(event => {
-        event.values.forEach(value => {
-          newMiles.push({
-            value,
-            handle: event.handle
-          });
-        });
-      });
-      newMiles.sort((a, b) => a.value - b.value);
-    }
-
     this.state = {
-      milestones: newMiles
+      milestones: buildMilestone(this.props.milestones, this.props.size)
     };
   }
+
   componentWillReceiveProps(nextProps) {
+    // if (nextProps.milestones) {
+    //   this.setState({
+    //     milestones: buildMilestone(nextProps.milestones, nextProps.size)
+    //   });
+    // }
     if (nextProps.current) {
       this.setState({
         current: nextProps.current
@@ -33,42 +55,33 @@ class MilestoneDots extends Component {
     }
   }
   renderMilestones() {
-    if (this.props.count > 0) {
-      return Array(this.props.count)
-        .fill()
-        .map((x, index) => {
-          // Search our milestone array to see if there's a match
-          const IS_EVENT = this.state.milestones.findIndex(
-            i => i.value === index + 1
+    if (this.state.milestones.length > 0) {
+      return this.state.milestones.map((stone, index) => {
+        let type = "default";
+        const IS_EVENT = Object.prototype.hasOwnProperty.call(stone, "handle");
+        const IS_FILLED = this.props.current > index;
+        if (IS_FILLED && IS_EVENT) {
+          type = "activeEvent";
+        } else if (IS_EVENT) {
+          type = "defaultEvent";
+        } else if (IS_FILLED) {
+          type = "active";
+        }
+        if (
+          (this.props.onlyMilestones && IS_EVENT) ||
+          !this.props.onlyMilestones
+        ) {
+          return (
+            <MilestoneDot
+              type={type}
+              key={index}
+              mini={this.props.mini}
+              handle={stone.handle}
+            />
           );
-          // if (IS_EVENT > -1) {
-          //   console.log(
-          //     `We hit story ${this.state.milestones[IS_EVENT].handle}`
-          //   );
-          // }
-          const IS_FILLED = this.props.current > index;
-          let type = "default";
-          // If milestone event happened
-          if (IS_FILLED && IS_EVENT > -1) {
-            type = "activeEvent";
-          } else if (IS_EVENT > -1) {
-            type = "defaultEvent";
-          } else if (IS_FILLED) {
-            type = "active";
-          }
-          if (this.props.onlyMilestones && IS_EVENT > -1) {
-            // Only show event milestones
-            return (
-              <MilestoneDot type={type} key={index} mini={this.props.mini} />
-            );
-          } else if (!this.props.onlyMilestones) {
-            // Show all milestones
-            return (
-              <MilestoneDot type={type} key={index} mini={this.props.mini} />
-            );
-          }
-          return null;
-        });
+        }
+        return null;
+      });
     }
     return null;
   }
@@ -86,7 +99,7 @@ class MilestoneDots extends Component {
 }
 
 MilestoneDots.propTypes = {
-  count: PropTypes.number,
+  size: PropTypes.number,
   current: PropTypes.number,
   // milestones describe the style as well as emits and event
   milestones: PropTypes.arrayOf(
@@ -100,7 +113,7 @@ MilestoneDots.propTypes = {
 };
 
 MilestoneDots.defaultProps = {
-  count: 1,
+  size: 1,
   current: 0,
   milestones: [],
   mini: false,

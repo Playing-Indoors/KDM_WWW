@@ -83,11 +83,6 @@ render(
           component={requireAuth(Settlement)}
         />
         <Route
-          path="/settlements/:oid/more"
-          title="More"
-          component={requireAuth(More)}
-        />
-        <Route
           path="/settlements/:oid/log"
           title="Campaign Log"
           component={requireAuth(Log)}

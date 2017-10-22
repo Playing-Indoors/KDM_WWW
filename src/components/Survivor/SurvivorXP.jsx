@@ -84,7 +84,7 @@ class SurvivorXP extends Component {
             <Stats amount={this.state.amount}>
               <MilestoneDots
                 current={this.state.amount}
-                count={this.props.max}
+                size={this.props.max}
                 mini
               />
             </Stats>
@@ -152,7 +152,7 @@ class SurvivorXP extends Component {
                 />
                 <MilestoneDots
                   current={this.state.amount}
-                  count={this.props.max}
+                  size={this.props.max}
                 />
               </TabPane>
               <TabPane tabId="weapon">Weapon Proficiency</TabPane>

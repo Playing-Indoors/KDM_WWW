@@ -29,4 +29,8 @@
     color: $brand-primary;
     outline: 0;
   }
+
+  &[disabled] {
+    color: $gray-600 !important;
+  }
 }

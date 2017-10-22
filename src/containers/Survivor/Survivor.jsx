@@ -4,13 +4,8 @@ import { bindActionCreators } from "redux";
 import _filter from "lodash/filter";
 import Header from "../../components/Header/Header";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import SurvivorAbilities from "../../components/Survivor/SurvivorAbilities";
 import SurvivorArmor from "../../components/Survivor/SurvivorArmor";
-import SurvivorDisorders from "../../components/Survivor/SurvivorDisorders";
-import SurvivorFightArts from "../../components/Survivor/SurvivorFightArts";
-import SurvivorImpairments from "../../components/Survivor/SurvivorImpairments";
 import Notes from "./_Notes";
-import SurvivorStats from "../../components/Survivor/SurvivorStats";
 import Stats from "./_SurvivorStats";
 import Assets from "./_Assets";
 import Bleeding from "./_Bleeding";
@@ -94,6 +89,8 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               limit={this.state.settlementData.sheet.survival_limit}
               actions={this.state.survivor.survival_actions}
+              canIncrease={this.state.survivor.sheet.can_gain_survival}
+              canDecrease={!this.state.survivor.sheet.cannot_spend_survival}
             />
             <Bleeding
               amount={this.state.survivor.sheet.bleeding_tokens}

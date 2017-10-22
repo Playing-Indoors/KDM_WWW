@@ -128,15 +128,15 @@ class Aya extends Component {
       <div className="page-aya">
         <h1>Style Guide</h1>
         <MilestoneDots />
-        <MilestoneDots current={3} count={5} mini />
+        <MilestoneDots current={3} size={5} mini />
         <MilestoneDots
           current={0}
-          count={9}
+          size={9}
           milestones={this.state.milestone1}
         />
         <MilestoneDots
           current={0}
-          count={16}
+          size={16}
           milestones={this.state.milestone2}
           onlyMilestones
         />

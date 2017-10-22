@@ -20,6 +20,9 @@ textarea {
 @import "./buttons";
 @import "./forms";
 
+// Custom Layouts
+@import "_layout";
+
 // Custom Components
 @import "../src/containers/Aya/Aya";
 @import "../src/components/Banner/Banner";
@@ -46,6 +49,3 @@ textarea {
 @import "../src/containers/Survivor/Survivor";
 @import "../src/containers/Settlement/Settlement";
 @import "../src/containers/World/world";
-
-// Custom Layouts
-@import "_layout";

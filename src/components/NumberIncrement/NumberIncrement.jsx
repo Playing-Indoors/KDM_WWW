@@ -45,9 +45,12 @@ class NumberIncrement extends Component {
         <button
           type="button"
           onClick={() => {
-            this.onAdjustAmount(-1);
+            if (this.props.canDecrease) {
+              this.onAdjustAmount(-1);
+            }
           }}
           className="numberIncrement-change"
+          disabled={!this.props.canDecrease}
         >
           &ndash;
         </button>
@@ -55,9 +58,12 @@ class NumberIncrement extends Component {
         <button
           type="button"
           onClick={() => {
-            this.onAdjustAmount(1);
+            if (this.props.canIncrease) {
+              this.onAdjustAmount(1);
+            }
           }}
           className="numberIncrement-change"
+          disabled={!this.props.canIncrease}
         >
           +
         </button>
@@ -70,6 +76,8 @@ class NumberIncrement extends Component {
 NumberIncrement.defaultProps = {
   name: "",
   amount: 0,
+  canDecrease: true,
+  canIncrease: true,
   min: -999,
   max: 999
 };
@@ -77,6 +85,8 @@ NumberIncrement.defaultProps = {
 NumberIncrement.propTypes = {
   name: PropTypes.string,
   amount: PropTypes.number,
+  canDecrease: PropTypes.bool,
+  canIncrease: PropTypes.bool,
   min: PropTypes.number,
   max: PropTypes.number
   // milestones: PropTypes.arrayOf(PropTypes.string),

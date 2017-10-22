@@ -6,12 +6,32 @@ import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 
+function buildMilestones(limit) {
+  // const bleeding = Array(limit - 1)
+  //   .fill()
+  //   .map((x, i) => i + 1);
+  const milestones = [
+    // {
+    //   event: "ui_prompts",
+    //   handle: "bleeding",
+    //   values: bleeding
+    // },
+    {
+      event: "ui_prompts",
+      handle: "dead",
+      values: [limit]
+    }
+  ];
+  return milestones;
+}
+
 class Bleeding extends Component {
   constructor(props) {
     super(props);
     this.state = {
       toggleModal: false,
       title: "Bleeding",
+      milestones: buildMilestones(this.props.limit),
       amount: props.amount
     };
     // Binding Events
@@ -69,7 +89,11 @@ class Bleeding extends Component {
           max={this.props.limit}
           updateAmount={this.updateAmount}
         />
-        <MilestoneDots current={this.state.amount} count={this.props.limit} />
+        <MilestoneDots
+          current={this.state.amount}
+          size={this.props.limit}
+          milestones={this.state.milestones}
+        />
       </div>
     );
   }
@@ -94,8 +118,9 @@ class Bleeding extends Component {
         {/* We use this.props so we only show the saved value */}
         <Stat amount={this.props.amount}>
           <MilestoneDots
-            current={this.state.amount}
-            count={this.props.limit}
+            current={this.props.amount}
+            size={this.props.limit}
+            milestones={this.state.milestones}
             mini
           />
         </Stat>

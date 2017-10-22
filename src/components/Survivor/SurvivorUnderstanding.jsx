@@ -61,7 +61,7 @@ class SurvivorUnderstanding extends Component {
         >
           <div className="statGroup">
             <Stats amount={this.state.amount} />
-            <MilestoneDots current={this.state.amount} count={this.props.max} />
+            <MilestoneDots current={this.state.amount} size={this.props.max} />
           </div>
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleModal}>
@@ -73,7 +73,7 @@ class SurvivorUnderstanding extends Component {
               max={this.props.max}
               updateAmount={this.updateAmount}
             />
-            <MilestoneDots current={this.state.amount} count={this.props.max} />
+            <MilestoneDots current={this.state.amount} size={this.props.max} />
           </ModalBody>
           <ModalFooter>
             {this.renderConfirm()}

@@ -44,3 +44,22 @@
     box-shadow: inset 0 0 0 3px #fff;
   }
 }
+
+// Custom Milestones
+
+.milestoneDot--h_dead:not(.milestoneDot--mini),
+.milestoneDot--h_retired:not(.milestoneDot--mini) {
+  box-shadow: inset 0 0 0 3px $red;
+
+  &.milestoneDot--active {
+    background: $red;
+    box-shadow: none;
+  }
+}
+
+.milestoneDot.milestoneDot--h_preventSurvival,
+.milestoneDot--h_dead.milestoneDot--mini.milestoneDot--active,
+.milestoneDot--h_retired.milestoneDot--mini.milestoneDot--active {
+  background: $red;
+  box-shadow: inset 0 0 0 3px $red;
+}

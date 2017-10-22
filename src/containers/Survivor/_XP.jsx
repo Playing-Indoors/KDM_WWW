@@ -72,7 +72,7 @@ class XP extends Component {
         />
         <MilestoneDots
           current={this.state.amount}
-          count={this.state.limit}
+          size={this.state.limit}
           milestones={this.props.milestones}
         />
       </div>
@@ -100,7 +100,7 @@ class XP extends Component {
         <Stat amount={this.props.amount}>
           <MilestoneDots
             current={this.props.amount}
-            count={this.state.limit}
+            size={this.state.limit}
             milestones={this.props.milestones}
             mini
             onlyMilestones

@@ -8,12 +8,12 @@ const LoadingSpinner = (absolute = false) => (
       version="1.1"
       x="0px"
       y="0px"
-      width="24px"
+      width="42px"
       height="30px"
-      viewBox="0 0 24 30"
+      viewBox="0 0 42 30"
       style={{ enableBackground: "new 0 0 50 50" }}
     >
-      <rect x={0} y={0} width={4} height={10} fill="#333">
+      <rect x={0} y={0} width={10} height={10} fill="#333">
         <animateTransform
           attributeType="xml"
           attributeName="transform"
@@ -24,7 +24,7 @@ const LoadingSpinner = (absolute = false) => (
           repeatCount="indefinite"
         />
       </rect>
-      <rect x={10} y={0} width={4} height={10} fill="#333">
+      <rect x={16} y={0} width={10} height={10} fill="#333">
         <animateTransform
           attributeType="xml"
           attributeName="transform"
@@ -35,7 +35,7 @@ const LoadingSpinner = (absolute = false) => (
           repeatCount="indefinite"
         />
       </rect>
-      <rect x={20} y={0} width={4} height={10} fill="#333">
+      <rect x={32} y={0} width={10} height={10} fill="#333">
         <animateTransform
           attributeType="xml"
           attributeName="transform"

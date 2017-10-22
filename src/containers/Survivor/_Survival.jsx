@@ -1,13 +1,44 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ModalFooter, Button } from "reactstrap";
+import { setSurvival } from "../../actions/abilities";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
-import { setSurvival } from "../../actions/abilities";
+import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 
-// TODO:
-// - API has can_gain_survival and cannot_spend_survival
+function buildMilestones(actions) {
+  const available = {
+    event: "ui_prompts",
+    handle: "availSurvival",
+    values: []
+  };
+  const unavailable = {
+    event: "ui_prompts",
+    handle: "unavailSurvival",
+    values: []
+  };
+
+  const prevent = {
+    event: "ui_prompts",
+    handle: "preventSurvival",
+    values: []
+  };
+
+  actions.forEach((item, index) => {
+    if (item.available) {
+      available.values.push(index + 1);
+    } else if (item.title_tip.includes("prevent")) {
+      prevent.values.push(index + 1);
+    } else {
+      unavailable.values.push(index + 1);
+    }
+  });
+
+  const milestones = [available, unavailable, prevent];
+
+  return milestones;
+}
 
 class Survival extends Component {
   constructor(props) {
@@ -15,7 +46,8 @@ class Survival extends Component {
     this.state = {
       toggleModal: false,
       title: "Survival",
-      amount: props.amount
+      amount: props.amount,
+      milestones: buildMilestones(this.props.actions)
     };
     // Binding Events
     this.updateAmount = this.updateAmount.bind(this);
@@ -56,6 +88,16 @@ class Survival extends Component {
   updateAmount(amount) {
     this.setState({ amount });
   }
+  checkActionsCurrent() {
+    let count = 0;
+    this.props.actions.forEach(item => {
+      if (!item.title_tip.includes("unlocked")) {
+        count += 1;
+      }
+    });
+
+    return count;
+  }
   // We pass the confirm function into the modal so that we have a pending state
   renderConfirm() {
     // Disable confirm unless we've changed data
@@ -89,6 +131,8 @@ class Survival extends Component {
           min={0}
           max={this.props.limit}
           updateAmount={this.updateAmount}
+          canIncrease={this.props.canIncrease}
+          canDecrease={this.props.canDecrease}
         />
         <div className="survivalSkills">{this.renderActions()}</div>
       </div>
@@ -113,7 +157,14 @@ class Survival extends Component {
         myClass={"survivorSurvival"}
       >
         {/* We use this.props so we only show the saved value */}
-        <Stat amount={this.props.amount} />
+        <Stat amount={this.props.amount}>
+          <MilestoneDots
+            current={this.checkActionsCurrent()}
+            size={this.props.actions.length}
+            milestones={this.state.milestones}
+            mini
+          />
+        </Stat>
         {this.renderModalBody()}
         {this.renderModalFooter()}
       </WidgetVariant>
@@ -125,6 +176,8 @@ Survival.propTypes = {
   amount: PropTypes.number,
   oid: PropTypes.string,
   limit: PropTypes.number,
+  canDecrease: PropTypes.bool,
+  canIncrease: PropTypes.bool,
   actions: PropTypes.arrayOf(PropTypes.object)
 };
 
@@ -132,6 +185,8 @@ Survival.defaultProps = {
   amount: 0,
   limit: 1,
   oid: "",
+  canDecrease: true,
+  canIncrease: true,
   actions: []
 };
 

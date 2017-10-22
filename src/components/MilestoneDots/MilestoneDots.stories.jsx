@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean, number, object } from "@storybook/addon-knobs";
+import { withKnobs, boolean, number, array } from "@storybook/addon-knobs";
 import MilestoneDots from "./MilestoneDots";
 
 const stories = storiesOf("Milestones", module);
@@ -18,9 +18,10 @@ const defaultMilestone = [
 
 stories.add("Milestones", () => (
   <MilestoneDots
-    milestones={object("Milestone object", defaultMilestone)}
+    /* milestones={array("Milestone object", defaultMilestone)} */
+    milestones={defaultMilestone}
     current={number("Current", 3)}
-    count={number("Count", 16)}
+    size={number("Size", 16)}
     mini={boolean("Mini", false)}
     onlyMilestones={boolean("Show Only Milestones", false)}
   />

@@ -34,19 +34,24 @@ body {
   display: grid;
   padding: $spacer;
   grid-gap: $spacer;
+  grid-template-columns: repeat(6, 1fr);
+
+  > * {
+    grid-column-end: span 6;
+  }
 }
 
-.layout--resources {
-  grid-template-columns: repeat(3, 1fr);
-}
+// .layout--resources {
+//   grid-template-columns: repeat(3, 1fr);
+// }
 
-.layout--gear {
-  grid-template-columns: repeat(2, 1fr);
-}
+// .layout--gear {
+//   grid-template-columns: repeat(2, 1fr);
+// }
 
-.layout--log {
-  grid-template-columns: 1fr;
-}
+// .layout--log {
+//   grid-template-columns: 1fr;
+// }
 
 .grid-2 {
   grid-column: span 2;

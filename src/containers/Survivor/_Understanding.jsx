@@ -71,7 +71,7 @@ class Understanding extends Component {
         />
         <MilestoneDots
           current={this.state.amount}
-          count={this.props.limit}
+          size={this.props.limit}
           milestones={this.props.milestones}
         />
       </div>
@@ -99,7 +99,7 @@ class Understanding extends Component {
         <Stat amount={this.props.amount}>
           <MilestoneDots
             current={this.state.amount}
-            count={this.props.limit}
+            size={this.props.limit}
             milestones={this.props.milestones}
             mini
             onlyMilestones
