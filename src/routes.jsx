@@ -79,18 +79,18 @@ render(
         />
         <Route
           path="/settlements/:oid"
+          title="Settlement"
+          component={requireAuth(Settlement)}
+        />
+        <Route
+          path="/settlements/:oid/more"
           title="More"
           component={requireAuth(More)}
         />
         <Route
-          path="/settlements/:oid/Log"
+          path="/settlements/:oid/log"
           title="Campaign Log"
           component={requireAuth(Log)}
-        />
-        <Route
-          path="/settlements/:oid/settlement"
-          title="Settlement"
-          component={requireAuth(Settlement)}
         />
         <Route
           path="/settlements/:oid/survivors"

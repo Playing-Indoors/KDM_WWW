@@ -19,8 +19,7 @@ class Nav extends Component {
       {
         title: "Settlement",
         icon: "settlement",
-        link: `/settlements/${this.props.userData.user.current_settlement
-          .$oid}/settlement`
+        link: `/settlements/${this.props.userData.user.current_settlement.$oid}`
       },
       {
         title: "Survivors",
