@@ -3,6 +3,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 const icons = {};
+icons.trash = {
+  icon:
+    '<g><path d="M0,2.06V1H3.1V0H8.26V1h3.1v1Z" /><path d="M9.29,14.45H2.06c-.72,0-1-.31-1-1V3.1h9.29V13.42C10.32,14.14,10.11,14.45,9.29,14.45Z" /></g>',
+  width: 11.35,
+  height: 14.45
+};
 icons.back = {
   icon:
     '<g><path d="M5.28,1.21.71,5.78l4.57,4.57Z" /><path d="M3,15.15H13.71V5.35H4.41" fill="none" stroke-width="3"/></g>',

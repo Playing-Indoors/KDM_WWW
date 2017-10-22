@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ModalFooter, Button, Input } from "reactstrap";
-import _sortBy from "lodash/sortBy";
 import _sortedUniq from "lodash/sortedUniq";
 import _isEqual from "lodash/isEqual";
 import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
-import CardList from "../../components/CardList/CardList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
-import Widget from "../../components/Widget/Widget";
 
 class Assets extends Component {
   constructor(props) {
@@ -134,7 +131,7 @@ class Assets extends Component {
           size="small"
           onClick={() => this.handleAbilityDeselect(index)}
         >
-          <Icon name="minus" size="12" />
+          <Icon name="trash" size="16" />
         </Button>
       </div>
     ));
