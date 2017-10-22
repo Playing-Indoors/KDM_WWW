@@ -24,8 +24,7 @@ class Survivors extends React.Component {
   }
   componentDidMount() {
     if (this.props.settlementData === null) {
-      const id = window.location.pathname.split("/");
-      this.props.getSettlement(id[2]);
+      this.props.getSettlement(this.props.params.oid);
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -197,6 +196,9 @@ function mapDispatchToProps(dispatch) {
 
 Survivors.propTypes = {
   getSettlement: PropTypes.func,
+  params: PropTypes.shape({
+    oid: PropTypes.string.isRequired
+  }),
   settlementData: PropTypes.shape({
     sheet: PropTypes.object,
     user_assets: PropTypes.object

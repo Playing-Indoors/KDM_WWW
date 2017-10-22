@@ -8,12 +8,21 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: $body-bg;
+  z-index: $zindex-loading;
+
   svg {
     width: 34px;
     height: 34px;
   }
+
   path,
   rect {
     fill: $brand-primary;
   }
+}
+
+.loadingSpinner--absolute {
+  position: absolute;
+  height: 100%;
 }

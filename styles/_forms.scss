@@ -5,3 +5,9 @@ legend {
   // margin: 0 0 $spacer;
   margin: 0;
 }
+
+.input-form--dark {
+  .form-control {
+    background: $gray-800;
+  }
+}

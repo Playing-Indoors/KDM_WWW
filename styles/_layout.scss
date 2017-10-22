@@ -193,7 +193,16 @@ h4 {
   // padding: $spacer;
 }
 
+.linkGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
 // EXPERIMENTAL BELOW
+
+// input:-webkit-autofill {
+//   background: red !important;
+// }
 
 // Custom item group floating
 .input-group-addon--floating {

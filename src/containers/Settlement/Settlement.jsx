@@ -24,12 +24,9 @@ class Settlement extends React.Component {
   }
 
   componentDidMount() {
-    const id = window.location.pathname.split("/");
-    if (
-      this.props.settlementData === null ||
-      this.props.settlementData.sheet._id.id !== id[2]
-    ) {
-      this.props.getSettlement(id[2]);
+    const id = this.props.params.oid;
+    if (id) {
+      this.props.getSettlement(id);
     }
   }
 
@@ -103,6 +100,9 @@ function mapDispatchToProps(dispatch) {
 
 Settlement.propTypes = {
   getSettlement: PropTypes.func,
+  params: PropTypes.shape({
+    oid: PropTypes.string.isRequired
+  }),
   settlementData: PropTypes.shape({
     sheet: PropTypes.object,
     user_assets: PropTypes.object

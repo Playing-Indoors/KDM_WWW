@@ -1,7 +1,9 @@
 import React from "react";
 // Credit: https://codepen.io/aurer/pen/jEGbA?q=loading&limit=all&type=type-pens
-const LoadingSpinner = () => (
-  <div className="loadingSpinner">
+const LoadingSpinner = (absolute = false) => (
+  <div
+    className={`loadingSpinner${absolute ? " loadingSpinner--absolute" : ""}`}
+  >
     <svg
       version="1.1"
       x="0px"
