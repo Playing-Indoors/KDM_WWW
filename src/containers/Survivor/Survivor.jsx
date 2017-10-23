@@ -16,11 +16,6 @@ import Understanding from "./_Understanding";
 import Weapon from "./_Weapon";
 import { getSettlement } from "../../actions/getSettlement";
 
-// TODO
-// [ ] Survivor name should be in page heading
-// [x] Survivor boxes should be css grid
-//
-
 class Survivor extends React.Component {
   constructor(props) {
     super(props);
@@ -32,17 +27,13 @@ class Survivor extends React.Component {
   }
   componentDidMount() {
     if (this.props.settlementData === null) {
-      const id = window.location.pathname.split("/");
-      this.props.getSettlement(id[2]);
+      this.props.getSettlement(this.props.params.oid);
     }
     if (this.props.settlementData) {
-      let routeId = window.location.href.substr(
-        window.location.href.lastIndexOf("/") + 1
-      );
-      let arr = _filter(
+      const arr = _filter(
         this.props.settlementData.user_assets.survivors,
         survivor => {
-          if (survivor.sheet._id.$oid === routeId) {
+          if (survivor.sheet._id.$oid === this.props.params.survivorId) {
             return survivor;
           }
         }
@@ -60,13 +51,10 @@ class Survivor extends React.Component {
       });
     }
     if (nextProps.settlementData) {
-      let routeId = window.location.href.substr(
-        window.location.href.lastIndexOf("/") + 1
-      );
-      let arr = _filter(
+      const arr = _filter(
         nextProps.settlementData.user_assets.survivors,
         survivor => {
-          if (survivor.sheet._id.$oid === routeId) {
+          if (survivor.sheet._id.$oid === this.props.params.survivorId) {
             return survivor;
           }
         }
@@ -196,6 +184,7 @@ class Survivor extends React.Component {
             <Assets
               name="Fighting Arts"
               type="fighting_art"
+              apiType="fighting_arts"
               survivorList={this.state.survivor.sheet.fighting_arts}
               assetList={this.state.settlementData.game_assets.fighting_arts}
               oid={this.state.survivor.sheet._id.$oid}
@@ -205,6 +194,7 @@ class Survivor extends React.Component {
             <Assets
               name="Disorders"
               type="disorder"
+              apiType="disorders"
               survivorList={this.state.survivor.sheet.disorders}
               assetList={this.state.settlementData.game_assets.disorders}
               oid={this.state.survivor.sheet._id.$oid}
@@ -214,6 +204,7 @@ class Survivor extends React.Component {
             <Assets
               name="Abilities"
               type="ability"
+              apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
                 this.state.settlementData.game_assets.abilities_and_impairments
@@ -223,6 +214,7 @@ class Survivor extends React.Component {
             <Assets
               name="Impairments"
               type="impairment"
+              apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
                 this.state.settlementData.game_assets.abilities_and_impairments
@@ -232,6 +224,7 @@ class Survivor extends React.Component {
             <Assets
               name="Severe Injuries"
               type="severe_injury"
+              apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
                 this.state.settlementData.game_assets.abilities_and_impairments

@@ -7,6 +7,20 @@ import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 
+// {
+//   "type": "fighting_arts",
+//   "handles": [
+//       "crossarm_block"
+//   ]
+// }
+//
+// {
+//   "type": "abilities_and_impairments",
+//   "handles": [
+//       "bitter_frenzy","ageless","analyze"
+//   ]
+// }
+
 class Assets extends Component {
   constructor(props) {
     super(props);
@@ -63,8 +77,16 @@ class Assets extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
+    // TODO: @KHOA SAVE THIS
     console.warn("Saving Assets for survivor oid", this.props.oid);
+    // Call to use with data to pass
+    const data = {
+      type: this.props.apiType,
+      handles: this.state.survivorList,
+      serialize_on_response: true // with this we will get an updated survivor. update the current survivor in redux
+    };
+    console.warn(`/survivor/replace_game_assets/${this.props.oid}`, data);
+
     this.handleModalToggle();
   }
   handleAbilitySelect(event) {
@@ -203,6 +225,7 @@ class Assets extends Component {
 Assets.defaultProps = {
   name: "",
   type: "",
+  apiType: "",
   survivorList: [],
   assetList: {},
   placeholderNumber: 1,
@@ -213,7 +236,8 @@ Assets.defaultProps = {
 
 Assets.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired, // dictionary type of assets
+  apiType: PropTypes.string.isRequired, // api type to send
   survivorList: PropTypes.arrayOf(PropTypes.string),
   assetList: PropTypes.shape(),
   placeholderNumber: PropTypes.number,

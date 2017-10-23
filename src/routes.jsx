@@ -102,7 +102,7 @@ render(
         />
 
         <Route
-          path="/settlements/:oid/survivors/:id"
+          path="/settlements/:oid/survivors/:survivorId"
           title="Survivor"
           noHeader
           back
