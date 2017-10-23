@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import { Alert, Button, FormGroup, Label, Input } from "reactstrap";
 import { authenticate } from "../../actions/login";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { browserHistory } from "react-router";
 
 class Login extends Component {
   constructor(props) {
@@ -15,9 +16,16 @@ class Login extends Component {
       error: false
     };
   }
-  componentWillMount() {
-    localStorage.clear();
+
+  componentDidMount(){
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      browserHistory.push(
+        `/settlements/`
+      );
+    }
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.authenticated.error) {
       this.setState({
