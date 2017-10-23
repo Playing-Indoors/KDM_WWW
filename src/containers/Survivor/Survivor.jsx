@@ -4,10 +4,10 @@ import { bindActionCreators } from "redux";
 import _filter from "lodash/filter";
 import Header from "../../components/Header/Header";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import SurvivorArmor from "../../components/Survivor/SurvivorArmor";
 import Notes from "./_Notes";
 import Stats from "./_SurvivorStats";
 import Assets from "./_Assets";
+import Armor from "./_Armor";
 import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
 import XP from "./_XP";
@@ -173,13 +173,13 @@ class Survivor extends React.Component {
               luck={parseInt(this.state.survivor.sheet.Luck, 10)}
               speed={parseInt(this.state.survivor.sheet.Speed, 10)}
             /> */}
-            <SurvivorArmor
-              insanity={parseInt(this.state.survivor.sheet.Insanity, 10)}
-              head={parseInt(this.state.survivor.sheet.Head, 10)}
-              arms={parseInt(this.state.survivor.sheet.Arms, 10)}
-              body={parseInt(this.state.survivor.sheet.Body, 10)}
-              waist={parseInt(this.state.survivor.sheet.Waist, 10)}
-              legs={parseInt(this.state.survivor.sheet.Legs, 10)}
+            <Armor
+              brain={this.state.survivor.sheet.Insanity}
+              head={this.state.survivor.sheet.Head}
+              arms={this.state.survivor.sheet.Arms}
+              body={this.state.survivor.sheet.Body}
+              waist={this.state.survivor.sheet.Waist}
+              legs={this.state.survivor.sheet.Legs}
             />
             <Assets
               name="Fighting Arts"
