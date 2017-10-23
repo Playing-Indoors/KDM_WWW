@@ -10,6 +10,7 @@ export function authError(error) {
   };
 }
 export function authenticate({ username, password }) {
+  console.log('hit auth');
   return function(dispatch) {
     axios.defaults.headers.common["Content-Type"] = "application/json";
     axios
@@ -17,17 +18,10 @@ export function authenticate({ username, password }) {
       .then(response => {
         localStorage.setItem("access_token", response.data.access_token);
         localStorage.setItem("userId", response.data._id);
-        axios({
-          headers: { Authorization: response.data.access_token },
-          method: "get",
-          url: `${KDM_API}/user/dashboard/${response.data._id}`
-        }).then(res => {
-          // console.log("yay works");
-          dispatch({ type: AUTH_USER });
-          browserHistory.push(
-            `/settlements/${res.data.user.current_settlement.$oid}`
-          );
-        });
+        dispatch({ type: AUTH_USER });
+        browserHistory.push(
+          `/settlements/`
+        );
       })
       .catch(err => {
         console.log("Error:", err);
