@@ -14,6 +14,7 @@ import Stat from "../../components/Stats/Stats";
 import StatGroup from "../../components/Stats/StatsGroup";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import { setManyAttributes } from "../../actions/attributes";
 
 /*
 
@@ -77,8 +78,25 @@ class SurvivorStats extends Component {
   // Handle's the save and makes the API Call
   handleConfirm() {
     // TODO: KHOA SAVE THIS SHIT.
-    console.warn("Saving all this shit. fml", this.props.oid);
-    this.handleModal();
+    console.warn("Saving Assets for survivor oid", this.props.oid);
+    // Call to use with data to pass
+    let userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      attributes: [
+        { attribute: "Strength", value: this.state.strength },
+        { attribute: "Movement", value: this.state.movement },
+        { attribute: "Accuracy", value: this.state.accuracy },
+        { attribute: "Evasion", value: this.state.evasion },
+        { attribute: "Luck", value: this.state.luck },
+        { attribute: "Speed", value: this.state.speed }
+      ]
+    };
+    console.log(data);
+    setManyAttributes(this.props.oid, data).then(res => {
+      console.log("OK", res);
+      this.handleModal();
+    });
   }
   handleUpdateAmount(amount, type) {
     this.setState({

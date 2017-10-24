@@ -13,6 +13,14 @@ export function setAttributes(survivor_id, data) {
   });
 }
 
+export function setManyAttributes(survivor_id, data) {
+  return axios({
+    method: "post",
+    url: `${KDM_API}/survivor/set_many_attributes/${survivor_id}`,
+    data: data
+  });
+}
+
 export function setSurvival(survivor_id, data) {
   return axios({
     method: "post",

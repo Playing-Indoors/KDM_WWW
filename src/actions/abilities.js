@@ -10,3 +10,11 @@ export function setAssets(survivor_id, data) {
     data: data
   });
 }
+
+export function setManyAssets(survivor_id, data) {
+  return axios({
+    method: "post",
+    url: `${KDM_API}/survivor/replace_game_assets/${survivor_id}`,
+    data: data
+  });
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { Button, FormGroup, Label, Input } from "reactstrap";
+import { passwordReset } from "../../actions/passwordReset";
 
 class Forgot extends Component {
   constructor(props) {
@@ -20,7 +21,10 @@ class Forgot extends Component {
   }
   handleFormSubmit(e) {
     e.preventDefault();
-    console.log("@Khoa send password reset api call", this.state.email);
+    passwordReset({ username: this.state.email }).then(res => {
+      console.log("Password email sent", res);
+      alert("Password email sent");
+    });
   }
   render() {
     return (

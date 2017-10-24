@@ -6,6 +6,7 @@ import _isEqual from "lodash/isEqual";
 import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import { setManyAssets } from "../../actions/abilities";
 
 // {
 //   "type": "fighting_arts",
@@ -77,17 +78,19 @@ class Assets extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: @KHOA SAVE THIS
     console.warn("Saving Assets for survivor oid", this.props.oid);
     // Call to use with data to pass
+    let userId = localStorage.getItem("userId");
     const data = {
-      type: this.props.apiType,
+      user_id: userId,
+      type: this.props.apiType, //"fighting_arts"
       handles: this.state.survivorList,
       serialize_on_response: true // with this we will get an updated survivor. update the current survivor in redux
     };
-    console.warn(`/survivor/replace_game_assets/${this.props.oid}`, data);
 
-    this.handleModalToggle();
+    setManyAssets(this.props.oid, data).then(res => {
+      this.handleModalToggle();
+    });
   }
   handleAbilitySelect(event) {
     let newSurvivorList = [...this.state.survivorList, event.target.value];

@@ -3,7 +3,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 class Logout extends Component {
   componentDidMount() {
-    console.warn("@Khoa delete login token");
+    localStorage.clear();
     this.context.router.push("/");
   }
   render() {
