@@ -194,6 +194,7 @@ class Survivor extends React.Component {
             <Assets
               name="Fighting Arts"
               type="fighting_art"
+              apiType="fighting_arts"
               survivorList={this.state.survivor.sheet.fighting_arts}
               assetList={this.state.settlementData.game_assets.fighting_arts}
               oid={this.state.survivor.sheet._id.$oid}
@@ -203,6 +204,7 @@ class Survivor extends React.Component {
             <Assets
               name="Disorders"
               type="disorder"
+              apiType="disorders"
               survivorList={this.state.survivor.sheet.disorders}
               assetList={this.state.settlementData.game_assets.disorders}
               oid={this.state.survivor.sheet._id.$oid}
@@ -212,6 +214,7 @@ class Survivor extends React.Component {
             <Assets
               name="Abilities"
               type="ability"
+              apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
                 this.state.settlementData.game_assets.abilities_and_impairments
@@ -221,6 +224,7 @@ class Survivor extends React.Component {
             <Assets
               name="Impairments"
               type="impairment"
+              apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
                 this.state.settlementData.game_assets.abilities_and_impairments
@@ -230,6 +234,7 @@ class Survivor extends React.Component {
             <Assets
               name="Severe Injuries"
               type="severe_injury"
+              apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
                 this.state.settlementData.game_assets.abilities_and_impairments
