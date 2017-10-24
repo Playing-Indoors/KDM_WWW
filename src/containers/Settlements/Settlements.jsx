@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import CardList from "../../components/CardList/CardList";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { setCurrentSettlement } from "../../actions/getUserData";
 
 class Settlements extends React.Component {
@@ -44,7 +45,7 @@ class Settlements extends React.Component {
         );
       });
     }
-    return null;
+    return <LoadingSpinner />;
   }
   render() {
     return (
