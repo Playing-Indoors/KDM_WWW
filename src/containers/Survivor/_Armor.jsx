@@ -13,16 +13,18 @@ class Armor extends Component {
     this.state = {
       toggleModal: false,
       title: "Armor",
-      insanity: props.brain,
-      head: props.head,
-      arms: props.arms,
-      body: props.body,
-      waist: props.waist,
-      legs: props.legs,
+      values: {
+        insanity: props.values.brain,
+        head: props.values.head,
+        arms: props.values.arms,
+        body: props.values.body,
+        waist: props.values.waist,
+        legs: props.values.legs
+      },
       min: -2
     };
     // Binding Events
-    this.updateAmount = this.updateAmount.bind(this);
+    this.handleUpdateAmount = this.handleUpdateAmount.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleModal = this.handleModal.bind(this);
@@ -43,10 +45,10 @@ class Armor extends Component {
     this.handleModal();
   }
   // Function to pass to Number Increment
-  handleUpdateAmount(type, amount) {
-    this.setState({
-      [type]: amount
-    });
+  handleUpdateAmount(amount, type) {
+    const values = this.state.values;
+    values[type] = amount;
+    this.forceUpdate();
   }
   // We pass the confirm function into the modal so that we have a pending state
   renderConfirm() {
@@ -71,43 +73,42 @@ class Armor extends Component {
         <NumberIncrement
           type="armor"
           name={"Insanity"}
-          amount={this.state.insanity}
+          amount={this.state.values.insanity}
           min={-1}
-          max={this.state.max}
           updateAmount={amount => this.handleUpdateAmount(amount, "insanity")}
         />
         <NumberIncrement
           type="armor"
           name={"Head"}
-          amount={this.state.head}
+          amount={this.state.values.head}
           min={this.state.min}
           updateAmount={amount => this.handleUpdateAmount(amount, "head")}
         />
         <NumberIncrement
           type="armor"
           name={"Arms"}
-          amount={this.state.arms}
+          amount={this.state.values.arms}
           min={this.state.min}
           updateAmount={amount => this.handleUpdateAmount(amount, "arms")}
         />
         <NumberIncrement
           type="armor"
           name={"Body"}
-          amount={this.state.body}
+          amount={this.state.values.body}
           min={this.state.min}
           updateAmount={amount => this.handleUpdateAmount(amount, "body")}
         />
         <NumberIncrement
           type="armor"
           name={"Waist"}
-          amount={this.state.waist}
+          amount={this.state.values.waist}
           min={this.state.min}
           updateAmount={amount => this.handleUpdateAmount(amount, "waist")}
         />
         <NumberIncrement
           type="armor"
           name={"Legs"}
-          amount={this.state.legs}
+          amount={this.state.values.legs}
           min={this.state.min}
           updateAmount={amount => this.handleUpdateAmount(amount, "legs")}
         />
@@ -134,12 +135,12 @@ class Armor extends Component {
       >
         {/* We use this.props so we only show the saved value */}
         <StatGroup>
-          <Stat name={"Brain"} amount={this.props.brain} />
-          <Stat name={"Head"} amount={this.props.head} />
-          <Stat name={"Arms"} amount={this.props.arms} />
-          <Stat name={"Body"} amount={this.props.body} />
-          <Stat name={"Waist"} amount={this.props.waist} />
-          <Stat name={"Legs"} amount={this.props.legs} />
+          <Stat name={"Brain"} amount={this.props.values.brain} />
+          <Stat name={"Head"} amount={this.props.values.head} />
+          <Stat name={"Arms"} amount={this.props.values.arms} />
+          <Stat name={"Body"} amount={this.props.values.body} />
+          <Stat name={"Waist"} amount={this.props.values.waist} />
+          <Stat name={"Legs"} amount={this.props.values.legs} />
         </StatGroup>
         {this.renderModalBody()}
         {this.renderModalFooter()}
@@ -149,23 +150,25 @@ class Armor extends Component {
 }
 
 Armor.defaultProps = {
-  oid: "",
-  brain: 0,
-  head: 0,
-  arms: 0,
-  body: 0,
-  waist: 0,
-  legs: 0
+  values: {
+    brain: 0,
+    head: 0,
+    arms: 0,
+    body: 0,
+    waist: 0,
+    legs: 0
+  }
 };
 
 Armor.propTypes = {
-  oid: PropTypes.string,
-  brain: PropTypes.number,
-  head: PropTypes.number,
-  arms: PropTypes.number,
-  body: PropTypes.number,
-  waist: PropTypes.number,
-  legs: PropTypes.number
+  values: PropTypes.shape({
+    brain: PropTypes.number,
+    head: PropTypes.number,
+    arms: PropTypes.number,
+    body: PropTypes.number,
+    waist: PropTypes.number,
+    legs: PropTypes.number
+  }).isRequired
 };
 
 export default Armor;
