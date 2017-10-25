@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { ModalFooter, Button, Input } from "reactstrap";
 import _sortedUniq from "lodash/sortedUniq";
@@ -88,11 +90,9 @@ class Assets extends Component {
       serialize_on_response: true // with this we will get an updated survivor. update the current survivor in redux
     };
 
-    setManyAssets(this.props.oid, data).then(res => {
-      console.log('res', res);
-    });
+    this.props.setManyAssets(this.props.oid, data);
     this.handleModalToggle();
-    
+
   }
   handleAbilitySelect(event) {
     let newSurvivorList = [...this.state.survivorList, event.target.value];
@@ -251,4 +251,13 @@ Assets.propTypes = {
   oid: PropTypes.string
 };
 
-export default Assets;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setManyAssets
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Assets);

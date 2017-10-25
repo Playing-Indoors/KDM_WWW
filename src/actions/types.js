@@ -10,3 +10,4 @@ export const UPDATE_HEADER = "update_header";
 export const CLOSE_HEADER = "close_header";
 export const CREATE_SETTLEMENT = "create_settlement";
 export const GET_USER = "get_user";
+export const SET_MANY_ASSETS = "set_many_assets";
