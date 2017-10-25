@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { Button, FormGroup, Label, Input } from "reactstrap";
-
+import { newUser } from "../../actions/newUser";
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +27,21 @@ class Register extends Component {
   }
   handleFormSubmit(e) {
     e.preventDefault();
-    console.log("@Khoa send password reset api call", {
-      email: this.state.email,
-      password: this.state.password
-    });
+    if(this.state.email !== "" || this.state.password !== ""){
+      let data = {
+        username: this.state.email,
+        password: this.state.password
+      }
+      newUser(data)
+        .then((res)=>{
+          alert('OK');
+          console.log('created new user', res);
+        })
+        .catch(err => {
+          alert('no beuno');
+          console.log('err', err);
+        });
+    }
   }
   render() {
     return (

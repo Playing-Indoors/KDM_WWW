@@ -89,8 +89,10 @@ class Assets extends Component {
     };
 
     setManyAssets(this.props.oid, data).then(res => {
-      this.handleModalToggle();
+      console.log('res', res);
     });
+    this.handleModalToggle();
+    
   }
   handleAbilitySelect(event) {
     let newSurvivorList = [...this.state.survivorList, event.target.value];
