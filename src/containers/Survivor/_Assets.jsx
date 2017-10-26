@@ -31,7 +31,8 @@ class Assets extends Component {
       survivorList: props.survivorList,
       survivorListHumanized: [],
       toggleModal: false,
-      selectValue: ""
+      selectValue: "",
+      isSaving: false
     };
     // Binding Events
     this.handleCancel = this.handleCancel.bind(this);
@@ -68,7 +69,8 @@ class Assets extends Component {
   // Controls opening up the modal
   handleModalToggle() {
     this.setState({
-      toggleModal: !this.state.toggleModal
+      toggleModal: !this.state.toggleModal,
+      isSaving: true
     });
   }
   // Cancel event from the modal, reset the state.
@@ -92,6 +94,9 @@ class Assets extends Component {
 
     // this.props.setManyAssets(this.props.oid, data);
     try {
+      this.setState({
+        isSaving: true
+      });
       await this.props.setManyAssets(this.props.oid, data);
       this.handleModalToggle();
     } catch (error) {
@@ -194,6 +199,13 @@ class Assets extends Component {
   }
   // Controls what shows inside of the modal
   renderModalBody() {
+    if (this.state.isSaving) {
+      return (
+        <div className="layout">
+          <TextList list={this.state.survivorListHumanized} showDetails />
+        </div>
+      );
+    }
     return (
       <div className="layout">
         {this.renderSurvivorList()}
@@ -203,6 +215,9 @@ class Assets extends Component {
   }
   // Controls the functionality of modal footer buttons
   renderModalFooter() {
+    if (this.state.isSaving) {
+      return null;
+    }
     return (
       <ModalFooter>
         {this.renderConfirm()}

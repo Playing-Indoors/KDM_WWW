@@ -11,7 +11,7 @@ var path = require("path"),
 
 var config = {
   context: path.resolve(assets_path),
-  entry: [path.join(__dirname, "/src/routes.jsx")],
+  entry: ["babel-polyfill", path.join(__dirname, "/src/routes.jsx")],
   output: {
     path: path.join(__dirname, "/public/"),
     // filename: 'bundle.[chunkhash].js',
