@@ -79,20 +79,24 @@ class Assets extends Component {
     this.handleModalToggle();
   }
   // Handle's the save and makes the API Call
-  handleConfirm() {
+  async handleConfirm() {
     console.warn("Saving Assets for survivor oid", this.props.oid);
     // Call to use with data to pass
-    let userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
     const data = {
       user_id: userId,
-      type: this.props.apiType, //"fighting_arts"
+      type: this.props.apiType,
       handles: this.state.survivorList,
       serialize_on_response: true // with this we will get an updated survivor. update the current survivor in redux
     };
 
-    this.props.setManyAssets(this.props.oid, data);
-    this.handleModalToggle();
-
+    // this.props.setManyAssets(this.props.oid, data);
+    try {
+      await this.props.setManyAssets(this.props.oid, data);
+      this.handleModalToggle();
+    } catch (error) {
+      console.warn("sorry something went wrong");
+    }
   }
   handleAbilitySelect(event) {
     let newSurvivorList = [...this.state.survivorList, event.target.value];
