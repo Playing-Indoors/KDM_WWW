@@ -5,9 +5,9 @@ import _filter from "lodash/filter";
 import Header from "../../components/Header/Header";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Notes from "./_Notes";
-import Armor from "./_Armor";
 import Stats from "./_SurvivorStats";
 import Assets from "./_Assets";
+import Armor from "./_Armor";
 import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
 import XP from "./_XP";
@@ -16,33 +16,23 @@ import Understanding from "./_Understanding";
 import Weapon from "./_Weapon";
 import { getSettlement } from "../../actions/getSettlement";
 
-// TODO
-// [ ] Survivor name should be in page heading
-// [x] Survivor boxes should be css grid
-//
-
 class Survivor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       settlementData: null,
-      survivor: null,
-      fightingArts: ["Unconscious Fighter", "Knights Step", "Keg Smash"]
+      survivor: null
     };
   }
   componentDidMount() {
     if (this.props.settlementData === null) {
-      const id = window.location.pathname.split("/");
-      this.props.getSettlement(id[2]);
+      this.props.getSettlement(this.props.params.oid);
     }
     if (this.props.settlementData) {
-      let routeId = window.location.href.substr(
-        window.location.href.lastIndexOf("/") + 1
-      );
-      let arr = _filter(
+      const arr = _filter(
         this.props.settlementData.user_assets.survivors,
         survivor => {
-          if (survivor.sheet._id.$oid === routeId) {
+          if (survivor.sheet._id.$oid === this.props.params.survivorId) {
             return survivor;
           }
         }
@@ -60,13 +50,10 @@ class Survivor extends React.Component {
       });
     }
     if (nextProps.settlementData) {
-      let routeId = window.location.href.substr(
-        window.location.href.lastIndexOf("/") + 1
-      );
-      let arr = _filter(
+      const arr = _filter(
         nextProps.settlementData.user_assets.survivors,
         survivor => {
-          if (survivor.sheet._id.$oid === routeId) {
+          if (survivor.sheet._id.$oid === this.props.params.survivorId) {
             return survivor;
           }
         }
@@ -89,6 +76,8 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               limit={this.state.settlementData.sheet.survival_limit}
               actions={this.state.survivor.survival_actions}
+              canIncrease={this.state.survivor.sheet.can_gain_survival}
+              canDecrease={!this.state.survivor.sheet.cannot_spend_survival}
             />
             <Bleeding
               amount={this.state.survivor.sheet.bleeding_tokens}
@@ -184,12 +173,12 @@ class Survivor extends React.Component {
               speed={parseInt(this.state.survivor.sheet.Speed, 10)}
             /> */}
             <Armor
-              insanity={parseInt(this.state.survivor.sheet.Insanity, 10)}
-              head={parseInt(this.state.survivor.sheet.Head, 10)}
-              arms={parseInt(this.state.survivor.sheet.Arms, 10)}
-              body={parseInt(this.state.survivor.sheet.Body, 10)}
-              waist={parseInt(this.state.survivor.sheet.Waist, 10)}
-              legs={parseInt(this.state.survivor.sheet.Legs, 10)}
+              brain={this.state.survivor.sheet.Insanity}
+              head={this.state.survivor.sheet.Head}
+              arms={this.state.survivor.sheet.Arms}
+              body={this.state.survivor.sheet.Body}
+              waist={this.state.survivor.sheet.Waist}
+              legs={this.state.survivor.sheet.Legs}
             />
             <Assets
               name="Fighting Arts"

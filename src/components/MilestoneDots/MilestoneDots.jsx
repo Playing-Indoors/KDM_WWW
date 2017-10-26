@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import MilestoneDot from "./MilestoneDot";
 
+// TODO: make this support non dots too (used in survival)
+
 function buildMilestone(milestones, size) {
   // Join our milestone array
   const joinMilestones = [];

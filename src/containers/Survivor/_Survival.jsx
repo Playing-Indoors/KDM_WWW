@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ModalFooter, Button } from "reactstrap";
+import classNames from "classnames";
 import { setSurvival } from "../../actions/abilities";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
@@ -77,8 +78,8 @@ class Survival extends Component {
   // Handle's the save and makes the API Call
   handleConfirm() {
     console.warn("Saving survival for survivor oid", this.props.oid);
-    let userId = localStorage.getItem("userId");
-    let data = {
+    const userId = localStorage.getItem("userId");
+    const data = {
       user_id: userId,
       value: this.state.amount
     };
@@ -123,7 +124,13 @@ class Survival extends Component {
   // Displays the survivor actions
   renderActions() {
     return this.props.actions.map(action => (
-      <span className={action.available ? "is-active" : ""} key={action.handle}>
+      <span
+        className={classNames({
+          "is-active": action.available,
+          "is-prevented": action.title_tip.includes("prevent")
+        })}
+        key={action.handle}
+      >
         {action.name}
       </span>
     ));

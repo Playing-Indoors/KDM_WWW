@@ -44,5 +44,9 @@
     &.is-active {
       color: #fff;
     }
+
+    &.is-prevented {
+      color: $red;
+    }
   }
 }
