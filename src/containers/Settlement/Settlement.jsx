@@ -25,7 +25,7 @@ class Settlement extends React.Component {
 
   componentDidMount() {
     const id = this.props.params.oid;
-    if (id) {
+    if (id && this.props.settlementData === null) {
       this.props.getSettlement(id);
     }
   }
