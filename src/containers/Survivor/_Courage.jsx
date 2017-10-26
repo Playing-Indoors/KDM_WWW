@@ -20,6 +20,11 @@ class Courage extends Component {
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleModal = this.handleModal.bind(this);
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      amount: nextProps.amount
+    });
+  }
   // Controls opening up the modal
   handleModal() {
     this.setState({

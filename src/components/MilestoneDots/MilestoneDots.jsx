@@ -53,6 +53,12 @@ class MilestoneDots extends Component {
         current: nextProps.current
       });
     }
+    if (nextProps.milestones) {
+      this.setState({
+        milestones: buildMilestone(nextProps.milestones, nextProps.size),
+        current: nextProps.current
+      });
+    }
   }
   renderMilestones() {
     if (this.state.milestones.length > 0) {

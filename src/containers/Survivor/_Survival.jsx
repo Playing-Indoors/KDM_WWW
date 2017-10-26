@@ -55,6 +55,12 @@ class Survival extends Component {
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleModal = this.handleModal.bind(this);
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      amount: nextProps.amount,
+      milestones: buildMilestones(nextProps.actions)
+    });
+  }
   // Controls opening up the modal
   handleModal() {
     this.setState({

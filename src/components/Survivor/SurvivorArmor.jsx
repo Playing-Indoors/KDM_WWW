@@ -38,7 +38,6 @@ class SurvivorArmor extends Component {
     this.handleModal = this.handleModal.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
   }
-
   handleModal() {
     this.setState({
       showModal: !this.state.showModal
