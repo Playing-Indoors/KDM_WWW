@@ -26,3 +26,16 @@
   position: absolute;
   height: 100%;
 }
+
+.loadingSpinner--text {
+  position: fixed;
+  height: 170px;
+  flex-direction: column;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+
+  svg {
+    margin-bottom: 1rem;
+  }
+}

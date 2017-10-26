@@ -8,21 +8,8 @@ import _isEqual from "lodash/isEqual";
 import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import LoadingSaving from "../../components/LoadingSaving/LoadingSaving";
 import { setManyAssets } from "../../actions/abilities";
-
-// {
-//   "type": "fighting_arts",
-//   "handles": [
-//       "crossarm_block"
-//   ]
-// }
-//
-// {
-//   "type": "abilities_and_impairments",
-//   "handles": [
-//       "bitter_frenzy","ageless","analyze"
-//   ]
-// }
 
 class Assets extends Component {
   constructor(props) {
@@ -100,6 +87,9 @@ class Assets extends Component {
       await this.props.setManyAssets(this.props.oid, data);
       this.handleModalToggle();
     } catch (error) {
+      this.setState({
+        isSaving: false
+      });
       console.warn("sorry something went wrong");
     }
   }
@@ -200,11 +190,7 @@ class Assets extends Component {
   // Controls what shows inside of the modal
   renderModalBody() {
     if (this.state.isSaving) {
-      return (
-        <div className="layout">
-          <TextList list={this.state.survivorListHumanized} showDetails />
-        </div>
-      );
+      return <LoadingSaving />;
     }
     return (
       <div className="layout">
