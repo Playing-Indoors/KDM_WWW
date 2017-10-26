@@ -14,3 +14,4 @@ export const SET_MANY_ASSETS = "set_many_assets";
 export const SET_SURVIVAL = "set_survival";
 export const SET_BLEEDING = "set_bleeding";
 export const SET_ATTRIBUTES = "set_attributes";
+export const SET_MANY_ATTRIBUTES = "set_many_attributes";

@@ -5,6 +5,9 @@ import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setAttributes } from "../../actions/attributes";
 
 class Understanding extends Component {
   constructor(props) {
@@ -40,8 +43,14 @@ class Understanding extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
     console.warn("Saving Understanding for survivor oid", this.props.oid);
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      attribute: "Understanding",
+      value: this.state.amount
+    };
+    this.props.setAttributes(this.props.oid, data);
     this.handleModal();
   }
   // Function to pass to Number Increment
@@ -136,4 +145,13 @@ Understanding.defaultProps = {
   milestones: []
 };
 
-export default Understanding;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setAttributes
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Understanding);

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { ModalFooter, Button } from "reactstrap";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import { setAttributes } from "../../actions/attributes";
 
 class Courage extends Component {
   constructor(props) {
@@ -40,8 +43,15 @@ class Courage extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
     console.warn("Saving Courage for survivor oid", this.props.oid);
+
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      attribute: "Courage",
+      value: this.state.amount
+    };
+    this.props.setAttributes(this.props.oid, data);
     this.handleModal();
   }
   // Function to pass to Number Increment
@@ -136,4 +146,13 @@ Courage.defaultProps = {
   milestones: []
 };
 
-export default Courage;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setAttributes
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Courage);

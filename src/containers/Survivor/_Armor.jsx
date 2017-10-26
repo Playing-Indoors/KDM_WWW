@@ -6,6 +6,9 @@ import Stat from "../../components/Stats/Stats";
 import StatGroup from "../../components/Stats/StatsGroup";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setManyAttributes } from "../../actions/attributes";
 
 class Armor extends Component {
   constructor(props) {
@@ -42,6 +45,19 @@ class Armor extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      attributes: [
+        { attribute: "Insanity", value: this.state.values.insanity },
+        { attribute: "Head", value: this.state.values.head },
+        { attribute: "Arms", value: this.state.values.arms },
+        { attribute: "Body", value: this.state.values.body },
+        { attribute: "Waist", value: this.state.values.waist },
+        { attribute: "Legs", value: this.state.values.legs }
+      ]
+    };
+    this.props.setManyAttributes(this.props.oid, data);
     this.handleModal();
   }
   // Function to pass to Number Increment
@@ -171,4 +187,13 @@ Armor.propTypes = {
   }).isRequired
 };
 
-export default Armor;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setManyAttributes
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Armor);

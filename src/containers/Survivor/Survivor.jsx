@@ -179,6 +179,7 @@ class Survivor extends React.Component {
               body={this.state.survivor.sheet.Body}
               waist={this.state.survivor.sheet.Waist}
               legs={this.state.survivor.sheet.Legs}
+              oid={this.state.survivor.sheet._id.$oid}
             />
             <Assets
               name="Fighting Arts"
