@@ -21,7 +21,7 @@ class Stats extends Component {
   }
   // updates props
   componentWillReceiveProps(nextProps) {
-    if (nextProps.amount) {
+    if (nextProps.amount > -1) {
       this.setState({
         amount: nextProps.amount,
         max: nextProps.max

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { ModalFooter, Button } from "reactstrap";
 import classNames from "classnames";
-import { setSurvival } from "../../actions/abilities";
+import { setSurvival } from "../../actions/attributes";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
@@ -83,13 +85,8 @@ class Survival extends Component {
       user_id: userId,
       value: this.state.amount
     };
-    setSurvival(this.props.oid, data)
-      .then(res => {
-        this.handleModal();
-      })
-      .catch(err => {
-        console.log("Error:  ", err);
-      });
+    this.props.setSurvival(this.props.oid, data);
+    this.handleModal();
   }
   // Function to pass to Number Increment
   updateAmount(amount) {
@@ -203,4 +200,13 @@ Survival.defaultProps = {
   actions: []
 };
 
-export default Survival;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setSurvival
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Survival);
