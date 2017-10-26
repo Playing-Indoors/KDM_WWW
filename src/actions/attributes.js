@@ -1,17 +1,20 @@
 import axios from "axios";
 import { browserHistory } from "react-router";
-import { SET_SURVIVAL } from "./types.js";
+import { SET_SURVIVAL, SET_BLEEDING, SET_ATTRIBUTES } from "./types.js";
 
 const KDM_API = require("KDM_API");
 
-axios.defaults.headers.common["Content-Type"] = "application/json";
-
 export function setAttributes(survivor_id, data) {
-  return axios({
-    method: "post",
-    url: `${KDM_API}/survivor/set_attribute/${survivor_id}`,
-    data: data
-  });
+  return async dispatch => {
+    await axios({
+      method: "post",
+      url: `${KDM_API}/survivor/set_attribute/${survivor_id}`,
+      data: data
+    }).then(res => {
+      dispatch(setAttributesAsync(data, survivor_id));
+      return true;
+    });
+  };
 }
 
 export function setManyAttributes(survivor_id, data) {
@@ -35,10 +38,40 @@ export function setSurvival(survivor_id, data) {
   };
 }
 
+export function setBleeding(survivor_id, data) {
+  console.log(data);
+  return async dispatch => {
+    await axios({
+      method: "post",
+      url: `${KDM_API}/survivor/set_bleeding_tokens/${survivor_id}`,
+      data: data
+    }).then(res => {
+      console.log("res bleeding", res);
+      //TODO NEED TIM TO FIX STUFF
+      //dispatch(setBleedingAsync(data, survivor_id));
+      return true;
+    });
+  };
+}
+
+function setAttributesAsync(data, survivor_id) {
+  return {
+    survivor_id,
+    type: SET_ATTRIBUTES,
+    payload: data
+  };
+}
 function setSurvivalAsync(data, survivor_id) {
   return {
     survivor_id,
     type: SET_SURVIVAL,
+    payload: data
+  };
+}
+function setBleedingAsync(data, survivor_id) {
+  return {
+    survivor_id,
+    type: SET_BLEEDING,
     payload: data
   };
 }

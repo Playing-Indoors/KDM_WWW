@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { ModalFooter, Button } from "reactstrap";
+import { setBleeding } from "../../actions/attributes";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
@@ -60,8 +63,14 @@ class Bleeding extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
     console.warn("Saving Bleeding for survivor oid", this.props.oid);
+
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      value: this.state.amount
+    };
+    this.props.setBleeding(this.props.oid, data);
     this.handleModal();
   }
   // Function to pass to Number Increment
@@ -148,4 +157,13 @@ Bleeding.defaultProps = {
   oid: ""
 };
 
-export default Bleeding;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setBleeding
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Bleeding);

@@ -1,7 +1,8 @@
 import {
   GET_SETTLEMENT,
   SET_MANY_ASSETS,
-  SET_SURVIVAL
+  SET_SURVIVAL,
+  SET_ATTRIBUTES
 } from "../actions/types";
 
 export default function(state = null, action) {
@@ -32,6 +33,22 @@ export default function(state = null, action) {
         .indexOf(action.survivor_id);
       newSurvivors = state.user_assets.survivors;
       newSurvivors[index].sheet.survival = action.payload.value;
+      settlement = Object.assign({}, state, {
+        user_assets: {
+          players: state.user_assets.players,
+          survivors: newSurvivors
+        }
+      });
+      return settlement;
+    case SET_ATTRIBUTES:
+      index = state.user_assets.survivors
+        .map(el => {
+          return el.sheet._id.$oid;
+        })
+        .indexOf(action.survivor_id);
+      newSurvivors = state.user_assets.survivors;
+      newSurvivors[index].sheet[action.payload.attribute] =
+        action.payload.value;
       settlement = Object.assign({}, state, {
         user_assets: {
           players: state.user_assets.players,
