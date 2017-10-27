@@ -15,7 +15,8 @@ import StatGroup from "../../components/Stats/StatsGroup";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 import { setManyAttributes } from "../../actions/attributes";
-
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 /*
 
   Stat Array
@@ -92,11 +93,8 @@ class SurvivorStats extends Component {
         { attribute: "Speed", value: this.state.speed }
       ]
     };
-    console.log(data);
-    setManyAttributes(this.props.oid, data).then(res => {
-      console.log("OK", res);
-      this.handleModal();
-    });
+    this.props.setManyAttributes(this.props.oid, data);
+    this.handleModal();
   }
   handleUpdateAmount(amount, type) {
     this.setState({
@@ -386,4 +384,13 @@ SurvivorStats.defaultProps = {
   speedTokens: 0
 };
 
-export default SurvivorStats;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setManyAttributes
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(SurvivorStats);

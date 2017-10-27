@@ -4,6 +4,7 @@ import {
   SET_SURVIVAL,
   SET_BLEEDING,
   SET_ATTRIBUTES,
+  SET_MANY_ARMOR,
   SET_MANY_ATTRIBUTES
 } from "./types.js";
 
@@ -22,6 +23,19 @@ export function setAttributes(survivor_id, data) {
   };
 }
 
+export function setManyArmor(survivor_id, data) {
+  return async dispatch => {
+    await axios({
+      method: "post",
+      url: `${KDM_API}/survivor/set_many_attributes/${survivor_id}`,
+      data: data
+    }).then(res => {
+      dispatch(setManyArmorAsync(data, survivor_id));
+      return true;
+    });
+  };
+}
+
 export function setManyAttributes(survivor_id, data) {
   return async dispatch => {
     await axios({
@@ -29,8 +43,7 @@ export function setManyAttributes(survivor_id, data) {
       url: `${KDM_API}/survivor/set_many_attributes/${survivor_id}`,
       data: data
     }).then(res => {
-      console.log("res many attri", res);
-      //dispatch(setManyAttributesAsync(data, survivor_id));
+      dispatch(setManyAttributesAsync(data, survivor_id));
       return true;
     });
   };
@@ -65,6 +78,13 @@ export function setBleeding(survivor_id, data) {
   };
 }
 
+function setManyArmorAsync(data, survivor_id) {
+  return {
+    survivor_id,
+    type: SET_MANY_ARMOR,
+    payload: data
+  };
+}
 function setManyAttributesAsync(data, survivor_id) {
   return {
     survivor_id,

@@ -8,7 +8,7 @@ import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 import WidgetVariant from "../../components/Widget/WidgetVariant";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setManyAttributes } from "../../actions/attributes";
+import { setManyArmor } from "../../actions/attributes";
 
 class Armor extends Component {
   constructor(props) {
@@ -17,12 +17,12 @@ class Armor extends Component {
       toggleModal: false,
       title: "Armor",
       values: {
-        insanity: props.values.brain,
-        head: props.values.head,
-        arms: props.values.arms,
-        body: props.values.body,
-        waist: props.values.waist,
-        legs: props.values.legs
+        insanity: props.brain,
+        head: props.head,
+        arms: props.arms,
+        body: props.body,
+        waist: props.waist,
+        legs: props.legs
       },
       min: -2
     };
@@ -57,7 +57,7 @@ class Armor extends Component {
         { attribute: "Legs", value: this.state.values.legs }
       ]
     };
-    this.props.setManyAttributes(this.props.oid, data);
+    this.props.setManyArmor(this.props.oid, data);
     this.handleModal();
   }
   // Function to pass to Number Increment
@@ -151,12 +151,12 @@ class Armor extends Component {
       >
         {/* We use this.props so we only show the saved value */}
         <StatGroup>
-          <Stat name={"Brain"} amount={this.props.values.brain} />
-          <Stat name={"Head"} amount={this.props.values.head} />
-          <Stat name={"Arms"} amount={this.props.values.arms} />
-          <Stat name={"Body"} amount={this.props.values.body} />
-          <Stat name={"Waist"} amount={this.props.values.waist} />
-          <Stat name={"Legs"} amount={this.props.values.legs} />
+          <Stat name={"Brain"} amount={this.props.brain} />
+          <Stat name={"Head"} amount={this.props.head} />
+          <Stat name={"Arms"} amount={this.props.arms} />
+          <Stat name={"Body"} amount={this.props.body} />
+          <Stat name={"Waist"} amount={this.props.waist} />
+          <Stat name={"Legs"} amount={this.props.legs} />
         </StatGroup>
         {this.renderModalBody()}
         {this.renderModalFooter()}
@@ -190,7 +190,7 @@ Armor.propTypes = {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setManyAttributes
+      setManyArmor
     },
     dispatch
   );
