@@ -63,16 +63,13 @@ export function setSurvival(survivor_id, data) {
 }
 
 export function setBleeding(survivor_id, data) {
-  console.log(data);
   return async dispatch => {
     await axios({
       method: "post",
       url: `${KDM_API}/survivor/set_bleeding_tokens/${survivor_id}`,
       data: data
     }).then(res => {
-      console.log("res bleeding", res);
-      //TODO NEED TIM TO FIX STUFF
-      //dispatch(setBleedingAsync(data, survivor_id));
+      dispatch(setBleedingAsync(data, survivor_id));
       return true;
     });
   };
