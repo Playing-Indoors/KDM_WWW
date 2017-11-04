@@ -69,22 +69,6 @@ class XP extends Component {
     }
     return "primary";
   }
-  // We pass the confirm function into the modal so that we have a pending state
-  renderConfirm() {
-    // Disable confirm unless we've changed data
-    if (this.state.amount === this.props.amount) {
-      return (
-        <Button color="light" onClick={this.handleConfirm}>
-          Confirm
-        </Button>
-      );
-    }
-    return (
-      <Button color="primary" onClick={this.handleConfirm}>
-        Confirm
-      </Button>
-    );
-  }
   // Renders our component
   render() {
     return (
@@ -99,7 +83,7 @@ class XP extends Component {
         >
           <Stat amount={this.state.amount}>
             <MilestoneDots
-              current={this.props.amount}
+              current={this.state.amount}
               size={this.state.limit}
               milestones={this.props.milestones}
               mini
