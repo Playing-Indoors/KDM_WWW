@@ -72,6 +72,7 @@ export function setSurvival(survivor_id, data) {
       data: data
     })
       .then(res => {
+        // console.log("res survival", res);
         dispatch(setSurvivalAsync(data, survivor_id));
         return true;
       })
@@ -83,7 +84,6 @@ export function setSurvival(survivor_id, data) {
 }
 
 export function setBleeding(survivor_id, data) {
-  console.log(data);
   return async dispatch => {
     await axios({
       method: "post",
@@ -91,7 +91,7 @@ export function setBleeding(survivor_id, data) {
       data: data
     })
       .then(res => {
-        console.log("res bleeding", res);
+        // console.log("res bleeding", res);
         dispatch(setBleedingAsync(data, survivor_id));
         return true;
       })
