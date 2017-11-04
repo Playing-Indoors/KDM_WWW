@@ -9,6 +9,7 @@ import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
 
+// Builds our milestones object
 function buildMilestones(actions) {
   const available = {
     event: "ui_prompts",
@@ -46,7 +47,6 @@ class Survival extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleModal: false,
       title: "Survival",
       amount: props.amount,
       showModal: false,

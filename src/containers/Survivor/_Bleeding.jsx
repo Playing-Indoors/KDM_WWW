@@ -24,8 +24,8 @@ class Bleeding extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleModal: false,
       title: "Bleeding",
+      showModal: false,
       milestones: buildMilestones(this.props.limit),
       amount: props.amount
     };
