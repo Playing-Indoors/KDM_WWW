@@ -24,8 +24,15 @@ class Settlement extends React.Component {
   }
 
   componentDidMount() {
+    // Grabs any current settlement data that we might have
+    const currentSettlement = this.props.settlementData;
     const id = this.props.params.oid;
-    if (id && this.props.settlementData === null) {
+    if (
+      // Checks to see if we have data
+      currentSettlement === null ||
+      // Makes sure that data is up to date
+      currentSettlement.sheet._id.$oid !== id
+    ) {
       this.props.getSettlement(id);
     }
   }

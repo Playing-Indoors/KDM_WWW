@@ -31,6 +31,20 @@
   }
 
   &[disabled] {
-    color: $red !important;
+    color: $gray-600;
+
+    &:hover,
+    &:focus {
+      color: $gray-600;
+    }
+  }
+}
+
+.numberIncrement-change--prevented[disabled] {
+  color: $red;
+
+  &:hover,
+  &:focus {
+    color: $red;
   }
 }

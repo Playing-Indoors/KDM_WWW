@@ -79,7 +79,7 @@ class Survival extends Component {
   }
   // Handle's the save and makes the API Call
   handleConfirm() {
-    console.warn("Saving survival for survivor oid", this.props.oid);
+    console.log("Saving survival for survivor oid", this.props.oid);
     const userId = localStorage.getItem("userId");
     const data = {
       user_id: userId,
@@ -165,6 +165,7 @@ class Survival extends Component {
         title={this.state.title}
         toggleModal={this.state.toggleModal}
         myClass={"survivorSurvival"}
+        handleClose={this.handleClose}
       >
         {/* We use this.props so we only show the saved value */}
         <Stat amount={this.props.amount}>

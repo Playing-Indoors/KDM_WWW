@@ -23,6 +23,9 @@ class WidgetVariant extends React.Component {
     }
   }
   handleModal() {
+    if (typeof this.props.handleClose === "function") {
+      this.props.handleClose();
+    }
     this.setState({
       showModal: !this.state.showModal
     });
@@ -57,7 +60,7 @@ class WidgetVariant extends React.Component {
     }
     return (
       <ModalFooter>
-        <Button onClick={this.handleClose} color="link">
+        <Button onClick={this.handleModal} color="link">
           Cancel
         </Button>
       </ModalFooter>
@@ -90,7 +93,8 @@ WidgetVariant.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
   toggleModal: PropTypes.bool,
-  myClass: PropTypes.string
+  myClass: PropTypes.string,
+  handleClose: PropTypes.func
 };
 
 WidgetVariant.defaultProps = {
