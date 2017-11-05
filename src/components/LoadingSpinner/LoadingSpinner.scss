@@ -28,8 +28,7 @@
 }
 
 .loadingSpinner--text {
-  position: fixed;
-  height: 170px;
+  min-height: 170px;
   flex-direction: column;
   justify-content: center;
   top: 50%;
