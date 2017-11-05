@@ -173,13 +173,15 @@ class Survivor extends React.Component {
               speed={parseInt(this.state.survivor.sheet.Speed, 10)}
             /> */}
             <Armor
-              brain={this.state.survivor.sheet.Insanity}
-              head={this.state.survivor.sheet.Head}
-              arms={this.state.survivor.sheet.Arms}
-              body={this.state.survivor.sheet.Body}
-              waist={this.state.survivor.sheet.Waist}
-              legs={this.state.survivor.sheet.Legs}
               oid={this.state.survivor.sheet._id.$oid}
+              values={{
+                brain: this.state.survivor.sheet.Insanity,
+                head: this.state.survivor.sheet.Head,
+                arms: this.state.survivor.sheet.Arms,
+                body: this.state.survivor.sheet.Body,
+                waist: this.state.survivor.sheet.Waist,
+                legs: this.state.survivor.sheet.Legs
+              }}
             />
             <Assets
               name="Fighting Arts"

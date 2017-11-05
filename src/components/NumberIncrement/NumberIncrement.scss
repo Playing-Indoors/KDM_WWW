@@ -1,3 +1,14 @@
+.numberIncrementGroup {
+  display: grid;
+  grid-gap: $spacer;
+  grid-template-columns: repeat(2, 1fr);
+
+  .numberIncrement-num {
+    font-size: 3rem;
+    min-width: 75px;
+  }
+}
+
 .numberIncrement {
   display: flex;
   justify-content: center;
@@ -6,6 +17,12 @@
   flex: 1 1 200px;
   // padding: 1rem;
   font-size: 2rem;
+}
+
+.numberIncrement-title {
+  flex: 100%;
+  font-size: 14px;
+  text-align: center;
 }
 
 .numberIncrement-num {

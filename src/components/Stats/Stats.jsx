@@ -10,24 +10,24 @@ import PropTypes from "prop-types";
 // milestones - array[string] - css class array for the milestones.
 // --- Might look at making milestone an int type.
 class Stats extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: props.name,
-      amount: props.amount,
-      min: props.min || 0,
-      max: props.max || 999
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     name: props.name,
+  //     amount: props.amount,
+  //     min: props.min,
+  //     max: props.max
+  //   };
+  // }
   // updates props
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.amount > -1) {
-      this.setState({
-        amount: nextProps.amount,
-        max: nextProps.max
-      });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.amount > -1) {
+  //     this.setState({
+  //       amount: nextProps.amount,
+  //       max: nextProps.max
+  //     });
+  //   }
+  // }
   // Renders our milestones and attaches their class
   renderMilestones() {
     if (!this.props.milestones) {
@@ -35,7 +35,7 @@ class Stats extends Component {
     }
     return this.props.milestones.map((item, index) => {
       const filled =
-        item.at <= this.state.amount
+        item.at <= this.props.amount
           ? "milestone--filled milestone--active"
           : "";
       return <span key={index} className={`milestone ${filled}`} />;
@@ -50,16 +50,28 @@ class Stats extends Component {
       <span key={index} className={`status status--${item.type}`} />
     ));
   }
+  renderAmount() {
+    // Checks to see if we have a mask mapping (e.g. '-1': 'L')
+    if (
+      Object.prototype.hasOwnProperty.call(
+        this.props.mask,
+        `${this.props.amount}`
+      )
+    ) {
+      return this.props.mask[`${this.props.amount}`];
+    }
+    return this.props.amount;
+  }
   render() {
     return (
       <div className="stat">
-        <div className="stat-num">{this.state.amount}</div>
+        <div className="stat-num">{this.renderAmount()}</div>
         <div className="stat-milestone">
           {this.renderMilestones()}
           {this.props.children}
           {this.renderStatus()}
         </div>
-        <div className="stat-title">{this.state.name}</div>
+        <div className="stat-title">{this.props.name}</div>
       </div>
     );
   }
@@ -82,7 +94,16 @@ Stats.propTypes = {
       type: PropTypes.string
     })
   ),
+  mask: PropTypes.shape(),
   children: PropTypes.node
+};
+
+Stats.defaultProps = {
+  name: "",
+  amount: 0,
+  min: 0,
+  max: 999,
+  mask: {}
 };
 
 export default Stats;

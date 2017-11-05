@@ -22,16 +22,19 @@ class NumberIncrement extends Component {
     const isMore = this.props.amount > this.props.min;
     return isMore && this.props.canDecrease;
   }
-  // Renders the amount. Supports special styles
+  // Renders the amount. Supports Masking
   renderAmount() {
-    if (this.props.amount === -1 && this.props.type === "armor") {
-      return "L";
-    } else if (this.props.amount === -2 && this.props.type === "armor") {
-      return "H";
+    // Checks to see if we have a mask mapping (e.g. '-1': 'L')
+    if (
+      Object.prototype.hasOwnProperty.call(
+        this.props.mask,
+        `${this.props.amount}`
+      )
+    ) {
+      return this.props.mask[`${this.props.amount}`];
     }
     return this.props.amount;
   }
-
   render() {
     return (
       <div className="numberIncrement">
@@ -78,7 +81,8 @@ NumberIncrement.defaultProps = {
   canDecrease: true,
   canIncrease: true,
   min: -999,
-  max: 999
+  max: 999,
+  mask: {}
 };
 
 NumberIncrement.propTypes = {
@@ -88,7 +92,8 @@ NumberIncrement.propTypes = {
   canIncrease: PropTypes.bool,
   min: PropTypes.number,
   max: PropTypes.number,
-  updateAmount: PropTypes.func.isRequired
+  updateAmount: PropTypes.func.isRequired,
+  mask: PropTypes.shape()
   // milestones: PropTypes.arrayOf(PropTypes.string),
 };
 
