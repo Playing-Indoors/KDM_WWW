@@ -194,6 +194,20 @@ h4 {
   }
 }
 
+.nav--gray {
+  background: none;
+
+  .nav-link {
+    color: #fff;
+  }
+
+  .nav-link.active {
+    background: none;
+    color: $brand-primary;
+    box-shadow: none;
+  }
+}
+
 .tab-pane {
   // padding: $spacer;
 }

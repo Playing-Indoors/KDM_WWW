@@ -5,8 +5,6 @@ import _isEqual from "lodash/isEqual";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import StatGroup from "../../components/Stats/StatsGroup";
-import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
-import WidgetVariant from "../../components/Widget/WidgetVariant";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setManyArmor } from "../../actions/attributes";
