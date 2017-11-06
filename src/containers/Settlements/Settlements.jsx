@@ -29,7 +29,7 @@ class Settlements extends React.Component {
   }
   renderSettlements() {
     if (this.props.userData && this.props.userData.dashboard) {
-      return this.props.userData.dashboard.settlements.map(settlement => {
+      return this.props.userData.dashboard.campaigns.map(settlement => {
         return (
           // <CardList
           //   name={settlement.sheet.name}
