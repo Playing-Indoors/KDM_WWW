@@ -1,44 +1,40 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 // TODO
 // [ ] Better format this so that the width doesn't change on increment/decrement
 // [ ] Add support for H, L
 
 class NumberIncrement extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      amount: props.amount || 0
-    };
+  // Calls our parent function to change the amount
+  handleAmountChange(amount) {
+    const newAmount = this.props.amount + amount;
+    this.props.updateAmount(newAmount);
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      amount: nextProps.amount
-    });
+  // Makes sure we can increase the amount
+  handleCanIncrease() {
+    const isLess = this.props.amount < this.props.max;
+    return isLess && this.props.canIncrease;
   }
-  onAdjustAmount(amount) {
-    // Temporary adjust value
-    let newAmount = this.state.amount + amount;
-    // Make sure we don't go beyond our min/max
-    if (newAmount < this.props.min) {
-      this.props.updateAmount(this.props.min);
-    } else if (newAmount > this.props.max) {
-      this.props.updateAmount(this.props.max);
-    } else {
-      this.props.updateAmount(newAmount);
-    }
+  // Makes sure we can decrease the amount
+  handleCanDecrease() {
+    const isMore = this.props.amount > this.props.min;
+    return isMore && this.props.canDecrease;
   }
+  // Renders the amount. Supports Masking
   renderAmount() {
-    if (this.state.amount === -1 && this.props.type === "armor") {
-      return "L";
-    } else if (this.state.amount === -2 && this.props.type === "armor") {
-      return "H";
-    } else {
-      return this.state.amount;
+    // Checks to see if we have a mask mapping (e.g. '-1': 'L')
+    if (
+      Object.prototype.hasOwnProperty.call(
+        this.props.mask,
+        `${this.props.amount}`
+      )
+    ) {
+      return this.props.mask[`${this.props.amount}`];
     }
+    return this.props.amount;
   }
-
   render() {
     return (
       <div className="numberIncrement">
@@ -46,11 +42,14 @@ class NumberIncrement extends Component {
           type="button"
           onClick={() => {
             if (this.props.canDecrease) {
-              this.onAdjustAmount(-1);
+              this.handleAmountChange(-1);
             }
           }}
-          className="numberIncrement-change"
-          disabled={!this.props.canDecrease}
+          className={classNames({
+            "numberIncrement-change": true,
+            "numberIncrement-change--prevented": !this.props.canDecrease
+          })}
+          disabled={!this.handleCanDecrease()}
         >
           &ndash;
         </button>
@@ -59,11 +58,14 @@ class NumberIncrement extends Component {
           type="button"
           onClick={() => {
             if (this.props.canIncrease) {
-              this.onAdjustAmount(1);
+              this.handleAmountChange(1);
             }
           }}
-          className="numberIncrement-change"
-          disabled={!this.props.canIncrease}
+          className={classNames({
+            "numberIncrement-change": true,
+            "numberIncrement-change--prevented": !this.props.canIncrease
+          })}
+          disabled={!this.handleCanIncrease()}
         >
           +
         </button>
@@ -79,7 +81,8 @@ NumberIncrement.defaultProps = {
   canDecrease: true,
   canIncrease: true,
   min: -999,
-  max: 999
+  max: 999,
+  mask: {}
 };
 
 NumberIncrement.propTypes = {
@@ -88,7 +91,9 @@ NumberIncrement.propTypes = {
   canDecrease: PropTypes.bool,
   canIncrease: PropTypes.bool,
   min: PropTypes.number,
-  max: PropTypes.number
+  max: PropTypes.number,
+  updateAmount: PropTypes.func.isRequired,
+  mask: PropTypes.shape()
   // milestones: PropTypes.arrayOf(PropTypes.string),
 };
 

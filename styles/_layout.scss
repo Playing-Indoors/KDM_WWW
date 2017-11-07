@@ -97,7 +97,7 @@ progress::-webkit-progress-value {
 
 // Update Model
 
-.modal.show {
+.modal {
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -191,6 +191,20 @@ h4 {
 
   &:not([href]):not([tabindex]) {
     box-shadow: inset 0 -4px 0px theme-color("white");
+  }
+}
+
+.nav--gray {
+  background: none;
+
+  .nav-link {
+    color: #fff;
+  }
+
+  .nav-link.active {
+    background: none;
+    color: $brand-primary;
+    box-shadow: none;
   }
 }
 

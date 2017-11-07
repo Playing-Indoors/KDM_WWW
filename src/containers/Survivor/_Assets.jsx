@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import { ModalFooter, Button, Input } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 import _sortedUniq from "lodash/sortedUniq";
 import _isEqual from "lodash/isEqual";
 import Icon from "../../components/Icon/Icon";
@@ -17,16 +17,16 @@ class Assets extends Component {
     this.state = {
       survivorList: props.survivorList,
       survivorListHumanized: [],
-      toggleModal: false,
+      showModal: false,
       selectValue: "",
       isSaving: false
     };
-    // Binding Events
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleConfirm = this.handleConfirm.bind(this);
-    this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleAbilitySelect = this.handleAbilitySelect.bind(this);
     this.handleAbilityDeselect = this.handleAbilityDeselect.bind(this);
+    // Binding Events
+    this.handleModalToggle = this.handleModalToggle.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleModalConfirm = this.handleModalConfirm.bind(this);
   }
   componentWillMount() {
     this.createSurvivorListHumanized(this.state.survivorList);
@@ -56,21 +56,26 @@ class Assets extends Component {
   // Controls opening up the modal
   handleModalToggle() {
     this.setState({
-      toggleModal: !this.state.toggleModal,
-      isSaving: true
+      showModal: !this.state.showModal
+    });
+  }
+  // Resets our data
+  resetData() {
+    this.setState({
+      survivorList: this.props.survivorList
     });
   }
   // Cancel event from the modal, reset the state.
   handleCancel() {
-    this.setState({
-      survivorList: this.props.survivorList
-    });
     this.handleModalToggle();
+    this.resetData();
   }
+
   // Handle's the save and makes the API Call
-  async handleConfirm() {
-    console.warn("Saving Assets for survivor oid", this.props.oid);
-    // Call to use with data to pass
+  async handleModalConfirm() {
+    this.setState({
+      isSaving: true
+    });
     const userId = localStorage.getItem("userId");
     const data = {
       user_id: userId,
@@ -80,18 +85,20 @@ class Assets extends Component {
     };
 
     // this.props.setManyAssets(this.props.oid, data);
-    try {
-      this.setState({
-        isSaving: true
+    await this.props
+      .setManyAssets(this.props.oid, data)
+      .then(() => {
+        this.handleModalToggle();
+        this.setState({
+          isSaving: false
+        });
+      })
+      .catch(e => {
+        console.warn("sorry something went wrong", e);
+        this.setState({
+          isSaving: false
+        });
       });
-      await this.props.setManyAssets(this.props.oid, data);
-      this.handleModalToggle();
-    } catch (error) {
-      this.setState({
-        isSaving: false
-      });
-      console.warn("sorry something went wrong");
-    }
   }
   handleAbilitySelect(event) {
     let newSurvivorList = [...this.state.survivorList, event.target.value];
@@ -113,27 +120,19 @@ class Assets extends Component {
       )
     }));
   }
+  // Determines the color of the confirm button
+  confirmColor() {
+    if (_isEqual(this.state.survivorList, this.props.survivorList)) {
+      return "light";
+    }
+    return "primary";
+  }
   renderAssetLookup(handle, attribute) {
     const asset = this.props.assetList[handle];
     if (asset) {
       return asset[attribute];
     }
     return null;
-  }
-  // We pass the confirm function into the modal so that we have a pending state
-  renderConfirm() {
-    if (_isEqual(this.state.survivorList, this.props.survivorList)) {
-      return (
-        <Button color="light" onClick={this.handleConfirm}>
-          Confirm
-        </Button>
-      );
-    }
-    return (
-      <Button color="primary" onClick={this.handleConfirm}>
-        Confirm
-      </Button>
-    );
   }
   renderAvailableList() {
     const assets = Object.entries(this.props.assetList);
@@ -206,28 +205,39 @@ class Assets extends Component {
     }
     return (
       <ModalFooter>
-        {this.renderConfirm()}
+        <Button color={this.confirmColor()} onClick={this.handleModalConfirm}>
+          Confirm
+        </Button>
         <Button onClick={this.handleCancel} color="link">
           Cancel
         </Button>
       </ModalFooter>
     );
   }
+  // Renders our component
   render() {
     return (
-      <WidgetVariant
-        title={this.props.name}
-        toggleModal={this.state.toggleModal}
-        myClass={`survivor-${this.props.type}`}
-      >
-        <TextList
-          list={this.state.survivorListHumanized}
-          minimum={this.props.placeholderNumber}
-          showDetails
-        />
-        {this.renderModalBody()}
-        {this.renderModalFooter()}
-      </WidgetVariant>
+      <div className={`widget survivor-${this.props.type}`}>
+        <header className={"widget-header widget-header--link"}>
+          <div className="widget-header-title">{this.props.name}</div>
+        </header>
+        <button
+          type="button"
+          className="widget-content"
+          onClick={this.handleModalToggle}
+        >
+          <TextList
+            list={this.state.survivorListHumanized}
+            minimum={this.props.placeholderNumber}
+            showDetails
+          />
+        </button>
+        <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
+          <ModalHeader>Adjust {this.state.title}</ModalHeader>
+          <ModalBody>{this.renderModalBody()}</ModalBody>
+          {this.renderModalFooter()}
+        </Modal>
+      </div>
     );
   }
 }

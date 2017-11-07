@@ -127,59 +127,51 @@ class Survivor extends React.Component {
             /> */}
             <Stats
               oid={this.state.survivor.sheet._id.$oid}
-              movement={this.state.survivor.sheet.Movement}
-              accuracy={this.state.survivor.sheet.Accuracy}
-              strength={this.state.survivor.sheet.Strength}
-              evasion={this.state.survivor.sheet.Evasion}
-              luck={this.state.survivor.sheet.Luck}
-              speed={this.state.survivor.sheet.Speed}
-              movementGear={
-                this.state.survivor.sheet.attribute_detail.Movement.gear
-              }
-              movementTokens={
-                this.state.survivor.sheet.attribute_detail.Movement.Token
-              }
-              accuracyGear={
-                this.state.survivor.sheet.attribute_detail.Accuracy.gear
-              }
-              strengthGear={
-                this.state.survivor.sheet.attribute_detail.Strength.gear
-              }
-              evasionGear={
-                this.state.survivor.sheet.attribute_detail.Evasion.gear
-              }
-              luckGear={this.state.survivor.sheet.attribute_detail.Luck.gear}
-              speedGear={this.state.survivor.sheet.attribute_detail.Speed.gear}
-              accuracyTokens={
-                this.state.survivor.sheet.attribute_detail.Accuracy.Token
-              }
-              strengthTokens={
-                this.state.survivor.sheet.attribute_detail.Strength.Token
-              }
-              evasionTokens={
-                this.state.survivor.sheet.attribute_detail.Evasion.Token
-              }
-              luckTokens={this.state.survivor.sheet.attribute_detail.Luck.Token}
-              speedTokens={
-                this.state.survivor.sheet.attribute_detail.Speed.Token
-              }
+              movement={{
+                stat: this.state.survivor.sheet.Movement,
+                token: this.state.survivor.sheet.attribute_detail.Movement
+                  .tokens,
+                gear: this.state.survivor.sheet.attribute_detail.Movement.gear
+              }}
+              accuracy={{
+                stat: this.state.survivor.sheet.Accuracy,
+                token: this.state.survivor.sheet.attribute_detail.Accuracy
+                  .tokens,
+                gear: this.state.survivor.sheet.attribute_detail.Accuracy.gear
+              }}
+              strength={{
+                stat: this.state.survivor.sheet.Strength,
+                token: this.state.survivor.sheet.attribute_detail.Strength
+                  .tokens,
+                gear: this.state.survivor.sheet.attribute_detail.Strength.gear
+              }}
+              evasion={{
+                stat: this.state.survivor.sheet.Evasion,
+                token: this.state.survivor.sheet.attribute_detail.Evasion
+                  .tokens,
+                gear: this.state.survivor.sheet.attribute_detail.Evasion.gear
+              }}
+              luck={{
+                stat: this.state.survivor.sheet.Luck,
+                token: this.state.survivor.sheet.attribute_detail.Luck.tokens,
+                gear: this.state.survivor.sheet.attribute_detail.Luck.gear
+              }}
+              speed={{
+                stat: this.state.survivor.sheet.Speed,
+                token: this.state.survivor.sheet.attribute_detail.Speed.tokens,
+                gear: this.state.survivor.sheet.attribute_detail.Speed.gear
+              }}
             />
-            {/* <SurvivorStats
-              movement={parseInt(this.state.survivor.sheet.Movement, 10)}
-              accuracy={parseInt(this.state.survivor.sheet.Accuracy, 10)}
-              strength={parseInt(this.state.survivor.sheet.Strength, 10)}
-              evasion={parseInt(this.state.survivor.sheet.Evasion, 10)}
-              luck={parseInt(this.state.survivor.sheet.Luck, 10)}
-              speed={parseInt(this.state.survivor.sheet.Speed, 10)}
-            /> */}
             <Armor
-              brain={this.state.survivor.sheet.Insanity}
-              head={this.state.survivor.sheet.Head}
-              arms={this.state.survivor.sheet.Arms}
-              body={this.state.survivor.sheet.Body}
-              waist={this.state.survivor.sheet.Waist}
-              legs={this.state.survivor.sheet.Legs}
               oid={this.state.survivor.sheet._id.$oid}
+              values={{
+                brain: this.state.survivor.sheet.Insanity,
+                head: this.state.survivor.sheet.Head,
+                arms: this.state.survivor.sheet.Arms,
+                body: this.state.survivor.sheet.Body,
+                waist: this.state.survivor.sheet.Waist,
+                legs: this.state.survivor.sheet.Legs
+              }}
             />
             <Assets
               name="Fighting Arts"

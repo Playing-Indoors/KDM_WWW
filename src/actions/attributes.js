@@ -16,10 +16,15 @@ export function setAttributes(survivor_id, data) {
       method: "post",
       url: `${KDM_API}/survivor/set_attribute/${survivor_id}`,
       data: data
-    }).then(res => {
-      dispatch(setAttributesAsync(data, survivor_id));
-      return true;
-    });
+    })
+      .then(res => {
+        dispatch(setAttributesAsync(data, survivor_id));
+        return true;
+      })
+      .catch(error => {
+        console.warn("actions error", error);
+        return false;
+      });
   };
 }
 
@@ -29,10 +34,15 @@ export function setManyArmor(survivor_id, data) {
       method: "post",
       url: `${KDM_API}/survivor/set_many_attributes/${survivor_id}`,
       data: data
-    }).then(res => {
-      dispatch(setManyArmorAsync(data, survivor_id));
-      return true;
-    });
+    })
+      .then(res => {
+        dispatch(setManyArmorAsync(data, survivor_id));
+        return true;
+      })
+      .catch(error => {
+        console.warn("actions error", error);
+        return false;
+      });
   };
 }
 
@@ -42,10 +52,15 @@ export function setManyAttributes(survivor_id, data) {
       method: "post",
       url: `${KDM_API}/survivor/set_many_attributes/${survivor_id}`,
       data: data
-    }).then(res => {
-      dispatch(setManyAttributesAsync(data, survivor_id));
-      return true;
-    });
+    })
+      .then(res => {
+        dispatch(setManyAttributesAsync(data, survivor_id));
+        return true;
+      })
+      .catch(error => {
+        console.warn("actions error", error);
+        return false;
+      });
   };
 }
 
@@ -55,10 +70,16 @@ export function setSurvival(survivor_id, data) {
       method: "post",
       url: `${KDM_API}/survivor/set_survival/${survivor_id}`,
       data: data
-    }).then(res => {
-      dispatch(setSurvivalAsync(data, survivor_id));
-      return true;
-    });
+    })
+      .then(res => {
+        // console.log("res survival", res);
+        dispatch(setSurvivalAsync(data, survivor_id));
+        return true;
+      })
+      .catch(error => {
+        console.warn("actions error", error);
+        return false;
+      });
   };
 }
 

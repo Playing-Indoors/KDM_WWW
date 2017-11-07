@@ -2,23 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import { ModalFooter, Button } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 import { setBleeding } from "../../actions/attributes";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
-import WidgetVariant from "../../components/Widget/WidgetVariant";
 
+// Builds our milestones object
 function buildMilestones(limit) {
-  // const bleeding = Array(limit - 1)
-  //   .fill()
-  //   .map((x, i) => i + 1);
   const milestones = [
-    // {
-    //   event: "ui_prompts",
-    //   handle: "bleeding",
-    //   values: bleeding
-    // },
     {
       event: "ui_prompts",
       handle: "dead",
@@ -32,115 +24,113 @@ class Bleeding extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleModal: false,
       title: "Bleeding",
+      showModal: false,
       milestones: buildMilestones(this.props.limit),
       amount: props.amount
     };
     // Binding Events
-    this.updateAmount = this.updateAmount.bind(this);
+    this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
-    this.handleConfirm = this.handleConfirm.bind(this);
-    this.handleModal = this.handleModal.bind(this);
+    this.handleModalConfirm = this.handleModalConfirm.bind(this);
+    this.handleUpdateAmount = this.handleUpdateAmount.bind(this);
   }
+  // Updates props
   componentWillReceiveProps(nextProps) {
     this.setState({
-      amount: nextProps.amount
+      amount: nextProps.amount,
+      milestones: buildMilestones(nextProps.limit)
     });
   }
-  // Controls opening up the modal
-  handleModal() {
+  // Toggles the visibility of the modal
+  handleModalToggle() {
     this.setState({
-      toggleModal: !this.state.toggleModal
+      showModal: !this.state.showModal
+    });
+  }
+  // Resets our data
+  resetData() {
+    this.setState({
+      amount: this.props.amount
     });
   }
   // Cancel event from the modal, reset the state.
   handleCancel() {
-    this.setState({
-      amount: this.props.amount
-    });
-    this.handleModal();
+    this.handleModalToggle();
+    this.resetData();
   }
   // Handle's the save and makes the API Call
-  handleConfirm() {
-    console.warn("Saving Bleeding for survivor oid", this.props.oid);
-
+  handleModalConfirm() {
     const userId = localStorage.getItem("userId");
     const data = {
       user_id: userId,
       value: this.state.amount
     };
-    this.props.setBleeding(this.props.oid, data);
-    this.handleModal();
+    this.handleModalToggle();
+    this.props.setBleeding(this.props.oid, data).catch(() => {
+      this.resetData();
+    });
   }
-  // Function to pass to Number Increment
-  updateAmount(amount) {
+  // Pass to Number Increment to update amount
+  handleUpdateAmount(amount) {
     this.setState({ amount });
   }
-  // We pass the confirm function into the modal so that we have a pending state
-  renderConfirm() {
-    // Disable confirm unless we've changed data
+  // Determines the color of the confirm button
+  confirmColor() {
     if (this.state.amount === this.props.amount) {
-      return (
-        <Button color="light" onClick={this.handleConfirm}>
-          Confirm
-        </Button>
-      );
+      return "light";
     }
-    return (
-      <Button color="primary" onClick={this.handleConfirm}>
-        Confirm
-      </Button>
-    );
+    return "primary";
   }
-  // Controls what shows inside of the modal
-  renderModalBody() {
-    return (
-      <div>
-        <NumberIncrement
-          amount={this.state.amount}
-          min={0}
-          max={this.props.limit}
-          updateAmount={this.updateAmount}
-        />
-        <MilestoneDots
-          current={this.state.amount}
-          size={this.props.limit}
-          milestones={this.state.milestones}
-        />
-      </div>
-    );
-  }
-  // Controls the functionality of modal footer buttons
-  renderModalFooter() {
-    return (
-      <ModalFooter>
-        {this.renderConfirm()}
-        <Button onClick={this.handleCancel} color="link">
-          Cancel
-        </Button>
-      </ModalFooter>
-    );
-  }
+  // Renders our component
   render() {
     return (
-      <WidgetVariant
-        title={this.state.title}
-        toggleModal={this.state.toggleModal}
-        myClass={"survivorBleeding"}
-      >
-        {/* We use this.props so we only show the saved value */}
-        <Stat amount={this.props.amount}>
-          <MilestoneDots
-            current={this.props.amount}
-            size={this.props.limit}
-            milestones={this.state.milestones}
-            mini
-          />
-        </Stat>
-        {this.renderModalBody()}
-        {this.renderModalFooter()}
-      </WidgetVariant>
+      <div className={"widget survivorBleeding"}>
+        <header className={"widget-header widget-header--link"}>
+          <div className="widget-header-title">{this.state.title}</div>
+        </header>
+        <button
+          type="button"
+          className="widget-content"
+          onClick={this.handleModalToggle}
+        >
+          <Stat amount={this.state.amount}>
+            <MilestoneDots
+              current={this.state.amount}
+              size={this.props.limit}
+              milestones={this.state.milestones}
+              mini
+            />
+          </Stat>
+        </button>
+        <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
+          <ModalHeader>Adjust {this.state.title}</ModalHeader>
+          <ModalBody>
+            <NumberIncrement
+              amount={this.state.amount}
+              min={0}
+              max={this.props.limit}
+              updateAmount={this.handleUpdateAmount}
+            />
+            <MilestoneDots
+              current={this.state.amount}
+              size={this.props.limit}
+              milestones={this.state.milestones}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color={this.confirmColor()}
+              onClick={this.handleModalConfirm}
+            >
+              Confirm
+            </Button>
+            <Button onClick={this.handleCancel} color="link">
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+      </div>
     );
   }
 }
@@ -148,7 +138,8 @@ class Bleeding extends Component {
 Bleeding.propTypes = {
   amount: PropTypes.number,
   oid: PropTypes.string,
-  limit: PropTypes.number
+  limit: PropTypes.number,
+  setBleeding: PropTypes.func
 };
 
 Bleeding.defaultProps = {

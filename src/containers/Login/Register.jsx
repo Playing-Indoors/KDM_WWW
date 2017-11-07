@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import { Button, FormGroup, Label, Input } from "reactstrap";
 import { newUser } from "../../actions/newUser";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -32,15 +35,7 @@ class Register extends Component {
         username: this.state.email,
         password: this.state.password
       }
-      newUser(data)
-        .then((res)=>{
-          alert('OK');
-          console.log('created new user', res);
-        })
-        .catch(err => {
-          alert('no beuno');
-          console.log('err', err);
-        });
+      this.props.newUser(data);
     }
   }
   render() {
@@ -106,4 +101,13 @@ class Register extends Component {
   }
 }
 
-export default Register;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      newUser: newUser
+    },
+    dispatch
+  );
+}
+
+export default connect(null, mapDispatchToProps)(Register);

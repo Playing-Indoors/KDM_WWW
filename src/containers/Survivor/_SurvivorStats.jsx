@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
+  Modal,
+  ModalBody,
+  ModalHeader,
   ModalFooter,
   Button,
   Nav,
@@ -9,53 +12,62 @@ import {
   TabContent,
   TabPane
 } from "reactstrap";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import _isEqual from "lodash/isEqual";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import StatGroup from "../../components/Stats/StatsGroup";
-import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
-import WidgetVariant from "../../components/Widget/WidgetVariant";
 import { setManyAttributes } from "../../actions/attributes";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-/*
-
-  Stat Array
-  Attribute Array
-
-*/
 
 class SurvivorStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleModal: false,
+      showModal: false,
       activeTab: 1,
-      title: "Primary Stats",
-      movement: this.props.movement,
-      accuracy: this.props.accuracy,
-      strength: this.props.strength,
-      evasion: this.props.evasion,
-      luck: this.props.luck,
-      speed: this.props.speed,
-      movementGear: this.props.movementGear,
-      movementTokens: this.props.movementTokens,
-      accuracyGear: this.props.accuracyGear,
-      strengthGear: this.props.strengthGear,
-      evasionGear: this.props.evasionGear,
-      luckGear: this.props.luckGear,
-      speedGear: this.props.speedGear,
-      accuracyTokens: this.props.accuracyTokens,
-      strengthTokens: this.props.strengthTokens,
-      evasionTokens: this.props.evasionTokens,
-      luckTokens: this.props.luckTokens,
-      speedTokens: this.props.speedTokens
+      title: "Stats",
+      movement: {
+        stat: props.movement.stat,
+        token: props.movement.token,
+        gear: props.movement.gear
+      },
+      accuracy: {
+        stat: props.accuracy.stat,
+        token: props.accuracy.token,
+        gear: props.accuracy.gear
+      },
+      strength: {
+        stat: props.strength.stat,
+        token: props.strength.token,
+        gear: props.strength.gear
+      },
+      evasion: {
+        stat: props.evasion.stat,
+        token: props.evasion.token,
+        gear: props.evasion.gear
+      },
+      luck: {
+        stat: props.luck.stat,
+        token: props.luck.token,
+        gear: props.luck.gear
+      },
+      speed: {
+        stat: props.speed.stat,
+        token: props.speed.token,
+        gear: props.speed.gear
+      }
     };
     // Binding Events
     this.handleTabChange = this.handleTabChange.bind(this);
     this.handleUpdateAmount = this.handleUpdateAmount.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
-    this.handleConfirm = this.handleConfirm.bind(this);
-    this.handleModal = this.handleModal.bind(this);
+    this.handleModalConfirm = this.handleModalConfirm.bind(this);
+    this.handleModalToggle = this.handleModalToggle.bind(this);
+  }
+  getTotal(attribute) {
+    const stat = this.state[attribute];
+    return stat.stat + stat.token + stat.gear;
   }
   handleTabChange(tab) {
     this.setState({
@@ -63,325 +75,335 @@ class SurvivorStats extends Component {
       activeTab: tab
     });
   }
-  // Controls opening up the modal
-  handleModal() {
+  // Toggles the visibility of the modal
+  handleModalToggle() {
     this.setState({
-      toggleModal: !this.state.toggleModal
+      showModal: !this.state.showModal
+    });
+  }
+  // Resets our data
+  resetData() {
+    // console.log(this.props.values);
+    this.setState({
+      movement: this.props.movement,
+      accuracy: this.props.accuracy,
+      strength: this.props.strength,
+      evasion: this.props.evasion,
+      luck: this.props.luck,
+      speed: this.props.speed
     });
   }
   // Cancel event from the modal, reset the state.
   handleCancel() {
-    this.setState({
-      amount: this.props.amount
-    });
-    this.handleModal();
+    this.handleModalToggle();
+    this.resetData();
   }
   // Handle's the save and makes the API Call
-  handleConfirm() {
-    // TODO: KHOA SAVE THIS SHIT.
-    console.warn("Saving Assets for survivor oid", this.props.oid);
+  handleModalConfirm() {
     // Call to use with data to pass
-    let userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
     const data = {
       user_id: userId,
       attributes: [
-        { attribute: "Strength", value: this.state.strength },
-        { attribute: "Movement", value: this.state.movement },
-        { attribute: "Accuracy", value: this.state.accuracy },
-        { attribute: "Evasion", value: this.state.evasion },
-        { attribute: "Luck", value: this.state.luck },
-        { attribute: "Speed", value: this.state.speed }
+        { attribute: "Strength", value: this.state.strength.stat },
+        { attribute: "Movement", value: this.state.movement.stat },
+        { attribute: "Accuracy", value: this.state.accuracy.stat },
+        { attribute: "Evasion", value: this.state.evasion.stat },
+        { attribute: "Luck", value: this.state.luck.stat },
+        { attribute: "Speed", value: this.state.speed.stat }
       ]
     };
     this.props.setManyAttributes(this.props.oid, data);
-    this.handleModal();
+    this.handleModalToggle();
   }
-  handleUpdateAmount(amount, type) {
-    this.setState({
-      [type]: amount
-    });
+  handleUpdateAmount(amount, attribute, type) {
+    const value = this.state[attribute];
+    value[type] = amount;
+    this.forceUpdate();
   }
-  // We pass the confirm function into the modal so that we have a pending state
-  renderConfirm() {
-    // Disable confirm unless we've changed data
-    if (this.state.amount === this.props.amount) {
-      return (
-        <Button color="light" onClick={this.handleConfirm}>
-          Confirm
-        </Button>
-      );
+  // Determines the color of the confirm button
+  confirmColor() {
+    if (
+      _isEqual(this.props.movement, this.state.movement) &&
+      _isEqual(this.props.accuracy, this.state.accuracy) &&
+      _isEqual(this.props.strength, this.state.strength) &&
+      _isEqual(this.props.evasion, this.state.evasion) &&
+      _isEqual(this.props.luck, this.state.luck) &&
+      _isEqual(this.props.speed, this.state.speed)
+    ) {
+      return "light";
     }
-    return (
-      <Button color="primary" onClick={this.handleConfirm}>
-        Confirm
-      </Button>
-    );
+    return "primary";
   }
-  // Controls what shows inside of the modal
-  renderModalBody() {
-    return (
-      <div>
-        <Nav tabs>
-          <NavItem>
-            <NavLink
-              tabIndex="0"
-              className={`${this.state.activeTab === 1 ? "active" : ""}`}
-              onClick={() => {
-                this.handleTabChange(1);
-              }}
-            >
-              Permanent
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              tabIndex="0"
-              className={`${this.state.activeTab === 2 ? "active" : ""}`}
-              onClick={() => {
-                this.handleTabChange(2);
-              }}
-            >
-              Gear
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              tabIndex="0"
-              className={`${this.state.activeTab === 3 ? "active" : ""}`}
-              onClick={() => {
-                this.handleTabChange(3);
-              }}
-            >
-              Tokens
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId={1}>
-            <StatGroup>
-              <NumberIncrement
-                name={"Movement"}
-                min={1}
-                amount={this.state.movement}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "movement")}
-              />
-              <NumberIncrement
-                name={"Accuracy"}
-                amount={this.state.accuracy}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "accuracy")}
-              />
-              <NumberIncrement
-                name={"Strength"}
-                amount={this.state.strength}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "strength")}
-              />
-              <NumberIncrement
-                name={"Evasion"}
-                amount={this.state.evasion}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "evasion")}
-              />
-              <NumberIncrement
-                name={"Luck"}
-                amount={this.state.luck}
-                updateAmount={amount => this.handleUpdateAmount(amount, "luck")}
-              />
-              <NumberIncrement
-                name={"Speed"}
-                min={1}
-                amount={this.state.speed}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "speed")}
-              />
-            </StatGroup>
-          </TabPane>
-          <TabPane tabId={2}>
-            <StatGroup>
-              <NumberIncrement
-                name={"Movement"}
-                amount={this.state.movementGear}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "movementGear")}
-              />
-              <NumberIncrement
-                name={"Accuracy"}
-                amount={this.state.accuracyGear}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "accuracyGear")}
-              />
-              <NumberIncrement
-                name={"Strength"}
-                amount={this.state.strengthGear}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "strengthGear")}
-              />
-              <NumberIncrement
-                name={"Evasion"}
-                amount={this.state.evasionGear}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "evasionGear")}
-              />
-              <NumberIncrement
-                name={"Luck"}
-                amount={this.state.luckGear}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "luckGear")}
-              />
-              <NumberIncrement
-                name={"Speed"}
-                amount={this.state.speedGear}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "speedGear")}
-              />
-            </StatGroup>
-          </TabPane>
-          <TabPane tabId={3}>
-            <StatGroup>
-              <NumberIncrement
-                name={"Movement"}
-                amount={this.state.movementTokens}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "movementTokens")}
-              />
-              <NumberIncrement
-                name={"Accuracy"}
-                amount={this.state.accuracyTokens}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "accuracyTokens")}
-              />
-              <NumberIncrement
-                name={"Strength"}
-                amount={this.state.strengthTokens}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "strengthTokens")}
-              />
-              <NumberIncrement
-                name={"Evasion"}
-                amount={this.state.evasionTokens}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "evasionTokens")}
-              />
-              <NumberIncrement
-                name={"Luck"}
-                amount={this.state.luckTokens}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "luckTokens")}
-              />
-              <NumberIncrement
-                name={"Speed"}
-                amount={this.state.speedTokens}
-                updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "speedGear")}
-              />
-            </StatGroup>
-          </TabPane>
-        </TabContent>
-      </div>
-    );
-  }
-  // renderModifiers(type) {
-  //   return this.state.order.map(stat => {
-  //     if (this.props.modifiers[stat]) {
-  //       const amount = this.props.modifiers[stat][type];
-  //       return
-  //       <NumberIncrement
-  //       key={`${stat}${type}`} name={stat}
-  //         amount={amount}
-  //         updateAmount={this.updateAmount.bind(this, "movement")}
-  //       />
-  //       <Stat key={`${stat}${type}`} name={stat} amount={amount} />;
-  //     }
-  //     return null;
-  //     // <Stat name={"Mov"} amount={this.props.movement} />
-  //   });
-  // }
-  // Controls the functionality of modal footer buttons
-  renderModalFooter() {
-    return (
-      <ModalFooter>
-        {this.renderConfirm()}
-        <Button onClick={this.handleCancel} color="link">
-          Cancel
-        </Button>
-      </ModalFooter>
-    );
-  }
-  renderStats() {
-    return (
-      <StatGroup>
-        <Stat name={"Mov"} amount={this.props.movement} />
-        <Stat name={"Acc"} amount={this.props.accuracy} />
-        <Stat name={"Str"} amount={this.props.strength} />
-        <Stat name={"Eva"} amount={this.props.evasion} />
-        <Stat name={"Luck"} amount={this.props.luck} />
-        <Stat name={"Spd"} amount={this.props.speed} />
-      </StatGroup>
-    );
-  }
+
+  // Renders our component
   render() {
     return (
-      <WidgetVariant
-        title={this.state.title}
-        toggleModal={this.state.toggleModal}
-        myClass={"survivorStats"}
-        center
-      >
-        {/* We use this.props so we only show the saved value */}
-        {this.renderStats()}
-        {this.renderModalBody()}
-        {this.renderModalFooter()}
-      </WidgetVariant>
+      <div className={"widget survivorStats"}>
+        <header className={"widget-header widget-header--link"}>
+          <div className="widget-header-title">{this.state.title}</div>
+        </header>
+        <button
+          type="button"
+          className="widget-content"
+          onClick={this.handleModalToggle}
+        >
+          <StatGroup>
+            <Stat name={"Mov"} amount={this.getTotal("movement")} />
+            <Stat name={"Acc"} amount={this.getTotal("accuracy")} />
+            <Stat name={"Str"} amount={this.getTotal("strength")} />
+            <Stat name={"Eva"} amount={this.getTotal("evasion")} />
+            <Stat name={"Luck"} amount={this.getTotal("luck")} />
+            <Stat name={"Spd"} amount={this.getTotal("speed")} />
+          </StatGroup>
+        </button>
+        <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
+          <ModalHeader>Adjust {this.state.title}</ModalHeader>
+          <ModalBody>
+            <Nav tabs className="nav--gray">
+              <NavItem>
+                <NavLink
+                  tabIndex="0"
+                  className={`${this.state.activeTab === 1 ? "active" : ""}`}
+                  onClick={() => {
+                    this.handleTabChange(1);
+                  }}
+                >
+                  Permanent
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tabIndex="0"
+                  className={`${this.state.activeTab === 2 ? "active" : ""}`}
+                  onClick={() => {
+                    this.handleTabChange(2);
+                  }}
+                >
+                  Gear
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tabIndex="0"
+                  className={`${this.state.activeTab === 3 ? "active" : ""}`}
+                  onClick={() => {
+                    this.handleTabChange(3);
+                  }}
+                >
+                  Tokens
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <TabContent activeTab={this.state.activeTab}>
+              <TabPane tabId={1}>
+                <div className="numberIncrementGroup">
+                  <NumberIncrement
+                    name={"Movement"}
+                    min={1}
+                    amount={this.state.movement.stat}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "movement", "stat")}
+                  />
+                  <NumberIncrement
+                    name={"Accuracy"}
+                    amount={this.state.accuracy.stat}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "accuracy", "stat")}
+                  />
+                  <NumberIncrement
+                    name={"Strength"}
+                    amount={this.state.strength.stat}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "strength", "stat")}
+                  />
+                  <NumberIncrement
+                    name={"Evasion"}
+                    amount={this.state.evasion.stat}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "evasion", "stat")}
+                  />
+                  <NumberIncrement
+                    name={"Luck"}
+                    amount={this.state.luck.stat}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "luck", "stat")}
+                  />
+                  <NumberIncrement
+                    name={"Speed"}
+                    min={1}
+                    amount={this.state.speed.stat}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "speed", "stat")}
+                  />
+                </div>
+              </TabPane>
+              <TabPane tabId={2}>
+                <div className="numberIncrementGroup">
+                  <NumberIncrement
+                    name={"Movement"}
+                    amount={this.state.movement.gear}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "movement", "gear")}
+                  />
+                  <NumberIncrement
+                    name={"Accuracy"}
+                    amount={this.state.accuracy.gear}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "accuracy", "gear")}
+                  />
+                  <NumberIncrement
+                    name={"Strength"}
+                    amount={this.state.strength.gear}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "strength", "gear")}
+                  />
+                  <NumberIncrement
+                    name={"Evasion"}
+                    amount={this.state.evasion.gear}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "evasion", "gear")}
+                  />
+                  <NumberIncrement
+                    name={"Luck"}
+                    amount={this.state.luck.gear}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "luck", "gear")}
+                  />
+                  <NumberIncrement
+                    name={"Speed"}
+                    amount={this.state.speed.gear}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "speed", "gear")}
+                  />
+                </div>
+              </TabPane>
+              <TabPane tabId={3}>
+                <div className="numberIncrementGroup">
+                  <NumberIncrement
+                    name={"Movement"}
+                    amount={this.state.movement.token}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "movement", "token")}
+                  />
+                  <NumberIncrement
+                    name={"Accuracy"}
+                    amount={this.state.accuracy.token}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "accuracy", "token")}
+                  />
+                  <NumberIncrement
+                    name={"Strength"}
+                    amount={this.state.strength.token}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "strength", "token")}
+                  />
+                  <NumberIncrement
+                    name={"Evasion"}
+                    amount={this.state.evasion.token}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "evasion", "token")}
+                  />
+                  <NumberIncrement
+                    name={"Luck"}
+                    amount={this.state.luck.token}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "luck", "token")}
+                  />
+                  <NumberIncrement
+                    name={"Speed"}
+                    amount={this.state.speed.token}
+                    updateAmount={amount =>
+                      this.handleUpdateAmount(amount, "speed", "token")}
+                  />
+                </div>
+              </TabPane>
+            </TabContent>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color={this.confirmColor()}
+              onClick={this.handleModalConfirm}
+            >
+              Confirm
+            </Button>
+            <Button onClick={this.handleCancel} color="link">
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+      </div>
     );
   }
 }
 
 SurvivorStats.propTypes = {
-  amount: PropTypes.number,
-  oid: PropTypes.string,
-  movement: PropTypes.number,
-  accuracy: PropTypes.number,
-  strength: PropTypes.number,
-  evasion: PropTypes.number,
-  luck: PropTypes.number,
-  speed: PropTypes.number,
-  movementGear: PropTypes.number,
-  movementTokens: PropTypes.number,
-  accuracyGear: PropTypes.number,
-  strengthGear: PropTypes.number,
-  evasionGear: PropTypes.number,
-  luckGear: PropTypes.number,
-  speedGear: PropTypes.number,
-  accuracyTokens: PropTypes.number,
-  strengthTokens: PropTypes.number,
-  evasionTokens: PropTypes.number,
-  luckTokens: PropTypes.number,
-  speedTokens: PropTypes.number
+  setManyAttributes: PropTypes.func.isRequired,
+  oid: PropTypes.string.isRequired,
+  movement: PropTypes.shape({
+    stat: PropTypes.number,
+    token: PropTypes.number,
+    gear: PropTypes.number
+  }).isRequired,
+  accuracy: PropTypes.shape({
+    stat: PropTypes.number,
+    token: PropTypes.number,
+    gear: PropTypes.number
+  }).isRequired,
+  strength: PropTypes.shape({
+    stat: PropTypes.number,
+    token: PropTypes.number,
+    gear: PropTypes.number
+  }).isRequired,
+  evasion: PropTypes.shape({
+    stat: PropTypes.number,
+    token: PropTypes.number,
+    gear: PropTypes.number
+  }).isRequired,
+  luck: PropTypes.shape({
+    stat: PropTypes.number,
+    token: PropTypes.number,
+    gear: PropTypes.number
+  }).isRequired,
+  speed: PropTypes.shape({
+    stat: PropTypes.number,
+    token: PropTypes.number,
+    gear: PropTypes.number
+  }).isRequired
 };
 
 SurvivorStats.defaultProps = {
-  amount: 0,
   oid: "",
-  movement: 5,
-  accuracy: 0,
-  strength: 0,
-  evasion: 0,
-  luck: 0,
-  speed: 0,
-  movementGear: 0,
-  movementTokens: 0,
-  accuracyGear: 0,
-  strengthGear: 0,
-  evasionGear: 0,
-  luckGear: 0,
-  speedGear: 0,
-  accuracyTokens: 0,
-  strengthTokens: 0,
-  evasionTokens: 0,
-  luckTokens: 0,
-  speedTokens: 0
+  movement: PropTypes.shape({
+    stat: 0,
+    token: 0,
+    gear: 0
+  }),
+  accuracy: PropTypes.shape({
+    stat: 0,
+    token: 0,
+    gear: 0
+  }),
+  strength: PropTypes.shape({
+    stat: 0,
+    token: 0,
+    gear: 0
+  }),
+  evasion: PropTypes.shape({
+    stat: 0,
+    token: 0,
+    gear: 0
+  }),
+  luck: PropTypes.shape({
+    stat: 0,
+    token: 0,
+    gear: 0
+  }),
+  speed: PropTypes.shape({
+    stat: 0,
+    token: 0,
+    gear: 0
+  })
 };
 
 function mapDispatchToProps(dispatch) {
