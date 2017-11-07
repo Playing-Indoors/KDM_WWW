@@ -60,7 +60,12 @@ class Settlements extends React.Component {
     }
   }
   toggleExpansion(bool, type) {
-    console.warn("update toggle", type);
+    console.warn("update toggle", type, bool);
+    let expansionState = this.state.expansions;
+    expansionState[type] = bool;
+    this.setState({
+      expansions: expansionState
+    });
   }
   randomSettlement() {
     const names = [
@@ -140,11 +145,11 @@ class Settlements extends React.Component {
   handleCreate(e) {
     e.preventDefault();
     let userId = localStorage.getItem("userId");
-    console.warn("CALEB ADD IN EXPANSIONS ARRAY HERE!");
     let data = {
       user_id: userId,
       name: this.state.name,
-      campaign: this.state.campaign
+      campaign: this.state.campaign,
+      expansions: this.state.expansions
     };
     this.props.createSettlement(data);
   }
@@ -270,71 +275,80 @@ class Settlements extends React.Component {
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
-                      for="exp_spidicules"
+                      for="spidicules"
                       active={this.state.expansions.spidicules}
                       label="Spidicules"
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
-                      for="exp_dbk"
+                      for="dung_beetle_knight"
                       active={this.state.expansions.dung_beetle_knight}
                       label="Dung Beetle Knight"
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
-                      for="exp_sunstalker"
+                      for="sunstalker"
                       active={this.state.expansions.sunstalker}
                       label="Sunstalker"
                     />
                     <Toggle
                       updateToggle={this.toggleExpansion}
-                      for="exp_lion_god"
+                      for="lion_god"
                       active={this.state.expansions.lion_god}
                       label="Lion God"
                     />
                     <h4 className="mt-4">Nemisis</h4>
                     <Toggle
+                      for="manhunter"
                       active={this.state.expansions.manhunter}
                       updateToggle={this.toggleExpansion}
                       label="Manhunter"
                     />
                     <Toggle
+                      for="lion_knight"
                       active={this.state.expansions.lion_knight}
                       updateToggle={this.toggleExpansion}
                       label="Lion Knight"
                     />
                     <Toggle
+                      for="slenderman"
                       active={this.state.expansions.slenderman}
                       updateToggle={this.toggleExpansion}
                       label="Slenderman"
                     />
                     <h4 className="mt-4">Enhancement</h4>
                     <Toggle
+                      for="lonely_tree"
                       active={this.state.expansions.lonely_tree}
                       updateToggle={this.toggleExpansion}
                       label="Lonely Tree"
                     />
                     <Toggle
+                      for="green_knight_armor"
                       active={this.state.expansions.green_knight_armor}
                       updateToggle={this.toggleExpansion}
                       label="Green Knight Armor"
                     />
                     <Toggle
+                      for="allison_the_twilight_knight"
                       active={this.state.expansions.allison_the_twilight_knight}
                       updateToggle={this.toggleExpansion}
                       label="Allison the Twilight Knight"
                     />
                     <Toggle
+                      for="before_the_wall"
                       active={this.state.expansions.before_the_wall}
                       updateToggle={this.toggleExpansion}
                       label="Before the Wall"
                     />
                     <Toggle
+                      for="beyond_the_wall"
                       active={this.state.expansions.beyond_the_wall}
                       updateToggle={this.toggleExpansion}
                       label="Beyond the Wall"
                     />
                     <Toggle
+                      for="white_speakr"
                       active={this.state.expansions.white_speakr}
                       updateToggle={this.toggleExpansion}
                       label="White Speaker"
