@@ -30,11 +30,11 @@ class Register extends Component {
   }
   handleFormSubmit(e) {
     e.preventDefault();
-    if(this.state.email !== "" || this.state.password !== ""){
+    if (this.state.email !== "" || this.state.password !== "") {
       let data = {
         username: this.state.email,
         password: this.state.password
-      }
+      };
       this.props.newUser(data);
     }
   }

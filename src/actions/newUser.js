@@ -11,18 +11,16 @@ export function newUser(data) {
       url: `${KDM_API}/new/user`,
       data: data
     })
-    .then((res)=>{
-      console.log('created new user', res);
-      //localStorage.setItem("access_token", response.data.access_token);
-      //localStorage.setItem("userId", response.data._id);
-      dispatch({ type: AUTH_USER });
-      browserHistory.push(
-        `/settlements/`
-      );
-    })
-    .catch(err => {
-      alert('Unable to create account');
-      console.log('err', err);
-    });
+      .then(res => {
+        console.log("created new user", res);
+        //localStorage.setItem("access_token", response.data.access_token);
+        //localStorage.setItem("userId", response.data._id);
+        dispatch({ type: AUTH_USER });
+        browserHistory.push(`/settlements/`);
+      })
+      .catch(err => {
+        alert("Unable to create account");
+        console.log("err", err);
+      });
   };
 }

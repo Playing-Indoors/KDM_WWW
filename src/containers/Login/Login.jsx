@@ -17,12 +17,10 @@ class Login extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const token = localStorage.getItem("access_token");
     if (token) {
-      browserHistory.push(
-        `/settlements/`
-      );
+      browserHistory.push(`/settlements/`);
     }
   }
 
