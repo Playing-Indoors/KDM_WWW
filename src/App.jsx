@@ -14,7 +14,9 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.props.getUser();
+    if (localStorage.getItem("userId")) {
+      this.props.getUser();
+    }
   }
   showBack() {
     if (this.props.routes[3]) {
