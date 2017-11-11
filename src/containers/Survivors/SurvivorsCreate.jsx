@@ -1,10 +1,10 @@
 import React from "react";
 import { Button, Input, ButtonGroup } from "reactstrap";
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getSettlement } from "../../actions/getSettlement.js";
-import { createSurvivor } from "../../actions/getSurvivor.js";
+import { getSettlement } from "../../actions/getSettlement";
+import { createSurvivor } from "../../actions/getSurvivor";
 import Header from "../../components/Header/Header";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
@@ -221,7 +221,7 @@ class SurvivorCreate extends React.Component {
     if (this.state.name.length > 0) {
       createSurvivor(this.state.settlementId, this.state)
         .then(() => {
-          this.props.getSettlement();
+          this.props.getSettlement(this.props.params.oid);
           browserHistory.goBack();
         })
         .catch(err => {
