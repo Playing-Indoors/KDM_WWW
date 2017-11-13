@@ -18,8 +18,6 @@ import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
 import { createSettlement } from "../../actions/getSettlement.js";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 class Settlements extends React.Component {
   constructor(props) {
@@ -140,7 +138,7 @@ class Settlements extends React.Component {
       });
     }
   }
-  async handleCreate(e) {
+  handleCreate(e) {
     e.preventDefault();
     this.setState({
       loading: true
@@ -152,14 +150,18 @@ class Settlements extends React.Component {
       campaign: this.state.campaign,
       expansions: this.state.expansions
     };
-    try {
-      this.props.createSettlement(data);
-    } catch (error) {
-      console.warn("sorry something went wrong", error);
-      this.setState({
-        isSaving: false
+
+    createSettlement(data)
+      .then(res => {
+        console.log("CREATE", res);
+        browserHistory.goBack();
+      })
+      .catch(err => {
+        console.warn("sorry something went wrong", err);
+        this.setState({
+          isSaving: false
+        });
       });
-    }
   }
   renderCreate() {
     // TODO: This needs to be changed to see if the data is filled out, NOT last tab
@@ -356,17 +358,4 @@ class Settlements extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return { homeData: state.homeData };
-// }
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      createSettlement: createSettlement
-    },
-    dispatch
-  );
-}
-
-export default connect(null, mapDispatchToProps)(Settlements);
+export default Settlements;

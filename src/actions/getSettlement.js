@@ -29,17 +29,25 @@ export function getSettlement(id) {
 }
 
 // create call
+// export function createSettlement(data) {
+//   return dispatch => {
+//     axios({
+//       method: "post",
+//       url: `${KDM_API}/new/settlement`,
+//       data: data
+//     }).then(res => {
+//       console.log("CREATE", res);
+//       browserHistory.goBack();
+//     });
+//   };
+// }
+// pulling out of redux
 export function createSettlement(data) {
-  return dispatch => {
-    axios({
-      method: "post",
-      url: `${KDM_API}/new/settlement`,
-      data: data
-    }).then(res => {
-      console.log("CREATE", res);
-      browserHistory.goBack();
-    });
-  };
+  return axios({
+    method: "post",
+    url: `${KDM_API}/new/settlement`,
+    data: data
+  });
 }
 
 //update call
