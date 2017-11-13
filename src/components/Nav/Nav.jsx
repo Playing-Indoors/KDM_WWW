@@ -5,60 +5,58 @@ import PropTypes from "prop-types";
 import Icon from "../../components/Icon/Icon";
 
 class Nav extends Component {
-  getNav() {
-    if (!this.props.userData) {
-      return [
-        {
-          title: "Menu",
-          icon: "menu",
-          link: "/more"
-        }
-      ];
+  currentSettlement(path) {
+    const currentSettlement = this.props.userData.user.current_settlement;
+    if (currentSettlement) {
+      return `/settlements/${currentSettlement.$oid}/${path}`;
     }
+    return null;
+  }
+  getNav() {
     return [
       {
         title: "Settlement",
         icon: "settlement",
-        link: `/settlements/${this.props.userData.user.current_settlement.$oid}`
+        link: this.currentSettlement()
       },
       {
         title: "Survivors",
         icon: "survivors",
-        link: `/settlements/${this.props.userData.user.current_settlement
-          .$oid}/survivors/`
+        link: this.currentSettlement("survivors")
       },
       {
         title: "Resources",
         icon: "storage",
-        link: `/settlements/${this.props.userData.user.current_settlement
-          .$oid}/storage`
+        link: this.currentSettlement("storage")
       },
       {
         title: "Campaign Log",
         icon: "log",
-        link: `/settlements/${this.props.userData.user.current_settlement
-          .$oid}/log`
+        link: this.currentSettlement("log")
       },
       {
         title: "Menu",
         icon: "menu",
-        link: "/more"
+        link: "/dashboard"
       }
     ];
   }
   renderMainNav() {
-    return this.getNav().map((item, index) => (
-      <Link
-        key={index}
-        className="nav-link"
-        activeClassName="active"
-        to={item.link}
-        title={item.title}
-      >
-        <Icon name={item.icon} />
-        {/* <div className="nav-link-text">{item.title}</div> */}
-      </Link>
-    ));
+    if (this.props.userData) {
+      return this.getNav().map((item, index) => (
+        <Link
+          key={index}
+          className="nav-link"
+          activeClassName="active"
+          to={item.link}
+          title={item.title}
+        >
+          <Icon name={item.icon} />
+          {/* <div className="nav-link-text">{item.title}</div> */}
+        </Link>
+      ));
+    }
+    return null;
   }
   render() {
     return <nav className="mainNav">{this.renderMainNav()}</nav>;

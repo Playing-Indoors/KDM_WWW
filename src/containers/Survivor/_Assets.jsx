@@ -233,7 +233,7 @@ class Assets extends Component {
           />
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
-          <ModalHeader>Adjust {this.state.title}</ModalHeader>
+          <ModalHeader>Adjust {this.props.name}</ModalHeader>
           <ModalBody>{this.renderModalBody()}</ModalBody>
           {this.renderModalFooter()}
         </Modal>

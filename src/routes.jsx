@@ -71,7 +71,11 @@ render(
           noHeader
           back
         />
-        <Route path="/more" title="More" component={requireAuth(More)} />
+        <Route
+          path="/dashboard"
+          title="Dashboard"
+          component={requireAuth(More)}
+        />
         <Route
           path="/settings"
           title="System"

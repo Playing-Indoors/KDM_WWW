@@ -30,16 +30,21 @@ export function authenticate({ username, password }) {
           method: "get",
           url: `${KDM_API}/user/dashboard/${userId}`
         }).then(res => {
-          let settlementId = res.data.user.current_settlement.$oid;
-          dispatch(getUserAsync(res.data));
-          axios({
-            headers: { Authorization: auth },
-            method: "get",
-            url: `${KDM_API}/settlement/get/${settlementId}`
-          }).then(res => {
-            dispatch(getSettlementAsync(res.data));
-            browserHistory.push(`/settlements/${settlementId}`);
-          });
+          const currentSettlement = res.data.user.current_settlement;
+          if (currentSettlement) {
+            const settlementId = currentSettlement.$oid;
+            dispatch(getUserAsync(res.data));
+            axios({
+              headers: { Authorization: auth },
+              method: "get",
+              url: `${KDM_API}/settlement/get/${settlementId}`
+            }).then(res => {
+              dispatch(getSettlementAsync(res.data));
+              browserHistory.push(`/settlements/${settlementId}`);
+            });
+          } else {
+            browserHistory.push(`/settlements/create`);
+          }
         });
       })
       .catch(err => {

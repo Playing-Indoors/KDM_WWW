@@ -29,33 +29,37 @@ class Settlements extends React.Component {
   }
   renderSettlements() {
     if (this.props.userData && this.props.userData.dashboard) {
-      return this.props.userData.dashboard.campaigns.map(settlement => {
-        return (
-          // <CardList
-          //   name={settlement.sheet.name}
-          //   desc={settlement.sheet.campaign}
-          //   action={() => this.handleSetRedirect(settlement.sheet._id.$oid)}
-          //   key={settlement.sheet._id.$oid}
-          //   meta={[
-          //     { label: "Year", value: settlement.sheet.lantern_year },
-          //     { label: "Population", value: settlement.sheet.population },
-          //     { label: "Expansions", value: settlement.sheet.expansions.length }
-          //   ]}
-          // />
-          <CardList
-            name={settlement.$oid}
-            action={() => this.handleSetRedirect(settlement.$oid)}
-            key={settlement.$oid}
-          />
-        );
-      });
+      const campaigns = this.props.userData.dashboard.campaigns;
+      if (campaigns.length > 0) {
+        return campaigns.map(settlement => {
+          return (
+            // <CardList
+            //   name={settlement.sheet.name}
+            //   desc={settlement.sheet.campaign}
+            //   action={() => this.handleSetRedirect(settlement.sheet._id.$oid)}
+            //   key={settlement.sheet._id.$oid}
+            //   meta={[
+            //     { label: "Year", value: settlement.sheet.lantern_year },
+            //     { label: "Population", value: settlement.sheet.population },
+            //     { label: "Expansions", value: settlement.sheet.expansions.length }
+            //   ]}
+            // />
+            <CardList
+              name={settlement.$oid}
+              action={() => this.handleSetRedirect(settlement.$oid)}
+              key={settlement.$oid}
+            />
+          );
+        });
+      }
+      return <CardList name={"Create Campaign"} href={"/settlements/create"} />;
     }
     return <LoadingSpinner />;
   }
   render() {
     return (
       <div>
-        <Header name={"Settlements"} back="/more">
+        <Header name={"Settlements"} back="/dashboard">
           <Link to={"/settlements/create"} className="header-action">
             <Icon name={"plus"} />
           </Link>

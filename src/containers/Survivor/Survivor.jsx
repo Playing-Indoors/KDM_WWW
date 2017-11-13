@@ -224,10 +224,10 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               allowDuplicates
             />
-            {/* <Notes
+            <Notes
               oid={this.state.survivor.sheet._id.$oid}
-              notes={this.state.survivor.sheet.notes}
-            /> */}
+              notes={this.state.survivor.notes}
+            />
           </div>
         </div>
       );

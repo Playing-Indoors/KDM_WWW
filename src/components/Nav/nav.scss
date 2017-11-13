@@ -25,6 +25,10 @@
     align-items: center;
     color: #fff;
 
+    &:not([href]) {
+      opacity: 0.24;
+    }
+
     &:hover,
     &:focus,
     &.active {

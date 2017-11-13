@@ -17,6 +17,7 @@ import Toggle from "../../components/Toggle/Toggle";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
 import { createSettlement } from "../../actions/getSettlement.js";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -31,6 +32,7 @@ class Settlements extends React.Component {
     this.toggleExpansion = this.toggleExpansion.bind(this);
     this.randomSettlement = this.randomSettlement.bind(this);
     this.state = {
+      loading: false,
       activeTab: 1,
       name: "",
       campaign: "People of the Lantern",
@@ -44,11 +46,7 @@ class Settlements extends React.Component {
         ("lion_knight": false),
         ("slenderman": false),
         ("lonely_tree": false),
-        ("green_knight_armor": false),
-        ("allison_the_twilight_knight": false),
-        ("before_the_wall": false),
-        ("beyond_the_wall": false),
-        ("white_speakr": false)
+        ("green_knight_armor": false)
       ]
     };
   }
@@ -142,8 +140,11 @@ class Settlements extends React.Component {
       });
     }
   }
-  handleCreate(e) {
+  async handleCreate(e) {
     e.preventDefault();
+    this.setState({
+      loading: true
+    });
     let userId = localStorage.getItem("userId");
     let data = {
       user_id: userId,
@@ -151,11 +152,18 @@ class Settlements extends React.Component {
       campaign: this.state.campaign,
       expansions: this.state.expansions
     };
-    this.props.createSettlement(data);
+    try {
+      this.props.createSettlement(data);
+    } catch (error) {
+      console.warn("sorry something went wrong", error);
+      this.setState({
+        isSaving: false
+      });
+    }
   }
   renderCreate() {
     // TODO: This needs to be changed to see if the data is filled out, NOT last tab
-    const active = this.state.activeTab === 4;
+    const active = this.state.activeTab === 3;
     if (active) {
       return (
         // @Khoa - th
@@ -175,197 +183,176 @@ class Settlements extends React.Component {
     );
   }
   render() {
-    return (
-      <div>
-        <Header name={"Create New Campaign"} showBack>
-          {this.renderCreate()}
-        </Header>
-        <div className="layoutContent">
-          <Nav tabs>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: this.state.activeTab === 1 })}
-              >
-                Name
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: this.state.activeTab === 2 })}
-              >
-                Campaign
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: this.state.activeTab === 3 })}
-              >
-                Expansions
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <TabContent activeTab={this.state.activeTab}>
-            <TabPane tabId={1}>
-              <form className="layout" onSubmit={this.handleSubmit}>
-                <legend>Name the Settlement</legend>
-                <Widget>
-                  {/* @Khoa bind the value to state.name correctly */}
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Enter settlement name..."
-                    size="sm"
-                    value={this.state.name}
-                    autoFocus
-                    onChange={this.handleNameChange}
-                    required
-                  />
-                  <WidgetFooter>
-                    <Button
-                      color="gray"
-                      size="sm"
-                      type="button"
-                      onClick={this.randomSettlement}
-                    >
-                      Randomize Name
-                    </Button>
-                    <Button color="primary" size="sm" type="submit">
-                      Confirm
-                    </Button>
-                  </WidgetFooter>
-                </Widget>
-              </form>
-            </TabPane>
-            <TabPane tabId={2}>
-              <form className="layout" onSubmit={this.handleSubmit}>
-                <legend>Select Campaign</legend>
-                <Widget>
-                  <FormGroup>
+    if (!this.state.loading) {
+      return (
+        <div>
+          <Header name={"Create New Campaign"} showBack>
+            {this.renderCreate()}
+          </Header>
+          <div className="layoutContent">
+            <Nav tabs>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: this.state.activeTab === 1 })}
+                >
+                  Name
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: this.state.activeTab === 2 })}
+                >
+                  Campaign
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: this.state.activeTab === 3 })}
+                >
+                  Expansions
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <TabContent activeTab={this.state.activeTab}>
+              <TabPane tabId={1}>
+                <form className="layout" onSubmit={this.handleSubmit}>
+                  <legend>Name the Settlement</legend>
+                  <Widget>
+                    {/* @Khoa bind the value to state.name correctly */}
                     <Input
-                      type="select"
-                      name="selectMulti"
-                      id="exampleSelectMulti"
+                      type="text"
+                      name="name"
+                      placeholder="Enter settlement name..."
                       size="sm"
-                    >
-                      <option defaultValue>People of the Lantern</option>
-                      <option>People of the Stars</option>
-                      <option>People of the Sun</option>
-                      <option>The Bloom People</option>
-                    </Input>
-                  </FormGroup>
-                  <WidgetFooter>
-                    <Button color="primary" size="sm" type="submit">
-                      Confirm
-                    </Button>
-                  </WidgetFooter>
-                </Widget>
-              </form>
-            </TabPane>
-            <TabPane tabId={3}>
-              <form className="layout" onSubmit={this.handleSubmit}>
-                <legend>Select Expansions</legend>
-                <Widget>
-                  <div>
-                    <h4>Quarry</h4>
-                    <Toggle
-                      updateToggle={this.toggleExpansion}
-                      for="gorm"
-                      active={this.state.expansions.gorm}
-                      label="Gorm"
+                      value={this.state.name}
+                      autoFocus
+                      onChange={this.handleNameChange}
+                      required
                     />
-                    <Toggle
-                      updateToggle={this.toggleExpansion}
-                      for="spidicules"
-                      active={this.state.expansions.spidicules}
-                      label="Spidicules"
-                    />
-                    <Toggle
-                      updateToggle={this.toggleExpansion}
-                      for="dung_beetle_knight"
-                      active={this.state.expansions.dung_beetle_knight}
-                      label="Dung Beetle Knight"
-                    />
-                    <Toggle
-                      updateToggle={this.toggleExpansion}
-                      for="sunstalker"
-                      active={this.state.expansions.sunstalker}
-                      label="Sunstalker"
-                    />
-                    <Toggle
-                      updateToggle={this.toggleExpansion}
-                      for="lion_god"
-                      active={this.state.expansions.lion_god}
-                      label="Lion God"
-                    />
-                    <h4 className="mt-4">Nemisis</h4>
-                    <Toggle
-                      for="manhunter"
-                      active={this.state.expansions.manhunter}
-                      updateToggle={this.toggleExpansion}
-                      label="Manhunter"
-                    />
-                    <Toggle
-                      for="lion_knight"
-                      active={this.state.expansions.lion_knight}
-                      updateToggle={this.toggleExpansion}
-                      label="Lion Knight"
-                    />
-                    <Toggle
-                      for="slenderman"
-                      active={this.state.expansions.slenderman}
-                      updateToggle={this.toggleExpansion}
-                      label="Slenderman"
-                    />
-                    <h4 className="mt-4">Enhancement</h4>
-                    <Toggle
-                      for="lonely_tree"
-                      active={this.state.expansions.lonely_tree}
-                      updateToggle={this.toggleExpansion}
-                      label="Lonely Tree"
-                    />
-                    <Toggle
-                      for="green_knight_armor"
-                      active={this.state.expansions.green_knight_armor}
-                      updateToggle={this.toggleExpansion}
-                      label="Green Knight Armor"
-                    />
-                    <Toggle
-                      for="allison_the_twilight_knight"
-                      active={this.state.expansions.allison_the_twilight_knight}
-                      updateToggle={this.toggleExpansion}
-                      label="Allison the Twilight Knight"
-                    />
-                    <Toggle
-                      for="before_the_wall"
-                      active={this.state.expansions.before_the_wall}
-                      updateToggle={this.toggleExpansion}
-                      label="Before the Wall"
-                    />
-                    <Toggle
-                      for="beyond_the_wall"
-                      active={this.state.expansions.beyond_the_wall}
-                      updateToggle={this.toggleExpansion}
-                      label="Beyond the Wall"
-                    />
-                    <Toggle
-                      for="white_speakr"
-                      active={this.state.expansions.white_speakr}
-                      updateToggle={this.toggleExpansion}
-                      label="White Speaker"
-                    />
-                  </div>
-                  <WidgetFooter>
-                    <Button color="primary" size="sm" type="submit">
-                      Confirm
-                    </Button>
-                  </WidgetFooter>
-                </Widget>
-              </form>
-            </TabPane>
-          </TabContent>
+                    <WidgetFooter>
+                      <Button
+                        color="gray"
+                        size="sm"
+                        type="button"
+                        onClick={this.randomSettlement}
+                      >
+                        Randomize Name
+                      </Button>
+                      <Button color="primary" size="sm" type="submit">
+                        Confirm
+                      </Button>
+                    </WidgetFooter>
+                  </Widget>
+                </form>
+              </TabPane>
+              <TabPane tabId={2}>
+                <form className="layout" onSubmit={this.handleSubmit}>
+                  <legend>Select Campaign</legend>
+                  <Widget>
+                    <FormGroup>
+                      <Input
+                        type="select"
+                        name="selectMulti"
+                        id="exampleSelectMulti"
+                        size="sm"
+                      >
+                        <option defaultValue>People of the Lantern</option>
+                        <option>People of the Stars</option>
+                        <option>People of the Sun</option>
+                        <option>The Bloom People</option>
+                      </Input>
+                    </FormGroup>
+                    <WidgetFooter>
+                      <Button color="primary" size="sm" type="submit">
+                        Confirm
+                      </Button>
+                    </WidgetFooter>
+                  </Widget>
+                </form>
+              </TabPane>
+              <TabPane tabId={3}>
+                <form className="layout" onSubmit={this.handleCreate}>
+                  <legend>Select Expansions</legend>
+                  <Widget>
+                    <div>
+                      <h4>Quarry</h4>
+                      <Toggle
+                        updateToggle={this.toggleExpansion}
+                        for="gorm"
+                        active={this.state.expansions.gorm}
+                        label="Gorm"
+                      />
+                      <Toggle
+                        updateToggle={this.toggleExpansion}
+                        for="spidicules"
+                        active={this.state.expansions.spidicules}
+                        label="Spidicules"
+                      />
+                      <Toggle
+                        updateToggle={this.toggleExpansion}
+                        for="dung_beetle_knight"
+                        active={this.state.expansions.dung_beetle_knight}
+                        label="Dung Beetle Knight"
+                      />
+                      <Toggle
+                        updateToggle={this.toggleExpansion}
+                        for="sunstalker"
+                        active={this.state.expansions.sunstalker}
+                        label="Sunstalker"
+                      />
+                      <Toggle
+                        updateToggle={this.toggleExpansion}
+                        for="lion_god"
+                        active={this.state.expansions.lion_god}
+                        label="Lion God"
+                      />
+                      <h4 className="mt-4">Nemesis</h4>
+                      <Toggle
+                        for="manhunter"
+                        active={this.state.expansions.manhunter}
+                        updateToggle={this.toggleExpansion}
+                        label="Manhunter"
+                      />
+                      <Toggle
+                        for="lion_knight"
+                        active={this.state.expansions.lion_knight}
+                        updateToggle={this.toggleExpansion}
+                        label="Lion Knight"
+                      />
+                      <Toggle
+                        for="slenderman"
+                        active={this.state.expansions.slenderman}
+                        updateToggle={this.toggleExpansion}
+                        label="Slenderman"
+                      />
+                      <h4 className="mt-4">Enhancement</h4>
+                      <Toggle
+                        for="lonely_tree"
+                        active={this.state.expansions.lonely_tree}
+                        updateToggle={this.toggleExpansion}
+                        label="Lonely Tree"
+                      />
+                      <Toggle
+                        for="green_knight_armor"
+                        active={this.state.expansions.green_knight_armor}
+                        updateToggle={this.toggleExpansion}
+                        label="Green Knight Armor"
+                      />
+                    </div>
+                    <WidgetFooter>
+                      <Button color="primary" size="sm" type="submit">
+                        Create Settlement
+                      </Button>
+                    </WidgetFooter>
+                  </Widget>
+                </form>
+              </TabPane>
+            </TabContent>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return <LoadingSpinner />;
   }
 }
 

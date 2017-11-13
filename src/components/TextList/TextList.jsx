@@ -34,22 +34,32 @@ class TextList extends Component {
     return null;
   }
   renderList() {
-    const num = Math.max(this.props.minimum, this.state.list.length);
-    return [...Array(num)].map((_, i) => {
-      if (this.state.list[i]) {
-        return (
-          <li className="textList-item" key={i}>
-            {this.renderName(this.state.list[i].name)}
-            {this.renderDescription(this.state.list[i])}
-          </li>
-        );
-      }
-      return (
-        <li className="textList-item" key={i}>
-          - -
+    if (this.props.list.length > 0) {
+      return this.props.list.map((item, index) => (
+        <li className="textList-item" key={`${item.name}${index}`}>
+          {this.renderName(item.name)}
+          {this.renderDescription(item)}
         </li>
-      );
-    });
+      ));
+    }
+    return <li className="textList-item">- -</li>;
+    // Stuff Below is if we want to show at least x amount
+    // const num = Math.max(this.props.minimum, this.state.list.length);
+    // return [...Array(num)].map((_, i) => {
+    //   if (this.state.list[i]) {
+    //     return (
+    //       <li className="textList-item" key={i}>
+    //         {this.renderName(this.state.list[i].name)}
+    //         {this.renderDescription(this.state.list[i])}
+    //       </li>
+    //     );
+    //   }
+    //   return (
+    //     <li className="textList-item" key={i}>
+    //       - -
+    //     </li>
+    //   );
+    // });
   }
   render() {
     return <ul className="textList">{this.renderList()}</ul>;
@@ -57,16 +67,16 @@ class TextList extends Component {
 }
 
 TextList.defaultProps = {
-  minimum: 1,
+  // minimum: 1,
   list: [],
   showDetails: false
 };
 
 TextList.propTypes = {
-  minimum: PropTypes.number,
+  // minimum: PropTypes.number,
   list: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
       desc: PropTypes.string,
       survivor_effect: PropTypes.string
     })

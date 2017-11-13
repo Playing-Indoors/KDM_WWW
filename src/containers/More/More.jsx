@@ -10,16 +10,13 @@ class More extends Component {
     if (this.props.userData) {
       return (
         <div>
-          <Header name={"More"} />
+          <Header name={"Dashboard"} />
           <div className="layout layout--center">
             <h2 className="text-center">{this.props.userData.user.login}</h2>
-            {/* <div className="text-center">
-            <Icon name="logo" />
-          </div> */}
-            <h3 className="text-center">Current Campaign</h3>
-            <h2 className="text-center">
-              {this.props.userData.user.current_settlement.$oid}
-            </h2>
+            <div className="text-center">
+              <Icon name="logo" />
+            </div>
+            <h3 className="text-center">user@email.com</h3>
             <CardList
               name="Settlements"
               href="/settlements"
