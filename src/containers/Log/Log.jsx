@@ -6,6 +6,7 @@ import Header from "../../components/Header/Header";
 import Widget from "../../components/Widget/Widget";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { getSettlement } from "../../actions/getSettlement";
+import { getLogs } from "../../actions/log";
 
 class Log extends React.Component {
   componentDidMount() {
@@ -13,6 +14,13 @@ class Log extends React.Component {
     if (this.props.settlementData === null) {
       this.props.getSettlement(id[2]);
     }
+    getLogs(id[2])
+      .then(res => {
+        console.log("OK LOGS", res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   componentWillReceiveProps(nextProps) {
