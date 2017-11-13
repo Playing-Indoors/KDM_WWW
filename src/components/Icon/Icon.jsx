@@ -3,6 +3,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 const icons = {};
+
+icons.user = {
+  icon:
+    '<g><path d="M0,18.07V14a2.88,2.88,0,0,1,3-2.7H13.81a2.63,2.63,0,0,1,2.71,2.48v4.29A12.17,12.17,0,0,1,0,18.07ZM3.48,4.78A4.78,4.78,0,0,1,8.26,0h0A4.78,4.78,0,1,1,3.48,4.78Z" /></g>',
+  width: 16.52,
+  height: 21.3
+};
 icons.trash = {
   icon:
     '<g><path d="M0,2.06V1H3.1V0H8.26V1h3.1v1Z" /><path d="M9.29,14.45H2.06c-.72,0-1-.31-1-1V3.1h9.29V13.42C10.32,14.14,10.11,14.45,9.29,14.45Z" /></g>',

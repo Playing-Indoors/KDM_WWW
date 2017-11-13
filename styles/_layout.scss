@@ -96,6 +96,26 @@ progress::-webkit-progress-value {
   background: $brand-primary;
 }
 
+// Profile
+.profile {
+  display: flex;
+  justify-content: center;
+
+  .icon {
+    background: $gray-600;
+    color: $gray-900;
+    border-radius: 50%;
+  }
+}
+
+.profile-80 {
+  .icon {
+    width: 80px;
+    height: 80px;
+    padding-top: 0.5rem;
+  }
+}
+
 // Update Model
 
 .modal {

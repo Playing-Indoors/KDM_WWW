@@ -45,8 +45,8 @@ class Nav extends Component {
       //   link: this.currentSettlement("log")
       // },
       {
-        title: "Menu",
-        icon: "menu",
+        title: "Dashboard",
+        icon: "user",
         link: "/dashboard"
       }
     ];
