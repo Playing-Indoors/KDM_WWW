@@ -18,6 +18,7 @@ import SurvivorsCreate from "./containers/Survivors/SurvivorsCreate";
 import Settlements from "./containers/Settlements/Settlements";
 import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
 import Storage from "./containers/Storage/Storage";
+import Info from "./containers/Info/Info";
 import Resources from "./containers/Storage/Resources";
 import Gear from "./containers/Storage/Gear";
 import Log from "./containers/Log/Log";
@@ -54,6 +55,7 @@ render(
       <Route path="/register" component={Register} />
       <Route path="/forgot" component={Forgot} />
       <Route path="/logout" component={Logout} />
+      <Route path="/info" component={Info} />
       {/* Dev Routes */}
       <Route title="Aya" path="/aya" component={Aya} />
 
