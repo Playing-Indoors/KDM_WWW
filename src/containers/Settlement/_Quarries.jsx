@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 import Stat from "../../components/Stats/Stats";
 
-class Innovations extends Component {
+class Quarries extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      title: "Innovations",
+      title: "Quarries",
       amount: props.amount
     };
     this.handleModalToggle = this.handleModalToggle.bind(this);
@@ -62,12 +62,12 @@ class Innovations extends Component {
   }
 }
 
-Innovations.propTypes = {
+Quarries.propTypes = {
   amount: PropTypes.number
 };
 
-Innovations.defaultProps = {
+Quarries.defaultProps = {
   amount: 0
 };
 
-export default Innovations;
+export default Quarries;

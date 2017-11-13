@@ -16,7 +16,7 @@ export function newUser(data) {
         //localStorage.setItem("access_token", response.data.access_token);
         //localStorage.setItem("userId", response.data._id);
         dispatch({ type: AUTH_USER });
-        browserHistory.push(`/settlements/`);
+        browserHistory.push(`/settlements/create`);
       })
       .catch(err => {
         alert("Unable to create account");

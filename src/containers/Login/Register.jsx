@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { Button, FormGroup, Label, Input } from "reactstrap";
-import { newUser } from "../../actions/newUser";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { newUser } from "../../actions/newUser";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 class Register extends Component {
   constructor(props) {
@@ -31,12 +32,21 @@ class Register extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
     if (this.state.email !== "" || this.state.password !== "") {
+      this.setState({
+        loading: true
+      });
       let data = {
         username: this.state.email,
         password: this.state.password
       };
       this.props.newUser(data);
     }
+  }
+  renderLoading() {
+    if (this.state.loading) {
+      return <LoadingSpinner absolute />;
+    }
+    return null;
   }
   render() {
     return (
@@ -48,6 +58,7 @@ class Register extends Component {
           />
         </div>
         <form className="login-form" onSubmit={this.handleFormSubmit}>
+          {this.renderLoading()}
           <FormGroup className="input-form--dark">
             <Label>Create your account</Label>
             <Label for="email" hidden>

@@ -5,6 +5,14 @@
   //   grid-column: span 3;
   //   margin: 0;
   // }
+
+  > * {
+    grid-column-end: span 1;
+  }
+}
+
+.settlementNotes {
+  grid-column-end: span 3;
 }
 
 // .survivalLimit,

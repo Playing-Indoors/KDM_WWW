@@ -7,8 +7,10 @@ import Icon from "../../components/Icon/Icon";
 class Nav extends Component {
   currentSettlement(path) {
     const currentSettlement = this.props.userData.user.current_settlement;
-    if (currentSettlement) {
+    if (currentSettlement && path) {
       return `/settlements/${currentSettlement.$oid}/${path}`;
+    } else if (currentSettlement) {
+      return `/settlements/${currentSettlement.$oid}`;
     }
     return null;
   }
@@ -26,14 +28,22 @@ class Nav extends Component {
       },
       {
         title: "Resources",
-        icon: "storage",
-        link: this.currentSettlement("storage")
+        icon: "storage"
       },
       {
         title: "Campaign Log",
-        icon: "log",
-        link: this.currentSettlement("log")
+        icon: "log"
       },
+      // {
+      //   title: "Resources",
+      //   icon: "storage",
+      //   link: this.currentSettlement("storage")
+      // },
+      // {
+      //   title: "Campaign Log",
+      //   icon: "log",
+      //   link: this.currentSettlement("log")
+      // },
       {
         title: "Menu",
         icon: "menu",

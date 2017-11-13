@@ -9,6 +9,8 @@ import Innovations from "./_Innovations";
 import SurvivalLimit from "./_SurvivalLimit";
 import LanternYear from "./_Year";
 import Population from "./_Population";
+import Quarries from "./_Quarries";
+import Nemesis from "./_Nemesis";
 import Principles from "./_Principles";
 import Milestones from "./_Milestones";
 import Locations from "./_Locations";
@@ -52,32 +54,45 @@ class Settlement extends React.Component {
           <Header name={this.props.settlementData.sheet.name} />
           <div className="layout layout--settlement">
             <SurvivalLimit
+              oid={this.props.settlementData.sheet._id.$oid}
               amount={this.props.settlementData.sheet.survival_limit}
             />
-            <LanternYear
+            {/* <LanternYear
               amount={this.props.settlementData.sheet.lantern_year}
-            />
-            <Population amount={this.props.settlementData.sheet.population} />
+            /> */}
 
-            <Innovations list={this.props.settlementData.sheet.innovations} />
+            <DeathCount amount={this.props.settlementData.sheet.death_count} />
+
+            <Population amount={this.props.settlementData.sheet.population} />
 
             <Principles
               amount={this.props.settlementData.sheet.principles.length}
             />
 
+            <Innovations list={this.props.settlementData.sheet.innovations} />
+            {/*
             <Milestones
               amount={
                 this.props.settlementData.sheet.milestone_story_events.length
               }
-            />
+            /> */}
 
             <Locations
               amount={this.props.settlementData.sheet.locations.length}
             />
 
-            <DeathCount amount={this.props.settlementData.sheet.death_count} />
-
             <DefeatedMonsters
+              amount={this.props.settlementData.sheet.defeated_monsters.length}
+            />
+
+            <Quarries
+              amount={
+                Object.keys(this.props.settlementData.sheet.nemesis_encounters)
+                  .length
+              }
+            />
+
+            <Nemesis
               amount={this.props.settlementData.sheet.defeated_monsters.length}
             />
 
