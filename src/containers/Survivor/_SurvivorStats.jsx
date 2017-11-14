@@ -111,6 +111,52 @@ class SurvivorStats extends Component {
         { attribute: "Evasion", value: this.state.evasion.stat },
         { attribute: "Luck", value: this.state.luck.stat },
         { attribute: "Speed", value: this.state.speed.stat }
+      ],
+      attribute_details: [
+        {
+          attribute: "Strength",
+          detail: "token",
+          value: this.state.strength.token
+        },
+        {
+          attribute: "Movement",
+          detail: "token",
+          value: this.state.movement.token
+        },
+        {
+          attribute: "Accuracy",
+          detail: "token",
+          value: this.state.accuracy.token
+        },
+        {
+          attribute: "Evasion",
+          detail: "token",
+          value: this.state.evasion.token
+        },
+        { attribute: "Luck", detail: "token", value: this.state.luck.token },
+        { attribute: "Speed", detail: "token", value: this.state.speed.token },
+        {
+          attribute: "Strength",
+          detail: "gear",
+          value: this.state.strength.gear
+        },
+        {
+          attribute: "Movement",
+          detail: "gear",
+          value: this.state.movement.gear
+        },
+        {
+          attribute: "Accuracy",
+          detail: "gear",
+          value: this.state.accuracy.gear
+        },
+        {
+          attribute: "Evasion",
+          detail: "gear",
+          value: this.state.evasion.gear
+        },
+        { attribute: "Luck", detail: "gear", value: this.state.luck.gear },
+        { attribute: "Speed", detail: "gear", value: this.state.speed.gear }
       ]
     };
     this.props.setManyAttributes(this.props.oid, data);
