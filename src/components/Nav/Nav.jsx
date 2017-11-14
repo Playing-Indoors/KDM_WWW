@@ -30,20 +30,20 @@ class Nav extends Component {
         title: "Resources",
         icon: "storage"
       },
-      {
-        title: "Campaign Log",
-        icon: "log"
-      },
+      // {
+      //   title: "Campaign Log",
+      //   icon: "log"
+      // },
       // {
       //   title: "Resources",
       //   icon: "storage",
       //   link: this.currentSettlement("storage")
       // },
-      // {
-      //   title: "Campaign Log",
-      //   icon: "log",
-      //   link: this.currentSettlement("log")
-      // },
+      {
+        title: "Campaign Log",
+        icon: "log",
+        link: this.currentSettlement("log")
+      },
       {
         title: "Dashboard",
         icon: "user",

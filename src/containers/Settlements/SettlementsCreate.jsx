@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Alert,
   Button,
   Input,
   FormGroup,
@@ -19,7 +20,7 @@ import WidgetFooter from "../../components/Widget/WidgetFooter";
 import { createSettlement } from "../../actions/getSettlement.js";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
-class Settlements extends React.Component {
+class SettlementsCreate extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,6 +32,7 @@ class Settlements extends React.Component {
     this.randomSettlement = this.randomSettlement.bind(this);
     this.state = {
       loading: false,
+      error: "",
       activeTab: 1,
       name: "",
       campaign: "People of the Lantern",
@@ -153,15 +155,20 @@ class Settlements extends React.Component {
 
     createSettlement(data)
       .then(res => {
-        console.log("CREATE", res);
         browserHistory.goBack();
       })
       .catch(err => {
-        console.warn("sorry something went wrong", err);
         this.setState({
-          isSaving: false
+          error: err.data,
+          loading: false
         });
       });
+  }
+  renderError() {
+    if (this.state.error.length > 0) {
+      return <Alert color="danger">{this.state.error}</Alert>;
+    }
+    return null;
   }
   renderCreate() {
     // TODO: This needs to be changed to see if the data is filled out, NOT last tab
@@ -218,6 +225,7 @@ class Settlements extends React.Component {
             <TabContent activeTab={this.state.activeTab}>
               <TabPane tabId={1}>
                 <form className="layout" onSubmit={this.handleSubmit}>
+                  {this.renderError()}
                   <legend>Name the Settlement</legend>
                   <Widget>
                     {/* @Khoa bind the value to state.name correctly */}
@@ -249,6 +257,7 @@ class Settlements extends React.Component {
               </TabPane>
               <TabPane tabId={2}>
                 <form className="layout" onSubmit={this.handleSubmit}>
+                  {this.renderError()}
                   <legend>Select Campaign</legend>
                   <Widget>
                     <FormGroup>
@@ -274,6 +283,7 @@ class Settlements extends React.Component {
               </TabPane>
               <TabPane tabId={3}>
                 <form className="layout" onSubmit={this.handleCreate}>
+                  {this.renderError()}
                   <legend>Select Expansions</legend>
                   <Widget>
                     <div>
@@ -358,4 +368,4 @@ class Settlements extends React.Component {
   }
 }
 
-export default Settlements;
+export default SettlementsCreate;

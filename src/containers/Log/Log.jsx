@@ -9,6 +9,13 @@ import { getSettlement } from "../../actions/getSettlement";
 import { getLogs } from "../../actions/log";
 
 class Log extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      log: []
+    };
+  }
   componentDidMount() {
     const id = window.location.pathname.split("/");
     if (this.props.settlementData === null) {
@@ -17,6 +24,10 @@ class Log extends React.Component {
     getLogs(id[2])
       .then(res => {
         console.log("OK LOGS", res);
+        this.setState({
+          log: res.data,
+          loading: false
+        });
       })
       .catch(err => {
         console.log(err);
@@ -31,19 +42,26 @@ class Log extends React.Component {
     }
   }
 
+  renderLog() {
+    if (this.state.log.length > 0) {
+      return this.state.log.map(item => (
+        <div key={item._id.$oid}>
+          <small>
+            LY {item.ly}:&nbsp;
+            {item.event}
+          </small>
+        </div>
+      ));
+    }
+    return null;
+  }
+
   render() {
-    if (this.props.settlementData) {
+    if (!this.state.loading) {
       return (
         <div>
           <Header name={"Campaign Log"} />
-          <div className="layout layout--log">
-            <h3 className="text-center">Doomhaven</h3>
-            <Widget title="Most Recent Milestone">123</Widget>
-            <Widget title="Most Recent Death">123</Widget>
-            <Widget title="Most Recent Birth">123</Widget>
-            <Widget title="Most Recent Hunt">123</Widget>
-            <Widget title="Last 5 Logs">123</Widget>
-          </div>
+          <div className="layout layout--log">{this.renderLog()}</div>
         </div>
       );
     }
