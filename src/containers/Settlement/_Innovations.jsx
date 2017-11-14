@@ -17,7 +17,7 @@ class Innovations extends Component {
       isSaving: false
     };
     this.handleModalToggle = this.handleModalToggle.bind(this);
-    // this.handleModalConfirm = this.handleModalConfirm.bind(this);
+    this.handleModalConfirm = this.handleModalConfirm.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleInnovationRemove = this.handleInnovationRemove.bind(this);
     this.handleInnovationSelect = this.handleInnovationSelect.bind(this);
@@ -47,8 +47,35 @@ class Innovations extends Component {
     console.warn("add", value);
     const list = [...this.state.list, value].sort();
     this.setState({ list });
-  }
+	}
+	handleModalConfirm() {
+		// TODO: KHOA
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      type: this.props.apiType,
+		};
 
+		const addInnovations = ['hovel', 'ammonia', 'bed'];
+		const removeInnovations = ['cooking', 'language', 'lantern_oven'];
+
+		// Convert this to a promise.all
+		addInnovations.forEach(i => {
+			// Api call
+			const data = { handle: i };
+			console.warn(`hptt://api.thewatcher.com/settlement/add_innovation/${this.props.oid}`, data)
+		});
+
+		// Convert this to a promise.all
+		removeInnovations.forEach(i => {
+			// Api call
+			const data = { handle: i };
+			console.warn(`hptt://api.thewatcher.com/settlement/rm_innovation/${this.props.oid}`, data)
+		});
+
+		// Success
+
+  }
   confirmColor() {
     if (_isEqual(this.state.list, this.props.list)) {
       return "light";
@@ -124,7 +151,7 @@ class Innovations extends Component {
     }
     return (
       <ModalFooter>
-        <Button color={this.confirmColor()} onClick={this.handleModalConfirm}>
+        {/* <Button color={this.confirmColor()} onClick={this.handleModalConfirm}> */}
           Confirm
         </Button>
         <Button onClick={this.handleCancel} color="link">
