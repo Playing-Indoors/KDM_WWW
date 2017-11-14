@@ -69,13 +69,11 @@ class Settlement extends React.Component {
               amount={this.props.settlementData.sheet.principles.length}
             />
 
-            <Innovations list={this.props.settlementData.sheet.innovations} />
-            {/*
-            <Milestones
-              amount={
-                this.props.settlementData.sheet.milestone_story_events.length
-              }
-            /> */}
+            <Innovations
+              list={this.props.settlementData.sheet.innovations}
+              assets={this.props.settlementData.game_assets.innovations}
+              oid={this.props.settlementData.sheet._id.$oid}
+            />
 
             <Locations
               amount={this.props.settlementData.sheet.locations.length}
@@ -94,6 +92,7 @@ class Settlement extends React.Component {
 
             <Nemesis
               amount={this.props.settlementData.sheet.defeated_monsters.length}
+              oid={this.props.settlementData.sheet._id.$oid}
             />
 
             <Notes />
