@@ -115,26 +115,26 @@ class SurvivorStats extends Component {
       attribute_details: [
         {
           attribute: "Strength",
-          detail: "token",
+          detail: "tokens",
           value: this.state.strength.token
         },
         {
           attribute: "Movement",
-          detail: "token",
+          detail: "tokens",
           value: this.state.movement.token
         },
         {
           attribute: "Accuracy",
-          detail: "token",
+          detail: "tokens",
           value: this.state.accuracy.token
         },
         {
           attribute: "Evasion",
-          detail: "token",
+          detail: "tokens",
           value: this.state.evasion.token
         },
-        { attribute: "Luck", detail: "token", value: this.state.luck.token },
-        { attribute: "Speed", detail: "token", value: this.state.speed.token },
+        { attribute: "Luck", detail: "tokens", value: this.state.luck.token },
+        { attribute: "Speed", detail: "tokens", value: this.state.speed.token },
         {
           attribute: "Strength",
           detail: "gear",

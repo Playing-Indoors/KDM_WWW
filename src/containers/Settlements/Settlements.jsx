@@ -33,21 +33,16 @@ class Settlements extends React.Component {
       if (campaigns.length > 0) {
         return campaigns.map(settlement => {
           return (
-            // <CardList
-            //   name={settlement.sheet.name}
-            //   desc={settlement.sheet.campaign}
-            //   action={() => this.handleSetRedirect(settlement.sheet._id.$oid)}
-            //   key={settlement.sheet._id.$oid}
-            //   meta={[
-            //     { label: "Year", value: settlement.sheet.lantern_year },
-            //     { label: "Population", value: settlement.sheet.population },
-            //     { label: "Expansions", value: settlement.sheet.expansions.length }
-            //   ]}
-            // />
             <CardList
-              name={settlement.$oid}
-              action={() => this.handleSetRedirect(settlement.$oid)}
-              key={settlement.$oid}
+              name={settlement.name}
+              desc={settlement.campaign}
+              action={() => this.handleSetRedirect(settlement._id.$oid)}
+              key={settlement._id.$oid}
+              meta={[
+                { label: "Year", value: settlement.lantern_year },
+                { label: "Population", value: settlement.population },
+                { label: "Expansions", value: settlement.expansions.length }
+              ]}
             />
           );
         });
