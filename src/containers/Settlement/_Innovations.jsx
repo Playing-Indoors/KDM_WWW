@@ -5,6 +5,7 @@ import _isEqual from "lodash/isEqual";
 import Stat from "../../components/Stats/Stats";
 import Icon from "../../components/Icon/Icon";
 import LoadingSaving from "../../components/LoadingSaving/LoadingSaving";
+import { addInnovation, removeInnovation } from "../../actions/innovations";
 
 class Innovations extends Component {
   constructor(props) {
@@ -48,38 +49,40 @@ class Innovations extends Component {
     const list = [...this.state.list, value].sort();
     this.setState({ list });
   }
-  handleModalConfirm() {
-    // TODO: KHOA
-    const userId = localStorage.getItem("userId");
-    const data = {
-      user_id: userId,
-      type: this.props.apiType
-    };
 
+  addToInnovation(i) {
+    let userId = localStorage.getItem("userId");
+    let data = {
+      user_id: userId,
+      handle: i
+    };
+    let settlementId = window.location.pathname.split("/")[2];
+    return addInnovation(settlementId, data);
+  }
+  removeFromInnovation(i) {
+    let userId = localStorage.getItem("userId");
+    let data = {
+      user_id: userId,
+      handle: i
+    };
+    let settlementId = window.location.pathname.split("/")[2];
+    return removeInnovation(settlementId, data);
+  }
+  handleModalConfirm() {
+    // TODO: CALEB
     const addInnovations = ["hovel", "ammonia", "bed"];
     const removeInnovations = ["cooking", "language", "lantern_oven"];
-
     // Convert this to a promise.all
-    addInnovations.forEach(i => {
-      // Api call
-      const data = { handle: i };
-      console.warn(
-        `hptt://api.thewatcher.com/settlement/add_innovation/${this.props.oid}`,
-        data
-      );
+    let addPromises = addInnovations.map(i => this.addToInnovation(i));
+    let removePromises = removeInnovations.map(i =>
+      this.removeFromInnovation(i)
+    );
+    Promise.all(addPromises).then(res => {
+      console.log("ADD Innocations OK", res);
     });
-
-    // Convert this to a promise.all
-    removeInnovations.forEach(i => {
-      // Api call
-      const data = { handle: i };
-      console.warn(
-        `hptt://api.thewatcher.com/settlement/rm_innovation/${this.props.oid}`,
-        data
-      );
+    Promise.all(addPromises).then(res => {
+      console.log("REMOVE Innocations OK", res);
     });
-
-    // Success
   }
   confirmColor() {
     if (_isEqual(this.state.list, this.props.list)) {
