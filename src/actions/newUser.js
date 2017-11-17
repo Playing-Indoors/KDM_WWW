@@ -13,7 +13,7 @@ export function newUser(data) {
     })
       .then(res => {
         console.log("created new user", res);
-        //localStorage.setItem("access_token", response.data.access_token);
+        localStorage.setItem("access_token", res.data.Authorization.access_token);
         localStorage.setItem("userId", res.data.user._id.$oid);
         dispatch({ type: AUTH_USER });
         browserHistory.push(`/settlements/create`);

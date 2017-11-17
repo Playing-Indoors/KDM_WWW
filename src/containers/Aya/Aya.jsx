@@ -18,7 +18,6 @@ import {
 } from "reactstrap";
 import AyaColor from "./Aya-Color";
 import Stat from "../../components/Stats/Stats";
-import DataList from "../../components/DataList/DataList";
 import CardList from "../../components/CardList/CardList";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import SurvivalManage from "../../containers/Survivor/_Survival";
@@ -141,12 +140,8 @@ class Aya extends Component {
         />
         <h3>DataList</h3>
         <p>Simple list to show data.</p>
-        <DataList list={this.state.dataList} />
         <p>With removal</p>
-        <DataList
-          list={this.state.dataList2}
-          updateList={this.updateDataList2}
-        />
+
         <SurvivalLimit amount={5} id={"12345"} />
         <SurvivalManage
           amount={5}
