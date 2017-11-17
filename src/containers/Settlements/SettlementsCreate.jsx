@@ -10,6 +10,7 @@ import {
   TabContent,
   TabPane
 } from "reactstrap";
+import { browserHistory } from "react-router";
 import { Link } from "react-router";
 import classnames from "classnames";
 import Header from "../../components/Header/Header";
@@ -155,7 +156,7 @@ class SettlementsCreate extends React.Component {
 
     createSettlement(data)
       .then(res => {
-        browserHistory.goBack();
+        browserHistory.push(`/settlements/${res.data.sheet._id.$oid}`);
       })
       .catch(err => {
         this.setState({
