@@ -2,17 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import { Row, Col } from "reactstrap";
 import Header from "../../components/Header/Header";
-import Widget from "../../components/Widget/Widget";
 import Innovations from "./_Innovations";
 import SurvivalLimit from "./_SurvivalLimit";
-import LanternYear from "./_Year";
 import Population from "./_Population";
 import Quarries from "./_Quarries";
 import Nemesis from "./_Nemesis";
 import Principles from "./_Principles";
-import Milestones from "./_Milestones";
 import Locations from "./_Locations";
 import DeathCount from "./_Deaths";
 import DefeatedMonsters from "./_Monsters";
@@ -21,10 +17,6 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { getSettlement } from "../../actions/getSettlement";
 
 class Settlement extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     // Grabs any current settlement data that we might have
     const currentSettlement = this.props.settlementData;

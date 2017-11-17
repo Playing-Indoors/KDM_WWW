@@ -57,7 +57,7 @@ render(
       <Route path="/logout" component={Logout} />
       <Route path="/info" component={Info} />
       {/* Dev Routes */}
-      <Route title="Aya" path="/aya" component={Aya} />
+      {/* <Route title="Aya" path="/aya" component={Aya} /> */}
 
       {/* App Routes */}
       <Route component={App}>

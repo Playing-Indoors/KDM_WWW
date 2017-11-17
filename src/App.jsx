@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Nav from "./components/Nav/Nav";
-import Header from "./components/Header/Header";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getUser } from "./actions/getUserData";
+import Header from "./components/Header/Header";
+import Nav from "./components/Nav/Nav";
 
 class App extends Component {
   constructor(props) {
