@@ -15,6 +15,8 @@ class Innovations extends Component {
       list: this.props.list,
       showModal: false,
       selectValue: "",
+      stagedAdd: [],
+      stagedRemove: [],
       isSaving: false
     };
     this.handleModalToggle = this.handleModalToggle.bind(this);
@@ -34,20 +36,32 @@ class Innovations extends Component {
       showModal: !this.state.showModal
     });
   }
+  // Resets our data
+  resetData() {
+    this.setState({
+      list: [...this.props.list]
+    });
+  }
   // Cancel event from the modal, reset the state.
   handleCancel() {
+    this.resetData();
     this.handleModalToggle();
   }
   handleInnovationRemove(index) {
     const list = [...this.state.list];
-    list.splice(index, 1);
-    this.setState({ list });
+    const value = list.splice(index, 1);
+    this.setState({
+      list,
+      stagedRemove: [...this.state.stagedRemove, ...value]
+    });
   }
   handleInnovationSelect(event) {
     const value = event.target.value;
-    console.warn("add", value);
     const list = [...this.state.list, value].sort();
-    this.setState({ list });
+    this.setState({
+      list,
+      stagedAdd: [...this.state.stagedAdd, value]
+    });
   }
 
   addToInnovation(i) {
@@ -69,19 +83,19 @@ class Innovations extends Component {
     return removeInnovation(settlementId, data);
   }
   handleModalConfirm() {
-    // TODO: CALEB
-    const addInnovations = ["hovel", "ammonia", "bed"];
-    const removeInnovations = ["cooking", "language", "lantern_oven"];
-    // Convert this to a promise.all
-    let addPromises = addInnovations.map(i => this.addToInnovation(i));
-    let removePromises = removeInnovations.map(i =>
+    this.setState({
+      isSaving: true
+    });
+    const addPromises = this.state.stagedAdd.map(i => this.addToInnovation(i));
+    const removePromises = this.state.stagedRemove.map(i =>
       this.removeFromInnovation(i)
     );
-    Promise.all(addPromises).then(res => {
-      console.log("ADD Innocations OK", res);
-    });
-    Promise.all(addPromises).then(res => {
-      console.log("REMOVE Innocations OK", res);
+    Promise.all([...addPromises, ...removePromises]).then(res => {
+      console.log(res);
+      this.handleModalToggle();
+      this.setState({
+        isSaving: false
+      });
     });
   }
   confirmColor() {
@@ -180,7 +194,7 @@ class Innovations extends Component {
           className="widget-content"
           onClick={this.handleModalToggle}
         >
-          <Stat amount={this.props.list.length} />
+          <Stat amount={this.state.list.length} />
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
           <ModalHeader>{this.state.title}</ModalHeader>

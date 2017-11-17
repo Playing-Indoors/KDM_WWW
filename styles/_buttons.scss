@@ -3,6 +3,7 @@
 .btn {
   // font-weight: bold;
   cursor: pointer;
+  border-radius: 0;
   transition: background 0.2s ease-out;
 
   &:focus {
