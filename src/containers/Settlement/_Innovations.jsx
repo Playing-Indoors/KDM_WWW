@@ -33,19 +33,31 @@ class Innovations extends Component {
     const list = [...this.state.list];
     const value = list.splice(index, 1)[0];
     this.setState({
+      isSaving: true,
       list,
       stagedRemove: [...this.state.stagedRemove, value]
     });
-    this.removeFromInnovation(value).then(res => console.log(res));
+    this.removeFromInnovation(value).then(res => {
+      this.setState({
+        isSaving: false
+      });
+      console.log(res);
+    });
   }
   handleInnovationSelect(event) {
     const value = event.target.value;
     const list = [...this.state.list, value].sort();
     this.setState({
+      isSaving: true,
       list,
       stagedAdd: [...this.state.stagedAdd, value]
     });
-    this.addToInnovation(value).then(res => console.log(res));
+    this.addToInnovation(value).then(res => {
+      this.setState({
+        isSaving: false
+      });
+      console.log(res);
+    });
   }
 
   addToInnovation(i) {

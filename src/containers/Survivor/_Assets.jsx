@@ -37,7 +37,7 @@ class Assets extends Component {
     survivorList.forEach(asset => {
       // Since assets aren't dictionaries, we have to manually make them
       const type = this.renderAssetLookup(asset, "type");
-      if (type === this.props.type) {
+      if (this.props.type.indexOf(type) !== -1) {
         const name = this.renderAssetLookup(asset, "name");
         let desc = "";
         // Because disorders have the be the ugly duckling. 😢
@@ -61,6 +61,7 @@ class Assets extends Component {
   }
   // Resets our data
   resetData() {
+    this.createSurvivorListHumanized(this.props.survivorList);
     this.setState({
       survivorList: this.props.survivorList
     });
@@ -137,7 +138,7 @@ class Assets extends Component {
   renderAvailableList() {
     const assets = Object.entries(this.props.assetList);
     return assets.map(ability => {
-      if (ability[1].type === this.props.type) {
+      if (this.props.type.indexOf(ability[1].type) !== -1) {
         return (
           <option value={ability[0]} key={ability[0]}>
             {ability[1].name}
@@ -216,8 +217,12 @@ class Assets extends Component {
   }
   // Renders our component
   render() {
+    const name =
+      typeof this.props.type === "string"
+        ? this.props.type
+        : this.props.type[0];
     return (
-      <div className={`widget survivor-${this.props.type}`}>
+      <div className={`widget survivor-${name}`}>
         <header className={"widget-header widget-header--link"}>
           <div className="widget-header-title">{this.props.name}</div>
         </header>
@@ -256,7 +261,10 @@ Assets.defaultProps = {
 
 Assets.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired, // dictionary type of assets
+  type: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]).isRequired, // dictionary type of assets
   apiType: PropTypes.string.isRequired, // api type to send
   survivorList: PropTypes.arrayOf(PropTypes.string),
   assetList: PropTypes.shape(),

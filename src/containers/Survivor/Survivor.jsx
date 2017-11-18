@@ -175,7 +175,7 @@ class Survivor extends React.Component {
             />
             <Assets
               name="Fighting Arts"
-              type="fighting_art"
+              type={["fighting_art", "secret_fighting_art"]}
               apiType="fighting_arts"
               survivorList={this.state.survivor.sheet.fighting_arts}
               assetList={this.state.settlementData.game_assets.fighting_arts}
