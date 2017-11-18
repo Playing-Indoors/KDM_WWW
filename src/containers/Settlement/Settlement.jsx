@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import Header from "../../components/Header/Header";
-import Innovations from "./_Innovations";
+import Innovations from "./_InnovationsBackup";
 import SurvivalLimit from "./_SurvivalLimit";
 import Population from "./_Population";
 import Quarries from "./_Quarries";

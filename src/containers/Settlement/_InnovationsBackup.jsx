@@ -21,6 +21,9 @@ class Innovations extends Component {
       stagedRemove: [],
       isSaving: false
     };
+    this.handleModalToggle = this.handleModalToggle.bind(this);
+    this.handleModalConfirm = this.handleModalConfirm.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
     this.handleInnovationRemove = this.handleInnovationRemove.bind(this);
     this.handleInnovationSelect = this.handleInnovationSelect.bind(this);
   }
@@ -29,14 +32,30 @@ class Innovations extends Component {
       list: [...nextProps.list]
     });
   }
+  // Toggles the visibility of the modal
+  handleModalToggle() {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  }
+  // Resets our data
+  resetData() {
+    this.setState({
+      list: [...this.props.list]
+    });
+  }
+  // Cancel event from the modal, reset the state.
+  handleCancel() {
+    this.resetData();
+    this.handleModalToggle();
+  }
   handleInnovationRemove(index) {
     const list = [...this.state.list];
-    const value = list.splice(index, 1)[0];
+    const value = list.splice(index, 1);
     this.setState({
       list,
-      stagedRemove: [...this.state.stagedRemove, value]
+      stagedRemove: [...this.state.stagedRemove, ...value]
     });
-    this.removeFromInnovation(value).then(res => console.log(res));
   }
   handleInnovationSelect(event) {
     const value = event.target.value;
@@ -45,7 +64,6 @@ class Innovations extends Component {
       list,
       stagedAdd: [...this.state.stagedAdd, value]
     });
-    this.addToInnovation(value).then(res => console.log(res));
   }
 
   addToInnovation(i) {
@@ -150,15 +168,56 @@ class Innovations extends Component {
       </div>
     );
   }
+  // Controls the functionality of modal footer buttons
+  renderModalFooter() {
+    if (this.state.isSaving) {
+      return null;
+    }
+    return (
+      <ModalFooter>
+        <Button color={this.confirmColor()} onClick={this.handleModalConfirm}>
+          Confirm
+        </Button>
+        <Button onClick={this.handleCancel} color="link">
+          Cancel
+        </Button>
+      </ModalFooter>
+    );
+  }
+  // Renders our component
+  renderOld() {
+    return (
+      <div className={"widget"}>
+        <header className={"widget-header widget-header--link"}>
+          <div className="widget-header-title">{this.state.title}</div>
+        </header>
+        <button
+          type="button"
+          className="widget-content"
+          onClick={this.handleModalToggle}
+        >
+          <Stat amount={this.state.list.length} />
+        </button>
+        <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
+          <ModalHeader>{this.state.title}</ModalHeader>
+          <ModalBody>{this.renderModalBody()}</ModalBody>
+          {this.renderModalFooter()}
+        </Modal>
+      </div>
+    );
+  }
   render() {
     return (
-      <div className="layout">
-        <div className={"widget"}>
-          <header className={"widget-header widget-header--link"}>
-            <div className="widget-header-title">Settlement Innovations</div>
-          </header>
-          {this.renderModalBody()}
-        </div>
+      <div className={"widget"}>
+        <header className={"widget-header widget-header--link"}>
+          <div className="widget-header-title">{this.state.title}</div>
+        </header>
+        <Link
+          className="widget-content"
+          to={`/settlements/${this.props.oid}/innovations`}
+        >
+          <Stat amount={this.state.list.length} />
+        </Link>
       </div>
     );
   }

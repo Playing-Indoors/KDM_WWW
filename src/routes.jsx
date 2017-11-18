@@ -23,6 +23,7 @@ import Resources from "./containers/Storage/Resources";
 import Gear from "./containers/Storage/Gear";
 import Log from "./containers/Log/Log";
 import Settlement from "./containers/Settlement/Settlement";
+import Innovations from "./containers/Settlement/ManageInnovations";
 import More from "./containers/More/More";
 import Aya from "./containers/Aya/Aya";
 import NotFound from "./components/NotFound/NotFound";
@@ -87,6 +88,13 @@ render(
           path="/settlements/:oid"
           title="Settlement"
           component={requireAuth(Settlement)}
+        />
+        <Route
+          path="/settlements/:oid/Innovations"
+          title="Settlement"
+          component={requireAuth(Innovations)}
+          noHeader
+          back
         />
         <Route
           path="/settlements/:oid/log"
