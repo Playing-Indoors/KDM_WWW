@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import _filter from "lodash/filter";
+import { Button, Input, ButtonGroup } from "reactstrap";
 import Header from "../../components/Header/Header";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Notes from "./_Notes";
@@ -10,10 +11,14 @@ import Assets from "./_Assets";
 import Armor from "./_Armor";
 import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
+import SurvivorName from "./_SurvivorName";
 import XP from "./_XP";
 import Courage from "./_Courage";
 import Understanding from "./_Understanding";
 import Weapon from "./_Weapon";
+import Widget from "../../components/Widget/Widget";
+import WidgetFooter from "../../components/Widget/WidgetFooter";
+
 import { getSettlement } from "../../actions/getSettlement";
 
 class Survivor extends React.Component {
@@ -110,21 +115,11 @@ class Survivor extends React.Component {
             />
             <Weapon
               oid={this.state.survivor.sheet._id.$oid}
+              apiList={this.props.settlementData.game_assets.weapon_proficiency}
               amount={this.state.survivor.sheet["Weapon Proficiency"]}
               limit={8}
               milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
             />
-            {/* <Stats
-              oid={this.state.survivor.sheet._id.$oid}
-              stats={[
-                { movement: this.state.survivor.sheet.Movement },
-                { accuracy: this.state.survivor.sheet.Accuracy },
-                { strength: this.state.survivor.sheet.Strength },
-                { evasion: this.state.survivor.sheet.Evasion },
-                { luck: this.state.survivor.sheet.Luck },
-                { speed: this.state.survivor.sheet.Speed }
-              ]}
-            /> */}
             <Stats
               oid={this.state.survivor.sheet._id.$oid}
               movement={{
@@ -228,6 +223,42 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               notes={this.state.survivor.notes}
             />
+            {/* <SurvivorName
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              name={this.state.survivor.sheet.name}
+            /> */}
+            {/* <SurvivorStatus
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              flags={[]}
+            />
+            <SurvivorFavorite
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              favorite={this.state.survivor.sheet.favorite}
+            />
+            <SurvivorFavorite
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              favorite={this.state.survivor.sheet.favorite}
+            />
+            <SurvivorCursed
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              items={this.state.survivor.sheet.cursed_items}
+              assets={this.state.settlementData.game_assets.cursed_items}
+            />
+            <SurvivorRetire
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              retired={this.state.survivor.sheet.retired}
+            />
+            <SurvivorDeath
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              retired={this.state.survivor.sheet.death}
+            /> */}
           </div>
         </div>
       );
