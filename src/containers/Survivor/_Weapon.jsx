@@ -68,6 +68,16 @@ class Weapon extends Component {
     }
     return "primary";
   }
+  renderList() {
+    if (this.props.apiList.length !== 0) {
+      return this.props.apiList.map(i => (
+        <option value={i.handle} key={i.handle}>
+          {i.name}
+        </option>
+      ));
+    }
+    return null;
+  }
   // Renders our component
   render() {
     return (
@@ -104,6 +114,10 @@ class Weapon extends Component {
               size={this.props.limit}
               milestones={this.props.milestones}
             />
+            {/* <select>
+              <option>Choose your Proficiency</option>
+              {this.renderList()}
+            </select> */}
           </ModalBody>
           <ModalFooter>
             <Button
@@ -126,6 +140,12 @@ Weapon.propTypes = {
   amount: PropTypes.number,
   oid: PropTypes.string,
   limit: PropTypes.number,
+  apiList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      handle: PropTypes.string
+    })
+  ),
   milestones: PropTypes.arrayOf(
     PropTypes.shape({
       handle: PropTypes.string,
@@ -139,6 +159,7 @@ Weapon.defaultProps = {
   amount: 0,
   oid: "",
   limit: 1,
+  apiList: [],
   milestones: []
 };
 

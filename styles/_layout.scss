@@ -53,13 +53,19 @@ body {
 // .layout--log {
 //   grid-template-columns: 1fr;
 // }
+.layout {
+  .grid-full {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
 
-.grid-2 {
-  grid-column: span 2;
-}
+  .grid-2 {
+    grid-column: span 2;
+  }
 
-.grid-3 {
-  grid-column: span 3;
+  .grid-3 {
+    grid-column: span 3;
+  }
 }
 
 // Widget --- this belongs in a component after finalized
