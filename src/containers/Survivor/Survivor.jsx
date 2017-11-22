@@ -5,19 +5,24 @@ import _filter from "lodash/filter";
 import { Button, Input, ButtonGroup } from "reactstrap";
 import Header from "../../components/Header/Header";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import Widget from "../../components/Widget/Widget";
+import WidgetFooter from "../../components/Widget/WidgetFooter";
 import Notes from "./_Notes";
 import Stats from "./_SurvivorStats";
 import Assets from "./_Assets";
 import Armor from "./_Armor";
 import Bleeding from "./_Bleeding";
 import Survival from "./_Survival";
-import SurvivorName from "./_SurvivorName";
 import XP from "./_XP";
 import Courage from "./_Courage";
 import Understanding from "./_Understanding";
 import Weapon from "./_Weapon";
-import Widget from "../../components/Widget/Widget";
-import WidgetFooter from "../../components/Widget/WidgetFooter";
+import Name from "./_Name";
+import Favorite from "./_Favorite";
+import Retire from "./_Retire";
+import Death from "./_Death";
+import Status from "./_Status";
+import Sex from "./_Sex";
 
 import { getSettlement } from "../../actions/getSettlement";
 
@@ -223,26 +228,38 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               notes={this.state.survivor.notes}
             />
-            {/* <SurvivorName
+            <Favorite
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              value={this.state.survivor.sheet.favorite}
+            />
+            <Name
               className={"grid-full"}
               oid={this.state.survivor.sheet._id.$oid}
               name={this.state.survivor.sheet.name}
+            />
+            <Sex
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              sex={this.state.survivor.sheet.sex}
+            />
+            <Retire
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              value={this.state.survivor.sheet.retired}
+            />
+            <Death
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              value={this.state.survivor.sheet.death}
+              year={this.state.settlementData.sheet.lantern_year}
+            />
+            {/* <Status
+              className={"grid-full"}
+              oid={this.state.survivor.sheet._id.$oid}
+              value={[]}
             /> */}
-            {/* <SurvivorStatus
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              flags={[]}
-            />
-            <SurvivorFavorite
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              favorite={this.state.survivor.sheet.favorite}
-            />
-            <SurvivorFavorite
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              favorite={this.state.survivor.sheet.favorite}
-            />
+            {/*
             <SurvivorCursed
               className={"grid-full"}
               oid={this.state.survivor.sheet._id.$oid}
@@ -253,11 +270,6 @@ class Survivor extends React.Component {
               className={"grid-full"}
               oid={this.state.survivor.sheet._id.$oid}
               retired={this.state.survivor.sheet.retired}
-            />
-            <SurvivorDeath
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              retired={this.state.survivor.sheet.death}
             /> */}
           </div>
         </div>
