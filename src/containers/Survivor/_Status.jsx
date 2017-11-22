@@ -4,25 +4,17 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 import { setAttributes } from "../../actions/attributes";
+import Toggle from "../../components/Toggle/Toggle";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
-
-function checkEmail(email, list) {
-  return list.indexOf(email) !== -1;
-}
 
 class Status extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value,
-      options: [
-        "cannot_spend_survival",
-        "cannot_use_fighting_arts",
-        "skip_next_hunt",
-        "departing"
-      ]
+      value: props.value
     };
+    this.toggleValue = this.toggleValue.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -30,47 +22,47 @@ class Status extends Component {
     });
   }
   // Handle's the save and makes the API Call
-  handleSave() {
+  toggleValue() {
+    const toggled = !this.state.value;
+    this.setState({ value: toggled });
     const userId = localStorage.getItem("userId");
     const data = {
       user_id: userId,
-      user_email: "email@email.com"
+      flag: this.props.flag,
+      unset: toggled
     };
     // TODO: Khoa create setStatus action
-    // /survivor/add_Status/<survivor_id>
-    // /survivor/rm_Status/<survivor_id>
+    // /survivor/set_status_flag/<survivor_id>
+    // We also need to set redux with this value
+    // this.state.survivor.sheet[this.props.flag] = toggled
     this.props.setStatus(this.props.oid, data).catch(() => {
       this.resetData();
     });
   }
-  renderButton() {
-    if (!this.state.value) {
-      return (
-        <Button color={"primary"} size="sm" onClick={this.handleSave}>
-          Mark as Status
-        </Button>
-      );
-    }
-    return (
-      <Button color={"primary"} size="sm" onClick={this.handleSave}>
-        Remove Status
-      </Button>
-    );
-  }
-  // Renders our component
   render() {
-    return <Widget className="grid-full">{this.renderButton()}</Widget>;
+    return (
+      <Toggle
+        updateToggle={this.toggleValue}
+        for={this.props.flag}
+        active={this.state.value}
+        label={this.props.label}
+      />
+    );
   }
 }
 
 Status.propTypes = {
   oid: PropTypes.string,
-  value: PropTypes.arrayOf(PropTypes.string)
+  value: PropTypes.string,
+  label: PropTypes.string,
+  flag: PropTypes.string
 };
 
 Status.defaultProps = {
   oid: "",
-  value: []
+  value: "",
+  label: "",
+  flag: ""
 };
 
 function mapDispatchToProps(dispatch) {

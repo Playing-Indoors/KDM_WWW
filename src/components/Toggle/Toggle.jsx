@@ -27,7 +27,9 @@ class Toggle extends React.Component {
         <Row noGutters className="align-items-center">
           <Col>
             {/* @Caleb - Convert this to a label */}
-            <div className="toggle-label">{this.props.label}</div>
+            <div className="toggle-label" onClick={this.handleToggle}>
+              {this.props.label}
+            </div>
           </Col>
           <Col xs="auto">
             {/* @Caleb - convert this to a checkbox */}

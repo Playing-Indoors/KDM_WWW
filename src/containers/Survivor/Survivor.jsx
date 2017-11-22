@@ -23,6 +23,7 @@ import Retire from "./_Retire";
 import Death from "./_Death";
 import Status from "./_Status";
 import Sex from "./_Sex";
+import CursedItems from "./_CursedItems";
 
 import { getSettlement } from "../../actions/getSettlement";
 
@@ -254,22 +255,32 @@ class Survivor extends React.Component {
               value={this.state.survivor.sheet.death}
               year={this.state.settlementData.sheet.lantern_year}
             />
-            {/* <Status
-              className={"grid-full"}
+            <Status
+              className={""}
               oid={this.state.survivor.sheet._id.$oid}
-              value={[]}
-            /> */}
-            {/*
-            <SurvivorCursed
+              value={this.state.survivor.sheet.cannot_spend_survival}
+              flag={"cannot_spend_survival"}
+              label={"Cannot spend survival"}
+            />
+            <Status
+              className={""}
+              oid={this.state.survivor.sheet._id.$oid}
+              value={this.state.survivor.sheet.cannot_use_fighting_arts}
+              flag={"cannot_use_fighting_arts"}
+              label={"Cannot use fighting arts"}
+            />
+            <Status
+              className={""}
+              oid={this.state.survivor.sheet._id.$oid}
+              value={this.state.survivor.sheet.skip_next_hunt}
+              flag={"skip_next_hunt"}
+              label={"Skip next hunt"}
+            />
+            {/* <CursedItems
               className={"grid-full"}
               oid={this.state.survivor.sheet._id.$oid}
               items={this.state.survivor.sheet.cursed_items}
               assets={this.state.settlementData.game_assets.cursed_items}
-            />
-            <SurvivorRetire
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              retired={this.state.survivor.sheet.retired}
             /> */}
           </div>
         </div>
