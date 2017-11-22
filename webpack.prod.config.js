@@ -19,7 +19,7 @@ var config = {
     publicPath: "/"
   },
   externals: {
-    KDM_API: JSON.stringify("http://api.thewatcher.io")
+    KDM_API: JSON.stringify("https://api.thewatcher.io")
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],
@@ -85,7 +85,7 @@ var config = {
     }),
     // yay production
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      "process.env.NODE_ENV": JSON.stringify("production")
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html

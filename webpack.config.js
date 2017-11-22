@@ -8,7 +8,7 @@ var autoprefixer = require("autoprefixer");
 module.exports = {
   entry: ["babel-polyfill", path.join(__dirname, "/src/routes.jsx")],
   externals: {
-    KDM_API: JSON.stringify("http://api.thewatcher.io")
+    KDM_API: JSON.stringify("https://api.thewatcher.io")
   },
   output: {
     path: path.join(__dirname, "/public/"),
