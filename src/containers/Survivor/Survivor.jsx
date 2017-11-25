@@ -276,12 +276,12 @@ class Survivor extends React.Component {
               flag={"skip_next_hunt"}
               label={"Skip next hunt"}
             />
-            {/* <CursedItems
+            <CursedItems
               className={"grid-full"}
               oid={this.state.survivor.sheet._id.$oid}
               items={this.state.survivor.sheet.cursed_items}
               assets={this.state.settlementData.game_assets.cursed_items}
-            /> */}
+            />
           </div>
         </div>
       );

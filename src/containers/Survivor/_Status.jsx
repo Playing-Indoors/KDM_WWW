@@ -53,14 +53,14 @@ class Status extends Component {
 
 Status.propTypes = {
   oid: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.bool,
   label: PropTypes.string,
   flag: PropTypes.string
 };
 
 Status.defaultProps = {
   oid: "",
-  value: "",
+  value: false,
   label: "",
   flag: ""
 };
