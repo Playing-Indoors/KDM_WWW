@@ -53,7 +53,7 @@ class Death extends Component {
           type="text"
           placeholder="Enter cause of death..."
           value={this.state.text}
-          bsSize="sm"
+          size="sm"
           className="mb-3"
           onChange={this.handleTextInput}
         />

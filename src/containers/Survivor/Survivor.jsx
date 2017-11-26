@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import _filter from "lodash/filter";
 import { Button, Input, ButtonGroup } from "reactstrap";
+import { Link } from "react-router";
 import Header from "../../components/Header/Header";
+import Icon from "../../components/Icon/Icon";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
@@ -31,9 +33,11 @@ class Survivor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      headerModal: false,
       settlementData: null,
       survivor: null
     };
+    this.handleHeaderModal = this.handleHeaderModal.bind(this);
   }
   componentDidMount() {
     if (this.props.settlementData === null) {
@@ -75,11 +79,35 @@ class Survivor extends React.Component {
       });
     }
   }
+  handleHeaderModal() {
+    this.setState(prevState => ({
+      headerModal: !prevState.headerModal
+    }));
+  }
   render() {
     if (this.state.survivor) {
       return (
         <div>
-          <Header name={this.state.survivor.sheet.name} showBack />
+          <Header name={this.state.survivor.sheet.name} showBack>
+            <button onClick={this.handleHeaderModal} className="header-action">
+              <Icon name={"pencil"} />
+            </button>
+          </Header>
+          <div
+            className={`headerModal ${this.state.headerModal
+              ? "is-active"
+              : ""}`}
+          >
+            <div className="headerModal-links">
+              <Link to={"/settlements/create"}>View Log</Link>
+              <Link to={"/settlements/create"}>Make Favorite</Link>
+              <Link to={"/settlements/create"}>Rename</Link>
+              <Link to={"/settlements/create"}>Gender Swap</Link>
+              <Link to={"/settlements/create"}>Manage Cursed Gear</Link>
+              <Link to={"/settlements/create"}>Force Retirement</Link>
+              <Link to={"/settlements/create"}>Kill Survivor</Link>
+            </div>
+          </div>
           <div className="layout layout--survivor">
             {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
             <Survival

@@ -23,6 +23,12 @@ icons.back = {
   width: 17.2,
   height: 16.39
 };
+icons.pencil = {
+  icon:
+    '<g><path d="M13.46,6,10.12,2.59,0,12.72H0v3.34H3.34Z" /><rect x="12.29" y="0.15" width="2.42" height="4.83" transform="translate(2.14 10.3) rotate(-45)/></g>',
+  width: 16.06,
+  height: 16.05
+};
 icons.check = {
   icon:
     '<g><path d="M0,7,2.28,4.69,7.22,9.63,16.85,0,19,2.15,7.09,14.06Z" /></g>',

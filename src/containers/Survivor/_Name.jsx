@@ -54,7 +54,7 @@ class Name extends Component {
           type="text"
           name="name"
           placeholder="Enter survivor name..."
-          bsSize="sm"
+          size="sm"
           autoFocus
           required
           onChange={this.handleNameChange}
