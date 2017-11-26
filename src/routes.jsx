@@ -27,6 +27,7 @@ import Innovations from "./containers/Settlement/ManageInnovations";
 import More from "./containers/More/More";
 import Aya from "./containers/Aya/Aya";
 import NotFound from "./components/NotFound/NotFound";
+import Alpha1 from "./containers/Welcome/Alpha-1";
 import { AUTH_USER } from "./actions/types";
 
 require("../styles/main.scss");
@@ -57,6 +58,8 @@ render(
       <Route path="/forgot" component={Forgot} />
       <Route path="/logout" component={Logout} />
       <Route path="/info" component={Info} />
+
+      <Route path="/alpha-1" component={Alpha1} />
       {/* Dev Routes */}
       {/* <Route title="Aya" path="/aya" component={Aya} /> */}
 
