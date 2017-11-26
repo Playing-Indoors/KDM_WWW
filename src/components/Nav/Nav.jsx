@@ -6,15 +6,21 @@ import Icon from "../../components/Icon/Icon";
 
 class Nav extends Component {
   currentSettlement(path) {
-    const currentSettlement = this.props.userData.user.current_settlement;
-    if (currentSettlement && path) {
-      return `/settlements/${currentSettlement.$oid}/${path}`;
-    } else if (currentSettlement) {
-      return `/settlements/${currentSettlement.$oid}`;
+    let oid = "";
+    if (this.params && this.params.oid) {
+      oid = this.params.oid;
+    } else if (this.props.userData.user.current_settlement) {
+      oid = this.props.userData.user.current_settlement.$oid;
+    }
+    if (oid.length !== 0) {
+      if (path) {
+        return `/settlements/${oid}/${path}`;
+      }
+      return `/settlements/${oid}`;
     }
     return null;
   }
-  getNav() {
+  buildNav() {
     return [
       {
         title: "Settlement",
@@ -53,7 +59,7 @@ class Nav extends Component {
   }
   renderMainNav() {
     if (this.props.userData) {
-      return this.getNav().map((item, index) => (
+      return this.buildNav().map((item, index) => (
         <Link
           key={index}
           className="nav-link"
