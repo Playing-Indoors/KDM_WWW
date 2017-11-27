@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { Button, Select } from "reactstrap";
 import { setAttributes } from "../../actions/attributes";
+import { addCursedItem, rmCursedItem } from "../../actions/cursedItems";
 import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
@@ -23,11 +24,21 @@ class CursedItems extends Component {
   handleListRemove(index) {
     const items = [...this.state.items];
     const value = items.splice(index, 1)[0];
-    this.setState({
-      isSaving: true,
-      items
-    });
-    console.log("remove", value);
+    const survivorId = this.props.oid;
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      handle: value
+    };
+    this.setState(
+      {
+        isSaving: true,
+        items
+      },
+      () => {
+        this.props.rmCursedItem(survivorId, data);
+      }
+    );
     // this.removeFromInnovation(value).then(res => {
     //   this.setState({
     //     isSaving: false
@@ -37,11 +48,22 @@ class CursedItems extends Component {
   }
   handleItemAdd(event) {
     const newList = [...this.state.items, event.target.value];
+    const survivorId = this.props.oid;
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      handle: event.target.value
+    };
     newList.sort();
-    this.setState({
-      selectValue: "",
-      items: newList
-    });
+    this.setState(
+      {
+        selectValue: "",
+        items: newList
+      },
+      () => {
+        this.props.addCursedItem(survivorId, data);
+      }
+    );
     // Add API CALL
   }
   // // Handle's the save and makes the API Call
@@ -128,7 +150,9 @@ CursedItems.defaultProps = {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setAttributes
+      setAttributes,
+      addCursedItem,
+      rmCursedItem
     },
     dispatch
   );

@@ -17,3 +17,5 @@ export const SET_SETTLEMENT_ATTRIBUTES = "set_settlement_attributes";
 export const SET_ATTRIBUTES = "set_attributes";
 export const SET_MANY_ARMOR = "set_many_armor";
 export const SET_MANY_ATTRIBUTES = "set_many_attributes";
+export const ADD_CURSED_ITEM = "add_cursed_item";
+export const RM_CURSED_ITEM = "rm_cursed_item";
