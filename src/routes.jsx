@@ -28,7 +28,7 @@ import Log from "./containers/Log/Log";
 import Settlement from "./containers/Settlement/Settlement";
 import Innovations from "./containers/Settlement/ManageInnovations";
 import More from "./containers/More/More";
-import Aya from "./containers/Aya/Aya";
+// import Aya from "./containers/Aya/Aya";
 import NotFound from "./components/NotFound/NotFound";
 import Alpha1 from "./containers/Welcome/Alpha-1";
 import { AUTH_USER } from "./actions/types";
