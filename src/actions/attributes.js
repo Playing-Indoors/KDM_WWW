@@ -3,6 +3,7 @@ import { browserHistory } from "react-router";
 import {
   SET_SURVIVAL,
   SET_BLEEDING,
+  SET_SEX,
   SET_ATTRIBUTES,
   SET_MANY_ARMOR,
   SET_MANY_ATTRIBUTES
@@ -96,6 +97,19 @@ export function setBleeding(survivor_id, data) {
   };
 }
 
+export function setSex(survivor_id, data) {
+  return async dispatch => {
+    await axios({
+      method: "post",
+      url: `${KDM_API}/survivor/set_sex/${survivor_id}`,
+      data: data
+    }).then(res => {
+      dispatch(setSexAsync(data, survivor_id));
+      return true;
+    });
+  };
+}
+
 function setManyArmorAsync(data, survivor_id) {
   return {
     survivor_id,
@@ -128,6 +142,13 @@ function setBleedingAsync(data, survivor_id) {
   return {
     survivor_id,
     type: SET_BLEEDING,
+    payload: data
+  };
+}
+function setSexAsync(data, survivor_id) {
+  return {
+    survivor_id,
+    type: SET_SEX,
     payload: data
   };
 }

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { Button, Select } from "reactstrap";
-import { setAttributes } from "../../actions/attributes";
+import { setSex } from "../../actions/attributes";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
 
@@ -33,11 +33,7 @@ class Sex extends Component {
       user_id: userId,
       sex: this.state.value
     };
-    // TODO: Khoa create setSex action
-    // /survivor/set_sex/<survivor_id>
-    this.props.setSex(this.props.oid, data).catch(() => {
-      this.resetData();
-    });
+    this.props.setSex(this.props.oid, data);
   }
   confirmColor() {
     if (this.state.value === this.props.value) {
@@ -84,7 +80,7 @@ Sex.defaultProps = {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setAttributes
+      setSex
     },
     dispatch
   );

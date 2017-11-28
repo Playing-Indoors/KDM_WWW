@@ -13,6 +13,7 @@ export const GET_USER = "get_user";
 export const SET_MANY_ASSETS = "set_many_assets";
 export const SET_SURVIVAL = "set_survival";
 export const SET_BLEEDING = "set_bleeding";
+export const SET_SEX = "set_sex";
 export const SET_SETTLEMENT_ATTRIBUTES = "set_settlement_attributes";
 export const SET_ATTRIBUTES = "set_attributes";
 export const SET_MANY_ARMOR = "set_many_armor";
