@@ -35,6 +35,7 @@ class Survivor extends React.Component {
     this.state = {
       headerModal: false,
       settlementData: null,
+      showPopup: "",
       survivor: null
     };
     this.handleHeaderModal = this.handleHeaderModal.bind(this);
@@ -84,7 +85,22 @@ class Survivor extends React.Component {
       headerModal: !prevState.headerModal
     }));
   }
+  renderModal(name) {
+    console.warn(name);
+    this.setState({
+      showPopup: name,
+      headerModal: false
+    });
+  }
+  renderChildren() {
+    if (this.props.children) {
+      return <div className="headerModal is-active">{this.props.children}</div>;
+    }
+    return null;
+  }
   render() {
+    const url = `/settlements/${this.props.params.oid}/survivors/${this.props
+      .params.survivorId}`;
     if (this.state.survivor) {
       return (
         <div>
@@ -99,15 +115,20 @@ class Survivor extends React.Component {
               : ""}`}
           >
             <div className="headerModal-links">
-              <Link to={"/settlements/create"}>View Log</Link>
+              <Link to={"settlements/59ceeefb8740d90655610539/log"}>
+                View Log
+              </Link>
               <Link to={"/settlements/create"}>Make Favorite</Link>
               <Link to={"/settlements/create"}>Rename</Link>
-              <Link to={"/settlements/create"}>Gender Swap</Link>
-              <Link to={"/settlements/create"}>Manage Cursed Gear</Link>
-              <Link to={"/settlements/create"}>Force Retirement</Link>
+              <Link to={`${url}/sex`}>Gender Swap</Link>
+              <Link to={`${url}/cursed`}>Manage Cursed Gear</Link>
+              <Link tabIndex="0" onClick={() => this.renderModal("retire")}>
+                Force Retirement
+              </Link>
               <Link to={"/settlements/create"}>Kill Survivor</Link>
             </div>
           </div>
+          {this.renderChildren()}
           <div className="layout layout--survivor">
             {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
             <Survival
@@ -276,6 +297,7 @@ class Survivor extends React.Component {
               className={"grid-full"}
               oid={this.state.survivor.sheet._id.$oid}
               value={this.state.survivor.sheet.retired}
+              show={this.state.showPopup === "retire"}
             />
             <Death
               className={"grid-full"}

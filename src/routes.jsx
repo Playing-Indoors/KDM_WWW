@@ -13,8 +13,11 @@ import Forgot from "./containers/Login/Forgot";
 import Logout from "./containers/Login/Logout";
 import System from "./containers/System/System";
 import Survivor from "./containers/Survivor/Survivor";
+import Sex from "./containers/Survivor/_Sex";
 import Survivors from "./containers/Survivors/Survivors";
 import SurvivorsCreate from "./containers/Survivors/SurvivorsCreate";
+import SurvivorSex from "./containers/Survivor/containers/SexChange";
+import SurvivorCursedItems from "./containers/Survivor/_CursedItems";
 import Settlements from "./containers/Settlements/Settlements";
 import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
 import Storage from "./containers/Storage/Storage";
@@ -124,7 +127,10 @@ render(
           noHeader
           back
           component={requireAuth(Survivor)}
-        />
+        >
+          <Route path="sex" component={requireAuth(SurvivorSex)} />
+          <Route path="cursed" component={requireAuth(SurvivorCursedItems)} />
+        </Route>
         <Route
           path="/settlements/:oid/storage"
           title="Storage"

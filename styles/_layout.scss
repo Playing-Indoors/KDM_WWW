@@ -21,6 +21,8 @@ body {
 
 .main {
   padding-top: $menu-button-width;
+  max-width: 768px;
+  margin: 0 auto;
 }
 
 .mainNav ~ .main {
