@@ -44,6 +44,8 @@ textarea {
 // Custom Containers
 @import "../src/containers/Home/home";
 @import "../src/containers/Login/login";
-@import "../src/containers/Survivor/Survivor";
 @import "../src/containers/Settlement/Settlement";
 @import "../src/containers/World/world";
+
+// Scenes
+@import "../src/scenes/Survivor/Survivor";

@@ -2,13 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import _filter from "lodash/filter";
-import { Button, Input, ButtonGroup } from "reactstrap";
 import { Link } from "react-router";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import Widget from "../../components/Widget/Widget";
-import WidgetFooter from "../../components/Widget/WidgetFooter";
 import Notes from "./_Notes";
 import Stats from "./_SurvivorStats";
 import Assets from "./_Assets";
@@ -24,8 +21,7 @@ import Favorite from "./_Favorite";
 import Retire from "./_Retire";
 import Death from "./_Death";
 import Status from "./_Status";
-import Sex from "./_Sex";
-import CursedItems from "./_CursedItems";
+// import CursedItems from "./_CursedItems";
 
 import { getSettlement } from "../../actions/getSettlement";
 
@@ -79,6 +75,11 @@ class Survivor extends React.Component {
         survivor: arr[0]
       });
     }
+    if (nextProps.location !== this.props.location) {
+      this.setState({
+        headerModal: false
+      });
+    }
   }
   handleHeaderModal() {
     this.setState(prevState => ({
@@ -86,7 +87,6 @@ class Survivor extends React.Component {
     }));
   }
   renderModal(name) {
-    console.warn(name);
     this.setState({
       showPopup: name,
       headerModal: false
@@ -98,18 +98,39 @@ class Survivor extends React.Component {
     }
     return null;
   }
+  renderMenuButton() {
+    if (this.props.children) {
+      return (
+        <Link
+          to={`/settlements/${this.props.params.oid}/survivors/${this.props
+            .params.survivorId}`}
+          className="header-action"
+        >
+          <Icon name={"minus"} />
+        </Link>
+      );
+    }
+    return (
+      <Link
+        to={`/settlements/${this.props.params.oid}/survivors/${this.props.params
+          .survivorId}/menu`}
+        className="header-action"
+      >
+        <Icon name={"pencil"} />
+      </Link>
+    );
+  }
   render() {
-    const url = `/settlements/${this.props.params.oid}/survivors/${this.props
-      .params.survivorId}`;
     if (this.state.survivor) {
       return (
         <div>
           <Header name={this.state.survivor.sheet.name} showBack>
-            <button onClick={this.handleHeaderModal} className="header-action">
+            {this.renderMenuButton()}
+            {/* <button onClick={this.handleHeaderModal} className="header-action">
               <Icon name={"pencil"} />
-            </button>
+            </button> */}
           </Header>
-          <div
+          {/* <div
             className={`headerModal ${this.state.headerModal
               ? "is-active"
               : ""}`}
@@ -118,8 +139,12 @@ class Survivor extends React.Component {
               <Link to={"settlements/59ceeefb8740d90655610539/log"}>
                 View Log
               </Link>
-              <Link to={"/settlements/create"}>Make Favorite</Link>
-              <Link to={"/settlements/create"}>Rename</Link>
+              <Link to={"/settlements/create"} onClick={this.handleHeaderModal}>
+                Make Favorite
+              </Link>
+              <Link to={"/settlements/create"} onClick={this.handleHeaderModal}>
+                Rename
+              </Link>
               <Link to={`${url}/sex`}>Gender Swap</Link>
               <Link to={`${url}/cursed`}>Manage Cursed Gear</Link>
               <Link tabIndex="0" onClick={() => this.renderModal("retire")}>
@@ -127,7 +152,7 @@ class Survivor extends React.Component {
               </Link>
               <Link to={"/settlements/create"}>Kill Survivor</Link>
             </div>
-          </div>
+          </div> */}
           {this.renderChildren()}
           <div className="layout layout--survivor">
             {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
@@ -288,11 +313,6 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               name={this.state.survivor.sheet.name}
             />
-            <Sex
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              sex={this.state.survivor.sheet.sex}
-            />
             <Retire
               className={"grid-full"}
               oid={this.state.survivor.sheet._id.$oid}
@@ -325,12 +345,6 @@ class Survivor extends React.Component {
               value={this.state.survivor.sheet.skip_next_hunt}
               flag={"skip_next_hunt"}
               label={"Skip next hunt"}
-            />
-            <CursedItems
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              items={this.state.survivor.sheet.cursed_items}
-              assets={this.state.settlementData.game_assets.cursed_items}
             />
           </div>
         </div>

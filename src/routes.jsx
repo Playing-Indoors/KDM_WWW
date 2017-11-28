@@ -12,12 +12,12 @@ import Register from "./containers/Login/Register";
 import Forgot from "./containers/Login/Forgot";
 import Logout from "./containers/Login/Logout";
 import System from "./containers/System/System";
-import Survivor from "./containers/Survivor/Survivor";
-import Sex from "./containers/Survivor/_Sex";
 import Survivors from "./containers/Survivors/Survivors";
 import SurvivorsCreate from "./containers/Survivors/SurvivorsCreate";
-import SurvivorSex from "./containers/Survivor/containers/SexChange";
-import SurvivorCursedItems from "./containers/Survivor/_CursedItems";
+import Survivor from "./scenes/Survivor/Survivor";
+import SurvivorSexChange from "./scenes/Survivor/containers/SexChange";
+import SurvivorCursedItems from "./scenes/Survivor/containers/CursedItems";
+import SurvivorExtraLinks from "./scenes/Survivor/containers/ExtraLinks";
 import Settlements from "./containers/Settlements/Settlements";
 import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
 import Storage from "./containers/Storage/Storage";
@@ -96,7 +96,7 @@ render(
           component={requireAuth(Settlement)}
         />
         <Route
-          path="/settlements/:oid/Innovations"
+          path="/settlements/:oid/innovations"
           title="Settlement"
           component={requireAuth(Innovations)}
           noHeader
@@ -128,7 +128,8 @@ render(
           back
           component={requireAuth(Survivor)}
         >
-          <Route path="sex" component={requireAuth(SurvivorSex)} />
+          <Route path="menu" component={requireAuth(SurvivorExtraLinks)} />
+          <Route path="sex" component={requireAuth(SurvivorSexChange)} />
           <Route path="cursed" component={requireAuth(SurvivorCursedItems)} />
         </Route>
         <Route
