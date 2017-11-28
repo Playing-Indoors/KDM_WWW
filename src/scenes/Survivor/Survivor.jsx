@@ -16,10 +16,10 @@ import XP from "./_XP";
 import Courage from "./_Courage";
 import Understanding from "./_Understanding";
 import Weapon from "./_Weapon";
-import Name from "./_Name";
-import Favorite from "./_Favorite";
-import Retire from "./_Retire";
-import Death from "./_Death";
+// import Name from "./_Name";
+// import Favorite from "./_Favorite";
+// import Retire from "./_Retire";
+// import Death from "./_Death";
 import Status from "./_Status";
 // import CursedItems from "./_CursedItems";
 
@@ -102,8 +102,9 @@ class Survivor extends React.Component {
     if (this.props.children) {
       return (
         <Link
-          to={`/settlements/${this.props.params.oid}/survivors/${this.props
-            .params.survivorId}`}
+          to={`/settlements/${this.props.params.oid}/survivors/${
+            this.props.params.survivorId
+          }`}
           className="header-action"
         >
           <Icon name={"minus"} />
@@ -112,8 +113,9 @@ class Survivor extends React.Component {
     }
     return (
       <Link
-        to={`/settlements/${this.props.params.oid}/survivors/${this.props.params
-          .survivorId}/menu`}
+        to={`/settlements/${this.props.params.oid}/survivors/${
+          this.props.params.survivorId
+        }/menu`}
         className="header-action"
       >
         <Icon name={"pencil"} />
@@ -302,28 +304,6 @@ class Survivor extends React.Component {
             <Notes
               oid={this.state.survivor.sheet._id.$oid}
               notes={this.state.survivor.notes}
-            />
-            <Favorite
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              value={this.state.survivor.sheet.favorite}
-            />
-            <Name
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              name={this.state.survivor.sheet.name}
-            />
-            <Retire
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              value={this.state.survivor.sheet.retired}
-              show={this.state.showPopup === "retire"}
-            />
-            <Death
-              className={"grid-full"}
-              oid={this.state.survivor.sheet._id.$oid}
-              value={this.state.survivor.sheet.death}
-              year={this.state.settlementData.sheet.lantern_year}
             />
             <Status
               className={""}

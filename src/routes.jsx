@@ -15,9 +15,14 @@ import System from "./containers/System/System";
 import Survivors from "./containers/Survivors/Survivors";
 import SurvivorsCreate from "./containers/Survivors/SurvivorsCreate";
 import Survivor from "./scenes/Survivor/Survivor";
+import SurvivorFavoriteToggle from "./scenes/Survivor/containers/FavoriteToggle";
+import SurvivorNameChange from "./scenes/Survivor/containers/NameChange";
+import SurvivorRetireManage from "./scenes/Survivor/containers/RetireManage";
+import SurvivorDeathRecord from "./scenes/Survivor/containers/DeathRecord";
 import SurvivorSexChange from "./scenes/Survivor/containers/SexChange";
 import SurvivorCursedItems from "./scenes/Survivor/containers/CursedItems";
 import SurvivorExtraLinks from "./scenes/Survivor/containers/ExtraLinks";
+import SurvivorLog from "./scenes/Survivor/containers/LogSurvivor";
 import Settlements from "./containers/Settlements/Settlements";
 import SettlementsCreate from "./containers/Settlements/SettlementsCreate";
 import Storage from "./containers/Storage/Storage";
@@ -130,7 +135,15 @@ render(
         >
           <Route path="menu" component={requireAuth(SurvivorExtraLinks)} />
           <Route path="sex" component={requireAuth(SurvivorSexChange)} />
+          <Route
+            path="favorite"
+            component={requireAuth(SurvivorFavoriteToggle)}
+          />
+          <Route path="name" component={requireAuth(SurvivorNameChange)} />
+          <Route path="retire" component={requireAuth(SurvivorRetireManage)} />
+          <Route path="kill" component={requireAuth(SurvivorDeathRecord)} />
           <Route path="cursed" component={requireAuth(SurvivorCursedItems)} />
+          <Route path="log" component={requireAuth(SurvivorLog)} />
         </Route>
         <Route
           path="/settlements/:oid/storage"

@@ -104,7 +104,7 @@
 .headerModal.is-active .headerModal-links {
   @for $i from 1 through 15 {
     a:nth-of-type(#{$i}) {
-      animation: in 0.15s 0.3s + $i/20 forwards;
+      animation: in 0.15s 0s + $i/20 forwards;
       transition-timing-function: ease-in;
     }
   }

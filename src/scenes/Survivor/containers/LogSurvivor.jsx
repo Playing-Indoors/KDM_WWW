@@ -2,11 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import Header from "../../components/Header/Header";
-import Widget from "../../components/Widget/Widget";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { getSettlement } from "../../actions/getSettlement";
-import { getLogs } from "../../actions/log";
+import Header from "../../../components/Header/Header";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
+import { getSettlement } from "../../../actions/getSettlement";
+import { getLogs } from "../../../actions/log";
 
 class Log extends React.Component {
   constructor(props) {
