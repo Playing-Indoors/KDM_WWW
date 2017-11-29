@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import { browserHistory } from "react-router";
 import PropTypes from "prop-types";
 import { Button, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
-import { setAttributes } from "../../../actions/attributes";
+import { setSex } from "../../../actions/attributes";
+import LoadingSaving from "../../../components/LoadingSaving/LoadingSaving";
 
 class SexChange extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class SexChange extends Component {
     this.state = {
       survivorId: "",
       originalValue: "",
-      value: "F"
+      value: "F",
+      isSaving: false
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -44,27 +46,30 @@ class SexChange extends Component {
     this.setState({ value: e.target.value });
   }
   handleClose() {
-    browserHistory.push(
+    console.warn(browserHistory);
+    browserHistory.replace(
       `/settlements/${this.props.params.oid}/survivors/${this.props.params
         .survivorId}`
     );
   }
   // Handle's the save and makes the API Call
   handleSave() {
-    if (checkModified) {
+    if (this.checkModified()) {
       const userId = localStorage.getItem("userId");
       const data = {
         user_id: userId,
         sex: this.state.value
       };
+      this.setState({ isSaving: true });
       // TODO: Khoa create setSex action
       // /survivor/set_sex/<survivor_id>
       this.props
-        .setSex(this.props.oid, data)
+        .setSex(this.state.survivorId, data)
         .then(() => {
           this.handleClose();
         })
         .catch(err => {
+          this.setState({ isSaving: false });
           console.warn("error", err);
         });
     } else {
@@ -75,6 +80,9 @@ class SexChange extends Component {
     return this.state.value !== this.state.originalValue;
   }
   render() {
+    if (this.state.isSaving) {
+      return <LoadingSaving />;
+    }
     return (
       <div>
         <ModalHeader>Change Sex</ModalHeader>
@@ -123,7 +131,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setAttributes
+      setSex
     },
     dispatch
   );

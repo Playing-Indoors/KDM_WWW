@@ -102,9 +102,8 @@ class Survivor extends React.Component {
     if (this.props.children) {
       return (
         <Link
-          to={`/settlements/${this.props.params.oid}/survivors/${
-            this.props.params.survivorId
-          }`}
+          to={`/settlements/${this.props.params.oid}/survivors/${this.props
+            .params.survivorId}`}
           className="header-action"
         >
           <Icon name={"minus"} />
@@ -113,9 +112,8 @@ class Survivor extends React.Component {
     }
     return (
       <Link
-        to={`/settlements/${this.props.params.oid}/survivors/${
-          this.props.params.survivorId
-        }/menu`}
+        to={`/settlements/${this.props.params.oid}/survivors/${this.props.params
+          .survivorId}/menu`}
         className="header-action"
       >
         <Icon name={"pencil"} />
@@ -126,7 +124,10 @@ class Survivor extends React.Component {
     if (this.state.survivor) {
       return (
         <div>
-          <Header name={this.state.survivor.sheet.name} showBack>
+          <Header
+            back={`/settlements/${this.props.params.oid}/survivors`}
+            name={this.state.survivor.sheet.name}
+          >
             {this.renderMenuButton()}
             {/* <button onClick={this.handleHeaderModal} className="header-action">
               <Icon name={"pencil"} />

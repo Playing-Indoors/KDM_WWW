@@ -93,7 +93,7 @@ class Survivors extends React.Component {
     if (this.props.settlementData) {
       return (
         <div>
-          <Header name={"Survivors"}>
+          <Header name={"Survivors"} back="/dashboard">
             <Link
               to={`/settlements/${this.props.settlementData.sheet._id
                 .$oid}/survivors/create`}
