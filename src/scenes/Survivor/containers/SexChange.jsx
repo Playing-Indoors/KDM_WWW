@@ -61,8 +61,6 @@ class SexChange extends Component {
         sex: this.state.value
       };
       this.setState({ isSaving: true });
-      // TODO: Khoa create setSex action
-      // /survivor/set_sex/<survivor_id>
       this.props
         .setSex(this.state.survivorId, data)
         .then(() => {

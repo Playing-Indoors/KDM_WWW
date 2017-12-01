@@ -30,6 +30,7 @@ export function authenticate({ username, password }) {
           method: "get",
           url: `${KDM_API}/user/dashboard/${userId}`
         }).then(res => {
+          console.log('login res', res);
           const currentSettlement = res.data.user.current_settlement;
           if (currentSettlement) {
             const settlementId = currentSettlement.$oid;
