@@ -13,7 +13,7 @@ import {
 import _isEqual from "lodash/isEqual";
 import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
-import { setManyAssets } from "../../actions/abilities";
+import { setNote } from "../../actions/attributes";
 
 class Notes extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Notes extends Component {
     this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleTypeNote = this.handleTypeNote.bind(this);
     this.handleAddNote = this.handleAddNote.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     this.handleModalConfirm = this.handleModalConfirm.bind(this);
     // this.handleUpdateAmount = this.handleUpdateAmount.bind(this);
   }
@@ -51,9 +51,9 @@ class Notes extends Component {
     });
   }
   // Cancel event from the modal, reset the state.
-  handleCancel() {
+  handleClose() {
     this.handleModalToggle();
-    this.resetData();
+    // this.resetData();
   }
   // Handle's the save and makes the API Call
   handleModalConfirm() {
@@ -69,15 +69,22 @@ class Notes extends Component {
   }
   handleAddNote() {
     if (this.state.noteTemp.length > 0) {
-      this.setState({
-        noteTemp: "",
-        notes: [
-          ...this.state.notes,
-          {
-            note: this.state.noteTemp
-          }
-        ]
-      });
+      this.props
+        .setNote(this.props.oid, this.state.noteTemp)
+        .then(() => {
+          this.setState({
+            noteTemp: "",
+            notes: [
+              ...this.state.notes,
+              {
+                note: this.state.noteTemp
+              }
+            ]
+          });
+        })
+        .catch(() => {
+          this.resetData();
+        });
     }
   }
   handleTypeNote(event) {
@@ -172,7 +179,7 @@ class Notes extends Component {
             showDetails
           />
         </button>
-        <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
+        <Modal isOpen={this.state.showModal} toggle={this.handleClose}>
           <ModalHeader>Adjust {this.state.title}</ModalHeader>
           <ModalBody>
             <div className="layout">
@@ -181,14 +188,8 @@ class Notes extends Component {
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button
-              color={this.confirmColor()}
-              onClick={this.handleModalConfirm}
-            >
-              Confirm
-            </Button>
-            <Button onClick={this.handleCancel} color="link">
-              Cancel
+            <Button onClick={this.handleClose} color="link">
+              Close
             </Button>
           </ModalFooter>
         </Modal>
@@ -208,13 +209,14 @@ Notes.propTypes = {
       note: PropTypes.string
     })
   ),
-  oid: PropTypes.string
+  oid: PropTypes.string,
+  setNote: PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setManyAssets
+      setNote
     },
     dispatch
   );

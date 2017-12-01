@@ -6,7 +6,8 @@ import {
   SET_SEX,
   SET_ATTRIBUTES,
   SET_MANY_ARMOR,
-  SET_MANY_ATTRIBUTES
+  SET_MANY_ATTRIBUTES,
+  SET_NOTE
 } from "./types.js";
 
 const KDM_API = require("KDM_API");
@@ -110,6 +111,20 @@ export function setSex(survivor_id, data) {
   };
 }
 
+export function setNote(survivor_id, note) {
+  const data = { note };
+  return async dispatch => {
+    await axios({
+      method: "post",
+      url: `${KDM_API}/survivor/add_note/${survivor_id}`,
+      data
+    }).then(res => {
+      dispatch(setNoteAsync(data, survivor_id));
+      return true;
+    });
+  };
+}
+
 function setManyArmorAsync(data, survivor_id) {
   return {
     survivor_id,
@@ -149,6 +164,13 @@ function setSexAsync(data, survivor_id) {
   return {
     survivor_id,
     type: SET_SEX,
+    payload: data
+  };
+}
+function setNoteAsync(data, survivor_id) {
+  return {
+    survivor_id,
+    type: SET_NOTE,
     payload: data
   };
 }

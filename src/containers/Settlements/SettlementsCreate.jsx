@@ -269,9 +269,9 @@ class SettlementsCreate extends React.Component {
                         size="sm"
                       >
                         <option defaultValue>People of the Lantern</option>
-                        <option>People of the Stars</option>
+                        {/* <option>People of the Stars</option>
                         <option>People of the Sun</option>
-                        <option>The Bloom People</option>
+                        <option>The Bloom People</option> */}
                       </Input>
                     </FormGroup>
                     <WidgetFooter>
