@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { browserHistory } from "react-router";
 import { Input, Button, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
+import { setName } from "../../../actions/getSurvivor";
+import { bindActionCreators } from "redux";
 
 class NameChange extends Component {
   constructor(props) {
@@ -47,8 +49,6 @@ class NameChange extends Component {
       user_id: userId,
       name: this.state.value
     };
-    // TODO: Khoa create setName action
-    // /survivor/set_name/<survivor_id>
     this.props.setName(this.props.oid, data).catch(() => {
       this.resetData();
     });
@@ -61,9 +61,8 @@ class NameChange extends Component {
   }
   handleClose() {
     browserHistory.push(
-      `/settlements/${this.props.params.oid}/survivors/${
-        this.props.params.survivorId
-      }`
+      `/settlements/${this.props.params.oid}/survivors/${this.props.params
+        .survivorId}`
     );
   }
   // Renders our component
@@ -99,4 +98,13 @@ function mapStateToProps(state) {
     settlementData: state.settlementData
   };
 }
-export default connect(mapStateToProps, null)(NameChange);
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setName
+    },
+    dispatch
+  );
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NameChange);

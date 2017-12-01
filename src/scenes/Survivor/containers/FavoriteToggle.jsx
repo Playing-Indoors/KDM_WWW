@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import { browserHistory } from "react-router";
+import { removeFavorite, addFavorite } from "../../../actions/getSurvivor";
+import { bindActionCreators } from "redux";
 
 function checkEmail(email, list) {
   return list.indexOf(email) !== -1;
@@ -54,9 +56,8 @@ class FavoriteToggle extends Component {
   }
   handleClose() {
     browserHistory.push(
-      `/settlements/${this.props.params.oid}/survivors/${
-        this.props.params.survivorId
-      }`
+      `/settlements/${this.props.params.oid}/survivors/${this.props.params
+        .survivorId}`
     );
   }
   renderButton() {
@@ -97,4 +98,14 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(FavoriteToggle);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      removeFavorite,
+      addFavorite
+    },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteToggle);

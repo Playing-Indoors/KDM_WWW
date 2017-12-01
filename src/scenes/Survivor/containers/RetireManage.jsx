@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { browserHistory } from "react-router";
 import { Button, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
+import { setRetired } from "../../../actions/getSurvivor";
 
 class RetireManage extends Component {
   constructor(props) {
@@ -44,17 +45,14 @@ class RetireManage extends Component {
       retired: !this.state.value
     };
     this.handleClose();
-    // TODO: Khoa create setRetired action
-    // /survivor/set_retired/<survivor_id>
-    // this.props.setRetired(this.props.oid, data).catch(() => {
-    //   this.resetData();
-    // });
+    this.props.setRetired(this.props.oid, data).catch(() => {
+      this.resetData();
+    });
   }
   handleClose() {
     browserHistory.push(
-      `/settlements/${this.props.params.oid}/survivors/${
-        this.props.params.survivorId
-      }`
+      `/settlements/${this.props.params.oid}/survivors/${this.props.params
+        .survivorId}`
     );
   }
   confirmColor() {
@@ -99,4 +97,13 @@ function mapStateToProps(state) {
     settlementData: state.settlementData
   };
 }
-export default connect(mapStateToProps, null)(RetireManage);
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setRetired
+    },
+    dispatch
+  );
+}
+export default connect(mapStateToProps, mapDispatchToProps)(RetireManage);
