@@ -3,10 +3,19 @@
   // margin-bottom: $spacer;
   background: $gray-800;
   color: inherit;
+  opacity: 0;
+  z-index: 21;
 
   // & + & {
   // 	margin-top: 1rem;
   // }
+
+  @for $i from 1 through 20 {
+    &:nth-of-type(#{$i}) {
+      z-index: 21 - $i;
+      animation: 0.1s ease-in 0s + $i/20 forwards in;
+    }
+  }
 }
 
 a.cardList {

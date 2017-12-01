@@ -16,9 +16,9 @@ class ExtraLinks extends Component {
       .params.survivorId}`;
     return (
       <div className="headerModal-links">
-        <a tabIndex="0" onClick={() => this.handleNav(`${url}/favorite`)}>
+        <Link to={`${url}/log`} onClick={e => this.handleNav(e, `${url}/log`)}>
           View Log
-        </a>
+        </Link>
         <Link
           to={`${url}/favorite`}
           onClick={e => this.handleNav(e, `${url}/favorite`)}

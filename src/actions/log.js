@@ -11,3 +11,13 @@ export function getLogs(id) {
     url: `${KDM_API}/settlement/get_event_log/${id}`
   });
 }
+
+export function postLogs(id, data) {
+  const auth = localStorage.getItem("access_token");
+  return axios({
+    headers: { Authorization: auth },
+    method: "post",
+    url: `${KDM_API}/settlement/get_event_log/${id}`,
+    data
+  });
+}

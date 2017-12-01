@@ -68,7 +68,8 @@
 
 .headerModal {
   position: fixed;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   top: 50px;
   bottom: 100%;
   left: 0;
@@ -107,20 +108,5 @@
       animation: in 0.15s 0s + $i/20 forwards;
       transition-timing-function: ease-in;
     }
-  }
-}
-
-@keyframes in {
-  0% {
-    transform: translateY(-200%);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(-100%);
-    opacity: 0.2;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
