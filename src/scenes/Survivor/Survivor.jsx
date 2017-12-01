@@ -306,7 +306,7 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               notes={this.state.survivor.notes}
             />
-            <Status
+            {/* <Status
               className={""}
               oid={this.state.survivor.sheet._id.$oid}
               value={this.state.survivor.sheet.cannot_spend_survival}
@@ -326,7 +326,7 @@ class Survivor extends React.Component {
               value={this.state.survivor.sheet.skip_next_hunt}
               flag={"skip_next_hunt"}
               label={"Skip next hunt"}
-            />
+            /> */}
           </div>
         </div>
       );

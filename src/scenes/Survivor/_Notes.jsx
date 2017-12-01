@@ -13,7 +13,8 @@ import {
 import _isEqual from "lodash/isEqual";
 import Icon from "../../components/Icon/Icon";
 import TextList from "../../components/TextList/TextList";
-import { setNote } from "../../actions/attributes";
+import { setNote, rmNote } from "../../actions/attributes";
+import LoadingSaving from "../../components/LoadingSaving/LoadingSaving";
 
 class Notes extends Component {
   constructor(props) {
@@ -23,14 +24,13 @@ class Notes extends Component {
       notes: [...this.props.notes],
       noteTemp: "",
       showModal: false,
-      isSaving: false
+      isLoading: false
     };
     // Binding Events
     this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleTypeNote = this.handleTypeNote.bind(this);
     this.handleAddNote = this.handleAddNote.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleModalConfirm = this.handleModalConfirm.bind(this);
     // this.handleUpdateAmount = this.handleUpdateAmount.bind(this);
   }
   componentWillReceiveProps(nextProps) {
@@ -55,34 +55,42 @@ class Notes extends Component {
     this.handleModalToggle();
     // this.resetData();
   }
-  // Handle's the save and makes the API Call
-  handleModalConfirm() {
-    const userId = localStorage.getItem("userId");
-    const data = {
-      user_id: userId,
-      notes: this.state.notes
-    };
-    this.handleModalToggle();
-    // this.props.setAttributes(this.props.oid, data).catch(() => {
-    //   this.resetData();
-    // });
-  }
   handleAddNote() {
     if (this.state.noteTemp.length > 0) {
+      this.setState({ isLoading: true });
+      const userId = localStorage.getItem("userId");
+      const data = {
+        user_id: userId,
+        note: this.state.noteTemp
+      };
       this.props
-        .setNote(this.props.oid, this.state.noteTemp)
-        .then(() => {
+        .setNote(this.props.oid, data)
+        .then(res => {
+          let oid;
+          if (res.note_id) {
+            oid = res.oid;
+          } else {
+            oid = {
+              $oid: `${Math.random()
+                .toString(36)
+                .substr(2, 10)}`
+            };
+          }
+          console.warn(res);
           this.setState({
+            isLoading: false,
             noteTemp: "",
             notes: [
               ...this.state.notes,
               {
-                note: this.state.noteTemp
+                note: this.state.noteTemp,
+                _id: oid
               }
             ]
           });
         })
-        .catch(() => {
+        .catch(err => {
+          console.log("err", err);
           this.resetData();
         });
     }
@@ -92,28 +100,31 @@ class Notes extends Component {
       noteTemp: event.target.value
     });
   }
-  handleRemoveNote(index) {
-    this.setState(prevState => ({
-      notes: prevState.notes.filter((_, i) => i !== index)
-    }));
+  handleRemoveNote(_id) {
+    this.setState({ isLoading: true });
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      _id
+    };
+    this.props
+      .rmNote(this.props.oid, data)
+      .then(() => {
+        this.setState(prevState => ({
+          isLoading: false,
+          notes: prevState.notes.filter(i => i._id.$oid !== _id)
+        }));
+      })
+      .catch(err => {
+        console.log("err", err);
+        this.resetData();
+      });
   }
   convertToTextList(list) {
     return list.map(i => ({
       desc: i.note
     }));
   }
-  // convertToTextList(list) {
-  //   const textList = [];
-  //   list.forEach(i => {
-  //     if (!Object.prototype.hasOwnProperty.call(i, "remove")) {
-  //       textList.push({
-  //         desc: i.note
-  //       });
-  //     }
-  //   });
-  //   return textList;
-  // }
-  // Determines the color of the confirm button
   confirmColor() {
     if (_isEqual(this.state.notes, this.props.notes)) {
       return "light";
@@ -121,19 +132,15 @@ class Notes extends Component {
     return "primary";
   }
   renderTextList() {
-    return this.state.notes.map((note, index) => {
-      const key = note._id
-        ? note._id.$oid
-        : `${Math.random()
-            .toString(36)
-            .substr(2, 10)}`;
+    return this.state.notes.map(note => {
+      const key = note._id.$oid;
       return (
         <div className="btnDeselect" key={key}>
           {note.note}
           <Button
             color="danger"
             size="small"
-            onClick={() => this.handleRemoveNote(index)}
+            onClick={() => this.handleRemoveNote(key)}
           >
             <Icon name="trash" size="16" />
           </Button>
@@ -161,6 +168,18 @@ class Notes extends Component {
       </div>
     );
   }
+  // Controls what shows inside of the modal
+  renderModalBody() {
+    if (this.state.isLoading) {
+      return <LoadingSaving />;
+    }
+    return (
+      <div className="layout">
+        {this.renderTextList()}
+        {this.renderAddNote()}
+      </div>
+    );
+  }
   // Renders our component
   render() {
     return (
@@ -174,19 +193,14 @@ class Notes extends Component {
           onClick={this.handleModalToggle}
         >
           <TextList
-            list={this.convertToTextList(this.props.notes)}
+            list={this.convertToTextList(this.state.notes)}
             minimum={1}
             showDetails
           />
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleClose}>
-          <ModalHeader>Adjust {this.state.title}</ModalHeader>
-          <ModalBody>
-            <div className="layout">
-              {this.renderTextList()}
-              {this.renderAddNote()}
-            </div>
-          </ModalBody>
+          <ModalHeader>Manage {this.state.title}</ModalHeader>
+          <ModalBody>{this.renderModalBody()}</ModalBody>
           <ModalFooter>
             <Button onClick={this.handleClose} color="link">
               Close
@@ -210,13 +224,15 @@ Notes.propTypes = {
     })
   ),
   oid: PropTypes.string,
-  setNote: PropTypes.func
+  setNote: PropTypes.func,
+  rmNote: PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setNote
+      setNote,
+      rmNote
     },
     dispatch
   );

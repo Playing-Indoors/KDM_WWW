@@ -8,6 +8,7 @@ import {
   SET_BLEEDING,
   SET_SEX,
   SET_NOTE,
+  RM_NOTE,
   ADD_CURSED_ITEM,
   RM_CURSED_ITEM
 } from "../actions/types";
@@ -116,12 +117,26 @@ export default function(state = null, action) {
       return settlement;
     case SET_NOTE:
       index = state.user_assets.survivors
-        .map(el => {
-          return el.sheet._id.$oid;
-        })
+        .map(el => el.sheet._id.$oid)
         .indexOf(action.survivor_id);
       newSurvivors = state.user_assets.survivors;
-      newSurvivors[index].sheet.notes.push(action.payload.notes);
+      newSurvivors[index].notes.push(action.payload.note);
+      settlement = Object.assign({}, state, {
+        user_assets: {
+          players: state.user_assets.players,
+          survivors: newSurvivors
+        }
+      });
+      return settlement;
+    case RM_NOTE:
+      index = state.user_assets.survivors
+        .map(el => el.sheet._id.$oid)
+        .indexOf(action.survivor_id);
+      newSurvivors = state.user_assets.survivors;
+      newSurvivors[index].notes = _.without(
+        newSurvivors[index].notes,
+        action.payload.note
+      );
       settlement = Object.assign({}, state, {
         user_assets: {
           players: state.user_assets.players,

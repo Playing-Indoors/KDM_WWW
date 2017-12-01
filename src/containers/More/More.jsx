@@ -23,12 +23,25 @@ class Dashboard extends Component {
               href="/settlements"
               iconRight="right"
             />
-            <CardList
+            {/* <CardList
               name="Glossary / FAQ"
               href="/resources"
               iconRight="right"
-            />
-            <CardList name="Settings" href="/settings" iconRight="right" />
+            /> */}
+            <a
+              className="cardList"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/Playing-Indoors/KDM_WWW/issues"
+            >
+              <div className="cardList-content">
+                <div className="cardList-header">
+                  <div className="cardList-header-name">Report Bug</div>
+                  <Icon name={"right"} />
+                </div>
+              </div>
+            </a>
+            {/* <CardList name="Settings" href="/settings" iconRight="right" /> */}
             <CardList name="Log Out" href="/logout" iconRight="right" />
           </div>
         </div>

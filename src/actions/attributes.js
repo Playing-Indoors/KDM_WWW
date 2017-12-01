@@ -111,16 +111,29 @@ export function setSex(survivor_id, data) {
   };
 }
 
-export function setNote(survivor_id, note) {
-  const data = { note };
+export function setNote(survivor_id, data) {
   return async dispatch => {
-    await axios({
+    return await axios({
       method: "post",
       url: `${KDM_API}/survivor/add_note/${survivor_id}`,
       data
     }).then(res => {
+      console.log(res);
       dispatch(setNoteAsync(data, survivor_id));
-      return true;
+      return res.data;
+    });
+  };
+}
+
+export function rmNote(survivor_id, data) {
+  return async dispatch => {
+    await axios({
+      method: "post",
+      url: `${KDM_API}/survivor/rm_note/${survivor_id}`,
+      data
+    }).then(res => {
+      dispatch(setNoteAsync(data, survivor_id));
+      return res;
     });
   };
 }
