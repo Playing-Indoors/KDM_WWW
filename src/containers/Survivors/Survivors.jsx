@@ -34,6 +34,12 @@ class Survivors extends React.Component {
       });
     }
   }
+  calculateDead() {
+    const filtered = this.props.settlementData.user_assets.survivors.filter(
+      survivor => survivor.sheet.dead
+    );
+    return filtered.length;
+  }
   handleSearchInput(e) {
     this.setState({
       searchName: e.target.value
@@ -122,7 +128,7 @@ class Survivors extends React.Component {
                   this.handleTabChange(2);
                 }}
               >
-                Dead ({this.props.settlementData.sheet.death_count})
+                Dead ({this.calculateDead()})
               </NavLink>
             </NavItem>
             <NavItem>

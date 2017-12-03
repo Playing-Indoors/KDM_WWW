@@ -15,7 +15,8 @@ class FavoriteToggle extends Component {
       value: false
     };
     this.handleClose = this.handleClose.bind(this);
-    this.handleSave = this.handleSave.bind(this);
+    this.handleAddFavorite = this.handleAddFavorite.bind(this);
+    this.handleRemoveFavorite = this.handleRemoveFavorite.bind(this);
   }
   componentWillMount() {
     this.prepareComponentState(this.props);
@@ -39,7 +40,7 @@ class FavoriteToggle extends Component {
     });
   }
   // Handle's the save and makes the API Call
-  handleSave() {
+  handleAddFavorite() {
     const userId = localStorage.getItem("userId");
     const data = {
       user_id: userId,
@@ -52,23 +53,35 @@ class FavoriteToggle extends Component {
       this.resetData();
     });
   }
+  handleRemoveFavorite() {
+    const userId = localStorage.getItem("userId");
+    const data = {
+      user_id: userId,
+      user_email: this.state.email
+    };
+    // TODO: Khoa create setFavorite action
+    // /survivor/add_favorite/<survivor_id>
+    // /survivor/rm_favorite/<survivor_id>
+    this.props.rmFavorite(this.props.oid, data).catch(() => {
+      this.resetData();
+    });
+  }
   handleClose() {
     browserHistory.push(
-      `/settlements/${this.props.params.oid}/survivors/${
-        this.props.params.survivorId
-      }`
+      `/settlements/${this.props.params.oid}/survivors/${this.props.params
+        .survivorId}`
     );
   }
   renderButton() {
     if (!this.state.value) {
       return (
-        <Button color={"primary"} onClick={this.handleSave}>
+        <Button color={"primary"} onClick={this.handleAddFavorite}>
           Mark as Favorite
         </Button>
       );
     }
     return (
-      <Button color={"primary"} onClick={this.handleSave}>
+      <Button color={"primary"} onClick={this.handleRemoveFavorite}>
         Remove Favorite
       </Button>
     );

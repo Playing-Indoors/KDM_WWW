@@ -277,7 +277,6 @@ class SurvivorStats extends Component {
                   />
                   <NumberIncrement
                     name={"Speed"}
-                    min={1}
                     amount={this.state.speed.stat}
                     updateAmount={amount =>
                       this.handleUpdateAmount(amount, "speed", "stat")}
