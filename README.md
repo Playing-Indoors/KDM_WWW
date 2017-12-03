@@ -27,8 +27,8 @@
 
 Alpha Notes
 - more detailed survivor list
-- Mastery progress severly missing
-- cursed show up in gear sheet
+-- Mastery progress severly missing
+-- cursed show up in gear sheet
 - favorite working
 - option to clear tokens and gear
 - move settlement masteries
@@ -45,4 +45,5 @@ Alpha Notes
 - how do we handle survivor refresh with multiple people
 - mobile firefox
 - fix notes
+- abilities in courage/understanding
 

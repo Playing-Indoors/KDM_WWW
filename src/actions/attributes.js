@@ -5,6 +5,7 @@ import {
   SET_BLEEDING,
   SET_SEX,
   SET_ATTRIBUTES,
+  SET_PROFICIENCY,
   SET_MANY_ARMOR,
   SET_MANY_ATTRIBUTES,
   SET_NOTE
@@ -25,6 +26,24 @@ export function setAttributes(survivor_id, data) {
       })
       .catch(error => {
         console.warn("actions error", error);
+        return false;
+      });
+  };
+}
+
+export function setProficiency(survivor_id, data) {
+  return async dispatch => {
+    await axios({
+      method: "post",
+      url: `${KDM_API}/survivor/set_weapon_proficiency_type/${survivor_id}`,
+      data: data
+    })
+      .then(res => {
+        dispatch(setProficiencyAsync(data, survivor_id));
+        return true;
+      })
+      .catch(error => {
+        console.warn("proficiency error", error);
         return false;
       });
   };
@@ -156,6 +175,13 @@ function setAttributesAsync(data, survivor_id) {
   return {
     survivor_id,
     type: SET_ATTRIBUTES,
+    payload: data
+  };
+}
+function setProficiencyAsync(data, survivor_id) {
+  return {
+    survivor_id,
+    type: SET_PROFICIENCY,
     payload: data
   };
 }
