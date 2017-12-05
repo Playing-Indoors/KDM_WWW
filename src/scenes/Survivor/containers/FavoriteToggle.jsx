@@ -48,10 +48,8 @@ class FavoriteToggle extends Component {
       user_id: userId,
       user_email: this.state.email
     };
-    // TODO: Khoa create setFavorite action
-    // /survivor/add_favorite/<survivor_id>
-    // /survivor/rm_favorite/<survivor_id>
-    this.props.setFavorite(this.props.oid, data).catch(() => {
+    const survivorId = window.location.pathname.split("/")[4];
+    this.props.addFavorite(survivorId, data).catch(() => {
       this.resetData();
     });
   }
@@ -61,10 +59,8 @@ class FavoriteToggle extends Component {
       user_id: userId,
       user_email: this.state.email
     };
-    // TODO: Khoa create setFavorite action
-    // /survivor/add_favorite/<survivor_id>
-    // /survivor/rm_favorite/<survivor_id>
-    this.props.rmFavorite(this.props.oid, data).catch(() => {
+    const survivorId = window.location.pathname.split("/")[4];
+    this.props.removeFavorite(survivorId, data).catch(() => {
       this.resetData();
     });
   }

@@ -13,7 +13,9 @@ import {
   RM_NOTE,
   ADD_CURSED_ITEM,
   RM_CURSED_ITEM,
-  SET_PROFICIENCY
+  SET_PROFICIENCY,
+  ADD_FAVORITE,
+  RM_FAVORITE
 } from "../actions/types";
 import _ from "lodash";
 
@@ -223,16 +225,46 @@ export default function(state = null, action) {
         }
       });
       return settlement;
-    case RM_CURSED_ITEM:
+    case ADD_CURSED_ITEM:
       index = state.user_assets.survivors
         .map(el => {
           return el.sheet._id.$oid;
         })
         .indexOf(action.survivor_id);
       newSurvivors = state.user_assets.survivors;
-      newSurvivors[index].sheet.cursed_items = _.without(
-        newSurvivors[index].sheet.cursed_items,
-        action.payload.handle
+      newSurvivors[index].sheet.cursed_items.push(action.payload.handle);
+      settlement = Object.assign({}, state, {
+        user_assets: {
+          players: state.user_assets.players,
+          survivors: newSurvivors
+        }
+      });
+      return settlement;
+    case ADD_FAVORITE:
+      index = state.user_assets.survivors
+        .map(el => {
+          return el.sheet._id.$oid;
+        })
+        .indexOf(action.survivor_id);
+      newSurvivors = state.user_assets.survivors;
+      newSurvivors[index].sheet.favorite.push(action.payload.user_email);
+      settlement = Object.assign({}, state, {
+        user_assets: {
+          players: state.user_assets.players,
+          survivors: newSurvivors
+        }
+      });
+      return settlement;
+    case RM_FAVORITE:
+      index = state.user_assets.survivors
+        .map(el => {
+          return el.sheet._id.$oid;
+        })
+        .indexOf(action.survivor_id);
+      newSurvivors = state.user_assets.survivors;
+      newSurvivors[index].sheet.favorite = _.without(
+        newSurvivors[index].sheet.favorite,
+        action.payload.user_email
       );
       settlement = Object.assign({}, state, {
         user_assets: {
