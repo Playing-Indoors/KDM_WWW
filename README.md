@@ -23,3 +23,27 @@
 ##### Notes
 - This project is already connected to redux.
 - There are examples of the redux flow, remove or add containers, reduxers, and actions as needed.
+
+
+Alpha Notes
+- more detailed survivor list
+-- Mastery progress severly missing
+-- cursed show up in gear sheet
+- favorite working
+- option to clear tokens and gear
+- move settlement masteries
+- sort survivors
+- icons for stats (gear/tokens)
+- design log
+- settlement notes
+
+- new survivors don't get SotF stats but they do get specialization
+- severe injury doesn't refresh survivor
+- how do we handle sculpture
+- curing broken doesn't give stats
+- log needs fixing
+- how do we handle survivor refresh with multiple people
+- mobile firefox
+- fix notes
+- abilities in courage/understanding
+

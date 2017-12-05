@@ -285,6 +285,8 @@ class SurvivorCreate extends React.Component {
               </Button>
             </ButtonGroup>
           </Widget>
+          {/* TODO: Caleb, style this */}
+          <div>Disclaimer about new survivor bonuses not applying yet</div>
         </form>
       </div>
     );

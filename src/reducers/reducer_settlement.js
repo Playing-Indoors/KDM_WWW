@@ -12,7 +12,8 @@ import {
   SET_NOTE,
   RM_NOTE,
   ADD_CURSED_ITEM,
-  RM_CURSED_ITEM
+  RM_CURSED_ITEM,
+  SET_PROFICIENCY
 } from "../actions/types";
 import _ from "lodash";
 
@@ -185,6 +186,21 @@ export default function(state = null, action) {
       newSurvivors = state.user_assets.survivors;
       newSurvivors[index].sheet[action.payload.attribute] =
         action.payload.value;
+      settlement = Object.assign({}, state, {
+        user_assets: {
+          players: state.user_assets.players,
+          survivors: newSurvivors
+        }
+      });
+      return settlement;
+    case SET_PROFICIENCY:
+      index = state.user_assets.survivors
+        .map(el => {
+          return el.sheet._id.$oid;
+        })
+        .indexOf(action.survivor_id);
+      newSurvivors = state.user_assets.survivors;
+      newSurvivors[index].sheet.weapon_proficiency_type = action.payload.handle;
       settlement = Object.assign({}, state, {
         user_assets: {
           players: state.user_assets.players,

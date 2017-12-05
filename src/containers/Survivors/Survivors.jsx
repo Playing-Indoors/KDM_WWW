@@ -7,8 +7,9 @@ import { TabPane, TabContent, Input, Nav, NavItem, NavLink } from "reactstrap";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
-import CardList from "../../components/CardList/CardList";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import CardList from "../../components/CardList/CardList";
+import SurvivorCard from "../../scenes/Survivor/SurvivorCard";
 import { getSettlement } from "../../actions/getSettlement";
 
 class Survivors extends React.Component {
@@ -33,6 +34,12 @@ class Survivors extends React.Component {
         settlementData: nextProps.settlementData
       });
     }
+  }
+  calculateDead() {
+    const filtered = this.props.settlementData.user_assets.survivors.filter(
+      survivor => survivor.sheet.dead
+    );
+    return filtered.length;
   }
   handleSearchInput(e) {
     this.setState({
@@ -76,14 +83,25 @@ class Survivors extends React.Component {
         ];
         const sex = survivor.sheet.sex === "F" ? "female" : "male";
         return (
-          <CardList
-            key={survivor.sheet._id.$oid}
-            name={survivor.sheet.name}
-            meta={attributes}
-            href={`/settlements/${this.props.settlementData.sheet._id
-              .$oid}/survivors/${survivor.sheet._id.$oid}`}
-            iconLeft={sex}
-          />
+          <div>
+            <CardList
+              key={survivor.sheet._id.$oid}
+              name={survivor.sheet.name}
+              meta={attributes}
+              href={`/settlements/${this.props.settlementData.sheet._id
+                .$oid}/survivors/${survivor.sheet._id.$oid}`}
+              iconLeft={sex}
+            />
+            <br />
+            <SurvivorCard
+              key={`${survivor.sheet._id.$oid}2`}
+              survivor={survivor.sheet}
+              href={`/settlements/${this.props.settlementData.sheet._id
+                .$oid}/survivors/${survivor.sheet._id.$oid}`}
+              iconLeft={sex}
+              iconRight={"star"}
+            />
+          </div>
         );
       });
     }
@@ -122,7 +140,7 @@ class Survivors extends React.Component {
                   this.handleTabChange(2);
                 }}
               >
-                Dead ({this.props.settlementData.sheet.death_count})
+                Dead ({this.calculateDead()})
               </NavLink>
             </NavItem>
             <NavItem>

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
-import { setAttributes } from "../../actions/attributes";
+import { setAttributes, setProficiency } from "../../actions/attributes";
 import NumberIncrement from "../../components/NumberIncrement/NumberIncrement";
 import Stat from "../../components/Stats/Stats";
 import MilestoneDots from "../../components/MilestoneDots/MilestoneDots";
@@ -14,16 +14,20 @@ class Weapon extends Component {
     this.state = {
       showModal: false,
       title: "Weapon",
+      type: props.type,
       amount: props.amount
     };
     // Binding Events
+    this.handleTypeSelect = this.handleTypeSelect.bind(this);
     this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleModalConfirm = this.handleModalConfirm.bind(this);
     this.handleUpdateAmount = this.handleUpdateAmount.bind(this);
   }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
+      type: nextProps.type,
       amount: nextProps.amount
     });
   }
@@ -52,18 +56,34 @@ class Weapon extends Component {
       attribute: "Weapon Proficiency",
       value: this.state.amount
     };
+    const proficiencyType = {
+      user_id: userId,
+      handle: this.state.type
+    };
     this.handleModalToggle();
-    this.props.setAttributes(this.props.oid, data).catch(() => {
-      this.resetData();
+    Promise.all([
+      this.props.setAttributes(this.props.oid, data),
+      this.props.setProficiency(this.props.oid, proficiencyType)
+    ]).catch(err => {
+      alert("Sorry an error has occurred. Please refresh the page.");
     });
   }
   // Pass to Number Increment to update amount
   handleUpdateAmount(amount) {
     this.setState({ amount });
   }
+  handleTypeSelect(event) {
+    const handle = event.target.value;
+    this.setState({
+      type: handle
+    });
+  }
   // Determines the color of the confirm button
   confirmColor() {
-    if (this.state.amount === this.props.amount) {
+    if (
+      this.state.amount === this.props.amount &&
+      this.state.type === this.props.type
+    ) {
       return "light";
     }
     return "primary";
@@ -99,6 +119,7 @@ class Weapon extends Component {
               onlyMilestones
             />
           </Stat>
+          {this.state.type}
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
           <ModalHeader>Adjust {this.state.title}</ModalHeader>
@@ -114,10 +135,10 @@ class Weapon extends Component {
               size={this.props.limit}
               milestones={this.props.milestones}
             />
-            {/* <select>
-              <option>Choose your Proficiency</option>
+            <select onChange={this.handleTypeSelect} value={this.state.type}>
+              <option value="">Choose Your Proficiency</option>
               {this.renderList()}
-            </select> */}
+            </select>
           </ModalBody>
           <ModalFooter>
             <Button
@@ -138,6 +159,7 @@ class Weapon extends Component {
 
 Weapon.propTypes = {
   amount: PropTypes.number,
+  type: PropTypes.string,
   oid: PropTypes.string,
   limit: PropTypes.number,
   apiList: PropTypes.arrayOf(
@@ -152,11 +174,13 @@ Weapon.propTypes = {
       values: PropTypes.arrayOf(PropTypes.number)
     })
   ),
-  setAttributes: PropTypes.func
+  setAttributes: PropTypes.func,
+  setProficiency: PropTypes.func
 };
 
 Weapon.defaultProps = {
   amount: 0,
+  type: "",
   oid: "",
   limit: 1,
   apiList: [],
@@ -166,7 +190,8 @@ Weapon.defaultProps = {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setAttributes
+      setAttributes,
+      setProficiency
     },
     dispatch
   );

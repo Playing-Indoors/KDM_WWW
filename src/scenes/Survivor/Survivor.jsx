@@ -21,7 +21,7 @@ import Weapon from "./_Weapon";
 // import Retire from "./_Retire";
 // import Death from "./_Death";
 import Status from "./_Status";
-// import CursedItems from "./_CursedItems";
+import CursedWidget from "./containers/CursedItemsWidget";
 
 import { getSettlement } from "../../actions/getSettlement";
 
@@ -201,6 +201,7 @@ class Survivor extends React.Component {
               apiList={this.props.settlementData.game_assets.weapon_proficiency}
               amount={this.state.survivor.sheet["Weapon Proficiency"]}
               limit={8}
+              type={this.state.survivor.sheet.weapon_proficiency_type || ""}
               milestones={[{ handle: "ui_prompt", values: [3, 8] }]}
             />
             <Stats
@@ -305,6 +306,12 @@ class Survivor extends React.Component {
             <Notes
               oid={this.state.survivor.sheet._id.$oid}
               notes={this.state.survivor.notes}
+            />
+            <CursedWidget
+              survivorId={this.props.params.survivorId}
+              settlement={this.props.params.oid}
+              items={this.state.survivor.sheet.cursed_items}
+              assets={this.state.settlementData.game_assets.cursed_items}
             />
             {/* <Status
               className={""}
