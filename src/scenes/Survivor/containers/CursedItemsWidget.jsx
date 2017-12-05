@@ -4,22 +4,21 @@ import { Link } from "react-router";
 class CursedItemsWidget extends Component {
   renderCursedList() {
     return this.props.items.map((cursed, index) => (
-      <div className="mb-4" key={cursed}>
-        {this.props.assets[cursed].name}
-      </div>
+      <div key={cursed}>{this.props.assets[cursed].name}</div>
     ));
   }
   // Renders our component
   render() {
-    if (this.props.items) {
+    if (this.props.items.length !== 0) {
       return (
-        <div className={"widget"}>
+        <div className={"widget survivorCursed"}>
           <header className={"widget-header widget-header--link"}>
             <div className="widget-header-title">Cursed Gear</div>
           </header>
           <Link
-            to={`/settlements/${this.props.settlement}/survivors/${this.props
-              .survivorId}/cursed`}
+            to={`/settlements/${this.props.settlement}/survivors/${
+              this.props.survivorId
+            }/cursed`}
             className="widget-content"
           >
             {this.renderCursedList()}

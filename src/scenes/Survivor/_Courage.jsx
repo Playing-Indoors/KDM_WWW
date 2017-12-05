@@ -68,6 +68,21 @@ class Courage extends Component {
     }
     return "primary";
   }
+  renderStatAttribute() {
+    console.warn("nothing");
+    const list = this.props.abilitySurvivor.map(
+      item => this.props.abilityAssets[item]
+    );
+    const courageList = list.filter(a => a.base_attribute === "Courage");
+    if (courageList.length === 0) {
+      return null;
+    }
+    return (
+      <div className="statAttribute">
+        {courageList.map(a => a.name).join(", ")}
+      </div>
+    );
+  }
   // Renders our component
   render() {
     return (
@@ -89,6 +104,7 @@ class Courage extends Component {
               onlyMilestones
             />
           </Stat>
+          {this.renderStatAttribute()}
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
           <ModalHeader>Adjust {this.state.title}</ModalHeader>
