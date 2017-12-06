@@ -92,7 +92,7 @@ class Survivors extends React.Component {
                 .$oid}/survivors/${survivor.sheet._id.$oid}`}
               iconLeft={sex}
             />
-            <br />
+            {/* <br />
             <SurvivorCard
               key={`${survivor.sheet._id.$oid}2`}
               survivor={survivor.sheet}
@@ -100,7 +100,7 @@ class Survivors extends React.Component {
                 .$oid}/survivors/${survivor.sheet._id.$oid}`}
               iconLeft={sex}
               iconRight={"star"}
-            />
+            /> */}
           </div>
         );
       });

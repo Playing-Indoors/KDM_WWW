@@ -181,7 +181,22 @@ class SurvivorStats extends Component {
     }
     return "primary";
   }
-
+  renderStatIcon(number, type) {
+    if (number > 0) {
+      return <div className={`statIcon statIcon--${type}`} />;
+    }
+    return null;
+  }
+  renderStat(name, attribute) {
+    const stat = this.state[attribute];
+    const total = stat.stat + stat.token + stat.gear;
+    return (
+      <Stat name={name} amount={total}>
+        {this.renderStatIcon(stat.token, "token")}
+        {this.renderStatIcon(stat.gear, "gear")}
+      </Stat>
+    );
+  }
   // Renders our component
   render() {
     return (
@@ -195,12 +210,12 @@ class SurvivorStats extends Component {
           onClick={this.handleModalToggle}
         >
           <StatGroup>
-            <Stat name={"Mov"} amount={this.getTotal("movement")} />
-            <Stat name={"Acc"} amount={this.getTotal("accuracy")} />
-            <Stat name={"Str"} amount={this.getTotal("strength")} />
-            <Stat name={"Eva"} amount={this.getTotal("evasion")} />
-            <Stat name={"Luck"} amount={this.getTotal("luck")} />
-            <Stat name={"Spd"} amount={this.getTotal("speed")} />
+            {this.renderStat("Mov", "movement")}
+            {this.renderStat("Acc", "accuracy")}
+            {this.renderStat("Str", "strength")}
+            {this.renderStat("Eva", "evasion")}
+            {this.renderStat("Luck", "luck")}
+            {this.renderStat("Spd", "speed")}
           </StatGroup>
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>

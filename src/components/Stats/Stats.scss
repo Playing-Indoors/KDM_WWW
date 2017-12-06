@@ -21,6 +21,7 @@
 }
 
 .stat {
+  position: relative;
   // flex: 1 1 100px;
   // probably used for statgroup?
   padding: 0 0.25rem;
@@ -39,4 +40,22 @@
 
 .stat-title {
   font-size: 10px;
+}
+
+.statIcon {
+  position: absolute;
+  left: 100%;
+  width: 8px;
+  height: 8px;
+  background: $brand-primary;
+}
+
+.statIcon--gear {
+  top: 3px;
+  border-radius: 2px;
+}
+
+.statIcon--token {
+  border-radius: 50%;
+  top: 3px + 8px + 4px;
 }
