@@ -64,6 +64,7 @@ class SurvivorStats extends Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleModalConfirm = this.handleModalConfirm.bind(this);
     this.handleModalToggle = this.handleModalToggle.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
   getTotal(attribute) {
     const stat = this.state[attribute];
@@ -167,6 +168,40 @@ class SurvivorStats extends Component {
     value[type] = amount;
     this.forceUpdate();
   }
+  handleClear() {
+    this.setState(prevState => ({
+      movement: {
+        stat: prevState.movement.stat,
+        token: 0,
+        gear: 0
+      },
+      accuracy: {
+        stat: prevState.accuracy.stat,
+        token: 0,
+        gear: 0
+      },
+      strength: {
+        stat: prevState.strength.stat,
+        token: 0,
+        gear: 0
+      },
+      evasion: {
+        stat: prevState.evasion.stat,
+        token: 0,
+        gear: 0
+      },
+      luck: {
+        stat: prevState.luck.stat,
+        token: 0,
+        gear: 0
+      },
+      speed: {
+        stat: prevState.speed.stat,
+        token: 0,
+        gear: 0
+      }
+    }));
+  }
   // Determines the color of the confirm button
   confirmColor() {
     if (
@@ -196,6 +231,20 @@ class SurvivorStats extends Component {
         {this.renderStatIcon(stat.gear, "gear")}
       </Stat>
     );
+  }
+  renderClear() {
+    const hasTokens = this.state.movement.token !== 0;
+    const hasGear = this.state.movement.gear !== 0;
+    if (hasTokens || hasGear) {
+      return (
+        <div className="text-center mt-4">
+          <Button color="light" size="sm" onClick={this.handleClear}>
+            Clear Gear &amp; Tokens
+          </Button>
+        </div>
+      );
+    }
+    return null;
   }
   // Renders our component
   render() {
@@ -379,6 +428,7 @@ class SurvivorStats extends Component {
                 </div>
               </TabPane>
             </TabContent>
+            {this.renderClear()}
           </ModalBody>
           <ModalFooter>
             <Button
