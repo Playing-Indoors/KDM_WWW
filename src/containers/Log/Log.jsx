@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Header from "../../components/Header/Header";
 import Widget from "../../components/Widget/Widget";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LogRecord from "../../components/LogRecord/LogRecord";
 import { getSettlement } from "../../actions/getSettlement";
 import { getLogs } from "../../actions/log";
 
@@ -45,12 +46,12 @@ class Log extends React.Component {
   renderLog() {
     if (this.state.log.length > 0) {
       return this.state.log.map(item => (
-        <div key={item._id.$oid}>
-          <small>
-            LY {item.ly}:&nbsp;
-            {item.event}
-          </small>
-        </div>
+        <LogRecord
+          key={item._id.$oid}
+          event={item.event}
+          author={item.created_by ? item.created_by.$oid : null}
+          date={item.created_on ? item.created_on.$date : null}
+        />
       ));
     }
     return null;

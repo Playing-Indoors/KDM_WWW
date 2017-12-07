@@ -69,7 +69,6 @@ class Courage extends Component {
     return "primary";
   }
   renderStatAttribute() {
-    console.warn("nothing");
     const list = this.props.abilitySurvivor.map(
       item => this.props.abilityAssets[item]
     );

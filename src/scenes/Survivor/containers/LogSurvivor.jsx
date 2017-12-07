@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { browserHistory } from "react-router";
 import { Button, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
+import LogRecord from "../../../components/LogRecord/LogRecord";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 import { postLogs } from "../../../actions/log";
 
@@ -47,12 +48,12 @@ class LogSurvivor extends Component {
   renderLog() {
     if (this.state.log.length > 0) {
       return this.state.log.map(item => (
-        <div key={item._id.$oid}>
-          <small>
-            LY {item.ly}:&nbsp;
-            {item.event}
-          </small>
-        </div>
+        <LogRecord
+          event={item.event}
+          key={item._id.$oid}
+          author={item.created_by ? item.created_by.$oid : null}
+          date={item.created_on ? item.created_on.$date : null}
+        />
       ));
     }
     return null;
@@ -65,7 +66,9 @@ class LogSurvivor extends Component {
     return (
       <div>
         <ModalHeader>Survivor Log</ModalHeader>
-        <ModalBody>{this.renderLog()}</ModalBody>
+        <ModalBody>
+          <div className="layout layout--log">{this.renderLog()}</div>
+        </ModalBody>
         <ModalFooter>
           <Button onClick={this.handleClose} color="link">
             Close
