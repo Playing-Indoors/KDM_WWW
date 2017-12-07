@@ -66,10 +66,6 @@ class SurvivorStats extends Component {
     this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleClear = this.handleClear.bind(this);
   }
-  getTotal(attribute) {
-    const stat = this.state[attribute];
-    return stat.stat + stat.token + stat.gear;
-  }
   handleTabChange(tab) {
     this.setState({
       searchName: "",
@@ -233,8 +229,20 @@ class SurvivorStats extends Component {
     );
   }
   renderClear() {
-    const hasTokens = this.state.movement.token !== 0;
-    const hasGear = this.state.movement.gear !== 0;
+    const hasTokens =
+      this.state.movement.token !== 0 ||
+      this.state.accuracy.token !== 0 ||
+      this.state.strength.token !== 0 ||
+      this.state.evasion.token !== 0 ||
+      this.state.luck.token !== 0 ||
+      this.state.speed.token !== 0;
+    const hasGear =
+      this.state.movement.gear !== 0 ||
+      this.state.accuracy.gear !== 0 ||
+      this.state.strength.gear !== 0 ||
+      this.state.evasion.gear !== 0 ||
+      this.state.luck.gear !== 0 ||
+      this.state.speed.gear !== 0;
     if (hasTokens || hasGear) {
       return (
         <div className="text-center mt-4">

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import TextList from "../../../components/TextList/TextList";
 
 class CursedItemsWidget extends Component {
-  renderCursedList() {
-    return this.props.items.map((cursed, index) => (
-      <div key={cursed}>{this.props.assets[cursed].name}</div>
-    ));
+  buildList() {
+    return this.props.items.map(cursed => ({
+      name: this.props.assets[cursed].name
+    }));
   }
   // Renders our component
   render() {
@@ -16,12 +17,11 @@ class CursedItemsWidget extends Component {
             <div className="widget-header-title">Cursed Gear</div>
           </header>
           <Link
-            to={`/settlements/${this.props.settlement}/survivors/${
-              this.props.survivorId
-            }/cursed`}
+            to={`/settlements/${this.props.settlement}/survivors/${this.props
+              .survivorId}/cursed`}
             className="widget-content"
           >
-            {this.renderCursedList()}
+            <TextList list={this.buildList()} />
           </Link>
         </div>
       );
