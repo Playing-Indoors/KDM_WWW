@@ -8,7 +8,7 @@ import Innovations from "./_Innovations";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { getSettlement } from "../../actions/getSettlement";
 
-class Storage extends React.Component {
+class ManageInnovations extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,6 +37,26 @@ class Storage extends React.Component {
       activeTab: tab
     });
   }
+  buildSurvivorList(type) {
+    const list = this.props.settlementData.sheet.innovations.filter(
+      card =>
+        this.props.settlementData.game_assets.innovations[card].type === type
+    );
+    return list;
+  }
+  // TODO: Optimize this list as this is done multiple times.
+  // Should probably be done on load once.
+  buildAssetList(type) {
+    const assets = {};
+    Object.entries(
+      this.props.settlementData.game_assets.innovations
+    ).forEach(card => {
+      if (card[1].type === type) {
+        assets[card[0]] = card[1];
+      }
+    });
+    return assets;
+  }
   render() {
     if (this.props.settlementData) {
       return (
@@ -51,7 +71,8 @@ class Storage extends React.Component {
                   this.handleTabChange(1);
                 }}
               >
-                Innovations
+                {/* TODO: Another inefficiency */}
+                Innovations ({this.buildSurvivorList("innovation").length})
               </NavLink>
             </NavItem>
             <NavItem>
@@ -62,19 +83,45 @@ class Storage extends React.Component {
                   this.handleTabChange(2);
                 }}
               >
-                Masteries
+                {/* TODO: Another inefficiency */}
+                Principles ({this.buildSurvivorList("principle").length})
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                tabIndex="0"
+                className={`${this.state.activeTab === 3 ? "active" : ""}`}
+                onClick={() => {
+                  this.handleTabChange(3);
+                }}
+              >
+                {/* TODO: Another inefficiency */}
+                Masteries ({this.buildSurvivorList("weapon_mastery").length})
               </NavLink>
             </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId={1}>
               <Innovations
-                list={this.props.settlementData.sheet.innovations}
-                assets={this.props.settlementData.game_assets.innovations}
+                list={this.buildSurvivorList("innovation")}
+                assets={this.buildAssetList("innovation")}
                 oid={this.props.settlementData.sheet._id.$oid}
               />
             </TabPane>
-            <TabPane tabId={2} />
+            <TabPane tabId={2}>
+              <Innovations
+                list={this.buildSurvivorList("principle")}
+                assets={this.buildAssetList("principle")}
+                oid={this.props.settlementData.sheet._id.$oid}
+              />
+            </TabPane>
+            <TabPane tabId={3}>
+              <Innovations
+                list={this.buildSurvivorList("weapon_mastery")}
+                assets={this.buildAssetList("weapon_mastery")}
+                oid={this.props.settlementData.sheet._id.$oid}
+              />
+            </TabPane>
           </TabContent>
         </div>
       );
@@ -98,7 +145,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-Storage.propTypes = {
+ManageInnovations.propTypes = {
   getSettlement: PropTypes.func,
   settlementData: PropTypes.shape({
     sheet: PropTypes.object,
@@ -106,4 +153,4 @@ Storage.propTypes = {
   })
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Storage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageInnovations);

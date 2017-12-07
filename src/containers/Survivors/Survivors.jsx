@@ -83,25 +83,22 @@ class Survivors extends React.Component {
         ];
         const sex = survivor.sheet.sex === "F" ? "female" : "male";
         return (
-          <div>
-            <CardList
-              key={survivor.sheet._id.$oid}
-              name={survivor.sheet.name}
-              meta={attributes}
-              href={`/settlements/${this.props.settlementData.sheet._id
-                .$oid}/survivors/${survivor.sheet._id.$oid}`}
-              iconLeft={sex}
-            />
-            {/* <br />
-            <SurvivorCard
-              key={`${survivor.sheet._id.$oid}2`}
-              survivor={survivor.sheet}
-              href={`/settlements/${this.props.settlementData.sheet._id
-                .$oid}/survivors/${survivor.sheet._id.$oid}`}
-              iconLeft={sex}
-              iconRight={"star"}
-            /> */}
-          </div>
+          <CardList
+            key={survivor.sheet._id.$oid}
+            name={survivor.sheet.name}
+            meta={attributes}
+            href={`/settlements/${this.props.settlementData.sheet._id
+              .$oid}/survivors/${survivor.sheet._id.$oid}`}
+            iconLeft={sex}
+          />
+          // <SurvivorCard
+          //   key={`${survivor.sheet._id.$oid}2`}
+          //   survivor={survivor.sheet}
+          //   href={`/settlements/${this.props.settlementData.sheet._id
+          //     .$oid}/survivors/${survivor.sheet._id.$oid}`}
+          //   iconLeft={sex}
+          //   iconRight={"star"}
+          // />
         );
       });
     }
