@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { browserHistory } from "react-router";
 import { Input, Button, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
+import { controlsOfDeath } from "../../../actions/getSurvivor";
 
 class DeathRecord extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ class DeathRecord extends Component {
     }
     // TODO: Khoa create setDeath action
     // /survivor/set_Death/<survivor_id>
-    this.props.setDeath(this.state.survivorId, data).then(() => {
+    this.props.controlsOfDeath(this.state.survivorId, data).then(() => {
       this.handleClose();
     });
   }
@@ -119,4 +120,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(DeathRecord);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      controlsOfDeath
+    },
+    dispatch
+  );
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DeathRecord);

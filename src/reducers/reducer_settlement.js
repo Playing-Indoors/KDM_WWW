@@ -15,7 +15,8 @@ import {
   RM_CURSED_ITEM,
   SET_PROFICIENCY,
   ADD_FAVORITE,
-  RM_FAVORITE
+  RM_FAVORITE,
+  CONTROLS_OF_DEATH
 } from "../actions/types";
 import _ from "lodash";
 
@@ -266,6 +267,21 @@ export default function(state = null, action) {
         newSurvivors[index].sheet.favorite,
         action.payload.user_email
       );
+      settlement = Object.assign({}, state, {
+        user_assets: {
+          players: state.user_assets.players,
+          survivors: newSurvivors
+        }
+      });
+      return settlement;
+    case CONTROLS_OF_DEATH:
+      index = state.user_assets.survivors
+        .map(el => {
+          return el.sheet._id.$oid;
+        })
+        .indexOf(action.survivor_id);
+      newSurvivors = state.user_assets.survivors;
+      newSurvivors[index].sheet.dead = action.payload.dead;
       settlement = Object.assign({}, state, {
         user_assets: {
           players: state.user_assets.players,
