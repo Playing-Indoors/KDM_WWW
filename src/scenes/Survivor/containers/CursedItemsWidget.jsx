@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import TextList from "../../../components/TextList/TextList";
 
 class CursedItemsWidget extends Component {
-  renderCursedList() {
-    return this.props.items.map((cursed, index) => (
-      <div className="mb-4" key={cursed}>
-        {this.props.assets[cursed].name}
-      </div>
-    ));
+  buildList() {
+    return this.props.items.map(cursed => ({
+      name: this.props.assets[cursed].name
+    }));
   }
   // Renders our component
   render() {
-    if (this.props.items) {
+    if (this.props.items.length !== 0) {
       return (
-        <div className={"widget"}>
+        <div className={"widget survivorCursed"}>
           <header className={"widget-header widget-header--link"}>
             <div className="widget-header-title">Cursed Gear</div>
           </header>
@@ -22,7 +21,7 @@ class CursedItemsWidget extends Component {
               .survivorId}/cursed`}
             className="widget-content"
           >
-            {this.renderCursedList()}
+            <TextList list={this.buildList()} />
           </Link>
         </div>
       );

@@ -60,12 +60,15 @@ class Weapon extends Component {
       user_id: userId,
       handle: this.state.type
     };
+    if (this.state.type === "") {
+      proficiencyType.unset = true;
+    }
     this.handleModalToggle();
     Promise.all([
       this.props.setAttributes(this.props.oid, data),
       this.props.setProficiency(this.props.oid, proficiencyType)
     ]).catch(err => {
-      alert("Sorry an error has occurred. Please refresh the page.");
+      alert("Sorry an error has occurred. Please refresh the page.", err);
     });
   }
   // Pass to Number Increment to update amount
@@ -98,6 +101,13 @@ class Weapon extends Component {
     }
     return null;
   }
+  renderStatAttribute() {
+    if (this.state.type) {
+      const asset = this.props.apiList.find(i => i.handle === this.state.type);
+      return <div className="statAttribute">{asset.name}</div>;
+    }
+    return null;
+  }
   // Renders our component
   render() {
     return (
@@ -119,7 +129,7 @@ class Weapon extends Component {
               onlyMilestones
             />
           </Stat>
-          {this.state.type}
+          {this.renderStatAttribute()}
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
           <ModalHeader>Adjust {this.state.title}</ModalHeader>
@@ -135,10 +145,12 @@ class Weapon extends Component {
               size={this.props.limit}
               milestones={this.props.milestones}
             />
-            <select onChange={this.handleTypeSelect} value={this.state.type}>
-              <option value="">Choose Your Proficiency</option>
-              {this.renderList()}
-            </select>
+            <div className="text-center mt-4">
+              <select onChange={this.handleTypeSelect} value={this.state.type}>
+                <option value="">Choose Your Proficiency</option>
+                {this.renderList()}
+              </select>
+            </div>
           </ModalBody>
           <ModalFooter>
             <Button

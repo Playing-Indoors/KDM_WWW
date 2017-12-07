@@ -102,8 +102,9 @@ class Survivor extends React.Component {
     if (this.props.children) {
       return (
         <Link
-          to={`/settlements/${this.props.params.oid}/survivors/${this.props
-            .params.survivorId}`}
+          to={`/settlements/${this.props.params.oid}/survivors/${
+            this.props.params.survivorId
+          }`}
           className="header-action"
         >
           <Icon name={"minus"} />
@@ -112,8 +113,9 @@ class Survivor extends React.Component {
     }
     return (
       <Link
-        to={`/settlements/${this.props.params.oid}/survivors/${this.props.params
-          .survivorId}/menu`}
+        to={`/settlements/${this.props.params.oid}/survivors/${
+          this.props.params.survivorId
+        }/menu`}
         className="header-action"
       >
         <Icon name={"pencil"} />
@@ -186,6 +188,12 @@ class Survivor extends React.Component {
               milestones={
                 this.state.settlementData.survivor_attribute_milestones.Courage
               }
+              abilityAssets={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              abilitySurvivor={
+                this.state.survivor.sheet.abilities_and_impairments
+              }
             />
             <Understanding
               oid={this.state.survivor.sheet._id.$oid}
@@ -194,6 +202,12 @@ class Survivor extends React.Component {
               milestones={
                 this.state.settlementData.survivor_attribute_milestones
                   .Understanding
+              }
+              abilityAssets={
+                this.state.settlementData.game_assets.abilities_and_impairments
+              }
+              abilitySurvivor={
+                this.state.survivor.sheet.abilities_and_impairments
               }
             />
             <Weapon
@@ -303,37 +317,16 @@ class Survivor extends React.Component {
               oid={this.state.survivor.sheet._id.$oid}
               allowDuplicates
             />
-            <Notes
-              oid={this.state.survivor.sheet._id.$oid}
-              notes={this.state.survivor.notes}
-            />
             <CursedWidget
               survivorId={this.props.params.survivorId}
               settlement={this.props.params.oid}
               items={this.state.survivor.sheet.cursed_items}
               assets={this.state.settlementData.game_assets.cursed_items}
             />
-            {/* <Status
-              className={""}
+            <Notes
               oid={this.state.survivor.sheet._id.$oid}
-              value={this.state.survivor.sheet.cannot_spend_survival}
-              flag={"cannot_spend_survival"}
-              label={"Cannot spend survival"}
+              notes={this.state.survivor.notes}
             />
-            <Status
-              className={""}
-              oid={this.state.survivor.sheet._id.$oid}
-              value={this.state.survivor.sheet.cannot_use_fighting_arts}
-              flag={"cannot_use_fighting_arts"}
-              label={"Cannot use fighting arts"}
-            />
-            <Status
-              className={""}
-              oid={this.state.survivor.sheet._id.$oid}
-              value={this.state.survivor.sheet.skip_next_hunt}
-              flag={"skip_next_hunt"}
-              label={"Skip next hunt"}
-            /> */}
           </div>
         </div>
       );

@@ -8,8 +8,6 @@ $breakpoint-l: 60em !default;   //  960px
 $breakpoint-xl: 72em !default;  // 1152px
 $breakpoint-xxl: 84em !default; // 1344px
 
-
-// TODO: Change to EM breakpoints
 @mixin breakpoint($point) {
 	// 16px baseline (256px) s = small
 	@if $point == s {

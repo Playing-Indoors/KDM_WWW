@@ -64,10 +64,7 @@ class SurvivorStats extends Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleModalConfirm = this.handleModalConfirm.bind(this);
     this.handleModalToggle = this.handleModalToggle.bind(this);
-  }
-  getTotal(attribute) {
-    const stat = this.state[attribute];
-    return stat.stat + stat.token + stat.gear;
+    this.handleClear = this.handleClear.bind(this);
   }
   handleTabChange(tab) {
     this.setState({
@@ -167,6 +164,40 @@ class SurvivorStats extends Component {
     value[type] = amount;
     this.forceUpdate();
   }
+  handleClear() {
+    this.setState(prevState => ({
+      movement: {
+        stat: prevState.movement.stat,
+        token: 0,
+        gear: 0
+      },
+      accuracy: {
+        stat: prevState.accuracy.stat,
+        token: 0,
+        gear: 0
+      },
+      strength: {
+        stat: prevState.strength.stat,
+        token: 0,
+        gear: 0
+      },
+      evasion: {
+        stat: prevState.evasion.stat,
+        token: 0,
+        gear: 0
+      },
+      luck: {
+        stat: prevState.luck.stat,
+        token: 0,
+        gear: 0
+      },
+      speed: {
+        stat: prevState.speed.stat,
+        token: 0,
+        gear: 0
+      }
+    }));
+  }
   // Determines the color of the confirm button
   confirmColor() {
     if (
@@ -181,7 +212,48 @@ class SurvivorStats extends Component {
     }
     return "primary";
   }
-
+  renderStatIcon(number, type) {
+    if (number > 0) {
+      return <div className={`statIcon statIcon--${type}`} />;
+    }
+    return null;
+  }
+  renderStat(name, attribute) {
+    const stat = this.state[attribute];
+    const total = stat.stat + stat.token + stat.gear;
+    return (
+      <Stat name={name} amount={total}>
+        {this.renderStatIcon(stat.token, "token")}
+        {this.renderStatIcon(stat.gear, "gear")}
+      </Stat>
+    );
+  }
+  renderClear() {
+    const hasTokens =
+      this.state.movement.token !== 0 ||
+      this.state.accuracy.token !== 0 ||
+      this.state.strength.token !== 0 ||
+      this.state.evasion.token !== 0 ||
+      this.state.luck.token !== 0 ||
+      this.state.speed.token !== 0;
+    const hasGear =
+      this.state.movement.gear !== 0 ||
+      this.state.accuracy.gear !== 0 ||
+      this.state.strength.gear !== 0 ||
+      this.state.evasion.gear !== 0 ||
+      this.state.luck.gear !== 0 ||
+      this.state.speed.gear !== 0;
+    if (hasTokens || hasGear) {
+      return (
+        <div className="text-center mt-4">
+          <Button color="light" size="sm" onClick={this.handleClear}>
+            Clear Gear &amp; Tokens
+          </Button>
+        </div>
+      );
+    }
+    return null;
+  }
   // Renders our component
   render() {
     return (
@@ -195,12 +267,12 @@ class SurvivorStats extends Component {
           onClick={this.handleModalToggle}
         >
           <StatGroup>
-            <Stat name={"Mov"} amount={this.getTotal("movement")} />
-            <Stat name={"Acc"} amount={this.getTotal("accuracy")} />
-            <Stat name={"Str"} amount={this.getTotal("strength")} />
-            <Stat name={"Eva"} amount={this.getTotal("evasion")} />
-            <Stat name={"Luck"} amount={this.getTotal("luck")} />
-            <Stat name={"Spd"} amount={this.getTotal("speed")} />
+            {this.renderStat("Mov", "movement")}
+            {this.renderStat("Acc", "accuracy")}
+            {this.renderStat("Str", "strength")}
+            {this.renderStat("Eva", "evasion")}
+            {this.renderStat("Luck", "luck")}
+            {this.renderStat("Spd", "speed")}
           </StatGroup>
         </button>
         <Modal isOpen={this.state.showModal} toggle={this.handleCancel}>
@@ -364,6 +436,7 @@ class SurvivorStats extends Component {
                 </div>
               </TabPane>
             </TabContent>
+            {this.renderClear()}
           </ModalBody>
           <ModalFooter>
             <Button

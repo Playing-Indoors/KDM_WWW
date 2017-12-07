@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input, ButtonGroup } from "reactstrap";
+import { Alert, Button, Input, ButtonGroup } from "reactstrap";
 import { Link, browserHistory } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -23,6 +23,7 @@ class SurvivorCreate extends React.Component {
       settlementId: window.location.pathname.split("/")[2]
     };
   }
+  // TODO: Caleb update this
   randomName() {
     const mNames = [
       "Green",
@@ -285,8 +286,10 @@ class SurvivorCreate extends React.Component {
               </Button>
             </ButtonGroup>
           </Widget>
-          {/* TODO: Caleb, style this */}
-          <div>Disclaimer about new survivor bonuses not applying yet</div>
+          <Alert color="info">
+            Note: New survivor bonuses based upon your settlement's innovations
+            will be coming at a future date.
+          </Alert>
         </form>
       </div>
     );

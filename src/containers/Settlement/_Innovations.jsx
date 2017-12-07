@@ -165,12 +165,7 @@ class Innovations extends Component {
   render() {
     return (
       <div className="layout">
-        <div className={"widget"}>
-          <header className={"widget-header widget-header--link"}>
-            <div className="widget-header-title">Settlement Innovations</div>
-          </header>
-          {this.renderModalBody()}
-        </div>
+        <div className={"widget"}>{this.renderModalBody()}</div>
       </div>
     );
   }
