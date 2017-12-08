@@ -49,8 +49,9 @@ class NameChange extends Component {
       user_id: userId,
       name: this.state.value
     };
-    this.props.setName(this.props.oid, data).catch(() => {
-      this.resetData();
+    this.handleClose();
+    this.props.setName(this.props.params.survivorId, data).catch(e => {
+      alert("Sorry an error has occured");
     });
   }
   confirmColor() {

@@ -14,6 +14,8 @@ class LogSurvivor extends Component {
     this.state = {
       survivorId: "",
       log: [],
+      page: 0,
+      perPage: 40,
       isLoading: true
     };
     this.handleClose = this.handleClose.bind(this);
@@ -45,20 +47,47 @@ class LogSurvivor extends Component {
         .survivorId}`
     );
   }
+  handlePager(step) {
+    this.setState(prevState => ({
+      page: prevState.page + step
+    }));
+  }
   renderLog() {
     if (this.state.log.length > 0) {
-      return this.state.log.map(item => (
-        <LogRecord
-          event={item.event}
-          key={item._id.$oid}
-          author={item.created_by ? item.created_by.$oid : null}
-          date={item.created_on ? item.created_on.$date : null}
-        />
-      ));
+      const begin = this.state.page * this.state.perPage;
+      const end = Math.min(begin + this.state.perPage, this.state.log.length);
+      const arr = this.state.log.slice(begin, end);
+      return arr.map(item => <LogRecord log={item} key={item._id.$oid} />);
     }
     return null;
   }
-
+  renderPrev() {
+    return (
+      <Button
+        color="link"
+        onClick={() => {
+          this.handlePager(-1);
+        }}
+        disabled={this.state.page === 0}
+      >
+        Prev
+      </Button>
+    );
+  }
+  renderNext() {
+    const current = this.state.perPage * this.state.page + this.state.perPage;
+    return (
+      <Button
+        color="link"
+        onClick={() => {
+          this.handlePager(1);
+        }}
+        disabled={current >= this.state.log.length}
+      >
+        Next
+      </Button>
+    );
+  }
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />;
@@ -67,7 +96,13 @@ class LogSurvivor extends Component {
       <div>
         <ModalHeader>Survivor Log</ModalHeader>
         <ModalBody>
-          <div className="layout layout--log">{this.renderLog()}</div>
+          <div className="layout layout--log">
+            {this.renderLog()}
+            <div className="text-center">
+              {this.renderPrev()}
+              {this.renderNext()}
+            </div>
+          </div>
         </ModalBody>
         <ModalFooter>
           <Button onClick={this.handleClose} color="link">

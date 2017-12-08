@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import Header from "../../components/Header/Header";
 import Widget from "../../components/Widget/Widget";
+import { Button } from "reactstrap";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import LogRecord from "../../components/LogRecord/LogRecord";
 import { getSettlement } from "../../actions/getSettlement";
@@ -14,8 +15,12 @@ class Log extends React.Component {
     super(props);
     this.state = {
       loading: true,
+      page: 0,
+      perPage: 40,
       log: []
     };
+
+    this.handlePager = this.handlePager.bind(this);
   }
   componentDidMount() {
     const id = window.location.pathname.split("/");
@@ -42,27 +47,59 @@ class Log extends React.Component {
       });
     }
   }
-
+  handlePager(step) {
+    this.setState(prevState => ({
+      page: prevState.page + step
+    }));
+  }
   renderLog() {
     if (this.state.log.length > 0) {
-      return this.state.log.map(item => (
-        <LogRecord
-          key={item._id.$oid}
-          event={item.event}
-          author={item.created_by ? item.created_by.$oid : null}
-          date={item.created_on ? item.created_on.$date : null}
-        />
-      ));
+      const begin = this.state.page * this.state.perPage;
+      const end = Math.min(begin + this.state.perPage, this.state.log.length);
+      const arr = this.state.log.slice(begin, end);
+      return arr.map(item => <LogRecord log={item} key={item._id.$oid} />);
     }
     return null;
   }
-
+  renderPrev() {
+    return (
+      <Button
+        color="link"
+        onClick={() => {
+          this.handlePager(-1);
+        }}
+        disabled={this.state.page === 0}
+      >
+        Prev
+      </Button>
+    );
+  }
+  renderNext() {
+    const current = this.state.perPage * this.state.page + this.state.perPage;
+    return (
+      <Button
+        color="link"
+        onClick={() => {
+          this.handlePager(1);
+        }}
+        disabled={current >= this.state.log.length}
+      >
+        Next
+      </Button>
+    );
+  }
   render() {
     if (!this.state.loading) {
       return (
         <div>
           <Header name={"Campaign Log"} />
-          <div className="layout layout--log">{this.renderLog()}</div>
+          <div className="layout layout--log">
+            {this.renderLog()}
+            <div className="text-center">
+              {this.renderPrev()}
+              {this.renderNext()}
+            </div>
+          </div>
         </div>
       );
     }

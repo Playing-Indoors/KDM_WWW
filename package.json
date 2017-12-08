@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack",
     "test": "jest",
-    "dev":
-      "npm run build && webpack-dev-server --inline --no-info --content-base .",
+    "dev": "npm run build && webpack-dev-server --inline --no-info --content-base .",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook-b": "build-storybook -c .storybook -o docs",
     "prod": "webpack --config webpack.prod.config.js",
@@ -16,7 +15,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/*.{js,jsx,json,scss}": ["prettier --write", "git add"]
+    "src/*.{js,jsx,json,scss}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -60,6 +62,7 @@
     "axios": "^0.11.1",
     "bootstrap": "^4.0.0-beta",
     "classnames": "^2.2.5",
+    "date-fns": "^1.29.0",
     "firebase": "^3.7.0",
     "font-awesome": "^4.6.1",
     "html-webpack-plugin": "^2.19.0",
@@ -83,7 +86,14 @@
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testFileExtensions": ["es6", "js"],
-    "moduleFileExtensions": ["js", "json", "es6"]
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
   }
 }

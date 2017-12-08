@@ -49,9 +49,8 @@ class FavoriteToggle extends Component {
       user_email: this.state.email
     };
     const survivorId = window.location.pathname.split("/")[4];
-    this.props.addFavorite(survivorId, data).catch(() => {
-      this.resetData();
-    });
+    this.handleClose();
+    this.props.addFavorite(survivorId, data);
   }
   handleRemoveFavorite() {
     const userId = localStorage.getItem("userId");
@@ -60,9 +59,8 @@ class FavoriteToggle extends Component {
       user_email: this.state.email
     };
     const survivorId = window.location.pathname.split("/")[4];
-    this.props.removeFavorite(survivorId, data).catch(() => {
-      this.resetData();
-    });
+    this.handleClose();
+    this.props.removeFavorite(survivorId, data);
   }
   handleClose() {
     browserHistory.push(

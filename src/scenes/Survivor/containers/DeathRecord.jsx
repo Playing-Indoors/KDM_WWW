@@ -36,8 +36,8 @@ class DeathRecord extends Component {
       const survivor = props.settlementData.user_assets.survivors.find(
         item => item.sheet._id.$oid === survivorId
       );
-      newState.value = survivor.sheet.death;
-      newState.originalValue = survivor.sheet.death;
+      newState.value = survivor.sheet.dead;
+      newState.originalValue = survivor.sheet.dead;
     }
     this.setState({
       ...newState
@@ -48,9 +48,8 @@ class DeathRecord extends Component {
   }
   handleClose() {
     browserHistory.push(
-      `/settlements/${this.props.params.oid}/survivors/${
-        this.props.params.survivorId
-      }`
+      `/settlements/${this.props.params.oid}/survivors/${this.props.params
+        .survivorId}`
     );
   }
   // Handle's the save and makes the API Call
@@ -73,15 +72,17 @@ class DeathRecord extends Component {
     });
   }
   renderText() {
-    return (
-      <Input
-        type="text"
-        placeholder="Enter cause of death..."
-        value={this.state.text}
-        className="mb-3"
-        onChange={this.handleTextInput}
-      />
-    );
+    if (!this.state.value) {
+      return (
+        <Input
+          type="text"
+          placeholder="Enter cause of death..."
+          value={this.state.text}
+          onChange={this.handleTextInput}
+        />
+      );
+    }
+    return null;
   }
   renderButton() {
     if (!this.state.value) {

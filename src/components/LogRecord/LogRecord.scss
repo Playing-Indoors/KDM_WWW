@@ -1,6 +1,46 @@
 .logRecord {
+	position: relative;
 	font-size: 12px;
+	padding-left: 1rem;
+
+	&:focus {
+		outline: 0;
+		&::before {
+			background: $brand-primary;
+		}
+	}
+
+	em {
+		color: $brand-primary;
+		font-style: normal;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 2px;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: $gray-900;
+	}
 }
+
 .logRecord-name::first-letter {
 	text-transform: uppercase;
+}
+
+.logRecord-details {
+	max-height: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: $gray-600;
+	transition: all 0.1s ease-out;
+
+	.logRecord:focus & {
+		max-height: 18px;
+		transition: all 0.2s ease-out;
+	}
 }

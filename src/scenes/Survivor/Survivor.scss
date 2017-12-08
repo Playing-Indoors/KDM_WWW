@@ -22,6 +22,7 @@
 .survivor-impairment,
 .survivor-severe_injury,
 .survivorCursed,
+.survivorDead,
 .survivorNotes {
   grid-column-end: span 6;
 }
@@ -29,6 +30,10 @@
 .survivor-fighting_art,
 .survivor-disorder {
   grid-column-end: span 6;
+}
+
+.survivorDead {
+  background: #8c131b !important;
 }
 
 // Survival

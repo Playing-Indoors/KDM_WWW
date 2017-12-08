@@ -21,6 +21,7 @@ import Weapon from "./_Weapon";
 // import Retire from "./_Retire";
 // import Death from "./_Death";
 import Status from "./_Status";
+import DeathWidget from "./containers/DeathWidget";
 import CursedWidget from "./containers/CursedItemsWidget";
 
 import { getSettlement } from "../../actions/getSettlement";
@@ -102,9 +103,8 @@ class Survivor extends React.Component {
     if (this.props.children) {
       return (
         <Link
-          to={`/settlements/${this.props.params.oid}/survivors/${
-            this.props.params.survivorId
-          }`}
+          to={`/settlements/${this.props.params.oid}/survivors/${this.props
+            .params.survivorId}`}
           className="header-action"
         >
           <Icon name={"minus"} />
@@ -113,9 +113,8 @@ class Survivor extends React.Component {
     }
     return (
       <Link
-        to={`/settlements/${this.props.params.oid}/survivors/${
-          this.props.params.survivorId
-        }/menu`}
+        to={`/settlements/${this.props.params.oid}/survivors/${this.props.params
+          .survivorId}/menu`}
         className="header-action"
       >
         <Icon name={"pencil"} />
@@ -135,32 +134,13 @@ class Survivor extends React.Component {
               <Icon name={"pencil"} />
             </button> */}
           </Header>
-          {/* <div
-            className={`headerModal ${this.state.headerModal
-              ? "is-active"
-              : ""}`}
-          >
-            <div className="headerModal-links">
-              <Link to={"settlements/59ceeefb8740d90655610539/log"}>
-                View Log
-              </Link>
-              <Link to={"/settlements/create"} onClick={this.handleHeaderModal}>
-                Make Favorite
-              </Link>
-              <Link to={"/settlements/create"} onClick={this.handleHeaderModal}>
-                Rename
-              </Link>
-              <Link to={`${url}/sex`}>Gender Swap</Link>
-              <Link to={`${url}/cursed`}>Manage Cursed Gear</Link>
-              <Link tabIndex="0" onClick={() => this.renderModal("retire")}>
-                Force Retirement
-              </Link>
-              <Link to={"/settlements/create"}>Kill Survivor</Link>
-            </div>
-          </div> */}
           {this.renderChildren()}
           <div className="layout layout--survivor">
-            {/* <h1 className="text-center">{this.state.survivor.sheet.name}</h1> */}
+            <DeathWidget
+              dead={this.state.survivor.sheet.dead}
+              survivorId={this.props.params.survivorId}
+              settlement={this.props.params.oid}
+            />
             <Survival
               amount={this.state.survivor.sheet.survival}
               oid={this.state.survivor.sheet._id.$oid}
