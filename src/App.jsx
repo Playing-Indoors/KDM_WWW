@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { getUser } from "./actions/getUserData";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
+import Welcome from "./containers/Welcome/Welcome";
 
 class App extends Component {
   constructor(props) {
@@ -62,15 +63,27 @@ class App extends Component {
       });
     });
   }
+  renderWelcome() {
+    const welcomePreference = this.props.userData.user.preferences[
+      "watcher-alpha-1"
+    ];
+    if (welcomePreference) {
+      return null;
+    }
+    return <Welcome />;
+  }
   render() {
-    return (
-      <div className="app">
-        {this.renderNav()}
-        {/*this.renderHeader()*/}
-
-        <main className="main">{this.renderChildren()}</main>
-      </div>
-    );
+    if (this.props.userData) {
+      return (
+        <div className="app">
+          {this.renderNav()}
+          {/*this.renderHeader()*/}
+          {this.renderWelcome()}
+          <main className="main">{this.renderChildren()}</main>
+        </div>
+      );
+    }
+    return <div>loading</div>;
   }
 }
 

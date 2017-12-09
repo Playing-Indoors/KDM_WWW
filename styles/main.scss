@@ -26,7 +26,8 @@ textarea {
 @import "_layout";
 
 // Custom Components
-@import "../src/containers/Aya/Aya";
+// @import "../src/containers/Aya/Aya";
+@import "../src/containers/Welcome/Welcome";
 @import "../src/components/Banner/Banner";
 @import "../src/components/CardList/CardList";
 @import "../src/components/Header/header";

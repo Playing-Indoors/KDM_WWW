@@ -28,3 +28,4 @@ export const SET_NAME = "set_name";
 export const SET_RETIRED = "set_retired";
 export const ADD_FAVORITE = "add_favorite";
 export const RM_FAVORITE = "rm_favorite";
+export const SET_PREFERENCE = "set_preference";
