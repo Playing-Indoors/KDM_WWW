@@ -37,18 +37,18 @@ class SettlementsCreate extends React.Component {
       activeTab: 1,
       name: "",
       campaign: "People of the Lantern",
-      expansions: [
-        ("gorm": false),
-        ("spidicules": false),
-        ("dung_beetle_knight": false),
-        ("sunstalker": false),
-        ("lion_god": false),
-        ("manhunter": false),
-        ("lion_knight": false),
-        ("slenderman": false),
-        ("lonely_tree": false),
-        ("green_knight_armor": false)
-      ]
+      expansions: {
+        gorm: false,
+        spidicules: false,
+        dung_beetle_knight: false,
+        sunstalker: false,
+        lion_god: false,
+        manhunter: false,
+        lion_knight: false,
+        slenderman: false,
+        lonely_tree: false,
+        green_knight_armor: false
+      }
     };
   }
   toggle(tab) {
@@ -59,12 +59,11 @@ class SettlementsCreate extends React.Component {
     }
   }
   toggleExpansion(bool, type) {
-    console.warn("update toggle", type, bool);
-    let expansionState = this.state.expansions;
+    const expansionState = { ...this.state.expansions };
     expansionState[type] = bool;
-    this.setState({
+    this.setState(prevState => ({
       expansions: expansionState
-    });
+    }));
   }
   randomSettlement() {
     const names = [
@@ -146,17 +145,26 @@ class SettlementsCreate extends React.Component {
     this.setState({
       loading: true
     });
+    const expList = [];
+    Object.entries(this.state.expansions).forEach(exp => {
+      if (exp[1]) {
+        expList.push(exp[0]);
+      }
+    });
     let userId = localStorage.getItem("userId");
     let data = {
       user_id: userId,
       name: this.state.name,
       campaign: this.state.campaign,
-      expansions: this.state.expansions
+      expansions: expList
     };
 
     createSettlement(data)
       .then(res => {
-        browserHistory.push(`/settlements/${res.data.sheet._id.$oid}`);
+        // browserHistory.push(`/settlements/${res.data.sheet._id.$oid}`);
+        //
+        // browserHistory.push(`/settlements`);
+        window.location.href = `/settlements/${res.data.sheet._id.$oid}`;
       })
       .catch(err => {
         this.setState({
@@ -236,7 +244,6 @@ class SettlementsCreate extends React.Component {
                       placeholder="Enter settlement name..."
                       size="sm"
                       value={this.state.name}
-                      autoFocus
                       onChange={this.handleNameChange}
                       required
                     />

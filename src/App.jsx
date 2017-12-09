@@ -6,6 +6,7 @@ import { getUser } from "./actions/getUserData";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Welcome from "./containers/Welcome/Welcome";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class App extends Component {
     if (this.showBack()) {
       return null;
     }
-    return <Nav />;
+    return <Nav settlement={this.props.params.oid} />;
   }
   renderHeader() {
     if (this.props.routes[3] && this.props.routes[3].noHeader) {
@@ -83,7 +84,7 @@ class App extends Component {
         </div>
       );
     }
-    return <div>loading</div>;
+    return <LoadingSpinner />;
   }
 }
 

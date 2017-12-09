@@ -124,7 +124,6 @@ render(
           path="/settlements/:oid/survivors/create"
           title="Survivors"
           noHeader
-          back
           component={requireAuth(SurvivorsCreate)}
         />
 

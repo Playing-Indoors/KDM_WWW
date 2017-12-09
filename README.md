@@ -1,16 +1,14 @@
 # The Watcher
 [![Build Status](https://travis-ci.org/Playing-Indoors/KDM_WWW.svg?branch=master)](https://travis-ci.org/Playing-Indoors/KDM_WWW)
 
-##### React-Redux
-##### Contains
- - React 15
- - Redux (Redux Thunk)
- - Bootstrap 4
- - Axios
- - Lodash
- - Babel ES6
- - React-Bootstrap [DOCS](https://react-bootstrap.github.io/components.html)
- - Node 6.2.1
+## Known Issues
+- If you are using multiple devices or tabs you need to refresh the page to pull latest data.
+- Card asset icons (action, movement) aren't currently showing up
+- Creating settlements can be improved / smoothed out
+
+## Feature Improvement List
+- Better method to list and sort survivors
+- Settlement Notes
 
 ##### Installation
  - `nvm use`
@@ -21,26 +19,4 @@
 - `npm run dev`
 
 ##### Notes
-- This project is already connected to redux.
-- There are examples of the redux flow, remove or add containers, reduxers, and actions as needed.
-
-
-Alpha Notes
-- more detailed survivor list
-- favorite working
-- option to clear tokens and gear
-- move settlement masteries
-- sort survivors
-- icons for stats (gear/tokens)
-- design log
-- settlement notes
-
-- new survivors don't get SotF stats but they do get specialization (need to select parents)
-- severe injury doesn't refresh survivor
-- how do we handle sculpture
-- curing broken doesn't give stats
-- log needs fixing
-- how do we handle survivor refresh with multiple people
-- mobile firefox
-- fix notes
-
+- Documentation coming soon!

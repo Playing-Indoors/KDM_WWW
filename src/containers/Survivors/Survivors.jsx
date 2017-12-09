@@ -83,7 +83,7 @@ class Survivors extends React.Component {
         const favorite =
           survivor.sheet.favorite.indexOf(this.props.userData.user.login) !==
           -1;
-        const attributes = [
+        const attributesNew = [
           { label: "Sur", value: survivor.sheet.survival },
           { label: "XP", value: survivor.sheet.hunt_xp },
           { label: "Cou", value: survivor.sheet.Courage },
@@ -109,6 +109,15 @@ class Survivors extends React.Component {
             value: survivor.sheet.abilities_and_impairments.join(", ") || "-"
           },
           { label: "Cur", value: survivor.sheet.cursed_items.join(", ") || "-" }
+        ];
+        const attributes = [
+          { label: "XP", value: survivor.sheet.hunt_xp },
+          { label: "Mov", value: survivor.sheet.Movement },
+          { label: "Acc", value: survivor.sheet.Accuracy },
+          { label: "Str", value: survivor.sheet.Strength },
+          { label: "Eva", value: survivor.sheet.Evasion },
+          { label: "Luck", value: survivor.sheet.Luck },
+          { label: "Spd", value: survivor.sheet.Speed }
         ];
         const sex = survivor.sheet.sex === "F" ? "female" : "male";
         return (
@@ -138,7 +147,7 @@ class Survivors extends React.Component {
     if (this.props.settlementData) {
       return (
         <div>
-          <Header name={"Survivors"} back="/dashboard">
+          <Header name={"Survivors"}>
             <Link
               to={`/settlements/${this.props.settlementData.sheet._id
                 .$oid}/survivors/create`}

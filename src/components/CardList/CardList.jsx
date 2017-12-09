@@ -98,7 +98,7 @@ CardList.propTypes = {
   meta: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.number
+      value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     })
   ),
   iconLeft: PropTypes.string,

@@ -25,7 +25,7 @@ CardListMeta.defaultProps = {
 
 CardListMeta.propTypes = {
   label: PropTypes.string,
-  value: PropTypes.number
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default CardListMeta;
