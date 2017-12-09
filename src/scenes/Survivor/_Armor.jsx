@@ -136,7 +136,7 @@ class Armor extends Component {
             <div className="numberIncrementGroup">
               <NumberIncrement
                 type="armor"
-                name={"Brain"}
+                name={"Insanity"}
                 amount={this.state.values.brain}
                 min={-1}
                 mask={this.state.mask}
