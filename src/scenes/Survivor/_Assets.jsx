@@ -46,7 +46,7 @@ class Assets extends Component {
         } else if (this.renderAssetLookup(asset, "survivor_effect")) {
           desc = this.renderAssetLookup(asset, "survivor_effect");
         }
-        list.push({ name, desc });
+        list.push({ name, desc, handle: asset });
       }
     });
     this.setState({
@@ -113,11 +113,11 @@ class Assets extends Component {
     });
     this.createSurvivorListHumanized(newSurvivorList);
   }
-  handleAbilityDeselect(index) {
+  handleAbilityDeselect(handle) {
     this.setState(prevState => ({
-      survivorList: prevState.survivorList.filter((_, i) => i !== index),
+      survivorList: prevState.survivorList.filter(card => card !== handle),
       survivorListHumanized: prevState.survivorListHumanized.filter(
-        (_, i) => i !== index
+        card => card.handle !== handle
       )
     }));
   }
@@ -149,13 +149,13 @@ class Assets extends Component {
     });
   }
   renderSurvivorList() {
-    return this.state.survivorListHumanized.map((ability, index) => (
-      <div className="btnDeselect" key={`${ability}${index}`}>
+    return this.state.survivorListHumanized.map(ability => (
+      <div className="btnDeselect" key={`${ability.handle}`}>
         {ability.name}
         <Button
           color="danger"
           size="small"
-          onClick={() => this.handleAbilityDeselect(index)}
+          onClick={() => this.handleAbilityDeselect(ability.handle)}
         >
           <Icon name="trash" size="16" />
         </Button>

@@ -99,7 +99,7 @@ class Armor extends Component {
         >
           <StatGroup>
             <Stat
-              name={"Brain"}
+              name={"Insanity"}
               mask={this.state.mask}
               amount={this.state.values.brain}
             />

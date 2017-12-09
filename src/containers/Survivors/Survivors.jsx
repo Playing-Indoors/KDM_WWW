@@ -80,18 +80,19 @@ class Survivors extends React.Component {
         if (weaponType) {
           weapon = `${weapon} - ${weaponType.substring(0, 4)}`;
         }
+        const favorite =
+          survivor.sheet.favorite.indexOf(this.props.userData.user.login) !==
+          -1;
         const attributes = [
-          { label: "Sur", value: survivor.sheet.Survival },
+          { label: "Sur", value: survivor.sheet.survival },
           { label: "XP", value: survivor.sheet.hunt_xp },
           { label: "Cou", value: survivor.sheet.Courage },
           { label: "Und", value: survivor.sheet.Understanding },
-          { label: "Wea", value: survivor.sheet.Weapon },
-
           {
             label: "Wea",
             value: weapon
           },
-          { label: "Bra", value: survivor.sheet.Brain },
+          { label: "Ins", value: survivor.sheet.Insanity },
           { label: "Mov", value: survivor.sheet.Movement },
           { label: "Acc", value: survivor.sheet.Accuracy },
           { label: "Str", value: survivor.sheet.Strength },
@@ -118,6 +119,7 @@ class Survivors extends React.Component {
             href={`/settlements/${this.props.settlementData.sheet._id
               .$oid}/survivors/${survivor.sheet._id.$oid}`}
             iconLeft={sex}
+            iconRight={favorite ? "star" : ""}
           />
           // <SurvivorCard
           //   key={`${survivor.sheet._id.$oid}2`}
@@ -224,7 +226,8 @@ class Survivors extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    settlementData: state.settlementData
+    settlementData: state.settlementData,
+    userData: state.userData
   };
 }
 
