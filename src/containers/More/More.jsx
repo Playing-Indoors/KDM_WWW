@@ -28,6 +28,7 @@ class Dashboard extends Component {
               href="/resources"
               iconRight="right"
             /> */}
+            <CardList name="About" href="/about" iconRight="right" />
             <a
               className="cardList"
               target="_blank"

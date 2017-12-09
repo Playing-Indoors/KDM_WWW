@@ -75,11 +75,39 @@ class Survivors extends React.Component {
         }
       }
       return filtered.map(survivor => {
+        let weapon = survivor.sheet["Weapon Proficiency"];
+        const weaponType = survivor.sheet.weapon_proficiency_type;
+        if (weaponType) {
+          weapon = `${weapon} - ${weaponType.substring(0, 4)}`;
+        }
         const attributes = [
-          { label: "Survival", value: survivor.sheet.Survival },
-          { label: "Hunt XP", value: survivor.sheet.hunt_xp },
-          { label: "Courage", value: survivor.sheet.Courage },
-          { label: "Understanding", value: survivor.sheet.Understanding }
+          { label: "Sur", value: survivor.sheet.Survival },
+          { label: "XP", value: survivor.sheet.hunt_xp },
+          { label: "Cou", value: survivor.sheet.Courage },
+          { label: "Und", value: survivor.sheet.Understanding },
+          { label: "Wea", value: survivor.sheet.Weapon },
+
+          {
+            label: "Wea",
+            value: weapon
+          },
+          { label: "Bra", value: survivor.sheet.Brain },
+          { label: "Mov", value: survivor.sheet.Movement },
+          { label: "Acc", value: survivor.sheet.Accuracy },
+          { label: "Str", value: survivor.sheet.Strength },
+          { label: "Eva", value: survivor.sheet.Evasion },
+          { label: "Luc", value: survivor.sheet.Luck },
+          { label: "Spd", value: survivor.sheet.Speed },
+          {
+            label: "FA",
+            value: survivor.sheet.fighting_arts.join(", ") || " - -"
+          },
+          { label: "Dis", value: survivor.sheet.disorders.join(", ") || "--" },
+          {
+            label: "Abi",
+            value: survivor.sheet.abilities_and_impairments.join(", ") || "-"
+          },
+          { label: "Cur", value: survivor.sheet.cursed_items.join(", ") || "-" }
         ];
         const sex = survivor.sheet.sex === "F" ? "female" : "male";
         return (

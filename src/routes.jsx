@@ -36,6 +36,7 @@ import More from "./containers/More/More";
 // import Aya from "./containers/Aya/Aya";
 import NotFound from "./components/NotFound/NotFound";
 import Welcome from "./containers/Welcome/Welcome";
+import About from "./containers/About/About";
 import { AUTH_USER } from "./actions/types";
 
 require("../styles/main.scss");
@@ -66,6 +67,7 @@ render(
       <Route path="/forgot" component={Forgot} />
       <Route path="/logout" component={Logout} />
       <Route path="/info" component={Info} />
+      <Route path="/about" component={About} noHeader back />
 
       <Route path="/welcome" component={Welcome} />
       {/* Dev Routes */}
