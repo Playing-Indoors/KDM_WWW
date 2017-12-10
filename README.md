@@ -5,6 +5,7 @@
 - If you are using multiple devices or tabs you need to refresh the page to pull latest data.
 - Card asset icons (action, movement) aren't currently showing up
 - Creating settlements can be improved / smoothed out
+- Most of the development has been done in Chrome browsers. Browser and device testing will be worked on after feature development wraps up.
 
 ## Feature Improvement List
 - Better method to list and sort survivors

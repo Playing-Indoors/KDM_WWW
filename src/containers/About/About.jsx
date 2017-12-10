@@ -22,7 +22,7 @@ class About extends React.Component {
           </Widget>
           <Widget title="FAQ">
             <h2>
-              When <em>XYZ</em> Feature Be Done?
+              When Will Feature <em>BLANK</em> Be Done?
             </h2>
             <p>
               We are currently focused on getting the survivor management
