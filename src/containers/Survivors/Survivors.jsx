@@ -125,8 +125,9 @@ class Survivors extends React.Component {
             key={survivor.sheet._id.$oid}
             name={survivor.sheet.name}
             meta={attributes}
-            href={`/settlements/${this.props.settlementData.sheet._id
-              .$oid}/survivors/${survivor.sheet._id.$oid}`}
+            href={`/settlements/${
+              this.props.settlementData.sheet._id.$oid
+            }/survivors/${survivor.sheet._id.$oid}`}
             iconLeft={sex}
             iconRight={favorite ? "star" : ""}
           />
@@ -149,8 +150,9 @@ class Survivors extends React.Component {
         <div>
           <Header name={"Survivors"}>
             <Link
-              to={`/settlements/${this.props.settlementData.sheet._id
-                .$oid}/survivors/create`}
+              to={`/settlements/${
+                this.props.settlementData.sheet._id.$oid
+              }/survivors/create`}
               className="header-action"
             >
               <Icon name={"plus"} />
@@ -179,7 +181,7 @@ class Survivors extends React.Component {
                 Dead ({this.calculateDead()})
               </NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink
                 tabIndex="0"
                 className={`${this.state.activeTab === 3 ? "active" : ""}`}
@@ -189,7 +191,7 @@ class Survivors extends React.Component {
               >
                 Hunting
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId={1}>
