@@ -128,7 +128,7 @@ class SurvivorCard extends Component {
     return (
       <Link
         to={link}
-        className="tw-block tw-p-4 tw-bg-grey-darker tw-text-white hover:tw-text-white hover:tw-no-underline hover:tw-bg-grey-darkest"
+        className="tw-block tw-p-4 tw-bg-grey-darker tw-text-white hover:tw-text-white hover:tw-no-underline hover:tw-bg-grey-darkest focus:tw-bg-grey-darkest"
       >
         <div className="tw-flex tw-justify-between tw-items-center">
           {this.renderSex()}

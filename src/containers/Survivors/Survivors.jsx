@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import PropTypes from "prop-types";
 import { TabPane, TabContent, Input, Nav, NavItem, NavLink } from "reactstrap";
+import { setPreference } from "../../actions/preferences";
 import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
@@ -16,25 +17,23 @@ class Survivors extends React.Component {
     super(props);
     this.state = {
       activeTab: 1,
-      searchName: "",
-      toolbarDetailed: false
+      toolbarDetailed: props.userData.user.preferences.twToolbarDetailed
     };
     this.handleTabChange = this.handleTabChange.bind(this);
     this.handleToolbarDetail = this.handleToolbarDetail.bind(this);
-    this.handleSearchInput = this.handleSearchInput.bind(this);
   }
-  componentDidMount() {
-    if (this.props.settlementData === null) {
-      this.props.getSettlement(this.props.params.oid);
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.settlementData && this.props.settlementData === null) {
-      this.setState({
-        settlementData: nextProps.settlementData
-      });
-    }
-  }
+  // componentDidMount() {
+  //   if (this.props.settlementData === null) {
+  //     this.props.getSettlement(this.props.params.oid);
+  //   }
+  // }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.settlementData && this.props.settlementData === null) {
+  //     this.setState({
+  //       settlementData: nextProps.settlementData
+  //     });
+  //   }
+  // }
   calculateDead() {
     const filtered = this.props.settlementData.user_assets.survivors.filter(
       survivor => survivor.sheet.dead
@@ -42,21 +41,24 @@ class Survivors extends React.Component {
     return filtered.length;
   }
   // #region handles
-  handleSearchInput(e) {
-    this.setState({
-      searchName: e.target.value
-    });
-  }
   handleTabChange(tab) {
     this.setState({
-      searchName: "",
       activeTab: tab
     });
   }
   handleToolbarDetail(detailed) {
-    this.setState({
-      toolbarDetailed: detailed
-    });
+    if (detailed !== this.state.toolbarDetailed) {
+      this.setState({
+        toolbarDetailed: detailed
+      });
+      const userId = localStorage.getItem("userId");
+      const data = {
+        user_id: userId,
+        handle: "twToolbarDetailed",
+        value: detailed
+      };
+      this.props.setPreference(userId, data);
+    }
   }
   // #endregion
   renderToolbar() {
@@ -66,7 +68,7 @@ class Survivors extends React.Component {
           onClick={() => this.handleToolbarDetail(false)}
           className={`${this.state.toolbarDetailed
             ? "tw-text-grey"
-            : "tw-text-yellow"} tw-p-3 tw-no-outline`}
+            : "tw-text-yellow"} tw-p-3 tw-no-outline hover:tw-underline focus:tw-underline`}
         >
           Condensed
         </button>
@@ -74,7 +76,7 @@ class Survivors extends React.Component {
           onClick={() => this.handleToolbarDetail(true)}
           className={`${this.state.toolbarDetailed
             ? "tw-text-yellow"
-            : "tw-text-grey"} tw-p-3 tw-no-outline`}
+            : "tw-text-grey"} tw-p-3 tw-no-outline hover:tw-underline focus:tw-underline`}
         >
           Expanded
         </button>
@@ -180,17 +182,8 @@ class Survivors extends React.Component {
               <div className="layout">{this.renderSurvivors(true)}</div>
             </TabPane>
             <TabPane tabId={2}>
-              <div className="layout">
-                <Widget>
-                  <Input
-                    placeholder="Search survivors..."
-                    value={this.state.searchName}
-                    onChange={this.handleSearchInput}
-                  />
-                </Widget>
-                {this.renderToolbar()}
-                {this.renderSurvivors(false)}
-              </div>
+              {this.renderToolbar()}
+              <div className="layout">{this.renderSurvivors(false)}</div>
             </TabPane>
             <TabPane tabId={3}>
               <div className="layout">
@@ -219,7 +212,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      getSettlement
+      getSettlement,
+      setPreference
     },
     dispatch
   );
