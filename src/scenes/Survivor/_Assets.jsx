@@ -36,7 +36,7 @@ class Assets extends Component {
     const list = [];
     survivorList.forEach(asset => {
       // Since assets aren't dictionaries, we have to manually make them
-      const type = this.renderAssetLookup(asset, "type");
+      const type = this.renderAssetLookup(asset, "sub_type");
       if (this.props.type.indexOf(type) !== -1) {
         const name = this.renderAssetLookup(asset, "name");
         let desc = "";
