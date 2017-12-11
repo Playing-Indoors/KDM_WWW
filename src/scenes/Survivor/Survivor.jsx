@@ -258,7 +258,7 @@ class Survivor extends React.Component {
             />
             <Assets
               name="Disorders"
-              type="disorder"
+              type={["core_disorders", "expansion_disorders"]}
               apiType="disorders"
               survivorList={this.state.survivor.sheet.disorders}
               assetList={this.state.settlementData.game_assets.disorders}
@@ -278,7 +278,7 @@ class Survivor extends React.Component {
             />
             <Assets
               name="Impairments"
-              type="impairment"
+              type={["impairment", "curse"]}
               apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
