@@ -142,7 +142,7 @@ class Notes extends Component {
             size="small"
             onClick={() => this.handleRemoveNote(key)}
           >
-            <Icon name="trash" size="16" />
+            <Icon name="trash" size={16} />
           </Button>
         </div>
       );
@@ -163,7 +163,7 @@ class Notes extends Component {
           size="small"
           onClick={() => this.handleAddNote()}
         >
-          <Icon name="plus" size="16" />
+          <Icon name="plus" size={16} />
         </Button>
       </div>
     );

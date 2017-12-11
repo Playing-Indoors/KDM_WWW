@@ -111,7 +111,7 @@ class Abilities extends Component {
           size="small"
           onClick={() => this.handleAbilityDeselect(index)}
         >
-          <Icon name="minus" size="12" />
+          <Icon name="minus" size={12} />
         </Button>
       </div>
     ));
@@ -120,7 +120,7 @@ class Abilities extends Component {
     return (
       <div className="btnSelect">
         <label className="btn btn-gray btn-block" htmlFor="btnSelect">
-          <Icon name="plus" size="12" />
+          <Icon name="plus" size={12} />
         </label>
         <select
           id="btnSelect"

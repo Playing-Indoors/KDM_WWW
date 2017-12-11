@@ -157,7 +157,7 @@ class Assets extends Component {
           size="small"
           onClick={() => this.handleAbilityDeselect(ability.handle)}
         >
-          <Icon name="trash" size="16" />
+          <Icon name="trash" size={16} />
         </Button>
       </div>
     ));
@@ -170,7 +170,7 @@ class Assets extends Component {
             className="btn btn-gray btn-block"
             htmlFor={`survivor-add-${this.type}`}
           >
-            <Icon name="plus" size="12" />
+            <Icon name="plus" size={12} />
           </label>
           <select
             id={`survivor-add-${this.type}`}

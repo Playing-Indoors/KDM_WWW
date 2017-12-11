@@ -114,7 +114,7 @@ class CursedItems extends Component {
             className="btn btn-gray btn-block"
             htmlFor={`survivor-add-item`}
           >
-            <Icon name="plus" size="12" />
+            <Icon name="plus" size={12} />
           </label>
           <select
             id={`survivor-add-item`}
@@ -140,7 +140,7 @@ class CursedItems extends Component {
           size="small"
           onClick={() => this.handleListRemove(index)}
         >
-          <Icon name="trash" size="16" />
+          <Icon name="trash" size={16} />
         </Button>
       </div>
     ));

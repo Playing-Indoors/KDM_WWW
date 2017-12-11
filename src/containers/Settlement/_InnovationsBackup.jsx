@@ -115,7 +115,7 @@ class Innovations extends Component {
           size="small"
           onClick={() => this.handleInnovationRemove(index)}
         >
-          <Icon name="trash" size="16" />
+          <Icon name="trash" size={16} />
         </Button>
       </div>
     ));
@@ -141,7 +141,7 @@ class Innovations extends Component {
           className="btn btn-gray btn-block"
           htmlFor={`survivor-add-innovation}`}
         >
-          <Icon name="plus" size="12" />
+          <Icon name="plus" size={12} />
         </label>
         <select
           id={`survivor-add-innovation`}
