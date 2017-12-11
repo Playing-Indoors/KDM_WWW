@@ -6,14 +6,10 @@ export default function(state = null, action) {
     case GET_USER:
       return action.payload;
     case SET_PREFERENCE:
-      console.log(state);
-      console.log(action);
-      const preferences = state.user.preferences;
-      preferences[action.payload.handle] = action.payload.value;
+      const user = state.user;
+      user.preferences[action.payload.handle] = action.payload.value;
       userState = Object.assign({}, state, {
-        user: {
-          preferences
-        }
+        user
       });
       // state.userData.user.preferences[action.handle] = action.value;
       return userState;

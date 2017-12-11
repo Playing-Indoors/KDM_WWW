@@ -7,7 +7,10 @@ import Icon from "../../components/Icon/Icon";
 class Nav extends Component {
   currentSettlement(path) {
     let oid = "";
-    if (this.params && this.params.oid) {
+    // TODO: Caleb, Bloody mess fix pls - CK
+    if (this.props.settlement) {
+      oid = this.props.settlement;
+    } else if (this.params && this.params.oid) {
       oid = this.params.oid;
     } else if (this.props.userData.user.current_settlement) {
       oid = this.props.userData.user.current_settlement.$oid;
