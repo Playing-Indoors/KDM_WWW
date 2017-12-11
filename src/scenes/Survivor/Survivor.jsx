@@ -268,7 +268,12 @@ class Survivor extends React.Component {
             />
             <Assets
               name="Abilities"
-              type={["ability", "weapon_specialization", "weapon_mastery"]}
+              type={[
+                "ability",
+                "abilities_and_impairments",
+                "weapon_specialization",
+                "weapon_mastery"
+              ]}
               apiType="abilities_and_impairments"
               survivorList={this.state.survivor.sheet.abilities_and_impairments}
               assetList={
