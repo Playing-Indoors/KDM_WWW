@@ -196,13 +196,14 @@ class Icon extends Component {
 }
 
 Icon.defaultProps = {
-  name: "settlement"
+  name: "settlement",
+  size: 32
 };
 
 Icon.propTypes = {
   name: PropTypes.string,
   color: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.number
 };
 
 export default Icon;

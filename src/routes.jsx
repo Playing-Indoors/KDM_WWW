@@ -40,6 +40,8 @@ import About from "./containers/About/About";
 import { AUTH_USER } from "./actions/types";
 
 require("../styles/main.scss");
+require("../styles/output.css");
+
 const ReactGA = require("react-ga");
 
 ReactGA.initialize("UA-89982304-01");

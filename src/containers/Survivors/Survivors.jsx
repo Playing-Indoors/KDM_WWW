@@ -8,19 +8,19 @@ import Header from "../../components/Header/Header";
 import Icon from "../../components/Icon/Icon";
 import Widget from "../../components/Widget/Widget";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import CardList from "../../components/CardList/CardList";
 import SurvivorCard from "../../scenes/Survivor/SurvivorCard";
 import { getSettlement } from "../../actions/getSettlement";
 
 class Survivors extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       activeTab: 1,
-      searchName: ""
+      searchName: "",
+      toolbarDetailed: false
     };
     this.handleTabChange = this.handleTabChange.bind(this);
+    this.handleToolbarDetail = this.handleToolbarDetail.bind(this);
     this.handleSearchInput = this.handleSearchInput.bind(this);
   }
   componentDidMount() {
@@ -41,6 +41,7 @@ class Survivors extends React.Component {
     );
     return filtered.length;
   }
+  // #region handles
   handleSearchInput(e) {
     this.setState({
       searchName: e.target.value
@@ -52,97 +53,78 @@ class Survivors extends React.Component {
       activeTab: tab
     });
   }
+  handleToolbarDetail(detailed) {
+    this.setState({
+      toolbarDetailed: detailed
+    });
+  }
+  // #endregion
+  renderToolbar() {
+    return (
+      <div className="tw-flex tw-justify-around tw-px-1 tw-bg-grey-darkest tw-text-xs">
+        <button
+          onClick={() => this.handleToolbarDetail(false)}
+          className={`${this.state.toolbarDetailed
+            ? "tw-text-grey"
+            : "tw-text-yellow"} tw-p-3 tw-no-outline`}
+        >
+          Condensed
+        </button>
+        <button
+          onClick={() => this.handleToolbarDetail(true)}
+          className={`${this.state.toolbarDetailed
+            ? "tw-text-yellow"
+            : "tw-text-grey"} tw-p-3 tw-no-outline`}
+        >
+          Expanded
+        </button>
+      </div>
+    );
+  }
   renderSurvivors(alive) {
-    if (this.props.settlementData) {
-      // Filters if they are alive
-      let filtered = this.props.settlementData.user_assets.survivors.filter(
-        survivor => {
-          if (alive) {
-            return !survivor.sheet.dead;
-          }
-          return survivor.sheet.dead;
+    // Filters if they are alive
+    const filtered = this.props.settlementData.user_assets.survivors.filter(
+      survivor => {
+        if (alive) {
+          return !survivor.sheet.dead;
         }
-      );
-      // Check to see if we have a search query
-      if (this.state.searchName.length > 0) {
-        filtered = filtered.filter(survivor => {
-          const search = this.state.searchName.toLowerCase();
-          const name = survivor.sheet.name.toLowerCase();
-          return name.indexOf(search) >= 0;
-        });
-        if (filtered.length === 0) {
-          return <Widget>No survivors match your search.</Widget>;
-        }
+        return survivor.sheet.dead;
       }
-      return filtered.map(survivor => {
-        let weapon = survivor.sheet["Weapon Proficiency"];
-        const weaponType = survivor.sheet.weapon_proficiency_type;
-        if (weaponType) {
-          weapon = `${weapon} - ${weaponType.substring(0, 4)}`;
-        }
-        const favorite =
-          survivor.sheet.favorite.indexOf(this.props.userData.user.login) !==
-          -1;
-        const attributesNew = [
-          { label: "Sur", value: survivor.sheet.survival },
-          { label: "XP", value: survivor.sheet.hunt_xp },
-          { label: "Cou", value: survivor.sheet.Courage },
-          { label: "Und", value: survivor.sheet.Understanding },
-          {
-            label: "Wea",
-            value: weapon
-          },
-          { label: "Ins", value: survivor.sheet.Insanity },
-          { label: "Mov", value: survivor.sheet.Movement },
-          { label: "Acc", value: survivor.sheet.Accuracy },
-          { label: "Str", value: survivor.sheet.Strength },
-          { label: "Eva", value: survivor.sheet.Evasion },
-          { label: "Luc", value: survivor.sheet.Luck },
-          { label: "Spd", value: survivor.sheet.Speed },
-          {
-            label: "FA",
-            value: survivor.sheet.fighting_arts.join(", ") || " - -"
-          },
-          { label: "Dis", value: survivor.sheet.disorders.join(", ") || "--" },
-          {
-            label: "Abi",
-            value: survivor.sheet.abilities_and_impairments.join(", ") || "-"
-          },
-          { label: "Cur", value: survivor.sheet.cursed_items.join(", ") || "-" }
-        ];
-        const attributes = [
-          { label: "XP", value: survivor.sheet.hunt_xp },
-          { label: "Mov", value: survivor.sheet.Movement },
-          { label: "Acc", value: survivor.sheet.Accuracy },
-          { label: "Str", value: survivor.sheet.Strength },
-          { label: "Eva", value: survivor.sheet.Evasion },
-          { label: "Luck", value: survivor.sheet.Luck },
-          { label: "Spd", value: survivor.sheet.Speed }
-        ];
-        const sex = survivor.sheet.sex === "F" ? "female" : "male";
-        return (
-          <CardList
-            key={survivor.sheet._id.$oid}
-            name={survivor.sheet.name}
-            meta={attributes}
-            href={`/settlements/${
-              this.props.settlementData.sheet._id.$oid
-            }/survivors/${survivor.sheet._id.$oid}`}
-            iconLeft={sex}
-            iconRight={favorite ? "star" : ""}
-          />
-          // <SurvivorCard
-          //   key={`${survivor.sheet._id.$oid}2`}
-          //   survivor={survivor.sheet}
-          //   href={`/settlements/${this.props.settlementData.sheet._id
-          //     .$oid}/survivors/${survivor.sheet._id.$oid}`}
-          //   iconLeft={sex}
-          //   iconRight={"star"}
-          // />
-        );
-      });
-    }
-    return null;
+    );
+    // sort by name
+    filtered.sort((a, b) => {
+      const nameA = a.sheet.name.toUpperCase();
+      const nameB = b.sheet.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    // Sort favorites
+    filtered.sort((a, b) => {
+      const favA =
+        a.sheet.favorite.indexOf(this.props.userData.user.login) !== -1;
+      const favB =
+        b.sheet.favorite.indexOf(this.props.userData.user.login) !== -1;
+      if (favA && !favB) {
+        return -1;
+      }
+      if (!favA && favB) {
+        return 1;
+      }
+      return 0;
+    });
+    return filtered.map(survivor => (
+      <SurvivorCard
+        key={`${survivor.sheet._id.$oid}`}
+        survivor={survivor.sheet}
+        settlement={this.props.params.oid}
+        detailed={this.state.toolbarDetailed}
+      />
+    ));
   }
   render() {
     if (this.props.settlementData) {
@@ -150,9 +132,8 @@ class Survivors extends React.Component {
         <div>
           <Header name={"Survivors"}>
             <Link
-              to={`/settlements/${
-                this.props.settlementData.sheet._id.$oid
-              }/survivors/create`}
+              to={`/settlements/${this.props.settlementData.sheet._id
+                .$oid}/survivors/create`}
               className="header-action"
             >
               <Icon name={"plus"} />
@@ -195,16 +176,8 @@ class Survivors extends React.Component {
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId={1}>
-              <div className="layout">
-                <Widget>
-                  <Input
-                    placeholder="Search survivors..."
-                    value={this.state.searchName}
-                    onChange={this.handleSearchInput}
-                  />
-                </Widget>
-                {this.renderSurvivors(true)}
-              </div>
+              {this.renderToolbar()}
+              <div className="layout">{this.renderSurvivors(true)}</div>
             </TabPane>
             <TabPane tabId={2}>
               <div className="layout">
@@ -215,6 +188,7 @@ class Survivors extends React.Component {
                     onChange={this.handleSearchInput}
                   />
                 </Widget>
+                {this.renderToolbar()}
                 {this.renderSurvivors(false)}
               </div>
             </TabPane>
