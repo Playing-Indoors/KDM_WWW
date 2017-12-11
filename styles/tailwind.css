@@ -11,7 +11,15 @@
  *
  * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
  */
- @tailwind preflight;
+@tailwind preflight;
+
+a {
+	@apply .no-underline;
+}
+
+a:hover, a:focus {
+	@apply .underline;
+}
 
  /**
 	* Here you would add any of your custom component classes; stuff that you'd
@@ -28,6 +36,16 @@
 	* @import "components/buttons";
 	* @import "components/forms";
 	*/
+
+/** Forms **/
+
+.tab-pane {
+	display: none
+}
+
+.tab-pane.active {
+	display: block;
+}
 
  /**
 	* This injects all of Tailwind's utility classes, generated based on your
@@ -56,10 +74,10 @@
 	* @import "utilities/skew-transforms";
 	*/
 
-	.tw-max-w-12 {
+	.max-w-12 {
 		max-width: 3rem;
 	}
 
-	.tw-no-outline:focus {
+	.no-outline:focus {
 		outline: 0;
 	}

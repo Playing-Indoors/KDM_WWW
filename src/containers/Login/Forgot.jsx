@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { Button, FormGroup, Label, Input } from "reactstrap";
 import { passwordReset } from "../../actions/passwordReset";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 class Forgot extends Component {
   constructor(props) {
@@ -9,7 +9,8 @@ class Forgot extends Component {
     this.state = {
       email: "",
       loading: false,
-      error: false
+      messageSent: false,
+      error: ""
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -21,11 +22,45 @@ class Forgot extends Component {
   }
   handleFormSubmit(e) {
     e.preventDefault();
-    passwordReset({ username: this.state.email }).then(res => {
-      console.log("Password email sent", res);
-      alert("Password email sent");
-    });
+    this.setState({ loading: true });
+    passwordReset({ username: this.state.email })
+      .then(() => {
+        this.setState({
+          loading: false,
+          error: false,
+          messageSent: true
+        });
+      })
+      .catch(err => {
+        this.setState({
+          loading: false,
+          error: err.data
+        });
+      });
   }
+  renderError() {
+    if (this.state.error.length > 0) {
+      return <div className="bg-red p-4 mb-4">{this.state.error}</div>;
+    }
+    return null;
+  }
+  renderMessage() {
+    if (this.state.messageSent) {
+      return (
+        <div className="bg-green p-4 mb-4">
+          Email Sent! Please check your inbox.
+        </div>
+      );
+    }
+    return null;
+  }
+  renderLoading() {
+    if (this.state.loading) {
+      return <LoadingSpinner absolute />;
+    }
+    return null;
+  }
+
   render() {
     return (
       <div className="layout layout--login">
@@ -36,28 +71,31 @@ class Forgot extends Component {
           />
         </div>
         <form className="login-form" onSubmit={this.handleFormSubmit}>
-          <FormGroup className="input-form--dark">
-            <Label for="email">Enter your email</Label>
-            <Input
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              autoFocus
-              required
-            />
-          </FormGroup>
-          <Button
+          {this.renderLoading()}
+          <label htmlFor="login" className="block mb-2">
+            Log in to The Watcher
+          </label>
+          <input
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+            className="block mb-4 bg-grey-darker text-white py-3 px-4 w-full"
+            id="login"
+            type="email"
+            name="login"
+            placeholder="Enter your email..."
+            autoFocus
+            require
+          />
+          {this.renderError()}
+          <button
             type="submit"
-            color="primary"
-            block
+            className="block mb-4 bg-yellow text-white py-3 px-4 w-full hover:bg-yellow-dark focus:bg-yellow-dark no-outline"
             disabled={this.state.email.length === 0}
           >
             Send Reset Email
-          </Button>
-          <Link to={"/"} className="linkGroup mt-3">
+          </button>
+          {this.renderMessage()}
+          <Link to={"/"} className="text-sm text-white">
             Back to login
           </Link>
         </form>

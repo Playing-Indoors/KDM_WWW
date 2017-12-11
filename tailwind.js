@@ -82,7 +82,7 @@ var colors = {
   // "green-darkest": "#032d19",
   // "green-darker": "#0b4228",
   // "green-dark": "#1f9d55",
-  green: "#458f7c"
+  green: "#458f7c",
   // "green-light": "#51d88a",
   // "green-lighter": "#a2f5bf",
   // "green-lightest": "#e3fcec",
@@ -98,8 +98,8 @@ var colors = {
   // "blue-darkest": "#05233b",
   // "blue-darker": "#103d60",
   // "blue-dark": "#2779bd",
-  // blue: "#3490dc",
-  // "blue-light": "#6cb2eb",
+  blue: "#157DCC",
+  "blue-light": "#26A1FF"
   // "blue-lighter": "#bcdefa",
   // "blue-lightest": "#eff8ff",
 
@@ -841,7 +841,7 @@ module.exports = {
   */
 
   options: {
-    prefix: "tw-",
+    prefix: "",
     important: false,
     separator: ":"
   }

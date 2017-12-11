@@ -22,18 +22,18 @@ class Survivors extends React.Component {
     this.handleTabChange = this.handleTabChange.bind(this);
     this.handleToolbarDetail = this.handleToolbarDetail.bind(this);
   }
-  // componentDidMount() {
-  //   if (this.props.settlementData === null) {
-  //     this.props.getSettlement(this.props.params.oid);
-  //   }
-  // }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.settlementData && this.props.settlementData === null) {
-  //     this.setState({
-  //       settlementData: nextProps.settlementData
-  //     });
-  //   }
-  // }
+  componentDidMount() {
+    if (this.props.settlementData === null) {
+      this.props.getSettlement(this.props.params.oid);
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.settlementData && this.props.settlementData === null) {
+      this.setState({
+        settlementData: nextProps.settlementData
+      });
+    }
+  }
   calculateDead() {
     const filtered = this.props.settlementData.user_assets.survivors.filter(
       survivor => survivor.sheet.dead

@@ -34,7 +34,7 @@ class SurvivorCard extends Component {
       -1;
     if (favorite) {
       return (
-        <div className="tw-text-yellow">
+        <div className="text-yellow">
           <Icon name={"star"} size={24} />
         </div>
       );
@@ -43,9 +43,9 @@ class SurvivorCard extends Component {
   }
   renderStat(label, value) {
     return (
-      <div className="tw-pr-3 tw-flex tw-items-center">
-        <span className="tw-pr-1">{label}:</span>
-        <span className="tw-inline-block tw-text-white tw-max-w-12 tw-truncate">
+      <div className="pr-3 flex items-center">
+        <span className="pr-1">{label}:</span>
+        <span className="inline-block text-white max-w-12 truncate">
           {value}
         </span>
       </div>
@@ -61,9 +61,9 @@ class SurvivorCard extends Component {
       // going to hardcode filtering out specilazation.
       // I don't know if this is a good idea. But it's worth trying -CK
       return (
-        <div className="">
-          <span className="tw-pr-1">{label}:</span>
-          <span className="tw-text-white">{filter.join(", ")}</span>
+        <div className="pb-1">
+          <span className="pr-1">{label}:</span>
+          <span className="text-white">{filter.join(", ")}</span>
         </div>
       );
     }
@@ -74,7 +74,7 @@ class SurvivorCard extends Component {
       return null;
     }
     return (
-      <div className="tw-mt-2 tw-text-xs tw-text-grey">
+      <div className="mt-2 text-xs text-grey">
         {this.renderStat("XP", this.props.survivor.hunt_xp)}
       </div>
     );
@@ -91,8 +91,8 @@ class SurvivorCard extends Component {
         weapon = `${weapon} - ${spec.substring(17)}`;
       }
       return (
-        <div className="tw-mt-2 tw-text-xs tw-text-grey">
-          <div className="tw-flex sm:tw-justify-between tw-items-center tw-flex-wrap sm:tw-flex-no-wrap">
+        <div className="mt-2 text-xs text-grey">
+          <div className="flex sm:justify-between items-center flex-wrap sm:flex-no-wrap">
             {this.renderStat("XP", this.props.survivor.hunt_xp)}
             {this.renderStat("Sur", this.props.survivor.survival)}
             {this.renderStat("Cou", this.props.survivor.Courage)}
@@ -100,7 +100,7 @@ class SurvivorCard extends Component {
             {this.renderStat("Wea", weapon)}
             {this.renderStat("Ins", this.props.survivor.Insanity)}
           </div>
-          <div className="tw-flex sm:tw-justify-between tw-items-center tw-flex-wrap sm:tw-flex-no-wrap">
+          <div className="flex sm:justify-between items-center flex-wrap sm:flex-no-wrap">
             {this.renderStat("Mov", this.props.survivor.Movement)}
             {this.renderStat("Acc", this.props.survivor.Accuracy)}
             {this.renderStat("Str", this.props.survivor.Strength)}
@@ -128,12 +128,12 @@ class SurvivorCard extends Component {
     return (
       <Link
         to={link}
-        className="tw-block tw-p-4 tw-bg-grey-darker tw-text-white hover:tw-text-white hover:tw-no-underline hover:tw-bg-grey-darkest focus:tw-bg-grey-darkest"
+        className="block p-4 bg-grey-darker text-white hover:text-white hover:no-underline hover:bg-grey-darkest focus:bg-grey-darkest"
       >
-        <div className="tw-flex tw-justify-between tw-items-center">
+        <div className="flex justify-between items-center">
           {this.renderSex()}
-          <div className="tw-flex-1 tw-flex tw-items-baseline">
-            <div className="tw-px-3">{this.props.survivor.name}</div>
+          <div className="flex-1 flex items-baseline">
+            <div className="px-3">{this.props.survivor.name}</div>
             {this.renderSkinny()}
           </div>
           {this.renderFavorite()}

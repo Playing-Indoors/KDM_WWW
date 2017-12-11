@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { reduxForm } from "redux-form";
-import { Link } from "react-router";
-import { Alert, Button, FormGroup, Label, Input } from "reactstrap";
+import { Link, browserHistory } from "react-router";
 import { authenticate } from "../../actions/login";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { browserHistory } from "react-router";
 
 class Login extends Component {
   constructor(props) {
@@ -47,7 +45,9 @@ class Login extends Component {
   }
   renderErrorMessage() {
     if (this.props.authenticated.error) {
-      return <Alert color="danger">Woops, bad login. Try again.</Alert>;
+      return (
+        <div className="bg-red p-4 mb-4">Woops, bad login. Try again.</div>
+      );
     }
     return null;
   }
@@ -61,54 +61,56 @@ class Login extends Component {
             alt="The Watcher | KDM Manager"
           />
         </div>
-        {this.renderErrorMessage()}
         <form
-          className="login-form"
+          className="relative"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
           {this.renderLoading()}
-          <FormGroup className="input-form--dark">
-            <Label for="email">Log in to The Watcher</Label>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              autoFocus
-              {...username}
-              required
-            />
-          </FormGroup>
-          <FormGroup className="input-form--dark">
-            <Label for="password" hidden>
-              Password
-            </Label>
-            <Input
-              {...password}
-              type="password"
-              name="email"
-              id="password"
-              placeholder="Password"
-              autoComplete="current-password"
-              required
-            />
-          </FormGroup>
 
-          <Button
+          <label htmlFor="email" className="block mb-2">
+            Log in to The Watcher
+          </label>
+          <input
+            className="block mb-4 bg-grey-darker text-white py-3 px-4 w-full"
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Enter your email..."
+            autoFocus
+            {...username}
+            require
+          />
+          <input
+            className="block mb-4 bg-grey-darker text-white py-3 px-4 w-full"
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Enter your password..."
+            autoComplete="current-password"
+            {...password}
+            require
+          />
+
+          {this.renderErrorMessage()}
+
+          <button
             type="submit"
-            color="primary"
-            block
+            className="block mb-4 bg-yellow text-white py-3 px-4 w-full hover:bg-yellow-dark focus:bg-yellow-dark no-outline"
             disabled={
               this.props.fields.username.invalid ||
               this.props.fields.password.invalid
             }
           >
             Login
-          </Button>
+          </button>
 
-          <div className="linkGroup mt-3">
-            <Link to={"/forgot"}>Forgot Password</Link>
-            <Link to={"/register"}>Create Account</Link>
+          <div className="flex justify-between">
+            <Link className="text-sm text-white" to={"/forgot"}>
+              Forgot Password
+            </Link>
+            <Link className="text-sm text-white" to={"/register"}>
+              Create Account
+            </Link>
           </div>
         </form>
       </div>
