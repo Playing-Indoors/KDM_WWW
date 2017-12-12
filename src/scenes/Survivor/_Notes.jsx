@@ -66,16 +66,6 @@ class Notes extends Component {
       this.props
         .setNote(this.props.oid, data)
         .then(res => {
-          let oid;
-          if (res.note_id) {
-            oid = res.oid;
-          } else {
-            oid = {
-              $oid: `${Math.random()
-                .toString(36)
-                .substr(2, 10)}`
-            };
-          }
           console.warn(res);
           this.setState({
             isLoading: false,
@@ -84,7 +74,9 @@ class Notes extends Component {
               ...this.state.notes,
               {
                 note: this.state.noteTemp,
-                _id: oid
+                _id: {
+                  $oid: res.note_oid.$oid
+                }
               }
             ]
           });
@@ -122,6 +114,7 @@ class Notes extends Component {
   }
   convertToTextList(list) {
     return list.map(i => ({
+      key: i._id.$oid,
       desc: i.note
     }));
   }

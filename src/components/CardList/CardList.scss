@@ -18,6 +18,27 @@
   }
 }
 
+$dur: .7s;
+$offset: 0.1;
+.tw-list-animate {
+  opacity: 0;
+  transform: translateY(200%);
+  animation: $dur cubic-bezier(.17,.67,.65,1) forwards appear-up;
+  // transition: transform $dur cubic-bezier(.17,.67,.65,1),
+              // opacity $dur/4.25 ease-out;
+  @for $item from 1 through 20 {
+    &:nth-child(#{$item}){
+      animation-delay: #{$item*$offset}s;
+      // transition-delay: #{$item*$offset}s;
+    }
+  }
+}
+
+// .tw-list-animate-on {
+  // opacity: 1;
+  // transform: translateY(0%);
+// }
+
 a.cardList {
   &:hover,
   &:focus {

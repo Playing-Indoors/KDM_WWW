@@ -137,8 +137,13 @@ export function setNote(survivor_id, data) {
       url: `${KDM_API}/survivor/add_note/${survivor_id}`,
       data
     }).then(res => {
-      console.log(res);
-      dispatch(setNoteAsync(data, survivor_id));
+      const note = {
+        note: data.note,
+        _id: {
+          $oid: res.data.note_oid.$oid
+        }
+      };
+      dispatch(setNoteAsync(note, survivor_id));
       return res.data;
     });
   };

@@ -43,7 +43,7 @@ class Armor extends Component {
   }
   // Resets our data
   resetData() {
-    console.log(this.props.values);
+    // console.log(this.props.values);
     this.setState({
       values: this.props.values
     });

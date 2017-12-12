@@ -15,3 +15,17 @@
     opacity: 1;
   }
 }
+
+@keyframes appear-up {
+  0% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

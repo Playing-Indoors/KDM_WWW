@@ -35,12 +35,15 @@ class TextList extends Component {
   }
   renderList() {
     if (this.props.list.length > 0) {
-      return this.props.list.map((item, index) => (
-        <li className="textList-item" key={`${item.name}${index}`}>
-          {this.renderName(item.name)}
-          {this.renderDescription(item)}
-        </li>
-      ));
+      return this.props.list.map((item, index) => {
+        const key = item.key || `${item.name}${index}`;
+        return (
+          <li className="textList-item" key={key}>
+            {this.renderName(item.name)}
+            {this.renderDescription(item)}
+          </li>
+        );
+      });
     }
     return <li className="textList-item">- -</li>;
     // Stuff Below is if we want to show at least x amount
@@ -77,6 +80,7 @@ TextList.propTypes = {
   list: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
+      key: PropTypes.string,
       desc: PropTypes.string,
       survivor_effect: PropTypes.string
     })

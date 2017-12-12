@@ -156,7 +156,7 @@ export default function(state = null, action) {
         .map(el => el.sheet._id.$oid)
         .indexOf(action.survivor_id);
       newSurvivors = state.user_assets.survivors;
-      newSurvivors[index].notes.push(action.payload.note);
+      newSurvivors[index].notes.push(action.payload);
       settlement = Object.assign({}, state, {
         user_assets: {
           players: state.user_assets.players,
