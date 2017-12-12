@@ -99,7 +99,7 @@ class Armor extends Component {
         >
           <StatGroup>
             <Stat
-              name={"Insanity"}
+              name={"Brain"}
               mask={this.state.mask}
               amount={this.state.values.brain}
             />
@@ -114,6 +114,7 @@ class Armor extends Component {
               amount={this.state.values.arms}
             />
             <Stat
+              className="tw-w-14"
               name={"Body"}
               mask={this.state.mask}
               amount={this.state.values.body}
@@ -136,12 +137,13 @@ class Armor extends Component {
             <div className="numberIncrementGroup">
               <NumberIncrement
                 type="armor"
-                name={"Insanity"}
+                name={"Brain"}
                 amount={this.state.values.brain}
                 min={-1}
                 mask={this.state.mask}
                 updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "brain")}
+                  this.handleUpdateAmount(amount, "brain")
+                }
               />
               <NumberIncrement
                 type="armor"
@@ -174,7 +176,8 @@ class Armor extends Component {
                 min={this.state.min}
                 mask={this.state.mask}
                 updateAmount={amount =>
-                  this.handleUpdateAmount(amount, "waist")}
+                  this.handleUpdateAmount(amount, "waist")
+                }
               />
               <NumberIncrement
                 type="armor"

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import Icon from "../Icon/Icon";
 
 // TODO
 // [ ] Better format this so that the width doesn't change on increment/decrement
@@ -38,37 +39,39 @@ class NumberIncrement extends Component {
   render() {
     return (
       <div className="numberIncrement">
-        <button
-          type="button"
-          onClick={() => {
-            if (this.props.canDecrease) {
-              this.handleAmountChange(-1);
-            }
-          }}
-          className={classNames({
-            "numberIncrement-change": true,
-            "numberIncrement-change--prevented": !this.props.canDecrease
-          })}
-          disabled={!this.handleCanDecrease()}
-        >
-          &ndash;
-        </button>
-        <div className="numberIncrement-num">{this.renderAmount()}</div>
-        <button
-          type="button"
-          onClick={() => {
-            if (this.props.canIncrease) {
-              this.handleAmountChange(1);
-            }
-          }}
-          className={classNames({
-            "numberIncrement-change": true,
-            "numberIncrement-change--prevented": !this.props.canIncrease
-          })}
-          disabled={!this.handleCanIncrease()}
-        >
-          +
-        </button>
+        <div className="numberIncrement-adjust">
+          <button
+            type="button"
+            onClick={() => {
+              if (this.props.canDecrease) {
+                this.handleAmountChange(-1);
+              }
+            }}
+            className={classNames({
+              "numberIncrement-change": true,
+              "numberIncrement-change--prevented": !this.props.canDecrease
+            })}
+            disabled={!this.handleCanDecrease()}
+          >
+            <Icon name="minus" size="18" />
+          </button>
+          <div className="numberIncrement-num">{this.renderAmount()}</div>
+          <button
+            type="button"
+            onClick={() => {
+              if (this.props.canIncrease) {
+                this.handleAmountChange(1);
+              }
+            }}
+            className={classNames({
+              "numberIncrement-change": true,
+              "numberIncrement-change--prevented": !this.props.canIncrease
+            })}
+            disabled={!this.handleCanIncrease()}
+          >
+            <Icon name="plus" size="18" />
+          </button>
+        </div>
         <div className="numberIncrement-title">{this.props.name}</div>
       </div>
     );
