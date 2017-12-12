@@ -1,33 +1,33 @@
+$dur: 0.7s;
+$offset: 0.1;
+
 .cardList {
   display: flex;
   // margin-bottom: $spacer;
   background: $gray-800;
   color: inherit;
-  opacity: 0;
   z-index: 21;
 
-  // & + & {
-  // 	margin-top: 1rem;
-  // }
+  opacity: 0;
+  transform: translateY(200%);
+  animation: $dur cubic-bezier(0.17, 0.67, 0.65, 1) forwards appear-up;
 
-  @for $i from 1 through 20 {
-    &:nth-of-type(#{$i}) {
-      z-index: 21 - $i;
-      animation: 0.1s ease-in 0s + $i/20 forwards in;
+  @for $item from 1 through 20 {
+    &:nth-of-type(#{$item}) {
+      z-index: 21 - $item;
+      animation-delay: #{$item*$offset}s;
     }
   }
 }
 
-$dur: .7s;
-$offset: 0.1;
 .tw-list-animate {
   opacity: 0;
   transform: translateY(200%);
-  animation: $dur cubic-bezier(.17,.67,.65,1) forwards appear-up;
+  animation: $dur cubic-bezier(0.17, 0.67, 0.65, 1) forwards appear-up;
   // transition: transform $dur cubic-bezier(.17,.67,.65,1),
-              // opacity $dur/4.25 ease-out;
+  // opacity $dur/4.25 ease-out;
   @for $item from 1 through 20 {
-    &:nth-child(#{$item}){
+    &:nth-child(#{$item}) {
       animation-delay: #{$item*$offset}s;
       // transition-delay: #{$item*$offset}s;
     }
@@ -35,8 +35,8 @@ $offset: 0.1;
 }
 
 // .tw-list-animate-on {
-  // opacity: 1;
-  // transform: translateY(0%);
+// opacity: 1;
+// transform: translateY(0%);
 // }
 
 a.cardList {
