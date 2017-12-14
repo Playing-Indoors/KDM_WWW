@@ -31,6 +31,12 @@ class Assets extends Component {
   componentWillMount() {
     this.createSurvivorListHumanized(this.state.survivorList);
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      survivorList: nextProps.survivorList
+    });
+    this.createSurvivorListHumanized(nextProps.survivorList);
+  }
   // Builds our humanized version of our survivor list
   createSurvivorListHumanized(survivorList) {
     const list = [];
