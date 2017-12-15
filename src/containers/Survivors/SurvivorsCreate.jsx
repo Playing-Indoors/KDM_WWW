@@ -5,9 +5,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSettlement } from "../../actions/getSettlement";
 import { createSurvivor } from "../../actions/getSurvivor";
+import Select from "../../components/Forms/Select";
 import Header from "../../components/Header/Header";
 import Widget from "../../components/Widget/Widget";
 import WidgetFooter from "../../components/Widget/WidgetFooter";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 class SurvivorCreate extends React.Component {
   constructor(props) {
@@ -17,11 +19,18 @@ class SurvivorCreate extends React.Component {
     this.randomName = this.randomName.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleGenderChange = this.handleGenderChange.bind(this);
+    this.handleParent = this.handleParent.bind(this);
     this.state = {
       name: "",
       gender: "F",
-      settlementId: window.location.pathname.split("/")[2]
+      mother: "",
+      father: ""
     };
+  }
+  componentDidMount() {
+    if (!this.props.settlementData) {
+      this.props.getSettlement(this.props.params.oid);
+    }
   }
   // TODO: Caleb update this
   randomName() {
@@ -220,8 +229,9 @@ class SurvivorCreate extends React.Component {
   handleCreate(e) {
     e.preventDefault();
     if (this.state.name.length > 0) {
-      createSurvivor(this.state.settlementId, this.state)
+      createSurvivor(this.props.params.oid, this.state)
         .then(() => {
+          // TODO: I'm not sure we need to do this call if we update redux
           this.props.getSettlement(this.props.params.oid);
           browserHistory.goBack();
         })
@@ -240,65 +250,103 @@ class SurvivorCreate extends React.Component {
       gender: e.target.value
     });
   }
-  render() {
+  handleParent(e, parent) {
+    this.state[parent] = e.target.value;
+    this.forceUpdate();
+  }
+  renderParents() {
+    const fathers = this.props.settlementData.eligible_parents.male;
+    const mothers = this.props.settlementData.eligible_parents.female;
+    if (fathers.length === 0 || mothers.length === 0) {
+      return null;
+    }
     return (
-      <div>
-        <Header name={"Create Survivor"} />
-        <form className="layout" onSubmit={this.handleCreate}>
-          <Widget>
-            <Input
-              value={this.state.name}
-              type="text"
-              name="name"
-              placeholder="Enter survivor name..."
-              size="sm"
-              autoFocus
-              required
-              onChange={this.handleNameChange}
-            />
-            <WidgetFooter>
-              <Button color="gray" size="sm" onClick={this.randomName}>
-                Randomize Name
-              </Button>
-              <Input
-                type="select"
-                value={this.state.gender}
-                size="sm"
-                onChange={this.handleGenderChange}
-              >
-                <option value="F">Female</option>
-                <option value="M">Male</option>
-              </Input>
-            </WidgetFooter>
-          </Widget>
-          <Widget>
-            <ButtonGroup className="btn-group--full">
-              <Button
-                color="gray"
-                block
-                tag={Link}
-                to={`/settlements/${this.state.settlementId}/survivors/`}
-              >
-                Cancel
-              </Button>
-              <Button color="primary" block type="submit">
-                Create
-              </Button>
-            </ButtonGroup>
-          </Widget>
-          <Alert color="info">
-            Note: New survivor bonuses based upon your settlement's innovations
-            will be coming at a future date.
-          </Alert>
-        </form>
-      </div>
+      <Widget>
+        <label htmlFor="father" className="tw-label">
+          Father
+        </label>
+        <Select
+          id="father"
+          options={fathers}
+          trackBy="oid_string"
+          label="name"
+          handleChange={e => this.handleParent(e, "father")}
+        />
+        <label htmlFor="mother" className="tw-mt-2 tw-label">
+          Mother
+        </label>
+        <Select
+          id="mother"
+          options={mothers}
+          trackBy="oid_string"
+          label="name"
+          handleChange={e => this.handleParent(e, "mother")}
+        />
+      </Widget>
     );
+  }
+  render() {
+    if (this.props.settlementData) {
+      return (
+        <div>
+          <Header name={"Create Survivor"} />
+          <form className="layout" onSubmit={this.handleCreate}>
+            <Widget>
+              <Input
+                value={this.state.name}
+                type="text"
+                name="name"
+                placeholder="Enter survivor name..."
+                bsSize="sm"
+                autoFocus
+                required
+                onChange={this.handleNameChange}
+              />
+              <WidgetFooter>
+                <Button color="gray" size="sm" onClick={this.randomName}>
+                  Randomize Name
+                </Button>
+                <Input
+                  type="select"
+                  value={this.state.gender}
+                  bsSize="sm"
+                  onChange={this.handleGenderChange}
+                >
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+                </Input>
+              </WidgetFooter>
+            </Widget>
+            {this.renderParents()}
+            <Widget>
+              <ButtonGroup className="btn-group--full">
+                <Button
+                  color="gray"
+                  block
+                  tag={Link}
+                  size="sm"
+                  to={`/settlements/${this.props.params.oid}/survivors/`}
+                >
+                  Cancel
+                </Button>
+                <Button color="primary" block size="sm" type="submit">
+                  Create
+                </Button>
+              </ButtonGroup>
+            </Widget>
+          </form>
+        </div>
+      );
+    }
+    return <LoadingSpinner />;
   }
 }
 
-// function mapStateToProps(state) {
-//   return { homeData: state.homeData };
-// }
+function mapStateToProps(state) {
+  return {
+    settlementData: state.settlementData
+  };
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
@@ -309,4 +357,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(SurvivorCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(SurvivorCreate);

@@ -29,6 +29,11 @@
 	* @import "components/forms";
 	*/
 
+/* Forms */
+.tw-label {
+	@apply .tw-text-xs .tw-text-gray .tw-mb-0;
+}
+
  /**
 	* This injects all of Tailwind's utility classes, generated based on your
 	* config file.

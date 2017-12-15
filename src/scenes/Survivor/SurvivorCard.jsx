@@ -88,7 +88,15 @@ class SurvivorCard extends Component {
           `${weaponType}_specialization`,
           "weapon_specializations"
         );
-        weapon = `${weapon} - ${spec.substring(17)}`;
+        if (spec) {
+          weapon = `${weapon} - ${spec.substring(17)}`;
+        } else {
+          console.warn(
+            "Survivor has a spec that doesn't exist in game assets.",
+            this.props.survivor._id.$oid,
+            this.props.survivor.weapon_proficiency_type
+          );
+        }
       }
       return (
         <div className="tw-mt-2 tw-text-xs tw-text-grey">

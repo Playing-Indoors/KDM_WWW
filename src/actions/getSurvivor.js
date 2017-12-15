@@ -17,12 +17,6 @@ function getSurvivorAsync(data) {
     payload: data.sheet
   };
 }
-function createSurvivorAsync(data) {
-  return {
-    type: CREATE_SURVIVOR,
-    payload: data.sheet
-  };
-}
 
 export function getSurvivor() {
   return dispatch => {
@@ -37,6 +31,13 @@ export function getSurvivor() {
   };
 }
 
+function createSurvivorAsync(data) {
+  return {
+    type: CREATE_SURVIVOR,
+    payload: data.sheet
+  };
+}
+
 export function createSurvivor(settlementId, data) {
   let auth = localStorage.getItem("access_token");
   let userId = localStorage.getItem("userId");
@@ -47,7 +48,9 @@ export function createSurvivor(settlementId, data) {
       user_id: userId,
       settlement: settlementId,
       name: data.name,
-      sex: data.gender
+      sex: data.gender,
+      mother: data.mother,
+      father: data.father
     }
   });
 }

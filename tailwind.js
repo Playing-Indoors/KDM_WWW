@@ -46,13 +46,13 @@ var colors = {
   transparent: "transparent",
 
   black: "#222b2f",
-  "grey-darkest": "#1E1D1E",
-  "grey-darker": "#333132",
-  "grey-dark": "#414042",
-  grey: "#636466",
-  "grey-light": "#95989A",
-  // "grey-lighter": "#f3f7f9",
-  "grey-lightest": "#EFEFF0",
+  "gray-darkest": "#1E1D1E",
+  "gray-darker": "#333132",
+  "gray-dark": "#414042",
+  gray: "#636466",
+  "gray-light": "#95989A",
+  // "gray-lighter": "#f3f7f9",
+  "gray-lightest": "#EFEFF0",
   white: "#ffffff",
 
   // "red-darkest": "#420806",
@@ -387,7 +387,7 @@ module.exports = {
   |
   */
 
-  borderColors: Object.assign({ default: colors["grey-light"] }, colors),
+  borderColors: Object.assign({ default: colors["gray-light"] }, colors),
 
   /*
   |-----------------------------------------------------------------------------
@@ -790,7 +790,7 @@ module.exports = {
     backgroundRepeat: ["responsive"],
     backgroundSize: ["responsive"],
     borderColors: false,
-    borderRadius: false,
+    borderRadius: ["responsive"],
     borderStyle: ["responsive"],
     borderWidths: ["responsive"],
     cursor: ["responsive"],
