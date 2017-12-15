@@ -74,7 +74,7 @@ class SurvivorCard extends Component {
       return null;
     }
     return (
-      <div className="tw-mt-2 tw-text-xs tw-text-grey">
+      <div className="tw-mt-2 tw-text-xs tw-text-gray">
         {this.renderStat("XP", this.props.survivor.hunt_xp)}
       </div>
     );
@@ -99,7 +99,7 @@ class SurvivorCard extends Component {
         }
       }
       return (
-        <div className="tw-mt-2 tw-text-xs tw-text-grey">
+        <div className="tw-mt-2 tw-text-xs tw-text-gray">
           <div className="tw-flex sm:tw-justify-between tw-items-center tw-flex-wrap sm:tw-flex-no-wrap">
             {this.renderStat("XP", this.props.survivor.hunt_xp)}
             {this.renderStat("Sur", this.props.survivor.survival)}
@@ -136,7 +136,7 @@ class SurvivorCard extends Component {
     return (
       <Link
         to={link}
-        className={`tw-list-animate tw-block tw-p-4 tw-bg-grey-darker tw-text-white hover:tw-text-white hover:tw-no-underline hover:tw-bg-grey-darkest focus:tw-bg-grey-darkest ${!this
+        className={`tw-list-animate tw-block tw-p-4 tw-bg-gray-darker tw-text-white hover:tw-text-white hover:tw-no-underline hover:tw-bg-gray-darkest focus:tw-bg-gray-darkest ${!this
           .props.detailed || "tw-test"}`}
       >
         <div className="tw-flex tw-justify-between tw-items-center">
