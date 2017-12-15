@@ -63,11 +63,11 @@ class Survivors extends React.Component {
   // #endregion
   renderToolbar() {
     return (
-      <div className="tw-flex tw-justify-around tw-px-1 tw-bg-grey-darkest tw-text-xs">
+      <div className="tw-flex tw-justify-around tw-px-1 tw-bg-gray-darkest tw-text-xs">
         <button
           onClick={() => this.handleToolbarDetail(false)}
           className={`${this.state.toolbarDetailed
-            ? "tw-text-grey"
+            ? "tw-text-gray"
             : "tw-text-yellow"} tw-p-3 tw-no-outline hover:tw-underline focus:tw-underline`}
         >
           Condensed
@@ -76,7 +76,7 @@ class Survivors extends React.Component {
           onClick={() => this.handleToolbarDetail(true)}
           className={`${this.state.toolbarDetailed
             ? "tw-text-yellow"
-            : "tw-text-grey"} tw-p-3 tw-no-outline hover:tw-underline focus:tw-underline`}
+            : "tw-text-gray"} tw-p-3 tw-no-outline hover:tw-underline focus:tw-underline`}
         >
           Expanded
         </button>
