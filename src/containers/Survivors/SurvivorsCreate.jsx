@@ -271,6 +271,7 @@ class SurvivorCreate extends React.Component {
           trackBy="oid_string"
           label="name"
           handleChange={e => this.handleParent(e, "father")}
+          placeholder="Nominate the father"
         />
         <label htmlFor="mother" className="tw-mt-2 tw-label">
           Mother
@@ -281,6 +282,7 @@ class SurvivorCreate extends React.Component {
           trackBy="oid_string"
           label="name"
           handleChange={e => this.handleParent(e, "mother")}
+          placeholder="Nominate the mother"
         />
       </Widget>
     );
@@ -289,7 +291,7 @@ class SurvivorCreate extends React.Component {
     if (this.props.settlementData) {
       return (
         <div>
-          <Header name={"Create Survivor"} />
+          <Header name={"Create Survivor"} showBack />
           <form className="layout" onSubmit={this.handleCreate}>
             <Widget>
               <Input

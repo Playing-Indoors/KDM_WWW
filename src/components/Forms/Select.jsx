@@ -20,6 +20,7 @@ class Select extends Component {
           className="tw-block tw-appearance-none tw-rounded-none tw-w-full tw-py-2 tw-pl-2 tw-pr-8 tw-bg-gray-dark tw-text-xs tw-text-gray-lightest"
           onChange={this.props.handleChange}
         >
+          <option value="">{this.props.placeholder}</option>
           {this.renderOptions()}
         </select>
         <div className="tw-pointer-events-none tw-absolute tw-pin-y tw-pin-r tw-flex tw-items-center tw-px-2 tw-bg-gray tw-text-gray-darker">
@@ -37,7 +38,8 @@ class Select extends Component {
 }
 
 Select.defaultProps = {
-  options: []
+  options: [],
+  placeholder: ""
 };
 
 Select.propTypes = {
@@ -45,6 +47,7 @@ Select.propTypes = {
   trackBy: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape()),
+  placeholder: PropTypes.string,
   handleChange: PropTypes.func
 };
 

@@ -53,7 +53,7 @@ class NumberIncrement extends Component {
             })}
             disabled={!this.handleCanDecrease()}
           >
-            <Icon name="minus" size="18" />
+            <Icon name="minus" size={18} />
           </button>
           <div className="numberIncrement-num">{this.renderAmount()}</div>
           <button
@@ -69,7 +69,7 @@ class NumberIncrement extends Component {
             })}
             disabled={!this.handleCanIncrease()}
           >
-            <Icon name="plus" size="18" />
+            <Icon name="plus" size={18} />
           </button>
         </div>
         <div className="numberIncrement-title">{this.props.name}</div>

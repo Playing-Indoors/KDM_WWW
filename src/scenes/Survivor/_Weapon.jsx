@@ -48,6 +48,18 @@ class Weapon extends Component {
     this.handleModalToggle();
     this.resetData();
   }
+  handleSaveType(handle) {
+    const userId = localStorage.getItem("userId");
+    const proficiencyType = {
+      user_id: userId,
+      handle: handle
+    };
+    if (handle === "") {
+      proficiencyType.unset = true;
+    }
+
+    this.props.setProficiency(this.props.oid, proficiencyType);
+  }
   // Handle's the save and makes the API Call
   handleModalConfirm() {
     const userId = localStorage.getItem("userId");
@@ -56,18 +68,9 @@ class Weapon extends Component {
       attribute: "Weapon Proficiency",
       value: this.state.amount
     };
-    const proficiencyType = {
-      user_id: userId,
-      handle: this.state.type
-    };
-    if (this.state.type === "") {
-      proficiencyType.unset = true;
-    }
+
     this.handleModalToggle();
-    Promise.all([
-      this.props.setAttributes(this.props.oid, data),
-      this.props.setProficiency(this.props.oid, proficiencyType)
-    ]).catch(err => {
+    this.props.setAttributes(this.props.oid, data).catch(err => {
       alert("Sorry an error has occurred. Please refresh the page.", err);
     });
   }
@@ -80,6 +83,7 @@ class Weapon extends Component {
     this.setState({
       type: handle
     });
+    this.handleSaveType(handle);
   }
   // Determines the color of the confirm button
   confirmColor() {
