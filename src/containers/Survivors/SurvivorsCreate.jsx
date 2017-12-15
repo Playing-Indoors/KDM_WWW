@@ -228,15 +228,23 @@ class SurvivorCreate extends React.Component {
   }
   handleCreate(e) {
     e.preventDefault();
+    const data = {
+      name: this.state.name,
+      sex: this.state.gender
+    };
+    if (this.state.mother.length > 0 && this.state.father.length > 0) {
+      data.mother = this.state.mother;
+      data.father = this.state.father;
+    }
     if (this.state.name.length > 0) {
-      createSurvivor(this.props.params.oid, this.state)
+      createSurvivor(this.props.params.oid, data)
         .then(() => {
           // TODO: I'm not sure we need to do this call if we update redux
           this.props.getSettlement(this.props.params.oid);
           browserHistory.goBack();
         })
         .catch(err => {
-          console.warn("err", err);
+          alert("Sorry an error has occurred. Please refresh the page.", err);
         });
     }
   }
