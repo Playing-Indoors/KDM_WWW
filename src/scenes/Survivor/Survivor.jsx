@@ -103,8 +103,9 @@ class Survivor extends React.Component {
     if (this.props.children) {
       return (
         <Link
-          to={`/settlements/${this.props.params.oid}/survivors/${this.props
-            .params.survivorId}`}
+          to={`/settlements/${this.props.params.oid}/survivors/${
+            this.props.params.survivorId
+          }`}
           className="header-action"
         >
           <Icon name={"minus"} />
@@ -113,8 +114,9 @@ class Survivor extends React.Component {
     }
     return (
       <Link
-        to={`/settlements/${this.props.params.oid}/survivors/${this.props.params
-          .survivorId}/menu`}
+        to={`/settlements/${this.props.params.oid}/survivors/${
+          this.props.params.survivorId
+        }/menu`}
         className="header-action"
       >
         <Icon name={"pencil"} />
@@ -192,7 +194,6 @@ class Survivor extends React.Component {
             />
             <Weapon
               oid={this.state.survivor.sheet._id.$oid}
-              apiList={this.props.settlementData.game_assets.weapon_proficiency}
               amount={this.state.survivor.sheet["Weapon Proficiency"]}
               limit={8}
               type={this.state.survivor.sheet.weapon_proficiency_type || ""}

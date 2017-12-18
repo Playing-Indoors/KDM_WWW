@@ -102,10 +102,13 @@ class Weapon extends Component {
     return "primary";
   }
   renderList() {
-    if (this.props.apiList.length !== 0) {
-      return this.props.apiList.map(i => (
-        <option value={i.handle} key={i.handle}>
-          {i.name}
+    const assets = Object.entries(
+      this.props.settlementData.game_assets.weapon_proficiency_types
+    );
+    if (assets.length !== 0) {
+      return assets.map(i => (
+        <option value={i[0]} key={i[0]}>
+          {i[1].name}
         </option>
       ));
     }
@@ -113,7 +116,8 @@ class Weapon extends Component {
   }
   renderStatAttribute() {
     if (this.state.type) {
-      const asset = this.props.apiList.find(i => i.handle === this.state.type);
+      const asset = this.props.settlementData.game_assets
+        .weapon_proficiency_types[this.state.type];
       return <div className="statAttribute">{asset.name}</div>;
     }
     return null;
@@ -205,9 +209,14 @@ Weapon.defaultProps = {
   type: "",
   oid: "",
   limit: 1,
-  apiList: [],
   milestones: []
 };
+
+function mapStateToProps(state) {
+  return {
+    settlementData: state.settlementData
+  };
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
@@ -219,4 +228,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(Weapon);
+export default connect(mapStateToProps, mapDispatchToProps)(Weapon);

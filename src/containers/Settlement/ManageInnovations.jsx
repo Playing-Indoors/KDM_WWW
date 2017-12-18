@@ -37,24 +37,38 @@ class ManageInnovations extends React.Component {
       activeTab: tab
     });
   }
-  buildSurvivorList(type) {
-    const list = this.props.settlementData.sheet.innovations.filter(
-      card =>
-        this.props.settlementData.game_assets.innovations[card].type === type
-    );
+  buildSurvivorList(type, subType) {
+    const list = this.props.settlementData.sheet.innovations.filter(card => {
+      if (subType) {
+        return (
+          this.props.settlementData.game_assets.innovations[card].sub_type ===
+          subType
+        );
+      } else {
+        return (
+          this.props.settlementData.game_assets.innovations[card].type === type
+        );
+      }
+    });
     return list;
   }
   // TODO: Optimize this list as this is done multiple times.
   // Should probably be done on load once.
-  buildAssetList(type) {
+  buildAssetList(type, subType) {
     const assets = {};
-    Object.entries(
-      this.props.settlementData.game_assets.innovations
-    ).forEach(card => {
-      if (card[1].type === type) {
-        assets[card[0]] = card[1];
+    Object.entries(this.props.settlementData.game_assets.innovations).forEach(
+      card => {
+        if (card[1].type === type) {
+          if (subType) {
+            if (card[1].sub_type === subType) {
+              assets[card[0]] = card[1];
+            }
+          } else {
+            assets[card[0]] = card[1];
+          }
+        }
       }
-    });
+    );
     return assets;
   }
   render() {
@@ -72,7 +86,9 @@ class ManageInnovations extends React.Component {
                 }}
               >
                 {/* TODO: Another inefficiency */}
-                Innovations ({this.buildSurvivorList("innovation").length})
+                Innovations ({
+                  this.buildSurvivorList("innovations", "innovation").length
+                })
               </NavLink>
             </NavItem>
             <NavItem>
@@ -84,7 +100,9 @@ class ManageInnovations extends React.Component {
                 }}
               >
                 {/* TODO: Another inefficiency */}
-                Principles ({this.buildSurvivorList("principle").length})
+                Principles ({
+                  this.buildSurvivorList("innovations", "principle").length
+                })
               </NavLink>
             </NavItem>
             <NavItem>
@@ -103,15 +121,15 @@ class ManageInnovations extends React.Component {
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId={1}>
               <Innovations
-                list={this.buildSurvivorList("innovation")}
-                assets={this.buildAssetList("innovation")}
+                list={this.buildSurvivorList("innovations", "innovation")}
+                assets={this.buildAssetList("innovations", "innovation")}
                 oid={this.props.settlementData.sheet._id.$oid}
               />
             </TabPane>
             <TabPane tabId={2}>
               <Innovations
-                list={this.buildSurvivorList("principle")}
-                assets={this.buildAssetList("principle")}
+                list={this.buildSurvivorList("innovations", "principle")}
+                assets={this.buildAssetList("innovations", "principle")}
                 oid={this.props.settlementData.sheet._id.$oid}
               />
             </TabPane>
