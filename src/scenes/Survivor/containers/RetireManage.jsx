@@ -13,6 +13,7 @@ class RetireManage extends Component {
       originalValue: ""
     };
     // Binding Events
+    this.handleClose = this.handleClose.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
   componentWillMount() {
@@ -45,14 +46,15 @@ class RetireManage extends Component {
       retired: !this.state.value
     };
     this.handleClose();
-    this.props.setRetired(this.props.oid, data).catch(() => {
+    this.props.setRetired(this.props.params.survivorId, data).catch(() => {
       this.resetData();
     });
   }
   handleClose() {
     browserHistory.push(
-      `/settlements/${this.props.params.oid}/survivors/${this.props.params
-        .survivorId}`
+      `/settlements/${this.props.params.oid}/survivors/${
+        this.props.params.survivorId
+      }`
     );
   }
   confirmColor() {

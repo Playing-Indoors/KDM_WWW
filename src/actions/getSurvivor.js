@@ -55,8 +55,8 @@ export function createSurvivor(settlementId, data) {
   });
 }
 /*******************************************
-************ CONTROLS OF DEATH**************
-********************************************/
+ ************ CONTROLS OF DEATH**************
+ ********************************************/
 export function controlsOfDeath(survivor_id, data) {
   return async dispatch => {
     await axios({
@@ -78,8 +78,8 @@ function controlsOfDeathAsync(data, survivor_id) {
   };
 }
 /*******************************************
-************ SET NAME **************
-********************************************/
+ ************ SET NAME **************
+ ********************************************/
 export function setName(survivor_id, data) {
   return async dispatch => {
     await axios({
@@ -101,16 +101,16 @@ function setNameAsync(data, survivor_id) {
   };
 }
 /*******************************************
-************ SET RETIRED **************
-********************************************/
-export function setRetired(survivor_id, data) {
+ ************ SET RETIRED **************
+ ********************************************/
+export function setRetired(survivorId, data) {
   return async dispatch => {
     await axios({
       method: "post",
-      url: `${KDM_API}/survivor/set_retired/${survivor_id}`,
+      url: `${KDM_API}/survivor/set_retired/${survivorId}`,
       data: data
     }).then(res => {
-      dispatch(setRetiredAsync(data, survivor_id));
+      dispatch(setRetiredAsync(data, survivorId));
       return true;
     });
   };
@@ -124,8 +124,8 @@ function setRetiredAsync(data, survivor_id) {
   };
 }
 /*******************************************
-************ ADD FAVORITE **************
-********************************************/
+ ************ ADD FAVORITE **************
+ ********************************************/
 export function addFavorite(survivor_id, data) {
   return async dispatch => {
     await axios({
@@ -147,8 +147,8 @@ function addFavoriteAsync(data, survivor_id) {
   };
 }
 /*******************************************
-************ REMOVE FAVORITE H**************
-********************************************/
+ ************ REMOVE FAVORITE H**************
+ ********************************************/
 export function removeFavorite(survivor_id, data) {
   return async dispatch => {
     await axios({
