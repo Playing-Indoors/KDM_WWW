@@ -94,7 +94,7 @@ class Assets extends Component {
     // this.props.setManyAssets(this.props.oid, data);
     await this.props
       .setManyAssets(this.props.oid, data)
-      .then(() => {
+      .then((res) => {
         this.handleModalToggle();
         this.setState({
           isSaving: false
@@ -155,18 +155,20 @@ class Assets extends Component {
     });
   }
   renderSurvivorList() {
-    return this.state.survivorListHumanized.map(ability => (
-      <div className="btnDeselect" key={`${ability.handle}`}>
-        {ability.name}
-        <Button
-          color="danger"
-          size="small"
-          onClick={() => this.handleAbilityDeselect(ability.handle)}
-        >
-          <Icon name="trash" size={16} />
-        </Button>
-      </div>
-    ));
+    return this.state.survivorListHumanized.map((ability, l) => {
+      return (
+        <div className="btnDeselect" key={`${ability.handle}-${l}`}>
+          {ability.name}
+          <Button
+            color="danger"
+            size="small"
+            onClick={() => this.handleAbilityDeselect(ability.handle)}
+          >
+            <Icon name="trash" size={16} />
+          </Button>
+        </div>
+      )
+    });
   }
   renderAddAbility() {
     if (this.state.survivorList.length < this.props.maximum) {
@@ -174,12 +176,12 @@ class Assets extends Component {
         <div className="btnSelect">
           <label
             className="btn btn-gray btn-block"
-            htmlFor={`survivor-add-${this.type}`}
+            htmlFor={`survivor-add-${this.props.type}`}
           >
             <Icon name="plus" size={12} />
           </label>
           <select
-            id={`survivor-add-${this.type}`}
+            id={`survivor-add-${this.props.type}`}
             onChange={this.handleAbilitySelect}
             value={this.state.selectValue}
           >

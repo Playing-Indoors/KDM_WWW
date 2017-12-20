@@ -19,7 +19,7 @@ export function setManyAssets(survivor_id, data) {
       url: `${KDM_API}/survivor/replace_game_assets/${survivor_id}`,
       data: data
     }).then(res => {
-      // console.log("assets", res);
+      //console.log("assets", res);
       dispatch(setManyAssetsAsync(res.data, survivor_id));
       return true;
     });
